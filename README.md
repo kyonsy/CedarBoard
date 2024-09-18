@@ -1,4 +1,9 @@
-aaa
-yamamoto
-kosaka
-I my me mine
+## 仕事の割り振り
+## 長谷川
+MainWindowの部分を頼みます。これはWorkSpaceを開くための初期画面です。
+Windowのデザインに関しては最後に整える予定なので適当でいいです。
+Windowの遷移とバインドしてきた文字列の表示ができるようお願いします。
+## 村田
+CreateWorkSpaceWindowの部分を頼みます。これは新しいWorkSpaceの設定が作る画面です。
+これもwindowのデザインはあまり力は入れなくてもいいです。
+Windowの遷移とバインドしてきた文字列の表示ができるようお願いします。

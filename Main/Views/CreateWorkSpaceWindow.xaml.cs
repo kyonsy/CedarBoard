@@ -3,11 +3,11 @@
 namespace Main.Views
 {
     /// <summary>
-    /// Interaction logic for SolutionCreateWindow.xaml
+    /// Interaction logic for CreateWorkSpaceWindow.xaml
     /// </summary>
-    public partial class SolutionCreateWindow : Window
+    public partial class CreateWorkSpaceWindow : Window
     {
-        public SolutionCreateWindow()
+        public CreateWorkSpaceWindow()
         {
             InitializeComponent();
         }

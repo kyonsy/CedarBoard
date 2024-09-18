@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace Main.ViewModels
 {
-	public class ProjectEditWindowViewModel : BindableBase
-	{
+    public class ProjectEditWindowViewModel : BindableBase
+    {
         public ProjectEditWindowViewModel()
         {
 
         }
-	}
+    }
 }

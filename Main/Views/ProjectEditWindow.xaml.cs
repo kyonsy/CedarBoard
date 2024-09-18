@@ -1,11 +1,11 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
 
 namespace Main.Views
 {
     /// <summary>
-    /// Interaction logic for ProjectEditWindow
+    /// Interaction logic for ProjectEditWindow.xaml
     /// </summary>
-    public partial class ProjectEditWindow : UserControl
+    public partial class ProjectEditWindow : Window
     {
         public ProjectEditWindow()
         {

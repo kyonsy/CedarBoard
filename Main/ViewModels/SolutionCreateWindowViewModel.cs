@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CedarBoard.ViewModels
+namespace Main.ViewModels
 {
 	public class SolutionCreateWindowViewModel : BindableBase
 	{

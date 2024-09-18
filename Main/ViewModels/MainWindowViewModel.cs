@@ -1,6 +1,6 @@
 ﻿using Prism.Mvvm;
 
-namespace CedarBoard.ViewModels
+namespace Main.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {

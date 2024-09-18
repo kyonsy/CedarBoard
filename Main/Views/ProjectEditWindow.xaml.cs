@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace CedarBoard.Views
+namespace Main.Views
 {
     /// <summary>
     /// Interaction logic for ProjectEditWindow

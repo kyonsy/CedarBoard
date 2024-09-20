@@ -9,3 +9,5 @@ CreateWorkSpaceWindowの部分を頼みます。これは新しいWorkSpaceの�
 Windowの遷移とバインドしてきた文字列の表示ができるようお願いします。
 ### 梶
 Model(内部ロジックの部分)を担当します。
+### 山本 小坂
+ProjectEditの部分を頼みます。ProjectNode.jsonからノードツリーを表示できるようにしてください

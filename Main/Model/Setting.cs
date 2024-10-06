@@ -52,5 +52,6 @@ namespace Main.Model
         /// メッセージ(ワークスペースの解説)
         /// </summary>
         public string Message {  get; set; }
+
     }
 }

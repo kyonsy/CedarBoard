@@ -12,15 +12,15 @@ namespace Main.Model
         /// <summary>
         /// ノードの名前
         /// </summary>
-        private String Name { get; set; }
+        public String Name { get; set; }
         /// <summary>
-        /// ノードの座標(要素数は2)
+        /// ノードの座標
         /// </summary>
-        private int[] Point {  get; set; }
+        public Point Point {  get; set; }
        
         /// <summary>
         /// 子ノードが入っている配列のアクセサ
         /// </summary>
-        private List<int> ChildNode {  get; set; }
+        public List<int> ChildNode {  get; set; }
     }
 }

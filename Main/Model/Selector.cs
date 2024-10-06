@@ -6,26 +6,13 @@ using System.Threading.Tasks;
 
 namespace Main.Model
 {
-    internal sealed class Selector
+    internal sealed class Selector:BaseJSON
     {
         /// <summary>
         /// ワークスペースのパス
         /// </summary>
         public List<string> Paths { get; set; }
 
-        /// <summary>
-        /// シリアライズ()JSONにSelectorの情報を書き出す
-        /// </summary>
-        /// <param name="file"></param>
-        void Serialize(string file)
-        {
-
-        }
-
-        //デシリアライズ(SelectorにJSONの内容を書き込み)
-        void Deserialize(string file) { 
-
-        }
 
         /// <summary>
         /// 新しいワークスペースを追加して返す

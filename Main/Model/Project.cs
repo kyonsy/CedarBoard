@@ -7,29 +7,13 @@ using System.Text.Json;
 
 namespace Main.Model
 {
-    internal sealed class Project
+    internal sealed class Project : BaseJSON
     {
         /// <summary>
         /// Nodeのリスト
         /// </summary>
         private List<Node> Node { get; set; }
 
-        /// <summary>
-        /// シリアライズ(JSONにProjectの情報を書き出す)
-        /// </summary>
-        /// <param name="file"></param>
-        public void Serialize(string file)
-        {
-
-        }
-
-        /// <summary>
-        /// デシリアライズ(ProjectにJSONの情報を読み込む)
-        /// </summary>
-        /// <param name="file"></param>
-        public void Deserialize(string file) {
-
-        }
 
         /// <summary>
         /// 新しいノードを追加する

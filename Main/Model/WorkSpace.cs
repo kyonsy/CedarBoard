@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Main.Model
 {
-    internal sealed class WorkSpace
+    internal sealed class WorkSpace:BaseJSON
     {
         /// <summary>
         /// ワークスペースのパス
@@ -22,21 +22,6 @@ namespace Main.Model
         /// プロジェクトの名前
         /// </summary>
         public List<string> Projects { get; set; }
-
-        /// <summary>
-        /// シリアライズ(JSONにWorkSpaceの情報を書き出す)
-        /// </summary>
-        /// <param name="file"></param>
-        public void Serialize(string file)
-        {
-
-        }
-
-        /// <summary>
-        /// デシリアライズ(WorkSpaceにJSONの情報を読み込む)
-        /// </summary>
-        /// <param name="file"></param>
-        public void Deserialize(string file) { }
 
         /// <summary>
         /// 新しいプログラムを追加して返す

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.IO;
 
 namespace Main.Model
 {
@@ -15,7 +16,8 @@ namespace Main.Model
         /// <param name="file"></param>
         public void Serialize(string file)
         {
-
+            string json = JsonSerializer.Serialize(this);
+            File.WriteAllText(file, json);
         }
 
         /// <summary>
@@ -23,7 +25,7 @@ namespace Main.Model
         /// </summary>
         /// <param name="file"></param>
         public void Deserialize(string file) { 
-
+            
         }
     }
 }

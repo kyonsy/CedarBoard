@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CedarBoard", "CedarBoard\Ce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CedarBoardTest.Tests", "CedarBoardTest.Tests\CedarBoardTest.Tests.csproj", "{32AE2805-2C8E-4508-B0D4-61B12B13C826}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CedarBoard.Model", "CedarBoard.Model\CedarBoard.Model.csproj", "{0AEF2F74-394B-4FF4-9867-75604216379D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{32AE2805-2C8E-4508-B0D4-61B12B13C826}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32AE2805-2C8E-4508-B0D4-61B12B13C826}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32AE2805-2C8E-4508-B0D4-61B12B13C826}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AEF2F74-394B-4FF4-9867-75604216379D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AEF2F74-394B-4FF4-9867-75604216379D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AEF2F74-394B-4FF4-9867-75604216379D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AEF2F74-394B-4FF4-9867-75604216379D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

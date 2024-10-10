@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CedarBoard.Model.Object
+namespace CedarBoard.Model.Objects
 {
-    internal class Point
+    public class Point
     {
         /// <summary>
         /// X座標
         /// </summary>
-        public int X { get; set; }
+        public required int X { get; set; }
 
         /// <summary>
         /// Y座標
         /// </summary>
-        public int Y { get; set; }
+        public required int Y { get; set; }
     }
 }

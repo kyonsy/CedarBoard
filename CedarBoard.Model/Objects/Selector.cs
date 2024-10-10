@@ -1,13 +1,12 @@
-﻿using CedarBoard.Model.Object;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CedarBoard.Model
+namespace CedarBoard.Model.Objects
 {
-    internal sealed class Selector : JSONBase
+    public sealed class Selector : JSONBase
     {
         /// <summary>
         /// ワークスペースのパス

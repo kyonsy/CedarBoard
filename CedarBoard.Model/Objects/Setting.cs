@@ -4,54 +4,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CedarBoard.Model.Object
+namespace CedarBoard.Model.Objects
 {
-    internal sealed class Setting
+    public sealed class Setting
     {
         /// <summary>
         /// 描画のフォーマット(複数作りたい)
         /// </summary>
-        public string Format { get; set; }
+        public required string Format { get; set; }
 
         /// <summary>
         /// 使うテキストエディタの絶対パス
         /// </summary>
-        public string Editor { get; set; }
+        public required string Editor { get; set; }
 
         /// <summary>
         /// 使うエンコード
         /// </summary>
-        public string Encode { get; set; }
+        public required string Encode { get; set; }
 
         /// <summary>
         /// 使用言語
         /// </summary>
-        public string Language { get; set; }
+        public required string Language { get; set; }
 
         /// <summary>
         /// 著者名
         /// </summary>
-        public string Author { get; set; }
+        public required string Author { get; set; }
 
         /// <summary>
         /// ワークスペース名
         /// </summary>
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         /// <summary>
         /// 作成日時
         /// </summary>
-        public string CreatedDate { get; set; }
+        public required string CreatedDate { get; set; }
 
         /// <summary>
         /// 更新日時
         /// </summary>
-        public string UpdatedDate { get; set; }
+        public required string UpdatedDate { get; set; }
 
         /// <summary>
         /// メッセージ(ワークスペースの解説)
         /// </summary>
-        public string Message { get; set; }
+        public required string Message { get; set; }
 
     }
 }

@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
-using CedarBoard.Model.Object;
 
-namespace CedarBoard.Model
+namespace CedarBoard.Model.Objects
 {
-    internal sealed class Project : JSONBase
+    public sealed class Project : JSONBase
     {
         /// <summary>
         /// Nodeのリスト
         /// </summary>
-        private List<Node> Node { get; set; }
+        public List<Node> Node { get; set; }
 
 
         /// <summary>

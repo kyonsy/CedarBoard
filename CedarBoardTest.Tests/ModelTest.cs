@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CedarBoard.Model;
+using CedarBoard.Model.Objects;
 
 namespace CedarBoardTest.Tests
 {
     [TestClass]
     internal class ModelTest
     {
-
+        [TestMethod]
+        void プロジェクトデシリアライズ()
+        {
+            Project project = new Project();
+            
+            
+       
+        }
     }
 }

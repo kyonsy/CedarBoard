@@ -1,7 +1,7 @@
 namespace CedarBoardTest.Tests
 {
     [TestClass]
-    public class UnitTest1
+    internal class ViewModelTest
     {
         [TestMethod]
         public void TestMethod1()

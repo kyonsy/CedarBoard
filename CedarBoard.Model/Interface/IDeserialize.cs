@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace CedarBoard.Model.Interface
 {
-    internal interface IDeserialize
+    public interface IDeserialize
     {
 
         /// <summary>
         /// デシリアライズ(JSONの情報を読み込む)
         /// </summary>
         /// <param name="file"></param>
-        void Deserialize(string file);
+        void GetData(string file);
     }
 }

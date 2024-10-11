@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CedarBoard.Model.Mock
 {
-    internal class JsonFileMock
+    internal class SerializeMock
     {
     }
 }

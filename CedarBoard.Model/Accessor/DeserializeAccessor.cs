@@ -8,7 +8,7 @@ using System.IO;
 
 namespace CedarBoard.Model.Accessor
 {
-    public abstract class JsonFileAccessor
+    public abstract class DeserializeAccessor
     {
         /// <summary>
         /// シリアライズ(JSONに情報を書き出す)

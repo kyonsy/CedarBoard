@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CedarBoard.Model.Interface
+namespace CedarBoard.Model.Accessor
 {
-    internal interface IJsonFile
+    internal class SerializeAccessor
     {
     }
 }

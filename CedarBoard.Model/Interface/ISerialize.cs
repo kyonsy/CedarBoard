@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace CedarBoard.Model.Interface
 {
-    internal interface ISerialize
+    public interface ISerialize
     {
         /// <summary>
         /// シリアライズ(JSONに情報を書き出す)
         /// </summary>
         /// <param name="file"></param>
-        void Serialize(string file);
+        void SetData(string file);
     }
 }

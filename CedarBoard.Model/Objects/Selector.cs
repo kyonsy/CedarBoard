@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CedarBoard.Model.Interface;
 
 namespace CedarBoard.Model.Objects
 {
-    public sealed class Selector : JSONBase
+    public sealed class Selector : ISerialize,IDeserialize
     {
         /// <summary>
         /// ワークスペースのパス
@@ -41,6 +42,16 @@ namespace CedarBoard.Model.Objects
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
         public WorkSpace GetWorkSpace(string path)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Serialize(string file)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Deserialize(string file)
         {
             throw new NotImplementedException();
         }

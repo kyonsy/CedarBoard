@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.IO;
 
-namespace CedarBoard.Model.Objects
+namespace CedarBoard.Model.Accessor
 {
-    public abstract class JSONBase
+    public abstract class JsonFileAccessor
     {
         /// <summary>
         /// シリアライズ(JSONに情報を書き出す)

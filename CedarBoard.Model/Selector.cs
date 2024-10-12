@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CedarBoard.Model.Interface;
+﻿using CedarBoard.Model.Poco;
+using System.Text.Json.Serialization;
 
-namespace CedarBoard.Model.Objects
+namespace CedarBoard.Model
 {
-    public sealed class Selector : ISerialize,IDeserialize
+    public sealed class Selector : JsonFileBase
     {
-        /// <summary>
-        /// ワークスペースのパス
-        /// </summary>
-        public List<string> Paths { get; set; }
+        [JsonPropertyName("pathList")]
+        public List<string>? PathList { get; set; }
 
 
         /// <summary>
@@ -22,7 +16,7 @@ namespace CedarBoard.Model.Objects
         /// <param name="setting"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public WorkSpace Add(string path, Setting setting)
+        public WorkSpace Add(string path, SettingPoco setting)
         {
             throw new NotImplementedException();
         }
@@ -42,16 +36,6 @@ namespace CedarBoard.Model.Objects
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
         public WorkSpace GetWorkSpace(string path)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Serialize(string file)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Deserialize(string file)
         {
             throw new NotImplementedException();
         }

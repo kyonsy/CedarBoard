@@ -1,39 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CedarBoard.Model.Interface;
+﻿using CedarBoard.Model.Accessor;
+using CedarBoard.Model.Poco;
+using System.Text.Json.Serialization;
 
-namespace CedarBoard.Model.Objects
+namespace CedarBoard.Model
 {
-    public sealed class WorkSpace : ISerialize, IDeserialize
+    public sealed class WorkSpace : JsonFileBase
     {
+        private ITextFile _textFile;
 
-        public void Deserialize(string file)
+        public WorkSpace(ITextFile textFile)
         {
-            throw new NotImplementedException();
+            _textFile = textFile;
         }
 
-        public void Serialize(string file)
-        {
-            throw new NotImplementedException();
-        }
-    
-        /// <summary>
-        /// ワークスペースのパス
-        /// </summary>
-        public string Path { get; set; }
+        [JsonPropertyName("path")]
+        public required string Path { get; set; }
 
-        /// <summary>
-        /// ワークスペースの設定
-        /// </summary>
-        public Setting Setting { get; set; }
+        [JsonPropertyName("setting")]
+        public required SettingPoco Setting { get; set; }
 
-        /// <summary>
-        /// プロジェクトの名前
-        /// </summary>
-        public List<string> Projects { get; set; }
+        [JsonPropertyName("projectList")]
+        public List<string>? ProjectList { get; set; }
+
 
         /// <summary>
         /// 新しいプログラムを追加して返す

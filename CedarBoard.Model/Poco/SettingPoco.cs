@@ -28,6 +28,9 @@ namespace CedarBoard.Model.Poco
         [JsonPropertyName("updatedDate")]
         public required string UpdatedDate { get; set; }
 
+        [JsonPropertyName("path")]
+        public required string Path { get; set; }
+
         [JsonPropertyName("message")]
         public required string Message { get; set; }
     }

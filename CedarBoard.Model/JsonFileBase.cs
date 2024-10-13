@@ -33,6 +33,12 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
+        /// 自身のオブジェクトを指定されたファイルにシリアライズする
+        /// </summary>
+        public abstract void Save();
+
+
+        /// <summary>
         /// オプションを設定する。内部メゾット
         /// </summary>
         /// <returns></returns>

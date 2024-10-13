@@ -5,9 +5,8 @@ using System.Text.Json.Serialization;
 
 namespace CedarBoard.Model
 {
-    public sealed class WorkSpace(ITextFile textFile) : JsonFileBase
+    public sealed class Workspace(ITextFile textFile) : JsonFileBase
     {
-        public string? Path { get; set; }
 
         [JsonPropertyName("setting")]
         public required SettingPoco Setting { get; set; }
@@ -25,9 +24,9 @@ namespace CedarBoard.Model
         public void Add(string project)
         {
             ProjectList.Add(project);
-            Directory.CreateDirectory(Path + "/" + project);
-            File.WriteAllText(Path + "/" + project + "/project.json","[]");
-            Directory.CreateDirectory(Path + "/" + project+ "/" + "content");
+            Directory.CreateDirectory(ProjectToPath(project));
+            File.WriteAllText(ProjectToPath(project) + "/project.json","[]");
+            Directory.CreateDirectory(ProjectToPath(project) + "/" + "content");
         }
 
         /// <summary>
@@ -35,7 +34,7 @@ namespace CedarBoard.Model
         /// </summary>
         /// <param name="index"></param>
         public void Remove(int index) { 
-            Directory.Delete(Path + "/" + ProjectList[index], true);
+            Directory.Delete(ProjectToPath(ProjectList[index]), true);
             ProjectList.RemoveAt(index);
         }
 
@@ -47,11 +46,20 @@ namespace CedarBoard.Model
         /// <exception cref="NotImplementedException"></exception>
         public Project GetProject(int index)
         {
-            object obj = Deserialize(textFile.GetData(Path + "/" + ProjectList[index] + "/project.json"));
+            object obj = Deserialize(textFile.GetData(ProjectToPath(ProjectList[index]) + "/project.json"));
             Project project = obj as Project ??
-                throw new NotImplementedException("ワークスペースに変換できません");
-            project.Path = Path + ProjectList[index];
+                throw new NotImplementedException("プロジェクトに変換できません");
+            project.Path = ProjectToPath(ProjectList[index]);
             return project;
+        }
+        public override void Save()
+        {
+            textFile.SetData(Setting.Path+"/workspace.json",Serialize(this));
+        }
+
+        private string ProjectToPath(string project)
+        {
+            return Setting.Path + "/" + project;
         }
     }
 }

@@ -1,13 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 using CedarBoard.Model.Poco;
 using CedarBoard.Model.Accessor;
-using System.IO;
 
 namespace CedarBoard.Model
 {
    
 
-    public sealed class Project
+    public sealed class Project(ITextFile textFile) : JsonFileBase
     {
         public string? Path {  get; set; }
 
@@ -20,19 +19,18 @@ namespace CedarBoard.Model
         /// <param name="node"></param>
         public void Add(NodePoco node)
         {
-            string fileName = Path + "/content/" + node.Name + ".txt";
-            if (File.Exists(fileName)) throw new FileNotFoundException("同じ名前のノードを追加することは出来ません");
+            if (File.Exists(NodeToTextPath(node))) throw new FileNotFoundException("同じ名前のノードを追加することは出来ません");
             NodeList.Add(node);
-            File.WriteAllText(fileName,"");
+            textFile.SetData(NodeToTextPath(node), "");
         }
-
+        
         /// <summary>
         /// 指定されたノードを削除する
         /// </summary>
         /// <param name="index"></param>
         public void Remove(int index)
         {
-            File.Delete(Path + "/content/" + NodeList[index].Name + ".txt");
+            File.Delete(NodeToTextPath(NodeList[index]));
             NodeList.RemoveAt(index);
         }
 
@@ -43,7 +41,23 @@ namespace CedarBoard.Model
         /// <param name="index"></param>
         public void Replace(NodePoco node, int index)
         {
+            File.Move(NodeToTextPath(NodeList[index]), NodeToTextPath(node));
             NodeList[index] = node;
+        }
+
+        public override void Save()
+        {
+            textFile.SetData(Path + "/project.json", Serialize(this));
+        }
+
+        /// <summary>
+        /// ノードを受け取り、それに対応したテキストファイルのパスを返す
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        private string NodeToTextPath(NodePoco node)
+        {
+            return Path + "/content/" + node.Name + ".txt";
         }
     }
 }

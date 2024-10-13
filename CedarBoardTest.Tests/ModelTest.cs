@@ -15,8 +15,6 @@ namespace CedarBoardTest.Tests
                 sb.Append(i);
                 sb.Append("qwertyuioplkjhgfdsazxcvbnm\n");
             }
-
-
             File.WriteAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaa.txt", sb.ToString());
             
             string aaa = File.ReadAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaa.txt");

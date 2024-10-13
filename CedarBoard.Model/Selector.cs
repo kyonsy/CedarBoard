@@ -9,18 +9,18 @@ namespace CedarBoard.Model
         [JsonPropertyName("pathList")]
         public required Dictionary<string,string> PathList { get; set; }
 
-
         /// <summary>
         /// 新しいワークスペースを追加する
         /// </summary>
         /// <param name="path"></param>
         /// <param name="setting"></param>
         /// <returns></returns>
-        public void Add(string path, SettingPoco setting)
+        public void Add(SettingPoco setting)
         {
-            Directory.CreateDirectory(path);
-            File.WriteAllText(path  + "/workspace.json", CreateJsonTemplete(setting));
-            PathList.Add(setting.Name, path);
+            Directory.CreateDirectory(setting.Path);
+            textFile.SetData(setting.Path  + "/workspace.json",
+                $@"{{""projectList"":[],""setting"":{Serialize(setting)}}}");
+            PathList.Add(setting.Name, setting.Path);
         }
 
         /// <summary>
@@ -39,20 +39,18 @@ namespace CedarBoard.Model
         /// <param name="path"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public WorkSpace GetWorkSpace(string path)
+        public Workspace GetWorkSpace(string path)
         {
             object obj = Deserialize(textFile.GetData(path + "/workspace.json"));
-            WorkSpace workSpace = obj as WorkSpace ?? 
+            Workspace workSpace = obj as Workspace ?? 
                 throw new NotImplementedException("ワークスペースに変換できません");
-            workSpace.Path = path;
             return workSpace;
         }
 
-
-        private static string CreateJsonTemplete(SettingPoco setting)
+        public override void Save()
         {
-
-            return $@"{{""projectList"":[],""setting"":{Serialize(setting)}}}";
+            string appPath = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
+            textFile.SetData(appPath, Serialize(this));
         }
     }
 }

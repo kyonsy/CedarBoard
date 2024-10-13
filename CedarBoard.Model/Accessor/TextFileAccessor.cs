@@ -2,7 +2,7 @@
 {
     public class TextFileAccessor : ITextFile
     {
-        public string? GetData(string file)
+        public string GetData(string file)
         {
             return File.ReadAllText(file);
         }

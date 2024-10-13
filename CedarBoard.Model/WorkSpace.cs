@@ -1,44 +1,43 @@
 ﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
+using System.IO;
 using System.Text.Json.Serialization;
 
 namespace CedarBoard.Model
 {
-    public sealed class WorkSpace : JsonFileBase
+    public sealed class WorkSpace(ITextFile textFile) : JsonFileBase
     {
-        private ITextFile _textFile;
-
-        public WorkSpace(ITextFile textFile)
-        {
-            _textFile = textFile;
-        }
-
-        [JsonPropertyName("path")]
-        public required string Path { get; set; }
+        public string? Path { get; set; }
 
         [JsonPropertyName("setting")]
         public required SettingPoco Setting { get; set; }
 
         [JsonPropertyName("projectList")]
-        public List<string>? ProjectList { get; set; }
+        public required List<string> ProjectList { get; set; }
 
 
         /// <summary>
-        /// 新しいプログラムを追加して返す
+        /// 新しいプログラムを追加する
         /// </summary>
         /// <param name="project"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Project Add(string project)
+        public void Add(string project)
         {
-            throw new NotImplementedException();
+            ProjectList.Add(project);
+            Directory.CreateDirectory(Path + "/" + project);
+            File.WriteAllText(Path + "/" + project + "/project.json","[]");
+            Directory.CreateDirectory(Path + "/" + project+ "/" + "content");
         }
 
         /// <summary>
         /// 指定されたプロジェクトを削除する
         /// </summary>
         /// <param name="index"></param>
-        public void Remove(int index) { }
+        public void Remove(int index) { 
+            Directory.Delete(Path + "/" + ProjectList[index], true);
+            ProjectList.RemoveAt(index);
+        }
 
         /// <summary>
         /// 指定されたプロジェクトを返す
@@ -48,7 +47,11 @@ namespace CedarBoard.Model
         /// <exception cref="NotImplementedException"></exception>
         public Project GetProject(int index)
         {
-            throw new NotImplementedException();
+            object obj = Deserialize(textFile.GetData(Path + "/" + ProjectList[index] + "/project.json"));
+            Project project = obj as Project ??
+                throw new NotImplementedException("ワークスペースに変換できません");
+            project.Path = Path + ProjectList[index];
+            return project;
         }
     }
 }

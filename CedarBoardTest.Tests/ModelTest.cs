@@ -1,22 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
-using System.Threading.Tasks;
-using CedarBoard.Model;
 
 namespace CedarBoardTest.Tests
 {
     [TestClass]
-    internal class ModelTest
+    public class ModelTest
     {
         [TestMethod]
-        void プロジェクトデシリアライズ()
+        public void ファイル操作って同期処理なのか()
         {
-            Project project = new Project();
+            StringBuilder sb = new();
+            for(int i = 0; i < 100000; i++)
+            {
+                sb.Append(i);
+                sb.Append("qwertyuioplkjhgfdsazxcvbnm\n");
+            }
+
+
+            File.WriteAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaa.txt", sb.ToString());
             
-            
-       
+            string aaa = File.ReadAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaa.txt");
+            Console.WriteLine(aaa);
+            Assert.AreEqual(aaa, sb.ToString());
+        }
+
+
+        [TestMethod]
+        public void ディレクトリの作成って同期処理なのか()
+        {
+            Directory.CreateDirectory(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaaa");
+            File.WriteAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaaa\aaa.txt", "aa");
+            Assert.AreEqual(true, File.Exists(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaaa\aaa.txt"));
         }
     }
 }

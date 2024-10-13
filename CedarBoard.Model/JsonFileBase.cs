@@ -14,18 +14,10 @@ namespace CedarBoard.Model
         /// </summary>
         /// <param name="poco"></param>
         /// <returns></returns>
-        protected string? Serialize(object poco)
+        protected static string Serialize(object poco)
         {
-            try
-            {
-                var json = JsonSerializer.Serialize(poco, GetOptions());
-                return json;
-            }
-            catch (JsonException e)
-            {
-                Console.WriteLine(e.Message);
-                return null;
-            }
+            var json = JsonSerializer.Serialize(poco, GetOptions());
+            return json;
         }
 
         /// <summary>
@@ -33,26 +25,18 @@ namespace CedarBoard.Model
         /// </summary>
         /// <param name="json"></param>
         /// <returns></returns>
-        protected object? Deserialize(string json)
+        protected static object Deserialize(string json)
         {
-            if (string.IsNullOrEmpty(json)) return null;
-            try
-            {
-                object? poco = JsonSerializer.Deserialize<object>(json, GetOptions());
-                return poco;
-            }
-            catch (JsonException e)
-            {
-                Console.WriteLine(e.Message);
-                return null;
-            }
+            object poco = JsonSerializer.Deserialize<object>(json, GetOptions()) ??
+                throw new Exception("Json文字列として認識できません");
+            return poco;
         }
 
         /// <summary>
         /// オプションを設定する。内部メゾット
         /// </summary>
         /// <returns></returns>
-        private JsonSerializerOptions GetOptions()
+        private static JsonSerializerOptions GetOptions()
         {
             var options = new JsonSerializerOptions
             {

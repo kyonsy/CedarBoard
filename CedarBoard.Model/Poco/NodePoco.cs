@@ -1,11 +1,13 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 
+[assembly: InternalsVisibleTo("CedarBoardTest.Tests")]
 namespace CedarBoard.Model.Poco
 {
     /// <summary>
     /// ノードの情報を持っているPOCO
     /// </summary>
-    public sealed class NodePoco
+    internal sealed class NodePoco
     {
         /// <summary>
         /// ノードの名前

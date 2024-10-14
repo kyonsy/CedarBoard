@@ -1,13 +1,15 @@
 ﻿using System.Text.Unicode;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Runtime.CompilerServices;
 
+[assembly:InternalsVisibleTo("CedarBoardTest.Tests")]
 namespace CedarBoard.Model
 {
     /// <summary>
     /// Json文字列とオブジェクトの相互変換を行う抽象クラス
     /// </summary>
-    public abstract class JsonFileBase
+    internal abstract class JsonFileBase
     {
         /// <summary>
         /// 入力されたオブジェクトをJson文字列に変換する
@@ -25,7 +27,7 @@ namespace CedarBoard.Model
         /// </summary>
         /// <param name="json">オブジェクトに変えたいJson文字列</param>
         /// <returns>オブジェクト</returns>
-        /// <exception cref="FormatException"></exception>
+        /// <exception cref="FormatException">変換が上手く行かないことを防ぐ</exception>
         protected static object Deserialize(string json)
         {
             object poco = JsonSerializer.Deserialize<object>(json, GetOptions()) ??
@@ -34,7 +36,7 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// 自身のオブジェクトを指定されたファイルにシリアライズする
+        /// 自身のオブジェクトを指定されたJsonファイルにシリアライズして書き込む
         /// </summary>
         public abstract void Save();
 

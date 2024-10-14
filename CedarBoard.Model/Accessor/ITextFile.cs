@@ -1,4 +1,7 @@
-﻿namespace CedarBoard.Model.Accessor
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("CedarBoardTest.Tests")]
+namespace CedarBoard.Model.Accessor
 {
     /// <summary>
     /// テスト用に作ったファイル操作のインターフェイス

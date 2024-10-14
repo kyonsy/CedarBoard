@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("CedarBoardTest.Tests")]
-namespace CedarBoard.Model.Accessor
+﻿namespace CedarBoard.Model.Accessor
 {
     /// <summary>
     /// テスト用のモック。ファイル操作を間接的に表現

@@ -1,16 +1,14 @@
 ﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
-using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 
-[assembly: InternalsVisibleTo("CedarBoardTest.Tests")]
 namespace CedarBoard.Model
 {
     /// <summary>
     /// ワークスペース
     /// </summary>
     /// <param name="textFile">テスト用と本番用で使い分ける</param>
-    internal sealed class Workspace(ITextFile textFile) : JsonFileBase
+    public sealed class Workspace(ITextFile textFile) : JsonFileBase
     {
         ///<summary>
         /// 設定

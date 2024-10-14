@@ -1,16 +1,14 @@
 ﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
-using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 
-[assembly: InternalsVisibleTo("CedarBoardTest.Tests")]
 namespace CedarBoard.Model
 {
     /// <summary>
     /// ワークスペースを選ぶためのもの。アプリケーションの起動と同時にインスタンス化される
     /// </summary>
     /// <param name="textFile">テスト用と本番用で使い分ける</param>
-    internal sealed class Selector(ITextFile textFile) : JsonFileBase
+    public sealed class Selector(ITextFile textFile) : JsonFileBase
     {
         /// <summary>
         /// ワークスペースの名前をキーにとそのパスを保持する

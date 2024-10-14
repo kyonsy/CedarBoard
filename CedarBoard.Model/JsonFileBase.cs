@@ -1,15 +1,12 @@
 ﻿using System.Text.Unicode;
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using System.Runtime.CompilerServices;
-
-[assembly:InternalsVisibleTo("CedarBoardTest.Tests")]
 namespace CedarBoard.Model
 {
     /// <summary>
     /// Json文字列とオブジェクトの相互変換を行う抽象クラス
     /// </summary>
-    internal abstract class JsonFileBase
+    public abstract class JsonFileBase
     {
         /// <summary>
         /// 入力されたオブジェクトをJson文字列に変換する

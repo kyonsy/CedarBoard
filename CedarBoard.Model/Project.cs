@@ -1,9 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using CedarBoard.Model.Poco;
 using CedarBoard.Model.Accessor;
-using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("CedarBoardTest.Tests")]
 namespace CedarBoard.Model
 {
    
@@ -11,7 +9,7 @@ namespace CedarBoard.Model
     /// プロジェクトのデータとそれに対する操作
     /// </summary>
     /// <param name="textFile">テスト用と本番用で使い分ける</param>
-    internal sealed class Project(ITextFile textFile) : JsonFileBase
+    public sealed class Project(ITextFile textFile) : JsonFileBase
     {
         /// <summary>
         /// プロジェクトのあるパス

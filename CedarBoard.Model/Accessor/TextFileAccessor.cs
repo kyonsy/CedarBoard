@@ -24,5 +24,20 @@
         {
             File.WriteAllText(file, value);
         }
+
+        /// <summary>
+        /// ファイルの名前(path)を変える
+        /// </summary>
+        /// <param name="file">ファイルのパス</param>
+        /// <param name="newName">新しい名前(path)</param>
+        public void Rename(string file, string newName) { 
+        }
+
+        /// <summary>
+        /// ファイルを削除する
+        /// </summary>
+        /// <param name="file">削除したいファイル</param>
+        public void Delete(string file) { 
+        }
     }
 }

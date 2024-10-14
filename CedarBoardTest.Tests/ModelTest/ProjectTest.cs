@@ -1,22 +1,22 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 
-namespace CedarBoardTest.Tests
+namespace CedarBoardTest.Tests.ModelTest
 {
     [TestClass]
-    public class ModelTest
+    public class ProjectTest
     {
         [TestMethod]
         public void ファイル操作って同期処理なのか()
         {
             StringBuilder sb = new();
-            for(int i = 0; i < 100000; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 sb.Append(i);
                 sb.Append("qwertyuioplkjhgfdsazxcvbnm\n");
             }
             File.WriteAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaa.txt", sb.ToString());
-            
+
             string aaa = File.ReadAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaa.txt");
             Console.WriteLine(aaa);
             Assert.AreEqual(aaa, sb.ToString());

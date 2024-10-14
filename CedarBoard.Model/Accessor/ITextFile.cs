@@ -18,5 +18,18 @@
         /// <param name="file">ファイルのパス</param>
         /// <param name="value">書き出す内容</param>
         public void SetData(string file, string value);
+
+        /// <summary>
+        /// ファイルの名前(path)の変更
+        /// </summary>
+        /// <param name="file">ファイルのパス</param>
+        /// <param name="newName">新しい名前</param>
+        public void Rename(string file, string newName);
+
+        /// <summary>
+        /// ファイルの削除
+        /// </summary>
+        /// <param name="file">削除したい名前</param>
+        public void Delete(string file);
     }
 }

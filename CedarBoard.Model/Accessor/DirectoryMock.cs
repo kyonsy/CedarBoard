@@ -1,12 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CedarBoard.Model.Accessor
+﻿namespace CedarBoard.Model.Accessor
 {
-    internal class DirectoryMock
+    /// <summary>
+    /// ディレクトリを表現するMock
+    /// </summary>
+    public class DirectoryMock : IDirectory
     {
+        /// <summary>
+        /// ディレクトリの集合を仮想的に再現
+        /// </summary>
+        public HashSet<string> DirectorySet { get; set; } = [];
+
+        /// <summary>
+        /// ディレクトリの生成を仮想的に表現
+        /// </summary>
+        /// <param name="path">生成するディレクトリのパス</param>
+        public void Create(string path)
+        {
+            DirectorySet.Add(path);
+        }
+
+        /// <summary>
+        /// ディレクトリの削除を仮想的に表現
+        /// </summary>
+        /// <param name="path">削除したいディレクトリのパス</param>
+        public void Delete(string path)
+        {
+            DirectorySet.Remove(path);
+        }
     }
 }

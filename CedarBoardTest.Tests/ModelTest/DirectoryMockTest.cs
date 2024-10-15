@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CedarBoardTest.Tests.ModelTest
 {
-    internal class DirectoryMock
+    internal class DirectoryMockTest
     {
     }
 }

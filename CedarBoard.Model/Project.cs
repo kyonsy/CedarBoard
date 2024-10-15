@@ -23,23 +23,33 @@ namespace CedarBoard.Model
         public required List<NodePoco> NodeList { get; set; }
 
         /// <summary>
-        /// 新しいノードを追加する
+        /// 新しいノードを追加する(2つ目以降)
+        /// </summary>
+        /// <param name="node">追加するノード</param>
+        /// <param name="index">親ノードの番号</param>
+        public void Add(NodePoco node,int index)
+        {
+            textFile.Copy(NodeToTextPath(node), NodeToTextPath(NodeList[index]));
+            NodeList.Add(node);
+        }
+
+        /// <summary>
+        /// 一番最初のノードを追加する
         /// </summary>
         /// <param name="node">追加するノード</param>
         public void Add(NodePoco node)
         {
-            if (File.Exists(NodeToTextPath(node))) throw new FileNotFoundException("同じ名前のノードを追加することは出来ません");
+            textFile.Create(NodeToTextPath(node), "");
             NodeList.Add(node);
-            textFile.SetData(NodeToTextPath(node), "");
         }
-        
+
         /// <summary>
         /// 指定されたノードを削除する
         /// </summary>
         /// <param name="index">削除するノードの番号</param>
         public void Remove(int index)
         {
-            File.Delete(NodeToTextPath(NodeList[index]));
+            textFile.Delete(NodeToTextPath(NodeList[index]));
             NodeList.RemoveAt(index);
         }
 
@@ -50,7 +60,7 @@ namespace CedarBoard.Model
         /// <param name="index">変更するノードの番号</param>
         public void Replace(NodePoco node, int index)
         {
-            File.Move(NodeToTextPath(NodeList[index]), NodeToTextPath(node));
+            textFile.Rename(NodeToTextPath(NodeList[index]), NodeToTextPath(node));
             NodeList[index] = node;
         }
 

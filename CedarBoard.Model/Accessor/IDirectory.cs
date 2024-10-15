@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CedarBoard.Model.Accessor
+﻿namespace CedarBoard.Model.Accessor
 {
-    internal interface IDirectory
+    /// <summary>
+    /// ディレクトリを表現するためのインターフェイス
+    /// </summary>
+    public interface IDirectory
     {
+        /// <summary>
+        /// ディレクトリを削除する
+        /// </summary>
+        public void Delete(string path);
+
+        /// <summary>
+        /// ディレクトリを作成する
+        /// </summary>
+        /// <param name="path"></param>
+        public void Create(string path);
     }
 }

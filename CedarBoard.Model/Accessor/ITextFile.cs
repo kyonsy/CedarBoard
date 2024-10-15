@@ -20,6 +20,14 @@
         public void SetData(string file, string value);
 
         /// <summary>
+        /// ファイルの生成
+        /// </summary>
+        /// <param name="file">ファイルのパス</param>
+        /// <param name="value">生成するファイルの内容</param>
+        public void Create(string file,string value);
+
+
+        /// <summary>
         /// ファイルの名前(path)の変更
         /// </summary>
         /// <param name="file">ファイルのパス</param>
@@ -31,5 +39,12 @@
         /// </summary>
         /// <param name="file">削除したい名前</param>
         public void Delete(string file);
+
+        /// <summary>
+        /// ファイルのコピー
+        /// </summary>
+        /// <param name="file">コピーするファイル</param>
+        /// <param name="newName">コピー先のファイル</param>
+        public void Copy(string file,string newName);
     }
 }

@@ -22,6 +22,18 @@
         /// <param name="value">書き出す内容</param>
         public void SetData(string file, string value)
         {
+            if (!File.Exists(file)) throw new IOException("このメゾットでは新しい名前のファイルを生成することは出来ません");
+            File.WriteAllText(file, value);
+        }
+
+        /// <summary>
+        /// ファイルの生成
+        /// </summary>
+        /// <param name="file">ファイルのパス</param>
+        /// <param name="value">生成するファイルの内容</param>
+        public void Create(string file, string value)
+        {
+            if (File.Exists(file)) throw new IOException("このメゾットでは既存のファイルを上書きすることは出来ません");
             File.WriteAllText(file, value);
         }
 
@@ -30,7 +42,8 @@
         /// </summary>
         /// <param name="file">ファイルのパス</param>
         /// <param name="newName">新しい名前(path)</param>
-        public void Rename(string file, string newName) { 
+        public void Rename(string file, string newName) {
+            File.Move(file, newName);
         }
 
         /// <summary>
@@ -38,6 +51,17 @@
         /// </summary>
         /// <param name="file">削除したいファイル</param>
         public void Delete(string file) { 
+            File.Delete(file);
+        }
+
+        /// <summary>
+        /// ファイルをコピーする
+        /// </summary>
+        /// <param name="file">コピーするファイル</param>
+        /// <param name="newName">コピー先のファイル</param>
+        public void Copy(string file, string newName)
+        {
+            File.Copy(file, newName);
         }
     }
 }

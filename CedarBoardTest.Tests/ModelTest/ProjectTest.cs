@@ -1,34 +1,48 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CedarBoardTest.Tests.ModelTest
 {
     [TestClass]
-    public class ProjectTest
+    internal class ProjectTest
     {
         [TestMethod]
-        public void ファイル操作って同期処理なのか()
+        public void 二つ目以降の新しいノード追加できる()
         {
-            StringBuilder sb = new();
-            for (int i = 0; i < 100000; i++)
-            {
-                sb.Append(i);
-                sb.Append("qwertyuioplkjhgfdsazxcvbnm\n");
-            }
-            File.WriteAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaa.txt", sb.ToString());
 
-            string aaa = File.ReadAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaa.txt");
-            Console.WriteLine(aaa);
-            Assert.AreEqual(aaa, sb.ToString());
         }
 
+        [TestMethod]
+        public void 始めのノードが追加できる()
+        {
+
+        }
 
         [TestMethod]
-        public void ディレクトリの作成って同期処理なのか()
+        public void 指定されたノードを削除できる()
         {
-            Directory.CreateDirectory(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaaa");
-            File.WriteAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaaa\aaa.txt", "aa");
-            Assert.AreEqual(true, File.Exists(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\aaaa\aaa.txt"));
+
+        }
+
+        [TestMethod]
+        public void 指定したノードの名前を変更できる()
+        {
+
+        }
+
+        [TestMethod]
+        public void プロジェクトの状態を保存できる()
+        {
+
+        }
+
+        [TestMethod]
+        public void ノードからそのパスへの変換ができる()
+        {
+
         }
     }
 }

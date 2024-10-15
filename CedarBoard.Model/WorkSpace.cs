@@ -25,7 +25,7 @@ namespace CedarBoard.Model
 
 
         /// <summary>
-        /// 新しいプログラムを追加する
+        /// 新しいプロジェクトを追加する
         /// </summary>
         /// <param name="project">プロジェクトの名前</param>
         public void Add(string project)

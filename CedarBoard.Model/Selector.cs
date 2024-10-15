@@ -43,11 +43,11 @@ namespace CedarBoard.Model
         /// <summary>
         /// 指定されたパスのワークスペースを返す
         /// </summary>
-        /// <param name="path">欲しいワークスペースの名前</param>
+        /// <param name="workspace">欲しいワークスペースの名前</param>
         /// <returns>指定したワークスペース</returns>
-        public Workspace GetWorkSpace(string path)
+        public Workspace GetWorkSpace(string workspace)
         {
-            object obj = Deserialize(textFile.GetData(path + "/workspace.json"));
+            object obj = Deserialize(textFile.GetData(PathList[workspace] + "/workspace.json"));
             Workspace workSpace = obj as Workspace ?? 
                 throw new FormatException("ワークスペースに変換できません");
             return workSpace;

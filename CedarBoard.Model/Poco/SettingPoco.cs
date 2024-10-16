@@ -66,5 +66,6 @@ namespace CedarBoard.Model.Poco
         /// </summary>
         [JsonPropertyName("message")]
         public required string Message { get; set; }
+        
     }
 }

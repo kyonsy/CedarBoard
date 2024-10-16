@@ -4,7 +4,7 @@
     /// ディレクトリを表現するためのインターフェイス
     /// </summary>
     public interface IDirectory
-    {
+    { 
         /// <summary>
         /// ディレクトリを削除する
         /// </summary>

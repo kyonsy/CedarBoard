@@ -20,7 +20,7 @@
         /// <param name="path">削除したいディレクトリのパス</param>
         public void Delete(string path)
         {
-            Directory.Delete(path,true);
+            Directory.Delete(path, true);
         }
     }
 }

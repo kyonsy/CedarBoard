@@ -12,10 +12,10 @@ namespace CedarBoard.Model
     public sealed class Selector(ITextFile textFile,IDirectory directory) : JsonFileBase
     {
         /// <summary>
-        /// ワークスペースの名前をキーにとそのパスを保持する
+        /// ワークスペースの名前をキーに、そのパスを保持する
         /// </summary>
         [JsonPropertyName("pathList")]
-        public required Dictionary<string,string> PathList { get; set; }
+        public Dictionary<string, string> PathList { get; set; } = new Dictionary<string, string>();
 
         /// <summary>
         /// 新しいワークスペースを追加する

@@ -21,7 +21,7 @@ namespace CedarBoard.Model
         /// プロジェクトの名前のディクショナリ。keyはディレクトリの名前、valueはそのパス
         /// </summary>
         [JsonPropertyName("projectList")]
-        public required Dictionary<string,string> ProjectDictionary { get; set; }
+        public Dictionary<string, string> ProjectDictionary { get; set; } = new Dictionary<string, string>();
 
 
         /// <summary>

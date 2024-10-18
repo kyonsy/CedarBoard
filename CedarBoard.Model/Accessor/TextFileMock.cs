@@ -8,7 +8,7 @@
         /// <summary>
         /// ファイルを表現。keyはファイルのパス、valueはファイルの中身
         /// </summary>
-        public required Dictionary<string,string> FileDictionary { get; set; }
+        public Dictionary<string, string> FileDictionary { get; set; } = new Dictionary<string, string>();
 
 
         /// <summary>
@@ -23,14 +23,21 @@
         /// </summary>
         /// <param name="file">ファイルのパス</param>
         /// <param name="value">書き出す内容</param>
-        public void SetData(string file, string value) => FileDictionary[file] = value;
+        public void SetData(string file, string value) {
+            if (FileDictionary.ContainsKey(file)) FileDictionary[file] = value;
+            else throw new IOException("指定したファイルは存在しません");
+        } 
 
         /// <summary>
         /// ファイルの生成を表現
         /// </summary>
         /// <param name="file"></param>
         /// <param name="value"></param>
-        public void Create(string file,string value) => FileDictionary.Add(file, value);
+        public void Create(string file,string value)
+        {
+            if (FileDictionary.ContainsKey(file)) throw new IOException("指定したファイルは既に存在しています");
+            else FileDictionary[file] = value;
+        }
 
         /// <summary>
         /// ファイルの名前(path)の変更を表現

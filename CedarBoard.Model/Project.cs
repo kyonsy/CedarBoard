@@ -20,7 +20,7 @@ namespace CedarBoard.Model
         /// ノードのリスト
         /// </summary>
         [JsonPropertyName("nodeList")]
-        public required List<NodePoco> NodeList { get; set; }
+        public List<NodePoco> NodeList { get; set; } = new List<NodePoco>();
 
         /// <summary>
         /// 新しいノードを追加する(2つ目以降)

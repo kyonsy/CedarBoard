@@ -20,7 +20,7 @@ namespace CedarBoard.Model
         /// ノードのリスト
         /// </summary>
         [JsonPropertyName("nodeList")]
-        public List<NodePoco> NodeList { get; set; } = new List<NodePoco>();
+        public List<NodePoco> NodeList { get; set; } = [];
 
         /// <summary>
         /// ファイル操作オブジェクト
@@ -34,7 +34,7 @@ namespace CedarBoard.Model
         /// <param name="index">親ノードの番号</param>
         public void Add(NodePoco node,int index)
         {
-            TextFile.Copy(NodeToTextPath(node), NodeToTextPath(NodeList[index]));
+            TextFile.Copy(NodeToTextPath(NodeList[index]),NodeToTextPath(node));
             NodeList.Add(node);
             NodeList[index].ChildNode.Add(NodeList.Count);
         }
@@ -43,6 +43,7 @@ namespace CedarBoard.Model
         /// 一番最初のノードを追加する
         /// </summary>
         /// <param name="node">追加するノード</param>
+        /// <exception cref="ArgumentException">二つ目以降のノードで使われるのを防ぐ</exception>
         public void Add(NodePoco node)
         {
             if (NodeList.Count > 0) throw new ArgumentException("2つ目のノードを追加する際はそのindexを引数に含めてください");

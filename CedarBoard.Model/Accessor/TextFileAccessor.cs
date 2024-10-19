@@ -41,9 +41,9 @@
         /// ファイルの名前(path)を変える
         /// </summary>
         /// <param name="file">ファイルのパス</param>
-        /// <param name="newName">新しい名前(path)</param>
-        public void Rename(string file, string newName) {
-            File.Move(file, newName);
+        /// <param name="newFile">新しい名前(path)</param>
+        public void Rename(string file, string newFile) {
+            File.Move(file, newFile);
         }
 
         /// <summary>
@@ -58,10 +58,10 @@
         /// ファイルをコピーする
         /// </summary>
         /// <param name="file">コピーするファイル</param>
-        /// <param name="newName">コピー先のファイル</param>
-        public void Copy(string file, string newName)
+        /// <param name="newFile">コピー先のファイル</param>
+        public void Copy(string file, string newFile)
         {
-            File.Copy(file, newName);
+            File.Copy(file, newFile);
         }
     }
 }

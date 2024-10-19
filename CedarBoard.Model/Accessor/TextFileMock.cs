@@ -8,7 +8,7 @@
         /// <summary>
         /// ファイルを表現。keyはファイルのパス、valueはファイルの中身
         /// </summary>
-        public Dictionary<string, string> FileDictionary { get; set; } = new Dictionary<string, string>();
+        public Dictionary<string, string> FileDictionary { get; set; } = [];
 
 
         /// <summary>
@@ -43,12 +43,12 @@
         /// ファイルの名前(path)の変更を表現
         /// </summary>
         /// <param name="file">名前を変えたいファイルの名前</param>
-        /// <param name="newName">新しい名前</param>
-        public void Rename(string file, string newName)
+        /// <param name="newFile">新しい名前</param>
+        public void Rename(string file, string newFile)
         {
             string value = FileDictionary[file];
             FileDictionary.Remove(file);
-            FileDictionary.Add(newName, value);
+            FileDictionary.Add(newFile, value);
         }
 
         /// <summary>
@@ -64,11 +64,11 @@
         /// ファイルのコピーを表現
         /// </summary>
         /// <param name="file">コピーするファイル</param>
-        /// <param name="newName">コピー先のファイル</param>
-        public void Copy(string file, string newName)
+        /// <param name="newFile">コピー先のファイル</param>
+        public void Copy(string file, string newFile)
         {
             string value = FileDictionary[file];
-            FileDictionary.Add(newName,value);
+            FileDictionary.Add(newFile,value);
         }
     }
 }

@@ -18,14 +18,24 @@ namespace CedarBoard.Model
         public Dictionary<string, string> PathList { get; set; } = new Dictionary<string, string>();
 
         /// <summary>
+        /// ファイル操作用オブジェクト
+        /// </summary>
+        public ITextFile TextFile { get; } = textFile;
+
+        /// <summary>
+        /// ディレクトリ操作用オブジェクト
+        /// </summary>
+        public IDirectory Directory { get; } = directory;
+
+        /// <summary>
         /// 新しいワークスペースを追加する
         /// </summary>
         /// <param name="setting">新しいワークスペースの設定</param>
         /// <returns>新しいワークスペース</returns>
         public void Add(SettingPoco setting)
         {
-            directory.Create(setting.Path);
-            textFile.Create(setting.Path  + "/workspace.json",
+            Directory.Create(setting.Path);
+            TextFile.Create(setting.Path  + "/workspace.json",
                 $@"{{""projectList"":[],""setting"":{Serialize(setting)}}}");
             PathList.Add(setting.Name, setting.Path);
         }
@@ -36,7 +46,7 @@ namespace CedarBoard.Model
         /// <param name="workspace">削除したいワークスペースの名前</param>
         public void Remove(string workspace)
         {
-            directory.Delete(PathList[workspace]);
+            Directory.Delete(PathList[workspace]);
             PathList.Remove(workspace);
         }
 
@@ -47,7 +57,7 @@ namespace CedarBoard.Model
         /// <returns>指定したワークスペース</returns>
         public Workspace GetWorkSpace(string workspace)
         {
-            object obj = Deserialize(textFile.GetData(PathList[workspace] + "/workspace.json"));
+            object obj = Deserialize(TextFile.GetData(PathList[workspace] + "/workspace.json"));
             Workspace workSpace = obj as Workspace ?? 
                 throw new FormatException("ワークスペースに変換できません");
             return workSpace;
@@ -59,7 +69,7 @@ namespace CedarBoard.Model
         public override void Save()
         {
             string appPath = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
-            textFile.SetData(appPath + "/setting.json", Serialize(this));
+            TextFile.SetData(appPath + "/setting.json", Serialize(this));
         }
     }
 }

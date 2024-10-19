@@ -23,14 +23,20 @@ namespace CedarBoard.Model
         public List<NodePoco> NodeList { get; set; } = new List<NodePoco>();
 
         /// <summary>
+        /// ファイル操作オブジェクト
+        /// </summary>
+        public ITextFile TextFile { get; } = textFile;
+
+        /// <summary>
         /// 新しいノードを追加する(2つ目以降)
         /// </summary>
         /// <param name="node">追加するノード</param>
         /// <param name="index">親ノードの番号</param>
         public void Add(NodePoco node,int index)
         {
-            textFile.Copy(NodeToTextPath(node), NodeToTextPath(NodeList[index]));
+            TextFile.Copy(NodeToTextPath(node), NodeToTextPath(NodeList[index]));
             NodeList.Add(node);
+            NodeList[index].ChildNode.Add(NodeList.Count);
         }
 
         /// <summary>
@@ -39,7 +45,8 @@ namespace CedarBoard.Model
         /// <param name="node">追加するノード</param>
         public void Add(NodePoco node)
         {
-            textFile.Create(NodeToTextPath(node), "");
+            if (NodeList.Count > 0) throw new ArgumentException("2つ目のノードを追加する際はそのindexを引数に含めてください");
+            TextFile.Create(NodeToTextPath(node), "");
             NodeList.Add(node);
         }
 
@@ -49,7 +56,7 @@ namespace CedarBoard.Model
         /// <param name="index">削除するノードの番号</param>
         public void Remove(int index)
         {
-            textFile.Delete(NodeToTextPath(NodeList[index]));
+            TextFile.Delete(NodeToTextPath(NodeList[index]));
             NodeList.RemoveAt(index);
         }
 
@@ -60,7 +67,7 @@ namespace CedarBoard.Model
         /// <param name="index">変更するノードの番号</param>
         public void Replace(NodePoco node, int index)
         {
-            textFile.Rename(NodeToTextPath(NodeList[index]), NodeToTextPath(node));
+            TextFile.Rename(NodeToTextPath(NodeList[index]), NodeToTextPath(node));
             NodeList[index] = node;
         }
 
@@ -69,7 +76,7 @@ namespace CedarBoard.Model
         /// </summary>
         public override void Save()
         {
-            textFile.SetData(Path + "/project.json", Serialize(this));
+            TextFile.SetData(Path + "/project.json", Serialize(this));
         }
 
         /// <summary>

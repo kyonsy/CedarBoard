@@ -23,6 +23,16 @@ namespace CedarBoard.Model
         [JsonPropertyName("projectList")]
         public Dictionary<string, string> ProjectDictionary { get; set; } = new Dictionary<string, string>();
 
+        /// <summary>
+        /// ファイル操作用オブジェクト
+        /// </summary>
+        public ITextFile TextFile { get; } = textFile;
+
+        /// <summary>
+        /// ディレクトリ操作用オブジェクト
+        /// </summary>
+        public IDirectory Directory { get; } = directory;
+
 
         /// <summary>
         /// 新しいプロジェクトを追加する
@@ -31,9 +41,9 @@ namespace CedarBoard.Model
         public void Add(string project)
         {
             ProjectDictionary.Add(project, Setting.Path + "/" + project);
-            directory.Create(ProjectDictionary[project]);
-            textFile.Create(ProjectDictionary[project] + "/project.json","[]");
-            directory.Create(ProjectDictionary[project] + "/" + "content");
+            Directory.Create(ProjectDictionary[project]);
+            TextFile.Create(ProjectDictionary[project] + "/project.json","[]");
+            Directory.Create(ProjectDictionary[project] + "/" + "content");
         }
 
         /// <summary>
@@ -41,7 +51,7 @@ namespace CedarBoard.Model
         /// </summary>
         /// <param name="project">削除したいプロジェクトの名前</param>
         public void Remove(string project) {
-            directory.Delete(ProjectDictionary[project]);
+            Directory.Delete(ProjectDictionary[project]);
             ProjectDictionary.Remove(project);
         }
 
@@ -53,7 +63,7 @@ namespace CedarBoard.Model
         /// <exception cref="FormatException">上手く型変換が出来ないことを示す</exception>
         public Project GetProject(string project)
         {
-            object obj = Deserialize(textFile.GetData(ProjectDictionary[project] + "/project.json"));
+            object obj = Deserialize(TextFile.GetData(ProjectDictionary[project] + "/project.json"));
             Project newProject = obj as Project ??
                 throw new FormatException("プロジェクトに変換できません");
             newProject.Path = ProjectDictionary[project];
@@ -65,7 +75,7 @@ namespace CedarBoard.Model
         /// </summary>
         public override void Save()
         {
-            textFile.SetData(Setting.Path+"/workspace.json",Serialize(this));
+            TextFile.SetData(Setting.Path+"/workspace.json",Serialize(this));
         }
     }
 }

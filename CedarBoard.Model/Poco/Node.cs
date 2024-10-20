@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace CedarBoard.Model.Poco
 {
     /// <summary>
     /// 子ノード
     /// </summary>
-    public class Node : INode
+    public sealed class Node : INode
     {
         /// <summary>
         /// ノードのパス
@@ -19,16 +14,10 @@ namespace CedarBoard.Model.Poco
         public required string Path { get; set; }
 
         /// <summary>
-        /// ノードのX座標
+        /// ノードの座標
         /// </summary>
-        [JsonPropertyName("x")]
-        public required int X { get; set; }
-
-        /// <summary>
-        /// ノードのY座標
-        /// </summary>
-        [JsonPropertyName("y")]
-        public required int Y { get; set; }
+        [JsonPropertyName("point")]
+        public required Point Point { get; set; }
 
         /// <summary>
         /// 親ノードの名前

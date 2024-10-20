@@ -1,7 +1,6 @@
 ﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
 using System.Diagnostics;
-using System.Text.Json.Serialization;
 
 namespace CedarBoard.Model
 {
@@ -68,7 +67,7 @@ namespace CedarBoard.Model
                 CreateNoWindow = true,
                 UseShellExecute = false,
             };
-            Process.Start(psi);
+            using (Process.Start(psi)) { } ;
         }
 
         /// <summary>

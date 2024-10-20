@@ -59,7 +59,9 @@ namespace CedarBoard.Model
         public Workspace GetWorkSpace(string workspace)
         {
             object obj = Deserialize(@$"{TextFile.GetData(PathDictionary[workspace])}\workspace.json");
-            Workspace workSpace = new(TextFile, Directory, PathDictionary[workspace]) { WorkspacePoco = (WorkspacePoco)obj };
+            Workspace workSpace = new(TextFile, Directory, PathDictionary[workspace]) { 
+                WorkspacePoco = (WorkspacePoco)obj 
+            };
             return workSpace;
         }
 

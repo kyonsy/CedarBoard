@@ -14,16 +14,10 @@ namespace CedarBoard.Model.Poco
         public string Path { get; set; }
 
         /// <summary>
-        /// ノードのX座標
+        /// ノードの座標
         /// </summary>
-        [JsonPropertyName("x")]
-        public  int X { get; set; }
-
-        /// <summary>
-        /// ノードのY座標
-        /// </summary>
-        [JsonPropertyName("y")]
-        public int Y { get; set; }
+        [JsonPropertyName("point")]
+        public Point Point { get; set; }
 
         /// <summary>
         /// 子ノードの名前

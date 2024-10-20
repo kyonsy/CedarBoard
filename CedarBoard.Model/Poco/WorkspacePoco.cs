@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace CedarBoard.Model.Poco
 {
     /// <summary>
     /// workspace.jsonからの文字列をデシリアライズするためのPOCO
     /// </summary>
-    public class WorkspacePoco
+    public sealed class WorkspacePoco
     {
         ///<summary>
         /// 設定

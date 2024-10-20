@@ -22,5 +22,23 @@
         {
             Directory.Delete(path, true);
         }
+
+        /// <summary>
+        /// ディレクトリの圧縮
+        /// </summary>
+        /// <param name="path"></param>
+        public void Compress(string path)
+        {
+            throw new NotImplementedException("今度また作るわ");
+        }
+
+        /// <summary>
+        /// ディレクトリの解凍
+        /// </summary>
+        /// <param name="path"></param>
+        public void Unfreeze(string path)
+        {
+            throw new NotImplementedException("今度また作るわ");
+        }
     }
 }

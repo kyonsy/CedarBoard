@@ -15,7 +15,7 @@ namespace CedarBoard.Model
         /// ワークスペースの名前をキーに、そのパスを保持する
         /// </summary>
         [JsonPropertyName("pathList")]
-        public Dictionary<string, string> PathList { get; set; } = new Dictionary<string, string>();
+        public Dictionary<string, string> PathDictionary { get; set; } = [];
 
         /// <summary>
         /// ファイル操作用オブジェクト
@@ -31,13 +31,14 @@ namespace CedarBoard.Model
         /// 新しいワークスペースを追加する
         /// </summary>
         /// <param name="setting">新しいワークスペースの設定</param>
+        /// <param name="path">ワークスペースのパス</param>
         /// <returns>新しいワークスペース</returns>
-        public void Add(SettingPoco setting)
+        public void Add(Setting setting,string path)
         {
-            Directory.Create(setting.Path);
-            TextFile.Create(setting.Path  + "/workspace.json",
-                $@"{{""projectList"":[],""setting"":{Serialize(setting)}}}");
-            PathList.Add(setting.Name, setting.Path);
+            Directory.Create(path);
+            TextFile.Create(@$"{path}\workspace.json",
+                @$"{{""projectList"":[],""setting"":{Serialize(setting)}}}");
+            PathDictionary.Add(setting.Name, path);
         }
 
         /// <summary>
@@ -46,8 +47,8 @@ namespace CedarBoard.Model
         /// <param name="workspace">削除したいワークスペースの名前</param>
         public void Remove(string workspace)
         {
-            Directory.Delete(PathList[workspace]);
-            PathList.Remove(workspace);
+            Directory.Delete(PathDictionary[workspace]);
+            PathDictionary.Remove(workspace);
         }
 
         /// <summary>
@@ -57,9 +58,8 @@ namespace CedarBoard.Model
         /// <returns>指定したワークスペース</returns>
         public Workspace GetWorkSpace(string workspace)
         {
-            object obj = Deserialize(TextFile.GetData(PathList[workspace] + "/workspace.json"));
-            Workspace workSpace = obj as Workspace ?? 
-                throw new FormatException("ワークスペースに変換できません");
+            object obj = Deserialize(@$"{TextFile.GetData(PathDictionary[workspace])}\workspace.json");
+            Workspace workSpace = new(TextFile, Directory, PathDictionary[workspace]) { WorkspacePoco = (WorkspacePoco)obj };
             return workSpace;
         }
 
@@ -69,7 +69,7 @@ namespace CedarBoard.Model
         public override void Save()
         {
             string appPath = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
-            TextFile.SetData(appPath + "/setting.json", Serialize(this));
+            TextFile.SetData(@$"{appPath}\setting.json", Serialize(this));
         }
     }
 }

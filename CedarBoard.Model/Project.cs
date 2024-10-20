@@ -1,26 +1,20 @@
-﻿using System.Text.Json.Serialization;
+﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
-using CedarBoard.Model.Accessor;
+using System.Linq.Expressions;
 
 namespace CedarBoard.Model
 {
-   
     /// <summary>
     /// プロジェクトのデータとそれに対する操作
     /// </summary>
     /// <param name="textFile">テスト用と本番用で使い分ける</param>
-    public sealed class Project(ITextFile textFile) : JsonFileBase
+    /// <param name="path">プロジェクトのパス</param>
+    public sealed class Project(ITextFile textFile,string path)
     {
         /// <summary>
-        /// プロジェクトのあるパス
+        /// ノードのディクショナリ
         /// </summary>
-        public string? Path {  get; set; }
-
-        /// <summary>
-        /// ノードのリスト
-        /// </summary>
-        [JsonPropertyName("nodeList")]
-        public List<NodePoco> NodeList { get; set; } = [];
+        public Dictionary<string,INode> NodeDictionary { get; set; } = [];
 
         /// <summary>
         /// ファイル操作オブジェクト
@@ -28,66 +22,70 @@ namespace CedarBoard.Model
         public ITextFile TextFile { get; } = textFile;
 
         /// <summary>
+        /// プロジェクトのパス
+        /// </summary>
+        public string Path { get; } = path;
+
+        /// <summary>
         /// 新しいノードを追加する(2つ目以降)
         /// </summary>
-        /// <param name="node">追加するノード</param>
-        /// <param name="index">親ノードの番号</param>
-        public void Add(NodePoco node,int index)
+        /// <param name="nodeName">追加するノード</param>
+        /// <param name="newNodeName">親ノードの番号</param>
+        /// <param name="x">X座標</param>
+        /// <param name="y">Y座標</param>
+        public void Add(string nodeName,string newNodeName,int x,int y)
         {
-            TextFile.Copy(NodeToTextPath(NodeList[index]),NodeToTextPath(node));
-            NodeList.Add(node);
-            NodeList[index].ChildNode.Add(NodeList.Count);
+            INode node = new Node()
+            {
+                ChildNode = [],
+                ParentNode = nodeName,
+                Path = @$"{Path}\{newNodeName}.txt",
+                X = x,
+                Y = y
+            };
+            NodeDictionary.Add(newNodeName, node);
+            TextFile.Copy(NodeDictionary[nodeName].Path, node.Path);
+            TextFile.SetReadOnly(NodeDictionary[nodeName].Path);
         }
 
         /// <summary>
         /// 一番最初のノードを追加する
         /// </summary>
-        /// <param name="node">追加するノード</param>
-        /// <exception cref="ArgumentException">二つ目以降のノードで使われるのを防ぐ</exception>
-        public void Add(NodePoco node)
+        public void Add(int x,int y)
         {
-            if (NodeList.Count > 0) throw new ArgumentException("2つ目のノードを追加する際はそのindexを引数に含めてください");
-            TextFile.Create(NodeToTextPath(node), "");
-            NodeList.Add(node);
+            INode node = new OriginNode(){
+                Path = @$"{Path}\origin.txt",
+                ChildNode = [],
+                X = x, 
+                Y = y 
+            };
+            NodeDictionary.Add("origin", node);
+            TextFile.Create(node.Path,""); 
         }
 
         /// <summary>
         /// 指定されたノードを削除する
         /// </summary>
-        /// <param name="index">削除するノードの番号</param>
-        public void Remove(int index)
-        {
-            TextFile.Delete(NodeToTextPath(NodeList[index]));
-            NodeList.RemoveAt(index);
+        /// <param name="nodeName">削除するノードの名前</param>
+        public void Remove(string nodeName)
+        { 
+            
+            TextFile.Delete(@$"{Path}\{nodeName}.txt");
+            NodeDictionary.Remove(nodeName);
         }
 
         /// <summary>
-        /// 指定されたノードを変更する
+        /// 指定されたノードの名前を変更する
         /// </summary>
-        /// <param name="node">変更後のノード</param>
-        /// <param name="index">変更するノードの番号</param>
-        public void Replace(NodePoco node, int index)
+        /// <param name="nodeName">変更前のノードの名前</param>
+        /// <param name="newNodeName">変更後のノードの名前</param>
+        public void Rename(string nodeName,string newNodeName)
         {
-            TextFile.Rename(NodeToTextPath(NodeList[index]), NodeToTextPath(node));
-            NodeList[index] = node;
-        }
-
-        /// <summary>
-        /// プロジェクトの状態を保存する
-        /// </summary>
-        public override void Save()
-        {
-            TextFile.SetData(Path + "/project.json", Serialize(this));
-        }
-
-        /// <summary>
-        /// ノードを受け取り、それに対応したテキストファイルのパスを返す
-        /// </summary>
-        /// <param name="node">パスを知りたいノード</param>
-        /// <returns>対応するパス</returns>
-        private string NodeToTextPath(NodePoco node)
-        {
-            return Path + "/content/" + node.Name + ".txt";
+            NodeDictionary[nodeName].Path = @$"{Path}\{newNodeName}.txt";
+            INode node = NodeDictionary[nodeName];
+            NodeDictionary.Remove(nodeName);
+            NodeDictionary.Add(newNodeName, node);
+            TextFile.Rename(NodeDictionary[nodeName].Path, NodeDictionary[newNodeName].Path);  
         }
     }
 }

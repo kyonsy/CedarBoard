@@ -15,5 +15,17 @@
         /// </summary>
         /// <param name="path"></param>
         public void Create(string path);
+
+        /// <summary>
+        /// ディレクトリを圧縮する
+        /// </summary>
+        /// <param name="path"></param>
+        public void Compress(string path);
+
+        /// <summary>
+        /// ディレクトリを解凍する
+        /// </summary>
+        /// <param name="path"></param>
+        public void Unfreeze(string path);
     }
 }

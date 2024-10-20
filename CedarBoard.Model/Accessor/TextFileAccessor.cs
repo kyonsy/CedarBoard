@@ -63,5 +63,23 @@
         {
             File.Copy(file, newFile);
         }
+
+        /// <summary>
+        /// 指定したファイルに読み取り専用属性を追加する
+        /// </summary>
+        /// <param name="file"></param>
+        public void SetReadOnly(string file) { 
+            FileAttributes attr = File.GetAttributes(file);
+            File.SetAttributes(file, attr | FileAttributes.ReadOnly);
+        }
+
+        /// <summary>
+        /// 指定したファイルの読み取り専用属性を削除する
+        /// </summary>
+        /// <param name="file"></param>
+        public void DeleteReadOnly(string file) {
+            FileAttributes attr = File.GetAttributes(file);
+            File.SetAttributes(file, attr & ~(FileAttributes.ReadOnly));
+        }
     }
 }

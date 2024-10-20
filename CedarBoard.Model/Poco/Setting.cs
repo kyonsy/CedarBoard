@@ -5,7 +5,7 @@ namespace CedarBoard.Model.Poco
     /// <summary>
     /// 設定の情報を持っているPOCO
     /// </summary>
-    public sealed class SettingPoco
+    public sealed class Setting
     {
         /// <summary>
         /// 使うフォーマット
@@ -56,16 +56,10 @@ namespace CedarBoard.Model.Poco
         public required string UpdatedDate { get; set; }
 
         /// <summary>
-        /// ワークスペースのパス
-        /// </summary>
-        [JsonPropertyName("path")]
-        public required string Path { get; set; }
-
-        /// <summary>
         /// メッセージ
         /// </summary>
         [JsonPropertyName("message")]
         public required string Message { get; set; }
-        
+
     }
 }

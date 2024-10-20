@@ -46,5 +46,16 @@
         /// <param name="file">コピーするファイル</param>
         /// <param name="newFile">コピー先のファイル</param>
         public void Copy(string file,string newFile);
+
+        /// <summary>
+        /// 指定したファイルに読み取り専用属性を追加する
+        /// </summary>
+        public void SetReadOnly(string file);
+
+        /// <summary>
+        /// 指定したファイルの読み取り専用属性を削除する
+        /// </summary>
+        /// <param name="file"></param>
+        public void DeleteReadOnly(string file);
     }
 }

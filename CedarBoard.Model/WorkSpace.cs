@@ -1,5 +1,6 @@
 ﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
+using System.Diagnostics;
 using System.Text.Json.Serialization;
 
 namespace CedarBoard.Model
@@ -9,19 +10,13 @@ namespace CedarBoard.Model
     /// </summary>
     /// <param name="textFile">テスト用と本番用で使い分ける。ファイル操作のためのオブジェクト</param>
     /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
-    public sealed class Workspace(ITextFile textFile,IDirectory directory) : JsonFileBase
+    /// <param name="path">ワークスペースのパス</param>
+    public sealed class Workspace(ITextFile textFile,IDirectory directory,string path): JsonFileBase
     {
-        ///<summary>
-        /// 設定
-        /// </summary>
-        [JsonPropertyName("setting")]
-        public required SettingPoco Setting { get; set; }
-
         /// <summary>
-        /// プロジェクトの名前のディクショナリ。keyはディレクトリの名前、valueはそのパス
+        /// workspace.jsonに紐付けられたPOCO
         /// </summary>
-        [JsonPropertyName("projectList")]
-        public Dictionary<string, string> ProjectDictionary { get; set; } = new Dictionary<string, string>();
+        public required WorkspacePoco WorkspacePoco { get; set; }
 
         /// <summary>
         /// ファイル操作用オブジェクト
@@ -33,41 +28,47 @@ namespace CedarBoard.Model
         /// </summary>
         public IDirectory Directory { get; } = directory;
 
+        /// <summary>
+        /// ワークスペースのパス
+        /// </summary>
+        public string Path { get; } = path;
 
         /// <summary>
         /// 新しいプロジェクトを追加する
         /// </summary>
-        /// <param name="project">プロジェクトの名前</param>
-        public void Add(string project)
+        /// <param name="projectName">プロジェクトの名前</param>
+        public void Add(string projectName)
         {
-            ProjectDictionary.Add(project, Setting.Path + "/" + project);
-            Directory.Create(ProjectDictionary[project]);
-            TextFile.Create(ProjectDictionary[project] + "/project.json","[]");
-            Directory.Create(ProjectDictionary[project] + "/" + "content");
+            string newPath = @$"{Path}\{projectName}";
+            WorkspacePoco.ProjectDictionary.Add(projectName, new(TextFile, newPath));
+            Directory.Create(newPath);
         }
 
         /// <summary>
         /// 指定されたプロジェクトを削除する
         /// </summary>
-        /// <param name="project">削除したいプロジェクトの名前</param>
-        public void Remove(string project) {
-            Directory.Delete(ProjectDictionary[project]);
-            ProjectDictionary.Remove(project);
+        /// <param name="projectName">削除したいプロジェクトの名前</param>
+        public void Remove(string projectName)
+        {
+            Directory.Delete(@$"{Path}\{projectName}");
+            WorkspacePoco.ProjectDictionary.Remove(projectName);
         }
 
         /// <summary>
-        /// 指定されたプロジェクトを返す
+        /// 指定したノード(に紐図けられたテキスト)を開く
         /// </summary>
-        /// <param name="project">欲しいプロジェクトの名前</param>
-        /// <returns>指定されたプロジェクト</returns>
-        /// <exception cref="FormatException">上手く型変換が出来ないことを示す</exception>
-        public Project GetProject(string project)
+        /// <param name="projectName"></param>
+        /// <param name="nodeName"></param>
+        public void Open(string projectName,string nodeName)
         {
-            object obj = Deserialize(TextFile.GetData(ProjectDictionary[project] + "/project.json"));
-            Project newProject = obj as Project ??
-                throw new FormatException("プロジェクトに変換できません");
-            newProject.Path = ProjectDictionary[project];
-            return newProject;
+            ProcessStartInfo psi = new()
+            {
+                FileName = WorkspacePoco.Setting.Editor,
+                Arguments = WorkspacePoco.ProjectDictionary[projectName].NodeDictionary[nodeName].Path,
+                CreateNoWindow = true,
+                UseShellExecute = false,
+            };
+            Process.Start(psi);
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace CedarBoard.Model
         /// </summary>
         public override void Save()
         {
-            TextFile.SetData(Setting.Path+"/workspace.json",Serialize(this));
+            TextFile.SetData(@$"{Path}\workspace.json",Serialize(WorkspacePoco));
         }
     }
 }

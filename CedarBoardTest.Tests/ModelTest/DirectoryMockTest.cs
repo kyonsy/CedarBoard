@@ -11,20 +11,25 @@ namespace CedarBoardTest.Tests.ModelTest
     public class DirectoryMockTest
     {
         [TestMethod]
-        public void ディレクトリの削除ができる()
+        public void ディレクトリの作成ができる()
         {
-            DirectoryMock directoryMock = new();
-            directoryMock.DirectorySet.Add(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\delete");
-            directoryMock.Delete(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\delete");
-            Assert.AreEqual(false, directoryMock.DirectorySet.Contains(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\delete"));
+            DirectoryMock mock = new();
+            mock.Create(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\delete");
+            Assert.AreEqual(false, mock.DirectoryDictionary[@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\delete"].Compressed);
         }
 
         [TestMethod]
-        public void ディレクトリの作成ができる()
+        public void ディレクトリの削除ができる()
         {
-            DirectoryMock directoryMock = new();
-            directoryMock.Create(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\delete");
-            Assert.AreEqual(true, directoryMock.DirectorySet.Contains(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\delete"));
+            DirectoryMock mock = new();
+            mock.DirectoryDictionary.Add(@"C:\delete", new());
+            mock.Delete(@"C:\delete");
+            var exception = Assert.ThrowsException<KeyNotFoundException>(() =>
+            {
+                bool b = mock.DirectoryDictionary[@"C:\delete"].Compressed;
+            });
+
+            Assert.IsNotNull(exception);
         }
     }
 }

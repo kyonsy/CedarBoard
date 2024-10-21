@@ -8,17 +8,13 @@
         /// <summary>
         /// ディレクトリの内部構造
         /// </summary>
-        public class Mock
+        public class Mock()
         {
-            /// <summary>
-            /// 名前を表現する
-            /// </summary>
-            public required string Name { get; set; }
 
             /// <summary>
             /// ディレクトリが圧縮されているか示す
             /// </summary>
-            public required bool Compressed { get; set; }
+            public bool Compressed { get; set; } = false;
         }
 
         /// <summary>
@@ -32,10 +28,7 @@
         /// <param name="path">生成するディレクトリのパス</param>
         public void Create(string path)
         {
-            DirectoryDictionary.Add(path,new() { 
-                Compressed = false,
-                Name = path
-            });
+            DirectoryDictionary.Add(path,new());
         }
 
         /// <summary>

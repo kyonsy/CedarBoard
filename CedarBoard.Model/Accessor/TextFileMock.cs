@@ -8,17 +8,17 @@
         /// <summary>
         /// ファイルを表現するMock
         /// </summary>
-        public class Mock
+        public class Mock(string value)
         {
             /// <summary>
             /// ファイルの中身を表現する
             /// </summary>
-            public required string Value { get; set; }
+            public string Value { get; set; } = value;
 
             /// <summary>
             /// ファイルが読み取り専用か示す
             /// </summary>
-            public required bool ReadOnly { get; set; }
+            public bool ReadOnly { get; set; } = false;
         }
 
         /// <summary>
@@ -40,20 +40,18 @@
         /// <param name="file">ファイルのパス</param>
         /// <param name="value">書き出す内容</param>
         public void SetData(string file, string value) {
-            if (FileDictionary.TryGetValue(file, out Mock? mock)) mock.Value = value;
-            else throw new IOException("指定したファイルは存在しません");
-        } 
+            FileDictionary[file].Value = value;
+        }
 
         /// <summary>
         /// ファイルの生成を表現
         /// </summary>
         /// <param name="file"></param>
         /// <param name="value"></param>
-        /// <exception cref="IOException">既に存在しているファイルが生成されるのを防ぐ</exception>
         public void Create(string file,string value)
         {
-            if (FileDictionary.ContainsKey(file)) throw new IOException("指定したファイルは既に存在しています");
-            else FileDictionary[file].Value = value;
+            FileDictionary.Add(file, new(value));
+            
         }
 
         /// <summary>
@@ -65,9 +63,7 @@
         {
             string value = FileDictionary[file].Value;
             FileDictionary.Remove(file);
-            FileDictionary.Add(newFile, new() { 
-                Value = value, ReadOnly = false 
-            });
+            FileDictionary.Add(newFile, new(value));
         }
 
         /// <summary>
@@ -87,10 +83,7 @@
         public void Copy(string file, string newFile)
         {
             string value = FileDictionary[file].Value;
-            FileDictionary.Add(newFile, new() { 
-                Value = value,
-                ReadOnly = false
-            });
+            FileDictionary.Add(newFile, new(value));
         }
 
         /// <summary>

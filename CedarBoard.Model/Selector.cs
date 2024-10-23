@@ -1,5 +1,6 @@
 ﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
+using System.IO;
 using System.Text.Json.Serialization;
 
 namespace CedarBoard.Model
@@ -7,9 +8,8 @@ namespace CedarBoard.Model
     /// <summary>
     /// ワークスペースを選ぶためのもの。アプリケーションの起動と同時にインスタンス化される
     /// </summary>
-    /// <param name="textFile">テスト用と本番用で使い分ける。ファイル操作用のオブジェクト</param>
-    /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
-    public sealed class Selector(ITextFile textFile,IDirectory directory) : JsonFileBase
+   
+    public sealed class Selector : JsonFileBase
     {
         /// <summary>
         /// ワークスペースの名前をキーに、そのパスを保持する
@@ -20,12 +20,32 @@ namespace CedarBoard.Model
         /// <summary>
         /// ファイル操作用オブジェクト
         /// </summary>
-        public ITextFile TextFile { get; } = textFile;
+        public ITextFile TextFile { get; } = new TextFileAccessor();
 
         /// <summary>
         /// ディレクトリ操作用オブジェクト
         /// </summary>
-        public IDirectory Directory { get; } = directory;
+        public IDirectory Directory { get; } = new DirectoryAccessor();
+
+        /// <summary>
+        /// セレクタのコンストラクタ
+        /// </summary>
+        /// <param name="textFile">テスト用と本番用で使い分ける。ファイル操作用のオブジェクト</param>
+        /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
+        public Selector(ITextFile textFile, IDirectory directory)
+        {
+            TextFile = textFile;
+            Directory = directory;
+        }
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        public Selector()
+        {
+
+        }
+
 
         /// <summary>
         /// 新しいワークスペースを追加する
@@ -37,7 +57,7 @@ namespace CedarBoard.Model
         {
             Directory.Create(path);
             TextFile.Create(@$"{path}\workspace.json",
-                @$"{{""projectList"":[],""setting"":{Serialize(setting)}}}");
+                @$"{{""projectDictionary"":{{}},""setting"":{Serialize(setting)}}}");
             PathDictionary.Add(setting.Name, path);
         }
 
@@ -58,10 +78,8 @@ namespace CedarBoard.Model
         /// <returns>指定したワークスペース</returns>
         public Workspace GetWorkSpace(string workspace)
         {
-            object obj = Deserialize(@$"{TextFile.GetData(PathDictionary[workspace])}\workspace.json");
-            Workspace workSpace = new(TextFile, Directory, PathDictionary[workspace]) { 
-                WorkspacePoco = (WorkspacePoco)obj 
-            };
+            object obj = Deserialize(@$"{PathDictionary[workspace]}\workspace.json");
+            Workspace workSpace = new(PathDictionary[workspace]) { WorkspacePoco = (WorkspacePoco)obj };
             return workSpace;
         }
 

@@ -1,29 +1,52 @@
 ﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
+using System.Text.Json.Serialization;
 
 namespace CedarBoard.Model
 {
     /// <summary>
     /// プロジェクトのデータとそれに対する操作
     /// </summary>
-    /// <param name="textFile">テスト用と本番用で使い分ける</param>
-    /// <param name="path">プロジェクトのパス</param>
-    public sealed class Project(ITextFile textFile,string path)
+    public sealed class Project
     {
         /// <summary>
         /// ノードのディクショナリ
         /// </summary>
+        [JsonPropertyName("nodes")]
         public Dictionary<string,INode> NodeDictionary { get; set; } = [];
 
-        /// <summary>
-        /// ファイル操作オブジェクト
-        /// </summary>
-        public ITextFile TextFile { get; } = textFile;
 
         /// <summary>
         /// プロジェクトのパス
         /// </summary>
-        public string Path { get; } = path;
+        [JsonPropertyName("path")]
+        public string Path { get; }
+
+        /// <summary>
+        /// ファイル操作オブジェクト
+        /// </summary>
+        [JsonIgnore]
+        public ITextFile TextFile { get; } = new TextFileAccessor();
+
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="textFile"></param>
+        /// <param name="path"></param>
+        public Project(ITextFile textFile, string path)
+        {
+            TextFile = textFile;
+            Path = path;
+        }
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        public Project(string path)
+        {
+            Path = path;
+        }
 
 
         /// <summary>
@@ -45,6 +68,7 @@ namespace CedarBoard.Model
                 Point = point,
             };
             NodeDictionary.Add(newNodeName, node);
+            NodeDictionary[nodeName].ChildNode.Add(newNodeName);
             TextFile.Copy(NodeDictionary[nodeName].Path, node.Path);
             TextFile.SetReadOnly(NodeDictionary[nodeName].Path);
         }
@@ -53,18 +77,14 @@ namespace CedarBoard.Model
         /// 一番最初のノードを追加する
         /// </summary>
         /// <exception cref="ArgumentException">二つ目以降の追加に使えなくする</exception>
-        public void Add(int x,int y)
+        public void Add(Point point)
         {
             if(NodeDictionary.Count > 0) 
                 throw new ArgumentException("二つ目以降のノードを追加するときはAdd(string nodeName,string newNodeName,int x,int y)を使ってください");
             INode node = new OriginNode(){
                 Path = @$"{Path}\origin.txt",
                 ChildNode = [],
-                Point = new()
-                {
-                    X = x,
-                    Y = y
-                }
+                Point = point
             };
             NodeDictionary.Add("origin", node);
             TextFile.Create(node.Path,""); 
@@ -99,12 +119,22 @@ namespace CedarBoard.Model
         /// <param name="newNodeName">変更後のノードの名前</param>
         public void Rename(string nodeName,string newNodeName)
         {
-            if(nodeName =="origin") throw new Exception("原点ノードは削除できません");
-            NodeDictionary[nodeName].Path = @$"{Path}\{newNodeName}.txt";
+            if(nodeName =="origin") throw new Exception("原点ノードの名前は変更できません");
             INode node = NodeDictionary[nodeName];
+            node.Path = $@"{Path}/{newNodeName}.txt";
             NodeDictionary.Remove(nodeName);
             NodeDictionary.Add(newNodeName, node);
             TextFile.Rename(NodeDictionary[nodeName].Path, NodeDictionary[newNodeName].Path);  
+        }
+
+        /// <summary>
+        /// ノードの名前からそこに紐づけられたテキストファイルのパスを取得する
+        /// </summary>
+        /// <param name="nodeName"></param>
+        /// <returns></returns>
+        public string GetNodePath(string nodeName)
+        {
+            return NodeDictionary[nodeName].Path;
         }
     }
 }

@@ -48,6 +48,7 @@ namespace CedarBoard.Model
             {
                 Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
                 WriteIndented = true,
+                PropertyNameCaseInsensitive = true,
             };
             return options;
         }

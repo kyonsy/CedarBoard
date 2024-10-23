@@ -5,7 +5,7 @@ namespace CedarBoard.Model.Poco
     /// <summary>
     /// workspace.jsonからの文字列をデシリアライズするためのPOCO
     /// </summary>
-    public sealed class WorkspacePoco
+    public class WorkspacePoco
     {
         ///<summary>
         /// 設定
@@ -17,6 +17,6 @@ namespace CedarBoard.Model.Poco
         /// プロジェクトの名前のディクショナリ。keyはディレクトリの名前、valueはそのパス
         /// </summary>
         [JsonPropertyName("project")]
-        public Dictionary<string, Project> ProjectDictionary { get; set; } = [];
+        public required Dictionary<string, Project> ProjectDictionary { get; set; } = [];
     }
 }

@@ -5,7 +5,7 @@ namespace CedarBoard.Model.Poco
     /// <summary>
     /// 設定の情報を持っているPOCO
     /// </summary>
-    public sealed class Setting
+    public class Setting
     {
         /// <summary>
         /// 使うフォーマット

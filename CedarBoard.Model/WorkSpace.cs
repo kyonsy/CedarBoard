@@ -1,16 +1,14 @@
 ﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
 using System.Diagnostics;
+using System.IO;
 
 namespace CedarBoard.Model
 {
     /// <summary>
     /// ワークスペース
     /// </summary>
-    /// <param name="textFile">テスト用と本番用で使い分ける。ファイル操作のためのオブジェクト</param>
-    /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
-    /// <param name="path">ワークスペースのパス</param>
-    public sealed class Workspace(ITextFile textFile,IDirectory directory,string path): JsonFileBase
+    public sealed class Workspace: JsonFileBase
     {
         /// <summary>
         /// workspace.jsonに紐付けられたPOCO
@@ -20,17 +18,43 @@ namespace CedarBoard.Model
         /// <summary>
         /// ファイル操作用オブジェクト
         /// </summary>
-        public ITextFile TextFile { get; } = textFile;
+        public ITextFile TextFile { get; } = new TextFileAccessor();
 
         /// <summary>
         /// ディレクトリ操作用オブジェクト
         /// </summary>
-        public IDirectory Directory { get; } = directory;
+        public IDirectory Directory { get; } = new DirectoryAccessor();
+
 
         /// <summary>
         /// ワークスペースのパス
         /// </summary>
-        public string Path { get; } = path;
+        public string Path { get; }
+
+        /// <summary>
+        /// ワークスペースのコンストラクタ
+        /// </summary>
+        /// <param name="textFile">テスト用と本番用で使い分ける。ファイル操作のためのオブジェクト</param>
+        /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
+        /// <param name="path">ワークスペースのパス</param>
+        public Workspace(ITextFile textFile, IDirectory directory, string path)
+        {
+            TextFile = textFile;
+            Directory = directory;
+            Path = path;
+           
+        }
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="path">ワークスペースのパス</param>
+        public Workspace(string path)
+        {
+            Path = path;
+            object obj = Deserialize(@$"{path}\workspace.json");
+            WorkspacePoco = (WorkspacePoco)obj;
+        }
 
         /// <summary>
         /// 新しいプロジェクトを追加する
@@ -63,7 +87,7 @@ namespace CedarBoard.Model
             ProcessStartInfo psi = new()
             {
                 FileName = WorkspacePoco.Setting.Editor,
-                Arguments = WorkspacePoco.ProjectDictionary[projectName].NodeDictionary[nodeName].Path,
+                Arguments = WorkspacePoco.ProjectDictionary[projectName].GetNodePath(nodeName),
                 CreateNoWindow = true,
                 UseShellExecute = false,
             };

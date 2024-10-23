@@ -24,6 +24,6 @@ namespace CedarBoard.Model.Poco
         /// 子ノードの名前
         /// </summary>
         [JsonPropertyName("childNode")]
-        public required List<int> ChildNode { get; set; }
+        public required List<string> ChildNode { get; set; }
     }
 }

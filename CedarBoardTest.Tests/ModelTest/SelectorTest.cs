@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CedarBoard.Model;
+using CedarBoard.Model.Accessor;
 
 namespace CedarBoardTest.Tests.ModelTest
 {
     [TestClass]
-    internal class SelectorTest
+    public class SelectorTest
     {
+        private Selector sel = new(new TextFileMock(), new DirectoryMock());
         [TestMethod]
         public void 新しいワークスペースを追加できる()
         {

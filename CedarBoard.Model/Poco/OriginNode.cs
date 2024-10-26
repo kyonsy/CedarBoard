@@ -5,25 +5,25 @@ namespace CedarBoard.Model.Poco
     /// <summary>
     /// 最初に生成されるノード
     /// </summary>
-    public sealed class OriginNode : INode
+    public sealed record OriginNode : INode
     {
         /// <summary>
         /// ノードのパス
         /// </summary>
-        [JsonPropertyName("path")]
+        [JsonInclude]
         public required string Path { get; set; }
 
 
         /// <summary>
         /// ノードの座標
         /// </summary>
-        [JsonPropertyName("point")]
+        [JsonInclude]
         public required Point Point { get; set; }
 
         /// <summary>
         /// 子ノードの名前
         /// </summary>
-        [JsonPropertyName("childNode")]
+        [JsonInclude]
         public required List<string> ChildNode { get; set; }
     }
 }

@@ -120,8 +120,7 @@ namespace CedarBoard.Model
         public void Rename(string nodeName,string newNodeName)
         {
             if(nodeName =="origin") throw new Exception("原点ノードの名前は変更できません");
-            INode node = NodeDictionary[nodeName];
-            node.Path = $@"{Path}/{newNodeName}.txt";
+            Node node = (Node)NodeDictionary[nodeName] with { Path = $@"{Path}/{newNodeName}.txt" };
             NodeDictionary.Remove(nodeName);
             NodeDictionary.Add(newNodeName, node);
             TextFile.Rename(NodeDictionary[nodeName].Path, NodeDictionary[newNodeName].Path);  

@@ -5,18 +5,18 @@ namespace CedarBoard.Model.Poco
     /// <summary>
     /// workspace.jsonからの文字列をデシリアライズするためのPOCO
     /// </summary>
-    public class WorkspacePoco
+    public record WorkspacePoco
     {
         ///<summary>
         /// 設定
         /// </summary>
-        [JsonPropertyName("setting")]
+        [JsonInclude]
         public required Setting Setting { get; set; }
 
         /// <summary>
         /// プロジェクトの名前のディクショナリ。keyはディレクトリの名前、valueはそのパス
         /// </summary>
-        [JsonPropertyName("project")]
+        [JsonInclude]
         public required Dictionary<string, Project> ProjectDictionary { get; set; } = [];
     }
 }

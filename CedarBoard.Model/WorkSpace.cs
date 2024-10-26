@@ -1,14 +1,19 @@
 ﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
 using System.Diagnostics;
-using System.IO;
 
 namespace CedarBoard.Model
 {
     /// <summary>
     /// ワークスペース
     /// </summary>
-    public sealed class Workspace: JsonFileBase
+    /// <remarks>
+    /// ワークスペースのコンストラクタ
+    /// </remarks>
+    /// <param name="textFile">テスト用と本番用で使い分ける。ファイル操作のためのオブジェクト</param>
+    /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
+    /// <param name="path">ワークスペースのパス</param>
+    public sealed class Workspace(ITextFile textFile, IDirectory directory, string path) : JsonFileBase
     {
         /// <summary>
         /// workspace.jsonに紐付けられたPOCO
@@ -18,43 +23,18 @@ namespace CedarBoard.Model
         /// <summary>
         /// ファイル操作用オブジェクト
         /// </summary>
-        public ITextFile TextFile { get; } = new TextFileAccessor();
+        public ITextFile TextFile { get; } = textFile;
 
         /// <summary>
         /// ディレクトリ操作用オブジェクト
         /// </summary>
-        public IDirectory Directory { get; } = new DirectoryAccessor();
+        public IDirectory Directory { get; } = directory;
 
 
         /// <summary>
         /// ワークスペースのパス
         /// </summary>
-        public string Path { get; }
-
-        /// <summary>
-        /// ワークスペースのコンストラクタ
-        /// </summary>
-        /// <param name="textFile">テスト用と本番用で使い分ける。ファイル操作のためのオブジェクト</param>
-        /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
-        /// <param name="path">ワークスペースのパス</param>
-        public Workspace(ITextFile textFile, IDirectory directory, string path)
-        {
-            TextFile = textFile;
-            Directory = directory;
-            Path = path;
-           
-        }
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="path">ワークスペースのパス</param>
-        public Workspace(string path)
-        {
-            Path = path;
-            object obj = Deserialize(@$"{path}\workspace.json");
-            WorkspacePoco = (WorkspacePoco)obj;
-        }
+        public string Path { get; } = path;
 
         /// <summary>
         /// 新しいプロジェクトを追加する

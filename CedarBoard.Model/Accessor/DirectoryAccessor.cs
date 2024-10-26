@@ -40,5 +40,14 @@
         {
             throw new NotImplementedException("今度また作るわ");
         }
+
+        /// <summary>
+        ///  あるディクショナリが既に存在しているか確認する
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <returns></returns>
+        public bool CheckDirectory(string dictionary) { 
+            return Directory.Exists(dictionary);
+        }
     }
 }

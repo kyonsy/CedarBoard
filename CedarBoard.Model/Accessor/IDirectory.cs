@@ -27,5 +27,12 @@
         /// </summary>
         /// <param name="path"></param>
         public void Unfreeze(string path);
+
+        /// <summary>
+        /// あるパスのディレクトリがあるかどうか調べる
+        /// </summary>
+        /// <param name="directory"></param>
+        /// <returns></returns>
+        public bool CheckDirectory(string directory);
     }
 }

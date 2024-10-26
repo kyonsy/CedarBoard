@@ -11,7 +11,7 @@ namespace CedarBoardTest.Tests.ModelTest
         {
             WorkspacePoco = new()
             {
-                ProjectDictionary = new(),
+                ProjectDictionary = [],
                 Setting = new()
                 {
                     Author = "kyonsy",
@@ -52,7 +52,7 @@ namespace CedarBoardTest.Tests.ModelTest
             w.TextFile.Create(@"C:\workspace.json", "");
             w.Save();
             string s = w.TextFile.GetData(@"C:\workspace.json");
-            Assert.IsTrue(true);//正常動作確認
+            Assert.IsNotNull(s);//正常動作確認
         }
 
         [TestMethod]

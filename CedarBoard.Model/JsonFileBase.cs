@@ -13,7 +13,7 @@ namespace CedarBoard.Model
         /// </summary>
         /// <param name="poco">Json文字列にしたいオブジェクト</param>
         /// <returns>Json文字列</returns>
-        protected static string Serialize(object poco)
+        public static string Serialize(object poco)
         {
             var json = JsonSerializer.Serialize(poco, GetOptions());
             return json;
@@ -25,7 +25,7 @@ namespace CedarBoard.Model
         /// <param name="json">オブジェクトに変えたいJson文字列</param>
         /// <returns>オブジェクト</returns>
         /// <exception cref="FormatException">変換が上手く行かないことを防ぐ</exception>
-        protected static object Deserialize(string json)
+        public static object Deserialize(string json)
         {
             object poco = JsonSerializer.Deserialize<object>(json, GetOptions()) ??
                 throw new FormatException("Json文字列として認識できません");
@@ -49,6 +49,7 @@ namespace CedarBoard.Model
                 Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
                 WriteIndented = true,
                 PropertyNameCaseInsensitive = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             };
             return options;
         }

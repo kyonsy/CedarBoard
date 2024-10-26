@@ -1,4 +1,6 @@
-﻿namespace CedarBoard.Model.Accessor
+﻿using System.Collections.Generic;
+
+namespace CedarBoard.Model.Accessor
 {
     /// <summary>
     /// ディレクトリを表現するMock
@@ -10,7 +12,6 @@
         /// </summary>
         public class Mock()
         {
-
             /// <summary>
             /// ディレクトリが圧縮されているか示す
             /// </summary>
@@ -56,6 +57,17 @@
         public void Unfreeze(string path)
         {
             DirectoryDictionary[path].Compressed = false;
+        }
+
+        /// <summary>
+        /// あるディクショナリがあるかどうか調べる
+        /// </summary>
+        /// <param name="direcory"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public bool CheckDirectory(string direcory)
+        {
+            return DirectoryDictionary.ContainsKey(direcory);
         }
     }
 }

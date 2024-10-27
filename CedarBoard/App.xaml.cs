@@ -1,8 +1,8 @@
-﻿using Main.Views;
+﻿using CedarBoard.Views;
 using Prism.Ioc;
 using System.Windows;
 
-namespace Main
+namespace CedarBoard
 {
     /// <summary>
     /// Interaction logic for App.xaml

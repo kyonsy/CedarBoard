@@ -1,0 +1,53 @@
+﻿namespace CedarBoard.Model.Accessor
+{
+    /// <summary>
+    /// 実際のアプリケーションで使うディレクトリのアクセサ
+    /// </summary>
+    public class DirectoryAccessor : IDirectory
+    {
+        /// <summary>
+        /// ディレクトリを作成
+        /// </summary>
+        /// <param name="path">作るディレクトリのパス</param>
+        public void Create(string path)
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        /// <summary>
+        /// ディレクトリの削除
+        /// </summary>
+        /// <param name="path">削除したいディレクトリのパス</param>
+        public void Delete(string path)
+        {
+            Directory.Delete(path, true);
+        }
+
+        /// <summary>
+        /// ディレクトリの圧縮
+        /// </summary>
+        /// <param name="path"></param>
+        public void Compress(string path)
+        {
+            throw new NotImplementedException("今度また作るわ");
+        }
+
+        /// <summary>
+        /// ディレクトリの解凍
+        /// </summary>
+        /// <param name="path"></param>
+        public void Unfreeze(string path)
+        {
+            throw new NotImplementedException("今度また作るわ");
+        }
+
+        /// <summary>
+        ///  あるディクショナリが既に存在しているか確認する
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <returns></returns>
+        public bool CheckDirectory(string dictionary) { 
+            return Directory.Exists(dictionary);
+        }
+    }
+}

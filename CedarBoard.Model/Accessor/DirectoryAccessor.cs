@@ -46,7 +46,7 @@
         /// </summary>
         /// <param name="dictionary"></param>
         /// <returns></returns>
-        public bool CheckDirectory(string dictionary) { 
+        public bool Exists(string dictionary) { 
             return Directory.Exists(dictionary);
         }
     }

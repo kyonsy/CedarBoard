@@ -80,7 +80,9 @@ namespace CedarBoard.Model
         public void Add(Point point)
         {
             if(NodeDictionary.Count > 0) 
-                throw new ArgumentException("二つ目以降のノードを追加するときはAdd(string nodeName,string newNodeName,int x,int y)を使ってください");
+                throw new ArgumentException(
+                    "二つ目以降のノードを追加するときはAdd(string nodeName,string newNodeName,int x,int y)を使ってください"
+                    );
             INode node = new OriginNode(){
                 Path = @$"{Path}\origin.txt",
                 ChildNode = [],

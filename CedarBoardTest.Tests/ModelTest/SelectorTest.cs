@@ -28,7 +28,7 @@ namespace CedarBoardTest.Tests.ModelTest
                 UpdatedDate = "2024/10/24",
                 Message = "始めに作ったやつ"
             },"C:");
-            Assert.AreEqual(true, sel.Directory.CheckDirectory("C:"));
+            Assert.AreEqual(true, sel.Directory.Exists("C:"));
         }
 
         [TestMethod]
@@ -47,8 +47,8 @@ namespace CedarBoardTest.Tests.ModelTest
                 UpdatedDate = "2024/10/24",
                 Message = "始めに作ったやつ"
             }, "C:");
-            sel.Remove("C:");
-            Assert.AreEqual(false, sel.Directory.CheckDirectory("C:"));
+            sel.Remove("hogehoge");
+            Assert.AreEqual(false, sel.Directory.Exists("C:"));
         }
 
         [TestMethod]
@@ -67,9 +67,8 @@ namespace CedarBoardTest.Tests.ModelTest
                 UpdatedDate = "2024/10/24",
                 Message = "始めに作ったやつ"
             }, "C:");
-            Workspace w = sel.GetWorkSpace("C:");
+            Workspace w = sel.GetWorkSpace("hogehoge");
             Assert.IsNotNull(w);
-
         }
 
         [TestMethod]

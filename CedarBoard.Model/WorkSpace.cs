@@ -1,40 +1,52 @@
 ﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace CedarBoard.Model
 {
     /// <summary>
     /// ワークスペース
     /// </summary>
-    /// <remarks>
-    /// ワークスペースのコンストラクタ
-    /// </remarks>
-    /// <param name="textFile">テスト用と本番用で使い分ける。ファイル操作のためのオブジェクト</param>
-    /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
-    /// <param name="path">ワークスペースのパス</param>
-    public sealed class Workspace(ITextFile textFile, IDirectory directory, string path) : JsonFileBase
+  
+    public sealed class Workspace : JsonFileBase
     {
         /// <summary>
         /// workspace.jsonに紐付けられたPOCO
         /// </summary>
-        public required WorkspacePoco WorkspacePoco { get; set; }
+        public WorkspacePoco WorkspacePoco { get; set; }
 
         /// <summary>
         /// ファイル操作用オブジェクト
         /// </summary>
-        public ITextFile TextFile { get; } = textFile;
+        public ITextFile TextFile { get; }
 
         /// <summary>
         /// ディレクトリ操作用オブジェクト
         /// </summary>
-        public IDirectory Directory { get; } = directory;
+        public IDirectory Directory { get; }
 
 
         /// <summary>
         /// ワークスペースのパス
         /// </summary>
-        public string Path { get; } = path;
+        public string Path { get; }
+
+        /// <summary>
+        /// ワークスペースのコンストラクタ
+        /// </summary>
+        /// <param name="textFile">テスト用と本番用で使い分ける。ファイル操作のためのオブジェクト</param>
+        /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
+        /// <param name="path">ワークスペースのパス</param>
+        public Workspace(ITextFile textFile, IDirectory directory, string path)
+        {
+            TextFile = textFile;
+            Directory = directory;
+            Path = path;
+            WorkspacePoco = Deserialize(@$"{Path}\workspace.json");
+        }
+
+
 
         /// <summary>
         /// 新しいプロジェクトを追加する
@@ -80,6 +92,19 @@ namespace CedarBoard.Model
         public override void Save()
         {
             TextFile.SetData(@$"{Path}\workspace.json",Serialize(WorkspacePoco));
+        }
+
+        /// <summary>
+        /// ワークスペースのデータをデシリアライズする
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        /// <exception cref="FormatException"></exception>
+        protected override WorkspacePoco Deserialize(string json)
+        {
+            WorkspacePoco sel = JsonSerializer.Deserialize<WorkspacePoco>(json, GetOptions()) ??
+                throw new FormatException("Json文字列として認識できません");
+            return sel;
         }
     }
 }

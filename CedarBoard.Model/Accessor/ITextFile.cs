@@ -57,5 +57,11 @@
         /// </summary>
         /// <param name="file"></param>
         public void DeleteReadOnly(string file);
+
+        /// <summary>
+        /// 指定したファイルが存在しているか調べる
+        /// </summary>
+        /// <param name="file"></param>
+        public bool Exists(string file);
     }
 }

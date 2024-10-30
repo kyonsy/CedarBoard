@@ -33,6 +33,6 @@
         /// </summary>
         /// <param name="directory"></param>
         /// <returns></returns>
-        public bool CheckDirectory(string directory);
+        public bool Exists(string directory);
     }
 }

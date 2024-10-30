@@ -24,13 +24,7 @@ namespace CedarBoard.Model
         /// </summary>
         /// <param name="json">オブジェクトに変えたいJson文字列</param>
         /// <returns>オブジェクト</returns>
-        /// <exception cref="FormatException">変換が上手く行かないことを防ぐ</exception>
-        public static object Deserialize(string json)
-        {
-            object poco = JsonSerializer.Deserialize<object>(json, GetOptions()) ??
-                throw new FormatException("Json文字列として認識できません");
-            return poco;
-        }
+        protected abstract object Deserialize(string json);
 
         /// <summary>
         /// 自身のオブジェクトを指定されたJsonファイルにシリアライズして書き込む
@@ -42,7 +36,7 @@ namespace CedarBoard.Model
         /// オプションを設定する。内部メゾット
         /// </summary>
         /// <returns>オプション設定</returns>
-        private static JsonSerializerOptions GetOptions()
+        public static JsonSerializerOptions GetOptions()
         {
             var options = new JsonSerializerOptions
             {

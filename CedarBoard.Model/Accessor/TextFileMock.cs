@@ -103,5 +103,15 @@
         {
             FileDictionary[file].ReadOnly = false;
         }
+
+        /// <summary>
+        /// 指定したファイルが存在しているかどうか調べる
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public bool Exists(string file)
+        {
+            return FileDictionary.ContainsKey(file);
+        }
     }
 }

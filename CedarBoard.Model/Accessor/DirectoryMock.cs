@@ -65,7 +65,7 @@ namespace CedarBoard.Model.Accessor
         /// <param name="direcory"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public bool CheckDirectory(string direcory)
+        public bool Exists(string direcory)
         {
             return DirectoryDictionary.ContainsKey(direcory);
         }

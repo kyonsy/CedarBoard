@@ -26,7 +26,7 @@ namespace CedarBoardTest.Tests.ModelTest
                 }
             }
         };
-
+        
         [TestMethod]
         public void 新しいプロジェクトを作れる()
         {

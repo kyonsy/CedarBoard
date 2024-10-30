@@ -81,5 +81,14 @@
             FileAttributes attr = File.GetAttributes(file);
             File.SetAttributes(file, attr & ~(FileAttributes.ReadOnly));
         }
+
+        /// <summary>
+        /// 指定したファイルが存在しているか調べる
+        /// </summary>
+        /// <param name="file"></param>
+        public bool Exists(string file)
+        {
+            return File.Exists(file);
+        }
     }
 }

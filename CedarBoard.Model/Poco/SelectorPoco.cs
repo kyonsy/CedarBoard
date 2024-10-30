@@ -14,7 +14,7 @@ namespace CedarBoard.Model.Poco
         /// <summary>
         /// ワークスペースの名前をキーに、そのパスを保持する
         /// </summary>
-        public Dictionary<string, string> PathDictionary { get; set; } = [];
+        public required Dictionary<string, string> PathDictionary { get; set; } = [];
     }
 
 }

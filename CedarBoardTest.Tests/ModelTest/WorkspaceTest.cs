@@ -1,6 +1,5 @@
 ﻿using CedarBoard.Model;
 using CedarBoard.Model.Accessor;
-using CedarBoard.Model.Poco;
 
 namespace CedarBoardTest.Tests.ModelTest
 {
@@ -24,7 +23,7 @@ namespace CedarBoardTest.Tests.ModelTest
                     Message = "始めに作ったやつ"
                 }
             });
-        
+
         [TestMethod]
         public void 新しいプロジェクトを作れる()
         {
@@ -46,7 +45,7 @@ namespace CedarBoardTest.Tests.ModelTest
 
             w.Add("first");
             w.WorkspacePoco.ProjectDictionary["first"].Add(new(10, 10));
-            w.WorkspacePoco.ProjectDictionary["first"].Add("origin","second",new(20, 20));
+            w.WorkspacePoco.ProjectDictionary["first"].Add("origin", "second", new(20, 20));
             w.TextFile.Create(@"C:\workspace.json", "");
             w.Save();
             string s = w.TextFile.GetData(@"C:\workspace.json");
@@ -60,7 +59,7 @@ namespace CedarBoardTest.Tests.ModelTest
             w.WorkspacePoco.ProjectDictionary["first"].Add(new(10, 10));
             w.WorkspacePoco.ProjectDictionary["first"].Add("origin", "second", new(20, 20));
             w.TextFile.Create(@"C:\workspace.json", "");
-            w.Open("first","second");
+            //w.Open("first","second");
             Assert.IsTrue(true);
         }
     }

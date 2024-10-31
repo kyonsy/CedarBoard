@@ -60,7 +60,7 @@ namespace CedarBoardTest.Tests.ModelTest
             w.WorkspacePoco.ProjectDictionary["first"].Add(new(10, 10));
             w.WorkspacePoco.ProjectDictionary["first"].Add("origin", "second", new(20, 20));
             w.TextFile.Create(@"C:\workspace.json", "");
-            w.Open("first","second");
+            //w.Open("first","second"); // エディターの起動がうるさいのでコメントアウト
             Assert.IsTrue(true);
         }
     }

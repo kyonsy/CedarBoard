@@ -54,7 +54,8 @@ namespace CedarBoardTest.Tests.ModelTest
         [TestMethod]
         public void 指定されたワークスペースを返すことが出来る()
         {
-            Selector sel = new(new TextFileMock(), new DirectoryMock()) { SelectorPoco = new() { PathDictionary = [] } };
+            Selector sel = new(new TextFileMock(), new DirectoryMock()){ 
+                SelectorPoco = new() { PathDictionary = [] } };
             sel.Add(new()
             {
                 Author = "kyonsy",

@@ -43,7 +43,22 @@ namespace CedarBoard.Model
             TextFile = textFile;
             Directory = directory;
             Path = path;
-            WorkspacePoco = Deserialize(@$"{Path}\workspace.json");
+            WorkspacePoco = Deserialize(TextFile.GetData($@"{Path}\workspace.json"));
+        }
+
+        /// <summary>
+        /// ワークスペースのコンストラクタ。デバッグ用
+        /// </summary>
+        /// <param name="textFile">テスト用と本番用で使い分ける。ファイル操作のためのオブジェクト</param>
+        /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
+        /// <param name="path">ワークスペースのパス</param>
+        /// <param name="workspacePoco"></param>
+        public Workspace(ITextFile textFile, IDirectory directory, string path,WorkspacePoco workspacePoco)
+        {
+            TextFile = textFile;
+            Directory = directory;
+            Path = path;
+            WorkspacePoco = workspacePoco;
         }
 
 

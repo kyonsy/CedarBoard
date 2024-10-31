@@ -7,9 +7,8 @@ namespace CedarBoardTest.Tests.ModelTest
     [TestClass]
     public class WorkspaceTest
     {
-        private readonly Workspace w = new(new TextFileMock(), new DirectoryMock(), "C:")
-        {
-            WorkspacePoco = new()
+        private readonly Workspace w = new(new TextFileMock(), new DirectoryMock(), "C:",
+            new()
             {
                 ProjectDictionary = [],
                 Setting = new()
@@ -24,8 +23,7 @@ namespace CedarBoardTest.Tests.ModelTest
                     UpdatedDate = "2024/10/24",
                     Message = "始めに作ったやつ"
                 }
-            }
-        };
+            });
         
         [TestMethod]
         public void 新しいプロジェクトを作れる()

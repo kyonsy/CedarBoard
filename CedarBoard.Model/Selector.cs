@@ -43,8 +43,7 @@ namespace CedarBoard.Model
         {
             TextFile = textFile;
             Directory = directory;
-            SelectorPoco = GetSelectorPoco();
-                
+            SelectorPoco = GetSelectorPoco();   
         }
 
         /// <summary>
@@ -78,7 +77,7 @@ namespace CedarBoard.Model
         /// <returns>指定したワークスペース</returns>
         public Workspace GetWorkSpace(string workspace)
         {
-            string path = @$"{SelectorPoco.PathDictionary[workspace]}\workspace.json";
+            string path = SelectorPoco.PathDictionary[workspace];
             return new Workspace(TextFile, Directory, path);
         }
 

@@ -27,7 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModelTest\" />
+    <Folder Include="ViewModelTest\CreateNew\" />
+    <Folder Include="ViewModelTest\EditPage\Project\" />
+    <Folder Include="ViewModelTest\EditPage\TaskBar\" />
+    <Folder Include="ViewModelTest\HomePage\" />
   </ItemGroup>
 
 </Project>

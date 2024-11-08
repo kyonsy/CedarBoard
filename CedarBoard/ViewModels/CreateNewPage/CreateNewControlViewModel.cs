@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CedarBoard.ViewModels.CreateNew
+namespace CedarBoard.ViewModels.CreateNewPage
 {
     public class CreateNewControlViewModel : BindableBase
     {

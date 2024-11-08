@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace CedarBoard.ViewModels.EditPage
 {
-    public class EditorControlViewModel : BindableBase
+    public class EditorWindowViewModel : BindableBase
     {
-        public EditorControlViewModel()
+        public EditorWindowViewModel()
         {
 
         }

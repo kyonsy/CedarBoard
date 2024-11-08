@@ -1,7 +1,9 @@
 ﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
+using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 
+[assembly: InternalsVisibleTo("CedarBoardTest.Tests")]
 namespace CedarBoard.Model
 {
     /// <summary>
@@ -13,20 +15,20 @@ namespace CedarBoard.Model
         /// ノードのディクショナリ
         /// </summary>
         [JsonPropertyName("nodes")]
-        public Dictionary<string,INode> NodeDictionary { get; set; } = [];
+        public Dictionary<string,INode> NodeDictionary { get;} = [];
 
 
         /// <summary>
         /// プロジェクトのパス
         /// </summary>
         [JsonPropertyName("path")]
-        public string Path { get; }
+        internal string Path { get; }
 
         /// <summary>
         /// ファイル操作オブジェクト
         /// </summary>
         [JsonIgnore]
-        public ITextFile TextFile { get; } = new TextFileAccessor();
+        internal ITextFile TextFile { get;}
 
 
         /// <summary>
@@ -39,15 +41,6 @@ namespace CedarBoard.Model
             TextFile = textFile;
             Path = path;
         }
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        public Project(string path)
-        {
-            Path = path;
-        }
-
 
         /// <summary>
         /// 新しいノードを追加する(2つ目以降)

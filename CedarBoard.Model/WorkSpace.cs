@@ -1,8 +1,10 @@
 ﻿using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 
+[assembly: InternalsVisibleTo("CedarBoardTest.Tests")]
 namespace CedarBoard.Model
 {
     /// <summary>
@@ -14,23 +16,23 @@ namespace CedarBoard.Model
         /// <summary>
         /// workspace.jsonに紐付けられたPOCO
         /// </summary>
-        public WorkspacePoco WorkspacePoco { get; set; }
+        public WorkspacePoco WorkspacePoco { get;}
 
         /// <summary>
         /// ファイル操作用オブジェクト
         /// </summary>
-        public ITextFile TextFile { get; }
+        internal ITextFile TextFile { get;}
 
         /// <summary>
         /// ディレクトリ操作用オブジェクト
         /// </summary>
-        public IDirectory Directory { get; }
+        internal IDirectory Directory { get;}
 
 
         /// <summary>
         /// ワークスペースのパス
         /// </summary>
-        public string Path { get; }
+        private string Path { get; }
 
         /// <summary>
         /// ワークスペースのコンストラクタ

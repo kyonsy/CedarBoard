@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CedarBoard.Model;
+﻿using CedarBoard.Model;
 using CedarBoard.Model.Accessor;
-using System.Collections.Generic;
 
 namespace CedarBoardTest.Tests.ModelTest
 {
     [TestClass]
-    public class SelectorTest
+    public class WorkspaceSelectorTest
     {
         [TestMethod]
         public void 新しいワークスペースを追加できる()
         {
-            Selector sel = new(new TextFileMock(), new DirectoryMock()) { SelectorPoco = new() { PathDictionary = [] } };
+            WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock()) { SelectorPoco = new() { PathDictionary = [] } };
             sel.Add(new()
             {
                 Author = "kyonsy",
@@ -34,7 +28,7 @@ namespace CedarBoardTest.Tests.ModelTest
         [TestMethod]
         public void 指定されたワークスペースを削除できる()
         {
-            Selector sel = new(new TextFileMock(), new DirectoryMock()) { SelectorPoco = new() { PathDictionary = [] } };
+            WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock()) { SelectorPoco = new() { PathDictionary = [] } };
             sel.Add(new()
             {
                 Author = "kyonsy",
@@ -54,7 +48,7 @@ namespace CedarBoardTest.Tests.ModelTest
         [TestMethod]
         public void 指定されたワークスペースを返すことが出来る()
         {
-            Selector sel = new(new TextFileMock(), new DirectoryMock()){ 
+            WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock()){ 
                 SelectorPoco = new() { PathDictionary = [] } };
             sel.Add(new()
             {
@@ -75,7 +69,7 @@ namespace CedarBoardTest.Tests.ModelTest
         [TestMethod]
         public void セレクタ自身の情報を保存できる()
         {
-            Selector sel = new(new TextFileMock(), new DirectoryMock()) { SelectorPoco = new() { PathDictionary = [] } };
+            WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock()) { SelectorPoco = new() { PathDictionary = [] } };
             sel.Add(new()
             {
                 Author = "kyonsy",

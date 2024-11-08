@@ -1,33 +1,33 @@
-﻿using CedarBoard.Model.Accessor;
+﻿using System.Runtime.CompilerServices;
+using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
-using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-
+[assembly:InternalsVisibleTo("CedarBoardTest.Tests")]
 namespace CedarBoard.Model
 {
     /// <summary>
     /// ワークスペースを選ぶためのもの。アプリケーションの起動と同時にインスタンス化される
     /// </summary>
-    public sealed class Selector : JsonFileBase
+    public sealed class WorkspaceSelector : JsonFileBase
     {
         /// <summary>
         /// setting.jsonに紐付けられたPOCO
         /// </summary>
         [JsonInclude]
-        public SelectorPoco SelectorPoco { get; set; }
+        public SelectorPoco SelectorPoco { get; internal set; }
 
         /// <summary>
         /// ファイル操作用オブジェクト
         /// </summary>
         [JsonIgnore]
-        public ITextFile TextFile { get; }
+        internal ITextFile TextFile { get; }
 
         /// <summary>
         /// ディレクトリ操作用オブジェクト
         /// </summary>
         [JsonIgnore]
-        public IDirectory Directory { get; }
+        internal IDirectory Directory { get; }
 
         /// <summary>
         /// setting.jsonがあるパス
@@ -39,7 +39,7 @@ namespace CedarBoard.Model
         /// </summary>
         /// <param name="textFile">テスト用と本番用で使い分ける。ファイル操作用のオブジェクト</param>
         /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
-        public Selector(ITextFile textFile, IDirectory directory)
+        public WorkspaceSelector(ITextFile textFile, IDirectory directory)
         {
             TextFile = textFile;
             Directory = directory;

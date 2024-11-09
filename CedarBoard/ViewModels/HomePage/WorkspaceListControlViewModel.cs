@@ -1,32 +1,40 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Regions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace CedarBoard.ViewModels.HomePage
 {
-    public class WorkspaceListControlViewModel : BindableBase,INavigationAware
+    public class WorkspaceListControlViewModel : BindableBase
     {
-        public WorkspaceListControlViewModel()
-        {
 
+        // ObservableCollectionをプロパティとして定義
+        public ObservableCollection<KeyValuePair<string, string>> _dictionaryItems;
+        public ObservableCollection<KeyValuePair<string, string>> DictionaryItems
+        {
+            get { return _dictionaryItems; }
+            set { SetProperty(ref _dictionaryItems, value); }
         }
 
-        public bool IsNavigationTarget(NavigationContext navigationContext)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void OnNavigatedFrom(NavigationContext navigationContext)
+        public WorkspaceListControlViewModel(HomePageViewModel _homePageViewModel)
         {
-            throw new NotImplementedException();
-        }
+            // テストコード
+            DictionaryItems = new ObservableCollection<KeyValuePair<string, string>>(
+                new Dictionary<string, string>
+                {
+                    { "apple","200"},
+                    {"orange","300"},
+                    { "strbery","400"}
+                });
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
-        {
-            throw new NotImplementedException();
+            DictionaryItems = new ObservableCollection<KeyValuePair<string, string>>(
+                _homePageViewModel.WorkspaceSelector.SelectorPoco.PathDictionary);
+
+
+
         }
     }
 }

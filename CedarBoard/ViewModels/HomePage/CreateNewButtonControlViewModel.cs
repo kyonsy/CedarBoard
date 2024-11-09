@@ -16,12 +16,12 @@ namespace CedarBoard.ViewModels.HomePage
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            throw new NotImplementedException();
+            // 特に何もしない
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)

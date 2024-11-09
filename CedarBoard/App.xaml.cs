@@ -1,8 +1,9 @@
-﻿using CedarBoard.Views;
+﻿using CedarBoard.ViewModels.HomePage;
+using CedarBoard.Views;
 using CedarBoard.Views.EditPage;
+using CedarBoard.Views.HomePage;
 using Prism.Ioc;
 using System.Windows;
-using System.Windows.Controls.Primitives;
 
 namespace CedarBoard
 {
@@ -18,11 +19,12 @@ namespace CedarBoard
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<HomePageViewModel>();
+
+
             containerRegistry.RegisterForNavigation<WorkspaceListControl> ();
             containerRegistry.RegisterForNavigation<CreateNewButtonControl> ();
-            containerRegistry.RegisterForNavigation<HomeControl> ();
             containerRegistry.RegisterForNavigation<CreateNewInputControl>();
-            containerRegistry.RegisterForNavigation<CreateNewControl>();
             containerRegistry.RegisterForNavigation<ArrowControl> ();
             containerRegistry.RegisterForNavigation<CanvasControl>();
             containerRegistry.RegisterForNavigation<LookNodeWindow> ();

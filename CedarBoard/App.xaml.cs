@@ -3,6 +3,7 @@ using CedarBoard.Views;
 using CedarBoard.Views.EditPage;
 using CedarBoard.Views.HomePage;
 using Prism.Ioc;
+using Prism.Unity;
 using System.Windows;
 
 namespace CedarBoard
@@ -10,7 +11,7 @@ namespace CedarBoard
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App
+    public partial class App: PrismApplication
     {
         protected override Window CreateShell()
         {

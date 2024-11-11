@@ -2,13 +2,14 @@
 using CedarBoard.Model.Accessor;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace CedarBoard.ViewModels.HomePage
 {
-    public class HomePageViewModel : BindableBase
+    public class HomePageViewModel : BindableBase,INavigationAware
     {
         // テスト用のモックを引数に入れておく
         public WorkspaceSelector WorkspaceSelector { get; set; }
@@ -17,6 +18,21 @@ namespace CedarBoard.ViewModels.HomePage
         public HomePageViewModel()
         {
 
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            throw new NotImplementedException();
         }
     }
 }

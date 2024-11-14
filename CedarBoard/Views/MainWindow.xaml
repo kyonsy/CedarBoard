@@ -1,12 +1,20 @@
 ﻿<Window x:Class="CedarBoard.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:prism="http://prismlibrary.com/" 
+        xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="700" Width="1050" 
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button 
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <!--これらは各ページのUIを確認するために作った暫定的な実装である-->
+        <StackPanel>
+            <Button Content="CreateNewPageButton" Command="{Binding CreateNewPageButton}"
+                    Height="50" Width="100" />
+            <Button Content="EditorWindowButton" Command="{Binding EditorWindowButton}"
+                    Height="50" Width="100"/>
+            <Button Content="HomePageButton" Command="{Binding HomePageButton}"
+                    Height="50" Width="100"/>
+        </StackPanel>
+        <Frame prism:RegionManager.RegionName="MainRegion"></Frame>
     </Grid>
 </Window>

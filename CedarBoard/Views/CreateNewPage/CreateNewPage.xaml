@@ -9,6 +9,8 @@
       Title="CreateNewPage">
 
     <Grid>
-        
+        <StackPanel>
+            <TextBlock Text="CreateNew"/>
+        </StackPanel>
     </Grid>
 </Page>

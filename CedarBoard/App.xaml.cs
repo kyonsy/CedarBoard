@@ -3,6 +3,7 @@ using CedarBoard.Views;
 using CedarBoard.Views.EditPage;
 using CedarBoard.Views.HomePage;
 using Prism.Ioc;
+using Prism.Regions;
 using Prism.Unity;
 using System.Windows;
 
@@ -21,7 +22,6 @@ namespace CedarBoard
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<HomePageViewModel>();
-
 
             containerRegistry.RegisterForNavigation<WorkspaceListControl> ();
             containerRegistry.RegisterForNavigation<CreateNewButtonControl> ();

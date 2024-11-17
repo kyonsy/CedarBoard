@@ -22,16 +22,16 @@ namespace CedarBoard.ViewModels.HomePage
         public WorkspaceListControlViewModel(HomeControlViewModel _homeControlViewModel)
         {
             // テストコード
-            //DictionaryItems = new ObservableCollection<KeyValuePair<string, string>>(
-            //    new Dictionary<string, string>
-            //    {
-            //        { "apple","200"},
-            //        {"orange","300"},
-            //        { "strbery","400"}
-            //    });
-
             DictionaryItems = new ObservableCollection<KeyValuePair<string, string>>(
-                _homeControlViewModel.WorkspaceSelector.SelectorPoco.PathDictionary);
+                new Dictionary<string, string>
+                {
+                    { "apple","200"},
+                    {"orange","300"},
+                    { "strbery","400"}
+                });
+
+            //DictionaryItems = new ObservableCollection<KeyValuePair<string, string>>(
+            //   _homeControlViewModel.WorkspaceSelector.SelectorPoco.PathDictionary);
         }
     }
 }

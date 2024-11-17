@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace CedarBoard.Views
+namespace CedarBoard.Views.EditPage.Project
 {
     /// <summary>
     /// Interaction logic for MakeNodeWindow.xaml

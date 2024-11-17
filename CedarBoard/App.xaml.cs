@@ -1,8 +1,14 @@
-﻿using CedarBoard.Views;
+﻿using CedarBoard.ViewModels.HomePage;
+using CedarBoard.Views;
 using CedarBoard.Views.EditPage;
 using Prism.Ioc;
+using Prism.Mvvm;
+using System;
 using System.Windows;
 using System.Windows.Controls.Primitives;
+using CedarBoard.Views.HomePage;
+using CedarBoard.Views.EditPage.Project;
+using CedarBoard.Views.EditPage.TaskBar;
 
 namespace CedarBoard
 {
@@ -18,6 +24,17 @@ namespace CedarBoard
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver(viewType =>
+            {
+                var viewName = viewType.FullName;
+                var viewModelName = viewName
+                    .Replace(".Views.", ".ViewModels.")
+                    + "ViewModel";
+
+
+
+                return Type.GetType(viewModelName);
+            });
             containerRegistry.RegisterForNavigation<WorkspaceListControl> ();
             containerRegistry.RegisterForNavigation<CreateNewButtonControl> ();
             containerRegistry.RegisterForNavigation<HomeControl> ();
@@ -31,7 +48,7 @@ namespace CedarBoard
             containerRegistry.RegisterForNavigation<FileBarControl> ();
             containerRegistry.RegisterForNavigation<SettingBarControl> ();
             containerRegistry.RegisterForNavigation<TaskBarControl> ();
-            containerRegistry.RegisterForNavigation<EditorWindow> ();
+            containerRegistry.RegisterForNavigation<EditorWindow>();
         }
     }
 }

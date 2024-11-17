@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
+using CedarBoard.Views; 
 
-namespace CedarBoard.Views
+namespace CedarBoard.Views.HomePage
 {
     /// <summary>
     /// Interaction logic for HomeControl

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace CedarBoard.Views
+namespace CedarBoard.Views.EditPage.TaskBar
 {
     /// <summary>
     /// Interaction logic for TaskBarControl

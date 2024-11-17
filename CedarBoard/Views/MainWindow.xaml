@@ -6,6 +6,6 @@
         Title="{Binding Title}" Height="700" Width="1050" 
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <ContentControl prism:RegionManager.RegionName="MainRegion" />
     </Grid>
 </Window>

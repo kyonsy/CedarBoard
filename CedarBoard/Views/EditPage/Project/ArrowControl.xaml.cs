@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace CedarBoard.Views
+namespace CedarBoard.Views.EditPage.Project
 {
     /// <summary>
     /// Interaction logic for ArrowControl

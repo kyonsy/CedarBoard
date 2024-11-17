@@ -4,6 +4,45 @@
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-            
+        <Menu>
+            <MenuItem Header="設定">
+                <MenuItem x:Name="SettingFormat" 
+                          Header="フォーマット"
+                          Command="{Binding SettingMenuItemClick}"
+                          CommandParameter="Format"/>
+                <MenuItem x:Name="SettingEditor"
+                          Header="エディター"
+                          Command="{Binding SettingMenuItemClick}"
+                          CommandParameter="Editor"/>
+                <MenuItem x:Name="SettingEncode"
+                          Header="エンコード"
+                          Command="{Binding SettingMenuItemClick}"
+                          CommandParameter="Encode"/>
+                <MenuItem x:Name="SettingLanguage"
+                          Header="言語"
+                          Command="{Binding SettingMenuItemClick}"
+                          CommandParameter="Language"/>
+                <MenuItem x:Name="SettingAuthor"
+                          Header="作者"
+                          Command="{Binding SettingMenuItemClick}"
+                          CommandParameter="Author"/>
+                <MenuItem x:Name="SettingName"
+                          Header="ワークスペースの名前"
+                          Command="{Binding SettingMenuItemClick}"
+                          CommandParameter="Name"/>
+                <MenuItem x:Name="SettingCreatedDate"
+                          Header="作成日時"
+                          Command="{Binding SettingMenuItemClick}"
+                          CommandParameter="CreatedDate" />
+                <MenuItem x:Name="SettingUpdatedDate"
+                          Header="更新日時"
+                          Command="{Binding SettingMenuItemClick}"
+                          CommandParameter="UpdatedDate" />
+                <MenuItem x:Name="SettingMessage"
+                          Header="メッセージ"
+                          Command="{Binding SettingMenuItemClick}"
+                          CommandParameter="Message" />
+            </MenuItem>
+        </Menu>
     </Grid>
 </UserControl>

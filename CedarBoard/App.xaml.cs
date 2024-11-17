@@ -1,5 +1,6 @@
 ﻿using CedarBoard.Views;
 using CedarBoard.Views.EditPage;
+using CedarBoard.Views.EditPage.TaskBar;
 using Prism.Ioc;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -30,6 +31,7 @@ namespace CedarBoard
             containerRegistry.RegisterForNavigation<ProjectControl> ();
             containerRegistry.RegisterForNavigation<FileBarControl> ();
             containerRegistry.RegisterForNavigation<SettingBarControl> ();
+            containerRegistry.RegisterForNavigation<SettingSettingControl> ();
             containerRegistry.RegisterForNavigation<TaskBarControl> ();
             containerRegistry.RegisterForNavigation<EditorWindow> ();
         }

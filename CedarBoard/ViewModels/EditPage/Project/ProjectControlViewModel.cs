@@ -6,8 +6,14 @@ using System.Linq;
 
 namespace CedarBoard.ViewModels.EditPage.Project
 {
+    /// <summary>
+    /// プロジェクトを表す
+    /// </summary>
     public class ProjectControlViewModel : BindableBase
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public ProjectControlViewModel()
         {
 

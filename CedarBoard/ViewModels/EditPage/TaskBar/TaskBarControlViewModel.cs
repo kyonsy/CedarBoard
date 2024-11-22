@@ -6,8 +6,14 @@ using System.Linq;
 
 namespace CedarBoard.ViewModels.EditPage.TaskBar
 {
+    /// <summary>
+    /// タスクバーを表す
+    /// </summary>
     public class TaskBarControlViewModel : BindableBase
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public TaskBarControlViewModel()
         {
 

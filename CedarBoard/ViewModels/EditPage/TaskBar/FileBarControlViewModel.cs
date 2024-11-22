@@ -6,8 +6,14 @@ using System.Linq;
 
 namespace CedarBoard.ViewModels.EditPage.TaskBar
 {
+    /// <summary>
+    /// ファイルタブを表す
+    /// </summary>
     public class FileBarControlViewModel : BindableBase
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public FileBarControlViewModel()
         {
 

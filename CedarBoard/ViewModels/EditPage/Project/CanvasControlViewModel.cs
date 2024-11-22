@@ -6,8 +6,14 @@ using System.Linq;
 
 namespace CedarBoard.ViewModels.EditPage.Project
 {
+    /// <summary>
+    /// キャンバス画面
+    /// </summary>
     public class CanvasControlViewModel : BindableBase
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public CanvasControlViewModel()
         {
 

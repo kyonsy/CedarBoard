@@ -8,6 +8,7 @@
         <StackPanel>
             <TextBlock Text="{Binding Test}"/>
             <local:WorkspaceListControl/>
+            <local:CreateNewButtonControl/>
             <ContentControl prism:RegionManager.RegionName="ContentRegion"></ContentControl>
         </StackPanel>
     </Grid>

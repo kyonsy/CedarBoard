@@ -1,13 +1,15 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Prism.Mvvm;
 
 namespace CedarBoard.ViewModels.HomePage
 {
+    /// <summary>
+    /// 新しいワークスペースを作る画面に遷移するボタン
+    /// </summary>
     public class CreateNewButtonControlViewModel : BindableBase
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public CreateNewButtonControlViewModel()
         {
 

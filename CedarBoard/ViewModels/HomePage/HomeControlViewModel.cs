@@ -1,42 +1,52 @@
-﻿using CedarBoard.Model.Accessor;
-using CedarBoard.Model;
-using Prism.Commands;
+﻿using CedarBoard.Model;
+using CedarBoard.Model.Accessor;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CedarBoard.ViewModels.HomePage
 {
+    /// <summary>
+    /// ホーム画面
+    /// </summary>
     public class HomeControlViewModel : BindableBase,INavigationAware
     {
-        public string _test = "test";
-        public string Test {
-            get { return _test; }
-            set { SetProperty(ref _test, value); }
-            }
+        /// <summary>
+        /// ワークスペースを選ぶやつ
+        /// </summary>
+        public WorkspaceSelector WorkspaceSelector { get; set; }
+            = new WorkspaceSelector(new TextFileMock(), new DirectoryMock());
 
-
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public HomeControlViewModel()
         {
 
         }
-        // テスト用のモックを引数に入れておく
-        public WorkspaceSelector WorkspaceSelector { get; set; }
-            = new WorkspaceSelector(new TextFileMock(), new DirectoryMock());
 
-
+        /// <summary>
+        /// (他の画面から)ナビゲーションしたときの動作
+        /// </summary>
+        /// <param name="navigationContext">ナビゲーションの情報</param>
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
 
         }
 
+        /// <summary>
+        /// 前のナビゲーションを保存するか
+        /// </summary>
+        /// <param name="navigationContext">ナビゲーションの情報</param>
+        /// <returns></returns>
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return false;
         }
 
+        /// <summary>
+        /// (この画面から)ナビゲーションした時の動作
+        /// </summary>
+        /// <param name="navigationContext">ナビゲーションの情報</param>
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
 

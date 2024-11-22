@@ -6,8 +6,14 @@ using System.Linq;
 
 namespace CedarBoard.ViewModels.EditPage.Project
 {
+    /// <summary>
+    /// ノードの設定を確認するウィンドウ
+    /// </summary>
     public class LookNodeWindowViewModel : BindableBase
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public LookNodeWindowViewModel()
         {
 

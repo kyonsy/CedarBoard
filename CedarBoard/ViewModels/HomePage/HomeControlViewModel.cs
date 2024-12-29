@@ -10,6 +10,13 @@ namespace CedarBoard.ViewModels.HomePage
     /// </summary>
     public class HomeControlViewModel : BindableBase,INavigationAware
     {
+        private string _title = "CedarBoard";
+
+        /// <summary>
+        /// タイトル
+        /// </summary>
+        public string Title {  get { return _title; } set { SetProperty(ref _title, value); } }
+
         /// <summary>
         /// ワークスペースを選ぶやつ
         /// </summary>

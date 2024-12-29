@@ -6,7 +6,7 @@
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
         <StackPanel>
-            <TextBlock Text="{Binding Test}"/>
+            <TextBlock Text="{Binding Title}"/>
             <local:WorkspaceListControl/>
             <local:CreateNewButtonControl/>
             <ContentControl prism:RegionManager.RegionName="ContentRegion"></ContentControl>

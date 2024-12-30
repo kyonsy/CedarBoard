@@ -15,7 +15,7 @@ namespace CedarBoard.Model
         /// setting.jsonに紐付けられたPOCO
         /// </summary>
         [JsonInclude]
-        public SelectorPoco SelectorPoco { get; internal set; }
+        public SelectorPoco SelectorPoco { get; set; }
 
         /// <summary>
         /// ファイル操作用オブジェクト

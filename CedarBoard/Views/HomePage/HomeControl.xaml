@@ -11,7 +11,6 @@
             <local:CreateNewButtonControl/>
             <local:EditContentButtonControl/>
             <local:DeleteContentButtonControl/>
-            <ContentControl prism:RegionManager.RegionName="ContentRegion"></ContentControl>
         </StackPanel>
     </Grid>
 </UserControl>

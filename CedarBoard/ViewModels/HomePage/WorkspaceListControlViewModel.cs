@@ -27,6 +27,13 @@ namespace CedarBoard.ViewModels.HomePage
             set { SetProperty(ref _dictionaryItems, value); }
         }
 
+        private KeyValuePair<string, string>? _selectedKeyValuePair;
+
+        /// <summary>
+        /// ユーザーが選択している作品
+        /// </summary>
+        public KeyValuePair<string,string>? SelectedKeyValuePair { get { return _selectedKeyValuePair; } set { SetProperty(ref _selectedKeyValuePair, value); } }
+
         /// <summary>
         /// コンストラクタ
         /// </summary>

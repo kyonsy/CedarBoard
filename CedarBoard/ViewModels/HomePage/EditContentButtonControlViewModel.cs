@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using CedarBoard.Model;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;

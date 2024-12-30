@@ -56,6 +56,7 @@ namespace CedarBoard
             containerRegistry.RegisterForNavigation<SettingBarControl> ();
             containerRegistry.RegisterForNavigation<TaskBarControl> ();
             containerRegistry.RegisterForNavigation<EditorWindow>();
+            containerRegistry.RegisterDialog<EditContentWindow, EditContentWindowViewModel>();
             // テスト用にシングルトンにはモックを登録しておく
             containerRegistry.RegisterSingleton<WorkspaceSelector>(() =>
             {

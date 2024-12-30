@@ -9,6 +9,7 @@ using System.Windows.Controls.Primitives;
 using CedarBoard.Views.HomePage;
 using CedarBoard.Views.EditPage.Project;
 using CedarBoard.Views.EditPage.TaskBar;
+using CedarBoard.Model;
 
 namespace CedarBoard
 {
@@ -38,9 +39,6 @@ namespace CedarBoard
                 var viewModelName = viewName
                     .Replace(".Views.", ".ViewModels.")
                     + "ViewModel";
-
-
-
                 return Type.GetType(viewModelName);
             });
             containerRegistry.RegisterForNavigation<WorkspaceListControl> ();
@@ -57,6 +55,7 @@ namespace CedarBoard
             containerRegistry.RegisterForNavigation<SettingBarControl> ();
             containerRegistry.RegisterForNavigation<TaskBarControl> ();
             containerRegistry.RegisterForNavigation<EditorWindow>();
+            containerRegistry.RegisterSingleton<WorkspaceSelector>();
         }
     }
 }

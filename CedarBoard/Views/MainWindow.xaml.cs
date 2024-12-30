@@ -7,6 +7,9 @@ namespace CedarBoard.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// コードビハインド
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();

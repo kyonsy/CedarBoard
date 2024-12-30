@@ -7,6 +7,9 @@ namespace CedarBoard.Views.EditPage.TaskBar
     /// </summary>
     public partial class TaskBarControl : UserControl
     {
+        /// <summary>
+        /// コードビハインド
+        /// </summary>
         public TaskBarControl()
         {
             InitializeComponent();

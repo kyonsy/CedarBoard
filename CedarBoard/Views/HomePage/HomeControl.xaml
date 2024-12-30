@@ -9,7 +9,8 @@
             <TextBlock Text="{Binding Title}"/>
             <local:WorkspaceListControl/>
             <local:CreateNewButtonControl/>
-            
+            <local:EditContentButtonControl/>
+            <local:DeleteContentButtonControl/>
             <ContentControl prism:RegionManager.RegionName="ContentRegion"></ContentControl>
         </StackPanel>
     </Grid>

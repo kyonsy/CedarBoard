@@ -1,9 +1,11 @@
-﻿<UserControl x:Class="CedarBoard.Views.HomePage.EditContentButtonControl"
+﻿<UserControl x:Class="CedarBoard.Views.HomePage.DeleteContentButtonControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <Button Content="選択した作品を編集" Command="{Binding EditContent}"/>
+        <StackPanel>
+            <Button Content="選択した作品を削除" Command="{Binding DeleteContent}"/>
+        </StackPanel> 
     </Grid>
 </UserControl>

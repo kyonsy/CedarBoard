@@ -6,8 +6,14 @@ using System.Linq;
 
 namespace CedarBoard.ViewModels.EditPage
 {
+    /// <summary>
+    /// ノードを編集するためのポップアップウィンドウ
+    /// </summary>
     public class EditorWindowViewModel : BindableBase
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public EditorWindowViewModel()
         {
 

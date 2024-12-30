@@ -7,6 +7,9 @@ namespace CedarBoard.Views
     /// </summary>
     public partial class CreateNewInputControl : UserControl
     {
+        /// <summary>
+        /// コードビハインド
+        /// </summary>
         public CreateNewInputControl()
         {
             InitializeComponent();

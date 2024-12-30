@@ -103,7 +103,7 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// SelectorPocoを返す
+        /// デシリアライズを行いSelectorPocoを返す
         /// </summary>
         /// <returns></returns>
         private SelectorPoco GetSelectorPoco() {

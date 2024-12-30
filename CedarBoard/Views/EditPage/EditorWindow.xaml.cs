@@ -7,6 +7,9 @@ namespace CedarBoard.Views.EditPage
     /// </summary>
     public partial class EditorWindow : Window
     {
+        /// <summary>
+        /// コードビハインド
+        /// </summary>
         public EditorWindow()
         {
             InitializeComponent();

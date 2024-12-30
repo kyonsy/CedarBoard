@@ -8,6 +8,9 @@ namespace CedarBoard.Views.HomePage
     /// </summary>
     public partial class HomeControl : UserControl
     {
+        /// <summary>
+        /// コードビハインド
+        /// </summary>
         public HomeControl()
         {
             InitializeComponent();

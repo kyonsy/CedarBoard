@@ -1,17 +1,16 @@
 ﻿using System.Windows.Controls;
-using CedarBoard.ViewModels.HomePage;
 
 namespace CedarBoard.Views.HomePage
 {
     /// <summary>
-    /// Interaction logic for WorkspaceListControl
+    /// Interaction logic for DeleteContentButtonControl
     /// </summary>
-    public partial class WorkspaceListControl : UserControl
+    public partial class DeleteContentButtonControl : UserControl
     {
         /// <summary>
         /// コードビハインド
         /// </summary>
-        public WorkspaceListControl()
+        public DeleteContentButtonControl()
         {
             InitializeComponent();
         }

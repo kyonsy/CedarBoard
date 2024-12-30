@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using CedarBoard.Model;
+using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -29,11 +30,11 @@ namespace CedarBoard.ViewModels.HomePage
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="_homeControlViewModel">親のコントロール(HomeControl)を受け取る</param>
-        public WorkspaceListControlViewModel(HomeControlViewModel _homeControlViewModel)
+        /// <param name="workspaceSelector"></param>
+        public WorkspaceListControlViewModel(WorkspaceSelector workspaceSelector)
         {
             DictionaryItems = new ObservableCollection<KeyValuePair<string, string>>(
-               _homeControlViewModel.WorkspaceSelector.SelectorPoco.PathDictionary);
+               workspaceSelector.SelectorPoco.PathDictionary);
         }
     }
 }

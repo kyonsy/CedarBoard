@@ -7,6 +7,9 @@ namespace CedarBoard.Views.EditPage.Project
     /// </summary>
     public partial class ProjectControl : UserControl
     {
+        /// <summary>
+        /// コードビハインド
+        /// </summary>
         public ProjectControl()
         {
             InitializeComponent();

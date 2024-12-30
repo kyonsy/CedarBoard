@@ -7,6 +7,9 @@ namespace CedarBoard.Views.EditPage.Project
     /// </summary>
     public partial class ArrowControl : UserControl
     {
+        /// <summary>
+        /// コードビハインド
+        /// </summary>
         public ArrowControl()
         {
             InitializeComponent();

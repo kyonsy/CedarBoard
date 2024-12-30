@@ -7,6 +7,9 @@ namespace CedarBoard.Views.HomePage
     /// </summary>
     public partial class CreateNewButtonControl : UserControl
     {
+        /// <summary>
+        /// コードビハインド
+        /// </summary>
         public CreateNewButtonControl()
         {
             InitializeComponent();

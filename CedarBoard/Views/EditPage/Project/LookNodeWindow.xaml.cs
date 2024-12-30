@@ -7,6 +7,9 @@ namespace CedarBoard.Views.EditPage.Project
     /// </summary>
     public partial class LookNodeWindow : Window
     {
+        /// <summary>
+        /// コードビハインド
+        /// </summary>
         public LookNodeWindow()
         {
             InitializeComponent();

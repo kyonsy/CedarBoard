@@ -7,6 +7,9 @@ namespace CedarBoard.Views.EditPage.Project
     /// </summary>
     public partial class CanvasControl : UserControl
     {
+        /// <summary>
+        /// コードビハインド
+        /// </summary>
         public CanvasControl()
         {
             InitializeComponent();

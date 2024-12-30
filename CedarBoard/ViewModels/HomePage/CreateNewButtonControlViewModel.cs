@@ -22,6 +22,9 @@ namespace CedarBoard.ViewModels.HomePage
             TransCreateNewPage = new DelegateCommand(TransCreateNewPageExecute);
         }
 
+        /// <summary>
+        /// TransCreateNewPageExecuteを実行するためのバインド用プロパティ
+        /// </summary>
         public DelegateCommand TransCreateNewPage { get;}
         
         /// <summary>

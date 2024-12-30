@@ -7,6 +7,9 @@ namespace CedarBoard.Views.HomePage
     /// </summary>
     public partial class EditContentButtonControl : UserControl
     {
+        /// <summary>
+        /// コードビハインド
+        /// </summary>
         public EditContentButtonControl()
         {
             InitializeComponent();

@@ -7,6 +7,9 @@ namespace CedarBoard.Views.EditPage.Project
     /// </summary>
     public partial class MakeNodeWindow : Window
     {
+        /// <summary>
+        /// コードビハインド
+        /// </summary>
         public MakeNodeWindow()
         {
             InitializeComponent();

@@ -18,12 +18,6 @@ namespace CedarBoard.ViewModels.HomePage
         public string Title {  get { return _title; } set { SetProperty(ref _title, value); } }
 
         /// <summary>
-        /// ワークスペースを選ぶやつ
-        /// </summary>
-        public WorkspaceSelector WorkspaceSelector { get; set; }
-            = new WorkspaceSelector(new TextFileMock(), new DirectoryMock());
-
-        /// <summary>
         /// コンストラクタ
         /// </summary>
         public HomeControlViewModel()

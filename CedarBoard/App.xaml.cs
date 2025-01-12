@@ -29,6 +29,7 @@ namespace CedarBoard
             // テスト用にシングルトンにはモックを登録しておく
             containerRegistry.RegisterSingleton<WorkspaceSelector>(() =>
             {
+
                 WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock()) { SelectorPoco = new() { PathDictionary = [] } };
                 sel.Add(new()
                 {

@@ -59,7 +59,7 @@
             </ui:Button.Template>
         </ui:Button>
         
-        <ui:ListView av:ItemsSource="{av:SampleData ItemCount=5}" Margin="5,219,365,80" SelectionChanged="ListView_SelectionChanged">
+        <ui:ListView av:ItemsSource="{av:SampleData ItemCount=5}" Margin="5,219,365,80">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
@@ -27,10 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModelTest\CreateNew\" />
-    <Folder Include="ViewModelTest\EditPage\Project\" />
-    <Folder Include="ViewModelTest\EditPage\TaskBar\" />
-    <Folder Include="ViewModelTest\HomePage\" />
+    
   </ItemGroup>
 
 </Project>

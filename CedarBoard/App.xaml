@@ -4,13 +4,6 @@
              xmlns:local="clr-namespace:CedarBoard"
              xmlns:prism="http://prismlibrary.com/" >
     <Application.Resources>
-        <Style TargetType="Control">
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="1"/>
-        </Style>
-        <Style TargetType="Window">
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="1"/>
-        </Style>
+        
     </Application.Resources>
 </prism:PrismApplication>

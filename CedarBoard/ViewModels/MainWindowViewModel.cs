@@ -1,6 +1,4 @@
-﻿using CedarBoard.Views.HomePage;
-using Prism.Mvvm;
-using Prism.Regions;
+﻿using Prism.Mvvm;
 
 namespace CedarBoard.ViewModels
 {
@@ -17,7 +15,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// コンポーネントの遷移を司る奴
         /// </summary>
-        private readonly IRegionManager _regionManager;
+
 
         /// <summary>
         /// タイトルのプロパティ
@@ -31,12 +29,9 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// コンストラクタ。最初はホーム画面に遷移する
         /// </summary>
-        /// <param name="regionManager">コンポーネントの遷移を司る奴</param>
-        public MainWindowViewModel(IRegionManager regionManager)
+        public MainWindowViewModel()
         {
-            _regionManager = regionManager;
-            // UserControlをRegionに追加
-            _regionManager.RegisterViewWithRegion("MainRegion", typeof(HomeControl));
+           
         }
     }
 }

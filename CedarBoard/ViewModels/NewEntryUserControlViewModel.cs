@@ -44,8 +44,8 @@ namespace CedarBoard.ViewModels
             _regionManager.RequestNavigate("ContentRegion", nameof(HomeUserControl));
         }
 
-        private void NewEntryExecute() { 
-            
+        private void NewEntryExecute() {
+            _regionManager.RequestNavigate("ContentRegion", nameof(WorkspaceUserControl));
         }
 	}
 }

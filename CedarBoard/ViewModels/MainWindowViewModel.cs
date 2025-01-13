@@ -40,7 +40,7 @@ namespace CedarBoard.ViewModels
         public MainWindowViewModel(IRegionManager regionManager)
         {
            _regionManager = regionManager;
-           _regionManager.RequestNavigate("ContentRegion", nameof(HomeUserControl));
+           _regionManager.RegisterViewWithRegion("ContentRegion", typeof(HomeUserControl));
         }
         
     }

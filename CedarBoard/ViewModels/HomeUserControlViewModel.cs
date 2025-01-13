@@ -1,6 +1,8 @@
 ﻿using CedarBoard.Model;
+using CedarBoard.Views;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Navigation.Regions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,6 +24,8 @@ namespace CedarBoard.ViewModels
         /// 表示されるリスト
         /// </summary>
         public ObservableCollection<KeyValuePair<string, string>> _dictionaryItems;
+
+        private IRegionManager _regionManager;
 
         /// <summary>
         /// 表示されるリストのプロパティ
@@ -70,8 +74,9 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// コンストラクタ。最初はホーム画面に遷移する
         /// </summary>
-        public HomeUserControlViewModel(WorkspaceSelector workspaceSelector)
+        public HomeUserControlViewModel(WorkspaceSelector workspaceSelector,IRegionManager regionManager)
         {
+            _regionManager = regionManager;
             DictionaryItems = new ObservableCollection<KeyValuePair<string, string>>(
                 workspaceSelector.SelectorPoco.PathDictionary);
             NewEntry = new DelegateCommand(NewEntryExecute);
@@ -84,7 +89,7 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public void NewEntryExecute()
         {
-
+            _regionManager.RequestNavigate("ContentRegion", nameof(NewEntryUserControl));
         }
 
         /// <summary>
@@ -92,7 +97,7 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public void EditWorkExecute()
         {
-
+            _regionManager.RequestNavigate("ContentRegion", nameof(EditWorkUserControl));
         }
 
         /// <summary>

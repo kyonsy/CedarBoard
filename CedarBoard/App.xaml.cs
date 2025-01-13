@@ -27,9 +27,9 @@ namespace CedarBoard
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
 
-            containerRegistry.RegisterForNavigation<EditWorkPage>();
-            containerRegistry.RegisterForNavigation<NewEntryPage>();
-
+            containerRegistry.RegisterForNavigation<EditWorkUserControl>();
+            containerRegistry.RegisterForNavigation<NewEntryUserControl>();
+            containerRegistry.RegisterForNavigation<HomeUserControl>();
             // テスト用にシングルトンにはモックを登録しておく
             containerRegistry.RegisterSingleton<WorkspaceSelector>(() =>
             {

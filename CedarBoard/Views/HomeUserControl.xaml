@@ -1,14 +1,9 @@
-﻿<Page x:Class="CedarBoard.Views.HomePage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:CedarBoard.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="1050"
-      Title="HomePage">
-
+﻿<UserControl x:Class="CedarBoard.Views.HomeUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" Height="700" Width="1050">
     <Grid>
         <ui:TextBlock HorizontalAlignment="Left" Margin="70,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="90" Width="480">
             <ui:TextBlock.Effect>
@@ -18,52 +13,52 @@
         </ui:TextBlock>
 
         <ui:Button HorizontalAlignment="Left" Margin="715,223,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="300" Height="43"
-            Content="新規作成" FontSize="20" Background="White" Command="{Binding NewEntry}" >
+     Content="新規作成" FontSize="20" Background="White" Command="{Binding NewEntry}" >
             <ui:Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}"
-             BorderBrush="Black"
-             BorderThickness="3"
-             CornerRadius="10">
+      BorderBrush="Black"
+      BorderThickness="3"
+      CornerRadius="10">
                         <ContentPresenter HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
+                    VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </ui:Button.Template>
         </ui:Button>
 
         <ui:Button HorizontalAlignment="Left" Margin="715,306,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="300" Height="39"
-            Content="選択した作品を編集" FontSize="20" Background="White" Command="{Binding EditWork}">
+     Content="選択した作品を編集" FontSize="20" Background="White" Command="{Binding EditWork}">
             <ui:Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}"
-             BorderBrush="Black"
-             BorderThickness="3"
-             CornerRadius="10">
+      BorderBrush="Black"
+      BorderThickness="3"
+      CornerRadius="10">
                         <ContentPresenter HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
+                    VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </ui:Button.Template>
         </ui:Button>
 
         <ui:Button HorizontalAlignment="Left" Margin="715,385,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="300" Height="42"
-            Content="選択した作品を削除" FontSize="20" Background="Red" Command="{Binding DeleteWork}">
+     Content="選択した作品を削除" FontSize="20" Background="Red" Command="{Binding DeleteWork}">
             <ui:Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}"
-             BorderBrush="Black"
-             BorderThickness="3"
-             CornerRadius="10">
+      BorderBrush="Black"
+      BorderThickness="3"
+      CornerRadius="10">
                         <ContentPresenter HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
+                    VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </ui:Button.Template>
         </ui:Button>
 
         <ui:ListView ItemsSource="{Binding DictionaryItems}" Margin="20,219,365,80" SelectedItem="{Binding SelectedKeyValuePair,Mode=TwoWay}" 
-              SelectionMode="Single">
+       SelectionMode="Single">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ワークスペース名" DisplayMemberBinding="{Binding Key}" Width="100"/>
@@ -72,4 +67,4 @@
             </ListView.View>
         </ui:ListView>
     </Grid>
-</Page>
+</UserControl>

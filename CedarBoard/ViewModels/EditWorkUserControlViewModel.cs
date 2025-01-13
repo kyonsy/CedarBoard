@@ -7,16 +7,16 @@ using System.Linq;
 namespace CedarBoard.ViewModels
 {
     /// <summary>
-    /// 新規作成ページのビューモデル
+    /// 作品を編集する
     /// </summary>
-    public class NewEntryPageViewModel : BindableBase
-    {
+	public class EditWorkUserControlViewModel : BindableBase
+	{
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public NewEntryPageViewModel()
+        public EditWorkUserControlViewModel()
         {
 
         }
-    }
+	}
 }

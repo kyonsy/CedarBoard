@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using Prism.Commands;
 using Prism.Navigation.Regions;
 using CedarBoard.Views;
+using System.Windows.Media.Animation;
+using System.Threading;
 
 namespace CedarBoard.ViewModels
 {
@@ -38,7 +40,7 @@ namespace CedarBoard.ViewModels
         public MainWindowViewModel(IRegionManager regionManager)
         {
            _regionManager = regionManager;
-            _regionManager.RequestNavigate("ContentRegion", nameof(HomePage));
+           _regionManager.RequestNavigate("ContentRegion", nameof(HomeUserControl));
         }
         
     }

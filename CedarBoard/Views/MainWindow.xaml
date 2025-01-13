@@ -7,66 +7,6 @@
         Title="{Binding Title}" Height="700" Width="1050" 
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <ui:TextBlock HorizontalAlignment="Left" Margin="70,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="90" Width="480">
-            <ui:TextBlock.Effect>
-                <DropShadowEffect Color="Gray" Direction="315" ShadowDepth="9" BlurRadius="10" />
-            </ui:TextBlock.Effect>
-            <Run Language="ja-jp" Text="CedarBoard" FontSize="60" Foreground="LimeGreen"/>
-        </ui:TextBlock>
-
-        <ui:Button HorizontalAlignment="Left" Margin="715,223,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="300" Height="43"
-                   Content="新規作成" FontSize="20" Background="White" >
-            <ui:Button.Template>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
-                    BorderBrush="Black"
-                    BorderThickness="3"
-                    CornerRadius="10">
-                        <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center" />
-                    </Border>
-                </ControlTemplate>
-            </ui:Button.Template>
-        </ui:Button>
-
-        <ui:Button HorizontalAlignment="Left" Margin="715,306,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="300" Height="39"
-                   Content="選択した作品を編集" FontSize="20" Background="White" >
-            <ui:Button.Template>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
-                    BorderBrush="Black"
-                    BorderThickness="3"
-                    CornerRadius="10">
-                        <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center" />
-                    </Border>
-                </ControlTemplate>
-            </ui:Button.Template>
-        </ui:Button>
-
-        <ui:Button HorizontalAlignment="Left" Margin="715,385,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="300" Height="42"
-                   Content="選択した作品を削除" FontSize="20" Background="Red" >
-            <ui:Button.Template>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
-                    BorderBrush="Black"
-                    BorderThickness="3"
-                    CornerRadius="10">
-                        <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center" />
-                    </Border>
-                </ControlTemplate>
-            </ui:Button.Template>
-        </ui:Button>
-
-        <ui:ListView ItemsSource="{Binding DictionaryItems}" Margin="20,219,365,80" SelectedItem="{Binding SelectedKeyValuePair,Mode=TwoWay}" 
-                     SelectionMode="Single">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ワークスペース名" DisplayMemberBinding="{Binding Key}" Width="100"/>
-                    <GridViewColumn Header="ワークスペースのパス" DisplayMemberBinding="{Binding Value}" Width="200"/>
-                </GridView>
-            </ListView.View>
-        </ui:ListView>
+        <ContentControl prism:RegionManager.RegionName="ContentRegion"/>
     </Grid>
 </Window>

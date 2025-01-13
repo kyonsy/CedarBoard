@@ -32,7 +32,7 @@
             </ui:Button.Template>
             <ui:TextBlock TextWrapping="Wrap" Text="戻る"/>
         </ui:Button>
-        
+
         <ui:Button HorizontalAlignment="Left" Margin="715,494,0,0" VerticalAlignment="Top" 
                    RenderTransformOrigin="0.5,0.5" Width="300" Height="43" FontSize="20" Background="White" >
             <ui:Button.Template>
@@ -48,6 +48,45 @@
             </ui:Button.Template>
             <ui:TextBlock TextWrapping="Wrap" Text="この内容で新規作成"/>
         </ui:Button>
-        <ui:DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="35,230,365,95"/>
+        <Border />
+        
+        <Grid Margin="50,235,400,110">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Border BorderBrush="Black" BorderThickness="5"  Grid.Row="0" Grid.Column="0">
+                <TextBlock Text="作品名" FontSize="30" Background="LightGray"/>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="5" Grid.Row="1" Grid.Column="0">
+                <TextBlock Text="作者名" FontSize="30" Background="LightGray"/>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="5" Grid.Row="2" Grid.Column="0">
+                <TextBlock Text="保存先" FontSize="30" Background="LightGray"/>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="5" Grid.Row="3" Grid.Column="0">
+                <TextBlock Text="使うエディタのパス" FontSize="30" Background="LightGray"/>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="5" Grid.Row="4" Grid.Column="0">
+                <TextBlock Text="メモ" FontSize="30" Background="LightGray"/>
+            </Border>
+          
+            <TextBox Grid.Row="0" Grid.Column="1" Text="無題" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="あなた" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="C:" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="notepad" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Text="メモメモ" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+        </Grid>
     </Grid>
 </Page>

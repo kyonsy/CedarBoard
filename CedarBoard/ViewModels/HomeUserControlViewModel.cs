@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 
 namespace CedarBoard.ViewModels
 {
@@ -118,7 +119,7 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public void EditWorkExecute()
         {
-            if(_selectedKeyValuePair is not null)
+            if(SelectedKeyValuePair is not null)
             {
                 Workspace workspace = _workspaceSelector.GetWorkSpace(SelectedKeyValuePair.Value.Key);
                 var p = new NavigationParameters
@@ -136,7 +137,16 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public void DeleteWorkExecute()
         {
-
+            if (SelectedKeyValuePair is not null)
+            {
+                var result = MessageBox.Show("本当に削除してもよろしいでしょうか？", "警告", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.OK)
+                {
+                    _workspaceSelector.Remove(SelectedKeyValuePair.Value.Key);
+                }
+                // 画面をリロードする
+                _regionManager.RequestNavigate("ContentRegion", nameof(HomeUserControl));
+            }      
         }
 
         /// <summary>
@@ -144,7 +154,6 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public void OpenWorkExecute()
         {
-            Debug.WriteLine(SelectedKeyValuePair.Value.ToString());
             Workspace workspace = _workspaceSelector.GetWorkSpace(SelectedKeyValuePair.Value.Key);
             var p = new NavigationParameters
                 {
@@ -153,19 +162,32 @@ namespace CedarBoard.ViewModels
             _regionManager.RequestNavigate("ContentRegion",nameof(WorkspaceUserControl),p);
         }
 
-        void IRegionAware.OnNavigatedTo(NavigationContext navigationContext)
+        /// <summary>
+        /// 他の画面から遷移してきたとき
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        public void OnNavigatedTo(NavigationContext navigationContext)
         {
             
         }
 
-        bool IRegionAware.IsNavigationTarget(NavigationContext navigationContext)
+        /// <summary>
+        /// インスタンスを保持しない
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        /// <returns></returns>
+        public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return false;
         }
 
-        void IRegionAware.OnNavigatedFrom(NavigationContext navigationContext)
+        /// <summary>
+        /// この画面から他の画面へ遷移するとき
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            
+        
         }
     }
 }

@@ -86,8 +86,6 @@ namespace CedarBoard.ViewModels
             _regionManager.RequestNavigate("ContentRegion", nameof(HomeUserControl));
         }
 
-
-
         /// <summary>
         /// 新しいワークスペースを作成する
         /// </summary>
@@ -117,7 +115,7 @@ namespace CedarBoard.ViewModels
             {
                 {"Workspace",_workspaceSelector.GetWorkSpace(Name) }
             };
-            _regionManager.RequestNavigate("ContentRegion", nameof(WorkspaceUserControl));
+            _regionManager.RequestNavigate("ContentRegion", nameof(WorkspaceUserControl),p);
         }
 
         /// <summary>

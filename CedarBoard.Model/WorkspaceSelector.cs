@@ -71,6 +71,22 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
+        /// 指定したワークスペースの名前を変える
+        /// </summary>
+        /// <param name="workspaceName"></param>
+        /// <param name="newWorkspaceName"></param>
+        public void Rename(string workspaceName,string newWorkspaceName)
+        {
+            Workspace workspace = GetWorkSpace(workspaceName);
+            workspace.WorkspacePoco.Setting.Name = newWorkspaceName;
+            workspace.Save();
+            SelectorPoco.PathDictionary.Add(newWorkspaceName,SelectorPoco.PathDictionary[workspaceName]);
+            SelectorPoco.PathDictionary.Remove(workspaceName);
+            
+        }
+
+
+        /// <summary>
         /// 指定された名前のワークスペースを返す
         /// </summary>
         /// <param name="workspace">欲しいワークスペースの名前</param>

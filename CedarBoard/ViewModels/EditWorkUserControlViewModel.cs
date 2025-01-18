@@ -16,13 +16,20 @@ namespace CedarBoard.ViewModels
 	public class EditWorkUserControlViewModel : BindableBase,INavigationAware
 	{
         private IRegionManager _regionManager;
+        private WorkspaceSelector _workspaceSelector;
 
-
+        private string _name;
+        private string _firstName;
         private string _author;
         private string _editorPath;
         private string _memo;
 
         NavigationContext _navigationContext;
+
+        /// <summary>
+        /// 作品名
+        /// </summary>
+        public string Name { get { return _name; } set { SetProperty(ref _name, value); } }
 
         /// <summary>
         /// 作者名
@@ -43,9 +50,9 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public EditWorkUserControlViewModel(IRegionManager regionManager)
+        public EditWorkUserControlViewModel(IRegionManager regionManager,WorkspaceSelector workspaceSelector)
         {
-
+            _workspaceSelector = workspaceSelector;
             _regionManager = regionManager;
             BackHome = new DelegateCommand(BackHomeExecute);
             SaveSetting = new DelegateCommand(SaveSettingExecute);
@@ -88,6 +95,8 @@ namespace CedarBoard.ViewModels
         {
             _navigationContext = navigationContext;
             Setting setting = navigationContext.Parameters.GetValue<Setting>("Setting");
+            Name = setting.Name;
+            _firstName = Name;
             Author = setting.Author;
             EditorPath = setting.Editor;
             Memo = setting.Message;
@@ -114,6 +123,8 @@ namespace CedarBoard.ViewModels
                 Message = Memo
             };
             workspace.Save();
+            _workspaceSelector.Rename(_firstName, Name);
+            BackHomeExecute();
         }
     }
 }

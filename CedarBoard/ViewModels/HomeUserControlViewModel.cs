@@ -144,8 +144,13 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public void OpenWorkExecute()
         {
-            Debug.WriteLine("ワークスペース開きました");
-            _regionManager.RequestNavigate("ContentRegion",nameof(WorkspaceUserControl));
+            Debug.WriteLine(SelectedKeyValuePair.Value.ToString());
+            Workspace workspace = _workspaceSelector.GetWorkSpace(SelectedKeyValuePair.Value.Key);
+            var p = new NavigationParameters
+                {
+                    {"Workspace",workspace }
+                };
+            _regionManager.RequestNavigate("ContentRegion",nameof(WorkspaceUserControl),p);
         }
 
         void IRegionAware.OnNavigatedTo(NavigationContext navigationContext)

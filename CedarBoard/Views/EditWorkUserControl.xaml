@@ -52,28 +52,30 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-           
-
             <Border BorderBrush="Black" BorderThickness="5" Grid.Row="0" Grid.Column="0">
+                <TextBlock Text="作品名" FontSize="30" Background="LightGray"/>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="5" Grid.Row="1" Grid.Column="0">
                 <TextBlock Text="作者名" FontSize="30" Background="LightGray"/>
             </Border>
 
 
-            <Border BorderBrush="Black" BorderThickness="5" Grid.Row="1" Grid.Column="0">
+            <Border BorderBrush="Black" BorderThickness="5" Grid.Row="2" Grid.Column="0">
                 <TextBlock Text="エディタのパス" FontSize="30" Background="LightGray"/>
             </Border>
 
-            <Border BorderBrush="Black" BorderThickness="5" Grid.Row="2" Grid.Column="0">
+            <Border BorderBrush="Black" BorderThickness="5" Grid.Row="3" Grid.Column="0">
                 <TextBlock Text="メモ" FontSize="30" Background="LightGray"/>
             </Border>
-
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Author}" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding EditorPath}" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Memo}" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Author}" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding EditorPath}" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Memo}" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
         </Grid>
     </Grid>
 </UserControl>

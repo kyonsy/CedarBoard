@@ -6,9 +6,6 @@
              xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" Height="700" Width="1050">
     <Grid>
-        
-        
-        
         <ui:TextBlock HorizontalAlignment="Left" Margin="70,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="90" Width="480">
             <ui:TextBlock.Effect>
                 <DropShadowEffect Color="Gray" Direction="315" ShadowDepth="9" BlurRadius="10" />
@@ -65,7 +62,7 @@
        SelectionMode="Single">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
-                    <prism:InvokeCommandAction Command="{Binding OpenWork}" CommandParameter="{Binding ClickedKeyValuePair}"/>
+                    <prism:InvokeCommandAction Command="{Binding OpenWork}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <ListView.View>

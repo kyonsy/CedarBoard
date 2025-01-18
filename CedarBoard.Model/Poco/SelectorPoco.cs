@@ -10,5 +10,4 @@
         /// </summary>
         public required Dictionary<string, string> PathDictionary { get; set; } = [];
     }
-
 }

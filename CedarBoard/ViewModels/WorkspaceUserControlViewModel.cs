@@ -1,4 +1,5 @@
-﻿using CedarBoard.Views;
+﻿using CedarBoard.Model;
+using CedarBoard.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation.Regions;
@@ -11,9 +12,10 @@ namespace CedarBoard.ViewModels
     /// <summary>
     /// ワークスペースの画面
     /// </summary>
-    public class WorkspaceUserControlViewModel : BindableBase
+    public class WorkspaceUserControlViewModel : BindableBase,INavigationAware
     {
         private IRegionManager _regionManager;
+        private Workspace _workspace;
 
         /// <summary>
         /// 新規作成画面へ移動
@@ -69,7 +71,6 @@ namespace CedarBoard.ViewModels
             AddNode = new DelegateCommand(AddNodeExecute);
             DeleteNode = new DelegateCommand(DeleteNodeExecute);
             BackEditWork = new DelegateCommand(BackEditWorkExecute);
-
         }
 
         /// <summary>
@@ -121,5 +122,34 @@ namespace CedarBoard.ViewModels
             _regionManager.RequestNavigate("ContentRegion", nameof(EditWorkUserControl));
         }
 
+
+
+        /// <summary>
+        /// 他の画面から他の画面に移動するときの操作
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            _workspace = navigationContext.Parameters.GetValue<Workspace>("Workspace");
+        }
+
+        /// <summary>
+        /// 遷移する際はインスタンスを使いまわさない
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        /// <returns></returns>
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// この画面から他の画面に移動するときの操作
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            
+        }
     }
 }

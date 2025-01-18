@@ -43,7 +43,9 @@
             </ui:Button.Template>
             <ui:TextBlock TextWrapping="Wrap" Text="この内容で新規作成"/>
         </ui:Button>
-        <Border />
+        <Border >
+            <ui:Button Content="参照" Margin="652,359,260,295" FontSize="30" Command="{Binding ReferPath}"/>
+        </Border>
 
         <Grid Margin="50,235,400,110">
             <Grid.ColumnDefinitions>
@@ -77,11 +79,18 @@
                 <TextBlock Text="メモ" FontSize="30" Background="LightGray"/>
             </Border>
 
-            <TextBox Grid.Row="0" Grid.Column="1" Text="無題" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="あなた" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Text="C:" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Text="notepad" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Text="メモメモ" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Author}" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+
+            <Border BorderBrush="Black" BorderThickness="5" Grid.Row="2" Grid.Column="1">
+                <Viewbox>
+                    <TextBlock Text="{Binding Path}" FontSize="15" Background="White"/>
+                </Viewbox>
+            </Border>
+
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Editor}" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Message}" FontSize="30" BorderBrush="Black" BorderThickness="5"/>
+
         </Grid>
     </Grid>
 </UserControl>

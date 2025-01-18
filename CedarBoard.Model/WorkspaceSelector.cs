@@ -71,7 +71,7 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// 指定されたパスのワークスペースを返す
+        /// 指定された名前のワークスペースを返す
         /// </summary>
         /// <param name="workspace">欲しいワークスペースの名前</param>
         /// <returns>指定したワークスペース</returns>

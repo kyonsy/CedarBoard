@@ -7,6 +7,7 @@ using Prism.Navigation.Regions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 
 namespace CedarBoard.ViewModels
@@ -14,7 +15,7 @@ namespace CedarBoard.ViewModels
     /// <summary>
     /// ホーム画面
     /// </summary>
-	public class HomeUserControlViewModel : BindableBase
+	public class HomeUserControlViewModel : BindableBase,INavigationAware
 	{
         /// <summary>
         /// アプリケーションのタイトル
@@ -50,6 +51,16 @@ namespace CedarBoard.ViewModels
         public KeyValuePair<string, string>? SelectedKeyValuePair { get { return _selectedKeyValuePair; } set { SetProperty(ref _selectedKeyValuePair, value); } }
 
         /// <summary>
+        /// ユーザーがダブルクリックした作品
+        /// </summary>
+        private KeyValuePair<string, string> _clickedKeyValuePair;
+
+        /// <summary>
+        /// ユーザーがダブルクリックした作品のプロパティ
+        /// </summary>
+        public KeyValuePair<string, string> ClickedKeyValuePair { get { return _clickedKeyValuePair; } set { SetProperty(ref _clickedKeyValuePair, value); } }
+
+        /// <summary>
         /// タイトルのプロパティ
         /// </summary>
         public string Title
@@ -73,6 +84,11 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public DelegateCommand DeleteWork { get; }
 
+        /// <summary>
+        /// 作品を開く
+        /// </summary>
+        public DelegateCommand OpenWork { get; }
+
 
         /// <summary>
         /// コンストラクタ。最初はホーム画面に遷移する
@@ -86,6 +102,7 @@ namespace CedarBoard.ViewModels
             NewEntry = new DelegateCommand(NewEntryExecute);
             EditWork = new DelegateCommand(EditWorkExecute);
             DeleteWork = new DelegateCommand(DeleteWorkExecute);
+            OpenWork = new DelegateCommand(OpenWorkExecute);
         }
 
         /// <summary>
@@ -120,6 +137,30 @@ namespace CedarBoard.ViewModels
         public void DeleteWorkExecute()
         {
 
+        }
+
+        /// <summary>
+        /// ワークスペースを開く
+        /// </summary>
+        public void OpenWorkExecute()
+        {
+            Debug.WriteLine("ワークスペース開きました");
+            _regionManager.RequestNavigate("ContentRegion",nameof(WorkspaceUserControl));
+        }
+
+        void IRegionAware.OnNavigatedTo(NavigationContext navigationContext)
+        {
+            
+        }
+
+        bool IRegionAware.IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return false;
+        }
+
+        void IRegionAware.OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            
         }
     }
 }

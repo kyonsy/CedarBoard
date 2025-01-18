@@ -5,6 +5,7 @@
     <UseWPF>true</UseWPF>
     <Nullable>annotations</Nullable>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+	  <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="HIT.GraphSharp.Wpf" Version="3.0.2" />

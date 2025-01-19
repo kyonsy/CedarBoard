@@ -44,6 +44,7 @@ namespace CedarBoard.Model
                 WriteIndented = true,
                 PropertyNameCaseInsensitive = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+
             };
             return options;
         }

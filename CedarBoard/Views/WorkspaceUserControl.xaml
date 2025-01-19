@@ -3,9 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True"
+             ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+            ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+            Foreground="{DynamicResource TextFillColorPrimaryBrush}"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" Height="700" Width="1050">
     <Grid>
-        <Menu>
+        <Menu Margin="0,0,0,678">
             <ui:MenuItem Header="ファイル">
                 <ui:MenuItem Header="新規作成" Command="{Binding BackNewEntry}"/>
                 <ui:MenuItem Header="開く" Command="{Binding BackHome}"/>
@@ -23,5 +26,12 @@
                 <ui:MenuItem Header="ワークスペースの設定" Command="{Binding BackEditWork}"/>
             </ui:MenuItem>
         </Menu>
+        <TreeView AllowDrop="True" Margin="710,27,28,302" ItemsSource="{Binding WorkspaceItems}" ScrollViewer.CanContentScroll="False">
+            <TreeView.ItemTemplate >
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding Name}"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
     </Grid>
 </UserControl>

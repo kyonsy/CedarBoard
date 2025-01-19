@@ -43,11 +43,41 @@ namespace CedarBoard
                     Encode = "UTF-8",
                     Format = "default",
                     Language = "ja",
-                    Name = "hogehoge",
+                    Name = "hoge",
                     CreatedDate = "2024/10/24",
                     UpdatedDate = "2024/10/24",
                     Message = "始めに作ったやつ"
-                }, "C:");
+                }, "C:hoge");
+                sel.Add(new()
+                {
+                    Author = "kyonsy",
+                    Editor = "notepad",
+                    Encode = "UTF-8",
+                    Format = "default",
+                    Language = "ja",
+                    Name = "fuga",
+                    CreatedDate = "2024/10/24",
+                    UpdatedDate = "2024/10/24",
+                    Message = "二つ目に作ったやつ"
+                }, "C:ワークスペースの名前\\fuga");
+                sel.Add(new()
+                {
+                    Author = "kyonsy",
+                    Editor = "notepad",
+                    Encode = "UTF-8",
+                    Format = "default",
+                    Language = "ja",
+                    Name = "hogehoge",
+                    CreatedDate = "2024/10/24",
+                    UpdatedDate = "2024/10/24",
+                    Message = "二つ目に作ったやつ"
+                }, "C:ワークスペースの名前\\hogehoge");
+                
+                Workspace workspace = sel.GetWorkSpace("hoge");
+                workspace.Add("hoge1");
+                workspace.Add("hoge2");
+                workspace.Add("hoge3");
+                workspace.Save();
                 return sel;
             });
         }

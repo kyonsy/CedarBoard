@@ -44,7 +44,6 @@ namespace CedarBoardTest.Tests.ModelTest
         {
 
             w.Add("first");
-            w.WorkspacePoco.ProjectDictionary["first"].Add(new(10, 10));
             w.WorkspacePoco.ProjectDictionary["first"].Add("origin", "second", new(20, 20));
             w.TextFile.Create(@"C:\workspace.json", "");
             w.Save();
@@ -56,7 +55,6 @@ namespace CedarBoardTest.Tests.ModelTest
         public void 指定されたノードを開くことが出来る()
         {
             w.Add("first");
-            w.WorkspacePoco.ProjectDictionary["first"].Add(new(10, 10));
             w.WorkspacePoco.ProjectDictionary["first"].Add("origin", "second", new(20, 20));
             w.TextFile.Create(@"C:\workspace.json", "");
             //w.Open("first","second");

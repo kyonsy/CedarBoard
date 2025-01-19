@@ -5,6 +5,7 @@ using Prism.Mvvm;
 using Prism.Navigation.Regions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace CedarBoard.ViewModels
@@ -16,6 +17,7 @@ namespace CedarBoard.ViewModels
     {
         private IRegionManager _regionManager;
         private Workspace _workspace;
+        private ObservableCollection<TreeItem> _workspaceItems;
 
         /// <summary>
         /// 新規作成画面へ移動
@@ -58,10 +60,16 @@ namespace CedarBoard.ViewModels
         public DelegateCommand BackEditWork { get; }
 
         /// <summary>
+        /// データモデルにワークスペースを入れる
+        /// </summary>
+        public ObservableCollection<TreeItem> WorkspaceItems { get { return _workspaceItems; } set { SetProperty(ref _workspaceItems, value); } }
+
+        /// <summary>
         /// コンストラクタ
         /// </summary>
         public WorkspaceUserControlViewModel(IRegionManager regionManager)
         {
+            
             _regionManager = regionManager;
             BackNewEntry = new DelegateCommand(BackNewEntryExecute);
             BackHome = new DelegateCommand(BackHomeExecute);
@@ -131,6 +139,18 @@ namespace CedarBoard.ViewModels
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _workspace = navigationContext.Parameters.GetValue<Workspace>("Workspace");
+            WorkspaceItems = new ObservableCollection<TreeItem>();
+            TreeItem items = new(_workspace.WorkspacePoco.Setting.Name);
+            foreach (var project in _workspace.WorkspacePoco.ProjectDictionary)
+            {
+                TreeItem ProjectTree = new(project.Key);
+                foreach (var node in project.Value.NodeDictionary)
+                {
+                    ProjectTree.Children.Add(new TreeItem(node.Key));
+                }
+                items.Children.Add(ProjectTree);
+            }
+            WorkspaceItems.Add(items);
         }
 
         /// <summary>
@@ -151,5 +171,9 @@ namespace CedarBoard.ViewModels
         {
             
         }
+
+
+
+
     }
 }

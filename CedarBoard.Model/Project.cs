@@ -14,14 +14,14 @@ namespace CedarBoard.Model
         /// <summary>
         /// ノードのディクショナリ
         /// </summary>
-        [JsonPropertyName("nodes")]
+        [JsonInclude]
         public Dictionary<string,INode> NodeDictionary { get;} = [];
 
 
         /// <summary>
         /// プロジェクトのパス
         /// </summary>
-        [JsonPropertyName("path")]
+        [JsonInclude]
         internal string Path { get; }
 
         /// <summary>
@@ -30,6 +30,16 @@ namespace CedarBoard.Model
         [JsonIgnore]
         internal ITextFile TextFile { get;}
 
+        /// <summary>
+        /// Jsonからデシリアライズするときに使われるデフォルトコンストラクタ
+        /// </summary>
+        [JsonConstructor]
+        public Project(string path,Dictionary<string,INode> nodeDictionary) {
+            // テスト用
+            TextFile = new TextFileMock();
+            Path = path;
+            NodeDictionary = nodeDictionary;
+        }
 
         /// <summary>
         /// コンストラクタ
@@ -40,6 +50,7 @@ namespace CedarBoard.Model
         {
             TextFile = textFile;
             Path = path;
+            Add(new(100, 100));
         }
 
         /// <summary>
@@ -59,6 +70,7 @@ namespace CedarBoard.Model
                 ParentNode = nodeName,
                 Path = @$"{Path}\{newNodeName}.txt",
                 Point = point,
+                Message = "",
             };
             NodeDictionary.Add(newNodeName, node);
             NodeDictionary[nodeName].ChildNode.Add(newNodeName);
@@ -70,7 +82,7 @@ namespace CedarBoard.Model
         /// 一番最初のノードを追加する
         /// </summary>
         /// <exception cref="ArgumentException">二つ目以降の追加に使えなくする</exception>
-        public void Add(Point point)
+        private void Add(Point point)
         {
             if(NodeDictionary.Count > 0) 
                 throw new ArgumentException(
@@ -79,7 +91,8 @@ namespace CedarBoard.Model
             INode node = new OriginNode(){
                 Path = @$"{Path}\origin.txt",
                 ChildNode = [],
-                Point = point
+                Point = point,
+                Message = "最初のノード",
             };
             NodeDictionary.Add("origin", node);
             TextFile.Create(node.Path,""); 

@@ -25,5 +25,12 @@ namespace CedarBoard.Model.Poco
         /// </summary>
         [JsonInclude]
         public required List<string> ChildNode { get; set; }
+
+
+        /// <summary>
+        /// メッセージ
+        /// </summary>
+        [JsonInclude]
+        public required string Message { get; set; }
     }
 }

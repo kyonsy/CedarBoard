@@ -8,6 +8,28 @@
             Foreground="{DynamicResource TextFillColorPrimaryBrush}"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" Height="700" Width="1050">
     <Grid>
+        <TabControl ItemsSource="{Binding Tabs}" SelectedItem="{Binding SelectedTab}" Margin="0,27,0,0">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Header}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentControl prism:RegionManager.RegionName="WorkpaceRegion"/>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+        
+        <Border BorderBrush="Black" BorderThickness="3" Margin="860,82,10,10">
+            <TreeView AllowDrop="True"  ItemsSource="{Binding WorkspaceItems}" ScrollViewer.CanContentScroll="False" Margin="0,0,7,7">
+                <TreeView.ItemTemplate >
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                        <TextBlock Text="{Binding Name}"/>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </Border>
         <Menu Margin="0,0,0,678">
             <ui:MenuItem Header="ファイル">
                 <ui:MenuItem Header="新規作成" Command="{Binding BackNewEntry}"/>
@@ -26,12 +48,6 @@
                 <ui:MenuItem Header="ワークスペースの設定" Command="{Binding BackEditWork}"/>
             </ui:MenuItem>
         </Menu>
-        <TreeView AllowDrop="True" Margin="710,27,28,302" ItemsSource="{Binding WorkspaceItems}" ScrollViewer.CanContentScroll="False">
-            <TreeView.ItemTemplate >
-                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                    <TextBlock Text="{Binding Name}"/>
-                </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
-        </TreeView>
+       
     </Grid>
 </UserControl>

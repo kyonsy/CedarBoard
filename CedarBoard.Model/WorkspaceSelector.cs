@@ -58,6 +58,9 @@ namespace CedarBoard.Model
             WorkspacePoco wPoco = new() { Setting = setting,ProjectDictionary = [] };
             TextFile.Create(@$"{path}\workspace.json",Serialize(wPoco));
             SelectorPoco.PathDictionary.Add(setting.Name, path);
+            Workspace workspace = GetWorkSpace(setting.Name);
+            workspace.Add("MainProject");
+            workspace.Save();
         }
 
         /// <summary>

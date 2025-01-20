@@ -102,7 +102,8 @@ namespace CedarBoard.Model
         /// 指定されたノードを削除する
         /// </summary>
         /// <param name="nodeName">削除するノードの名前</param>
-        public void Remove(string nodeName)
+        /// <param name="parentName">親ノードの名前</param>
+        public void Remove(string nodeName,string parentName)
         {
             if (NodeDictionary[nodeName] is Node node)
             {

@@ -25,6 +25,7 @@ namespace CedarBoard.Model.Poco
         [JsonInclude]
         public required string ParentNode { get; set; }
 
+
         /// <summary>
         /// 子ノードの名前
         /// </summary>

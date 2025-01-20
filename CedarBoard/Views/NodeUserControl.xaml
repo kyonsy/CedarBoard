@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="CedarBoard.Views.NodeUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             Width="70" Height="100">
+    <Border BorderBrush="Black" BorderThickness="1" Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Name}" TextAlignment="Center" FontWeight="Bold">
+                <TextBlock.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OpenTextEditorCommand}"/>
+                </TextBlock.InputBindings>
+            </TextBlock>
+            <TextBox Grid.Row="1" Text="{Binding Message, Mode=TwoWay}"/>
+        </Grid>
+    </Border>
+</UserControl>

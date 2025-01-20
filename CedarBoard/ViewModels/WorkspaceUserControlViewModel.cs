@@ -11,6 +11,18 @@ using System.Linq;
 namespace CedarBoard.ViewModels
 {
     /// <summary>
+    /// タブのビューモデル
+    /// </summary>
+    public class TabViewModel
+    {
+        /// <summary>
+        /// ヘッダーエリア
+        /// </summary>
+        public string Header { get; set; }
+    }
+
+
+    /// <summary>
     /// ワークスペースの画面
     /// </summary>
     public class WorkspaceUserControlViewModel : BindableBase,INavigationAware
@@ -18,6 +30,29 @@ namespace CedarBoard.ViewModels
         private IRegionManager _regionManager;
         private Workspace _workspace;
         private ObservableCollection<TreeItem> _workspaceItems;
+
+        private ObservableCollection<TabViewModel> _tabs;
+
+        /// <summary>
+        /// タブのリスト
+        /// </summary>
+        public ObservableCollection<TabViewModel> Tabs
+        {
+            get => _tabs;
+            set => SetProperty(ref _tabs, value);
+        }
+
+        private TabViewModel _selectedTab;
+
+        /// <summary>
+        /// 選択されたタブ
+        /// </summary>
+        public TabViewModel SelectedTab
+        {
+            get => _selectedTab;
+            set => SetProperty(ref _selectedTab, value);
+        }
+
 
         /// <summary>
         /// 新規作成画面へ移動
@@ -151,6 +186,13 @@ namespace CedarBoard.ViewModels
                 items.Children.Add(ProjectTree);
             }
             WorkspaceItems.Add(items);
+            // タブのリストを作成
+            Tabs = new ObservableCollection<TabViewModel>();
+            foreach (var project in _workspace.WorkspacePoco.ProjectDictionary)
+            {
+                Tabs.Add(new TabViewModel() { Header = project.Key});
+            }
+            SelectedTab = Tabs[0];
         }
 
         /// <summary>

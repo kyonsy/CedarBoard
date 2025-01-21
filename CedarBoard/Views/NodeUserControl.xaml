@@ -17,4 +17,10 @@
             <TextBox Grid.Row="1" Text="{Binding Message, Mode=TwoWay}"/>
         </Grid>
     </Border>
+    <UserControl.InputBindings>
+        <MouseBinding Gesture="RightClick" Command="{Binding EditNodeCommand}"/>
+    </UserControl.InputBindings>
+    <UserControl.RenderTransform>
+        <TranslateTransform X="{Binding CanvasLeft, Mode=TwoWay}" Y="{Binding CanvasTop, Mode=TwoWay}"/>
+    </UserControl.RenderTransform>
 </UserControl>

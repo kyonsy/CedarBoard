@@ -62,11 +62,18 @@ namespace CedarBoard.ViewModels
         public DelegateCommand OpenTextEditorCommand { get; }
 
         /// <summary>
+        /// ノードを編集するコマンド
+        /// </summary>
+        public DelegateCommand EditNodeCommand { get; }
+
+
+        /// <summary>
         /// コンストラクタ
         /// </summary>
         public NodeUserControlViewModel()
         {
             OpenTextEditorCommand = new DelegateCommand(OpenTextEditor);
+            EditNodeCommand = new DelegateCommand(EditNode);
         }
 
 

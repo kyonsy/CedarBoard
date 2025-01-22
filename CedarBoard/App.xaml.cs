@@ -1,6 +1,5 @@
 using CedarBoard.Views;
 using Prism.Ioc;
-using Prism.Regions;
 using Prism.Unity;
 using System.Windows;
 using CedarBoard.Model;

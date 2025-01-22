@@ -1,4 +1,4 @@
-﻿using CedarBoard.Model;
+using CedarBoard.Model;
 using Prism.Mvvm;
 using Prism;
 using System.Collections.Generic;

@@ -1,5 +1,7 @@
-﻿using CedarBoard.Views;
+using CedarBoard.Views;
 using Prism.Ioc;
+using Prism.Regions;
+using Prism.Unity;
 using System.Windows;
 using CedarBoard.Model;
 using CedarBoard.Model.Accessor;
@@ -9,7 +11,7 @@ namespace CedarBoard
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App
+    public partial class App: PrismApplication
     {
         /// <summary>
         /// シェルを作る

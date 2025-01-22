@@ -16,7 +16,7 @@
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
                 <DataTemplate>
-                    <ContentControl prism:RegionManager.RegionName="WorkpaceRegion"/>
+                    <ContentControl prism:RegionManager.RegionName="WorkspaceRegion"/>
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>

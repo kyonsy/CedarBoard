@@ -2,26 +2,19 @@
 using CedarBoard.Views;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Navigation;
 using Prism.Navigation.Regions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace CedarBoard.ViewModels
 {
-    /// <summary>
-    /// タブのビューモデル
-    /// </summary>
-    public class TabViewModel
-    {
-        /// <summary>
-        /// ヘッダーエリア
-        /// </summary>
-        public string Header { get; set; }
-    }
-
-
     /// <summary>
     /// ワークスペースの画面
     /// </summary>
@@ -50,9 +43,28 @@ namespace CedarBoard.ViewModels
         public TabViewModel SelectedTab
         {
             get => _selectedTab;
-            set => SetProperty(ref _selectedTab, value);
+            set {
+                SetProperty(ref _selectedTab, value);
+                OnPropertyChanged();
+            }
         }
 
+        /// <summary>
+        /// タブが変更されたときの処理
+        /// </summary>
+        private void OnPropertyChanged()
+        {
+            foreach (var region in _regionManager.Regions)
+            {
+                Debug.WriteLine($"Region Name:{region.Name}");
+            }
+            Project project = _workspace.WorkspacePoco.ProjectDictionary[SelectedTab.Header];
+            var p = new NavigationParameters{ { "Project",project} };
+
+            _regionManager.RequestNavigate("WorkspaceRegion", nameof(ProjectUserControl), p);
+            
+            
+        }
 
         /// <summary>
         /// 新規作成画面へ移動
@@ -95,6 +107,11 @@ namespace CedarBoard.ViewModels
         public DelegateCommand BackEditWork { get; }
 
         /// <summary>
+        /// contentRegionがロードされた時の動作
+        /// </summary>
+        public DelegateCommand<object> ContentControlLoadedCommand {  get; }
+
+        /// <summary>
         /// データモデルにワークスペースを入れる
         /// </summary>
         public ObservableCollection<TreeItem> WorkspaceItems { get { return _workspaceItems; } set { SetProperty(ref _workspaceItems, value); } }
@@ -104,7 +121,6 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public WorkspaceUserControlViewModel(IRegionManager regionManager)
         {
-            
             _regionManager = regionManager;
             BackNewEntry = new DelegateCommand(BackNewEntryExecute);
             BackHome = new DelegateCommand(BackHomeExecute);
@@ -114,6 +130,7 @@ namespace CedarBoard.ViewModels
             AddNode = new DelegateCommand(AddNodeExecute);
             DeleteNode = new DelegateCommand(DeleteNodeExecute);
             BackEditWork = new DelegateCommand(BackEditWorkExecute);
+            //ContentControlLoadedCommand = new DelegateCommand<object>(OnContentControlLoaded);
         }
 
         /// <summary>
@@ -167,6 +184,16 @@ namespace CedarBoard.ViewModels
 
 
 
+        private void OnContentControlLoaded(object obj)
+        {
+            if (obj is ContentControl contentControl)
+            {
+                RegionManager.SetRegionName(contentControl, "WorkspaceRegion");
+            }
+        }
+
+
+
         /// <summary>
         /// 他の画面から他の画面に移動するときの操作
         /// </summary>
@@ -193,6 +220,8 @@ namespace CedarBoard.ViewModels
                 Tabs.Add(new TabViewModel() { Header = project.Key});
             }
             SelectedTab = Tabs[0];
+            
+
         }
 
         /// <summary>

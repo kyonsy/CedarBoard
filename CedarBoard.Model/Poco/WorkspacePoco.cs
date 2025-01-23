@@ -9,7 +9,7 @@ namespace CedarBoard.Model.Poco
     {
         ///<summary>
         /// 設定
-        /// </summary>
+        ///</summary>
         [JsonInclude]
         public required Setting Setting { get; set; }
 

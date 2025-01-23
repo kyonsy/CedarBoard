@@ -30,7 +30,7 @@ namespace CedarBoard.Model
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">ツリーの根のアイテム</param>
         public TreeItem(string name)
         {
             Name = name;

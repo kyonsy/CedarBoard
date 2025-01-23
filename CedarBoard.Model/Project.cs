@@ -44,8 +44,8 @@ namespace CedarBoard.Model
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="textFile"></param>
-        /// <param name="path"></param>
+        /// <param name="textFile">テキストファイルのインタフェース</param>
+        /// <param name="path">プロジェクトのパス</param>
         public Project(ITextFile textFile, string path)
         {
             TextFile = textFile;
@@ -138,8 +138,8 @@ namespace CedarBoard.Model
         /// <summary>
         /// ノードの名前からそこに紐づけられたテキストファイルのパスを取得する
         /// </summary>
-        /// <param name="nodeName"></param>
-        /// <returns></returns>
+        /// <param name="nodeName">ノードの名前</param>
+        /// <returns>テキストファイルのパス</returns>
         public string GetNodePath(string nodeName)
         {
             return NodeDictionary[nodeName].Path;

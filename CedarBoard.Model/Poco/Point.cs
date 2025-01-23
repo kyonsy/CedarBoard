@@ -22,8 +22,8 @@ namespace CedarBoard.Model.Poco
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">X座標</param>
+        /// <param name="y">Y座標</param>
         public Point(int x,int y) => (X,Y) = (x,y); 
     }
 }

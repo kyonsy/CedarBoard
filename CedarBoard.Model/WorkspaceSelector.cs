@@ -76,8 +76,8 @@ namespace CedarBoard.Model
         /// <summary>
         /// 指定したワークスペースの名前を変える
         /// </summary>
-        /// <param name="workspaceName"></param>
-        /// <param name="newWorkspaceName"></param>
+        /// <param name="workspaceName">今の名前</param>
+        /// <param name="newWorkspaceName">新しい名前</param>
         public void Rename(string workspaceName,string newWorkspaceName)
         {
             Workspace workspace = GetWorkSpace(workspaceName);
@@ -112,8 +112,8 @@ namespace CedarBoard.Model
         /// <summary>
         /// セレクタを作って返す
         /// </summary>
-        /// <param name="json"></param>
-        /// <returns></returns>
+        /// <param name="json">Json文字列</param>
+        /// <returns>デシリアライズされたPoco</returns>
         /// <exception cref="FormatException"></exception>
         protected override SelectorPoco Deserialize(string json) {
             SelectorPoco sel = JsonSerializer.Deserialize<SelectorPoco>(json, GetOptions()) ??
@@ -124,7 +124,7 @@ namespace CedarBoard.Model
         /// <summary>
         /// デシリアライズを行いSelectorPocoを返す
         /// </summary>
-        /// <returns></returns>
+        /// <returns>デシリアライズされたPoco</returns>
         private SelectorPoco GetSelectorPoco() {
             if (TextFile.Exists(SettingPath))
             {

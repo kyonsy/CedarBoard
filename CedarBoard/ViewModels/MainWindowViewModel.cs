@@ -16,12 +16,8 @@ namespace CedarBoard.ViewModels
     /// </summary>
     public class MainWindowViewModel : BindableBase
     {
-
-        /// <summary>
-        /// アプリケーションのタイトル
-        /// </summary>
         private string _title = "CedarBoard";
-
+        private readonly IRegionManager _regionManager;
 
         /// <summary>
         /// コンストラクタ。最初はホーム画面に遷移する
@@ -31,7 +27,6 @@ namespace CedarBoard.ViewModels
             _regionManager = regionManager;
             _regionManager.RegisterViewWithRegion("ContentRegion", typeof(HomeUserControl));
         }
-
         /// <summary>
         /// タイトルのプロパティ
         /// </summary>
@@ -41,9 +36,5 @@ namespace CedarBoard.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        private readonly IRegionManager _regionManager;
-
-
-        
     }
 }

@@ -26,7 +26,7 @@
         /// <summary>
         /// ディレクトリの圧縮
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="path">圧縮するディレクトリのパス</param>
         public void Compress(string path)
         {
             throw new NotImplementedException("今度また作るわ");
@@ -35,7 +35,7 @@
         /// <summary>
         /// ディレクトリの解凍
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="path">解答するディレクトリのパス</param>
         public void Unfreeze(string path)
         {
             throw new NotImplementedException("今度また作るわ");
@@ -44,8 +44,8 @@
         /// <summary>
         ///  あるディクショナリが既に存在しているか確認する
         /// </summary>
-        /// <param name="dictionary"></param>
-        /// <returns></returns>
+        /// <param name="dictionary">存在を確認するディレクトリのパス</param>
+        /// <returns>あるのかどうかを返す</returns>
         public bool Exists(string dictionary) { 
             return Directory.Exists(dictionary);
         }

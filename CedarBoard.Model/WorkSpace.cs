@@ -54,7 +54,7 @@ namespace CedarBoard.Model
         /// <param name="textFile">テスト用と本番用で使い分ける。ファイル操作のためのオブジェクト</param>
         /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
         /// <param name="path">ワークスペースのパス</param>
-        /// <param name="workspacePoco"></param>
+        /// <param name="workspacePoco">ワークスペースのPoco</param>
         public Workspace(ITextFile textFile, IDirectory directory, string path,WorkspacePoco workspacePoco)
         {
             TextFile = textFile;
@@ -89,8 +89,8 @@ namespace CedarBoard.Model
         /// <summary>
         /// 指定したノード(に紐図けられたテキスト)を開く
         /// </summary>
-        /// <param name="projectName"></param>
-        /// <param name="nodeName"></param>
+        /// <param name="projectName">プロジェクトの名前</param>
+        /// <param name="nodeName">指定したノードの名前</param>
         public void Open(string projectName,string nodeName)
         {
             ProcessStartInfo psi = new()
@@ -115,8 +115,8 @@ namespace CedarBoard.Model
         /// ワークスペースのデータをデシリアライズする
         /// </summary>
         /// <param name="json"></param>
-        /// <returns></returns>
-        /// <exception cref="FormatException"></exception>
+        /// <returns>WorlspaceのPoco</returns>
+        /// <exception cref="FormatException">Json文字列を認識できない</exception>
         protected override WorkspacePoco Deserialize(string json)
         {
             WorkspacePoco sel = JsonSerializer.Deserialize<WorkspacePoco>(json, GetOptions()) ??

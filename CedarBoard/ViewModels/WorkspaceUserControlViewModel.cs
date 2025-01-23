@@ -115,7 +115,7 @@ namespace CedarBoard.ViewModels
         public ObservableCollection<TreeItem> WorkspaceItems { get { return _workspaceItems; } set { SetProperty(ref _workspaceItems, value); } }
 
 
-        //メソッド
+        // メソッド
         /// <summary>
         /// タブが変更されたときの処理
         /// </summary>
@@ -183,7 +183,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// 他の画面から他の画面に移動するときの操作
         /// </summary>
-        /// <param name="navigationContext"></param>
+        /// <param name="navigationContext">ナビゲーション元からのパラメータ</param>
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _workspace = navigationContext.Parameters.GetValue<Workspace>("Workspace");
@@ -213,8 +213,8 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// 遷移する際はインスタンスを使いまわさない
         /// </summary>
-        /// <param name="navigationContext"></param>
-        /// <returns></returns>
+        /// <param name="navigationContext">ナビゲーション元からのパラメータ</param>
+        /// <returns>インスタンスを使いまわすかどうか</returns>
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return false;
@@ -223,7 +223,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// この画面から他の画面に移動するときの操作
         /// </summary>
-        /// <param name="navigationContext"></param>
+        /// <param name="navigationContext">ナビゲーション元からのパラメータ</param>
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
             

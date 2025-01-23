@@ -70,7 +70,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// この画面に移動するときの操作
         /// </summary>
-        /// <param name="navigationContext"></param>
+        /// <param name="navigationContext">ナビゲーション元からのパラメータ</param>
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _project = navigationContext.Parameters.GetValue<Project>("Project");

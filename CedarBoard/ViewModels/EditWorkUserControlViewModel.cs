@@ -73,7 +73,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// インスタンスは使いまわさない
         /// </summary>
-        /// <param name="navigationContext"></param>
+        /// <param name="navigationContext">ナビゲーション元からのパラメータ</param>
         /// <returns></returns>
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
@@ -83,7 +83,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// この画面からナビゲートした時の動作
         /// </summary>
-        /// <param name="navigationContext"></param>
+        /// <param name="navigationContext">ナビゲーション元からのパラメータ</param>
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
             
@@ -92,7 +92,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// 他の画面からこの画面にナビゲートした時の動作
         /// </summary>
-        /// <param name="navigationContext"></param>
+        /// <param name="navigationContext">ナビゲーション元からのパラメータ</param>
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _navigationContext = navigationContext;

@@ -18,6 +18,7 @@ namespace CedarBoard.ViewModels
     /// </summary>
 	public class NewEntryUserControlViewModel : BindableBase,IDisposable
 	{
+        // フィールド
         private IRegionManager _regionManager;
         private WorkspaceSelector _workspaceSelector;
         private string _name = "無題";
@@ -26,6 +27,36 @@ namespace CedarBoard.ViewModels
         private string _editor = "notepad";
         private string _message = "ここに作品のメモを書こう！";
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        public NewEntryUserControlViewModel(IRegionManager regionManager, WorkspaceSelector workspaceSelector)
+        {
+            _workspaceSelector = workspaceSelector;
+            _regionManager = regionManager;
+            BackHome = new DelegateCommand(BackHomeExecute);
+            NewEntry = new DelegateCommand(NewEntryExecute);
+            ReferPath = new DelegateCommand(ReferPathExecute);
+        }
+
+
+        // デリゲート
+        /// <summary>
+        /// ホーム画面へ戻る
+        /// </summary>
+        public DelegateCommand BackHome { get; }
+
+        /// <summary>
+        /// 新規作成
+        /// </summary>
+        public DelegateCommand NewEntry { get; }
+
+        /// <summary>
+        /// 参照
+        /// </summary>
+        public DelegateCommand ReferPath { get; }
+
+        // プロパティ
         /// <summary>
         /// 作品名
         /// </summary>
@@ -51,33 +82,8 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public string Message { get { return _message; } set { SetProperty(ref _message, value); } }
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        public NewEntryUserControlViewModel(IRegionManager regionManager,WorkspaceSelector workspaceSelector)
-        {
-            _workspaceSelector = workspaceSelector;
-            _regionManager = regionManager;
-            BackHome = new DelegateCommand(BackHomeExecute);
-            NewEntry = new DelegateCommand(NewEntryExecute);
-            ReferPath = new DelegateCommand(ReferPathExecute);
-        }
 
-        /// <summary>
-        /// ホーム画面へ戻る
-        /// </summary>
-        public DelegateCommand BackHome { get; }
-
-        /// <summary>
-        /// 新規作成
-        /// </summary>
-        public DelegateCommand NewEntry { get; }
-
-        /// <summary>
-        /// 参照
-        /// </summary>
-        public DelegateCommand ReferPath { get; }
-
+        // メソッド
         /// <summary>
         /// ホーム画面へ戻る
         /// </summary>

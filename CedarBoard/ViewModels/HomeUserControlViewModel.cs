@@ -18,19 +18,61 @@ namespace CedarBoard.ViewModels
     /// </summary>
 	public class HomeUserControlViewModel : BindableBase,INavigationAware
 	{
-        /// <summary>
-        /// アプリケーションのタイトル
-        /// </summary>
+        //フィールド
         private string _title = "CedarBoard";
-
         WorkspaceSelector _workspaceSelector;
+        private IRegionManager _regionManager;
+
+        /// <summary>
+        /// コンストラクタ。最初はホーム画面に遷移する
+        /// </summary>
+        public HomeUserControlViewModel(WorkspaceSelector workspaceSelector, IRegionManager regionManager)
+        {
+            _regionManager = regionManager;
+            _workspaceSelector = workspaceSelector;
+            DictionaryItems = new ObservableCollection<KeyValuePair<string, string>>(
+                workspaceSelector.SelectorPoco.PathDictionary);
+            NewEntry = new DelegateCommand(NewEntryExecute);
+            EditWork = new DelegateCommand(EditWorkExecute);
+            DeleteWork = new DelegateCommand(DeleteWorkExecute);
+            OpenWork = new DelegateCommand(OpenWorkExecute);
+        }
+
+        //デリゲート
+        /// <summary>
+        /// 新規作成画面への遷移
+        /// </summary>
+        public DelegateCommand NewEntry { get; }
+
+        /// <summary>
+        /// 作品を編集する
+        /// </summary>
+        public DelegateCommand EditWork { get; }
+
+        /// <summary>
+        /// 作品を削除する
+        /// </summary>
+        public DelegateCommand DeleteWork { get; }
+
+        /// <summary>
+        /// 作品を開く
+        /// </summary>
+        public DelegateCommand OpenWork { get; }
+
+        // プロパティ
+        /// <summary>
+        /// タイトルのプロパティ
+        /// </summary>
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
 
         /// <summary>
         /// 表示されるリスト
         /// </summary>
         public ObservableCollection<KeyValuePair<string, string>> _dictionaryItems;
-
-        private IRegionManager _regionManager;
 
         /// <summary>
         /// 表示されるリストのプロパティ
@@ -61,51 +103,7 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public KeyValuePair<string, string> ClickedKeyValuePair { get { return _clickedKeyValuePair; } set { SetProperty(ref _clickedKeyValuePair, value); } }
 
-        /// <summary>
-        /// タイトルのプロパティ
-        /// </summary>
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
-
-        /// <summary>
-        /// 新規作成画面への遷移
-        /// </summary>
-        public DelegateCommand NewEntry { get; }
-
-        /// <summary>
-        /// 作品を編集する
-        /// </summary>
-        public DelegateCommand EditWork { get; }
-
-        /// <summary>
-        /// 作品を削除する
-        /// </summary>
-        public DelegateCommand DeleteWork { get; }
-
-        /// <summary>
-        /// 作品を開く
-        /// </summary>
-        public DelegateCommand OpenWork { get; }
-
-
-        /// <summary>
-        /// コンストラクタ。最初はホーム画面に遷移する
-        /// </summary>
-        public HomeUserControlViewModel(WorkspaceSelector workspaceSelector,IRegionManager regionManager)
-        {
-            _regionManager = regionManager;
-            _workspaceSelector = workspaceSelector;
-            DictionaryItems = new ObservableCollection<KeyValuePair<string, string>>(
-                workspaceSelector.SelectorPoco.PathDictionary);
-            NewEntry = new DelegateCommand(NewEntryExecute);
-            EditWork = new DelegateCommand(EditWorkExecute);
-            DeleteWork = new DelegateCommand(DeleteWorkExecute);
-            OpenWork = new DelegateCommand(OpenWorkExecute);
-        }
-
+        // メソッド
         /// <summary>
         /// 新規作成画面への遷移を行う
         /// </summary>

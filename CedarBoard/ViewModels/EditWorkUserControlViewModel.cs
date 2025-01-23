@@ -15,17 +15,39 @@ namespace CedarBoard.ViewModels
     /// </summary>
 	public class EditWorkUserControlViewModel : BindableBase,INavigationAware
 	{
+        //フィールド
         private IRegionManager _regionManager;
         private WorkspaceSelector _workspaceSelector;
-
         private string _name;
         private string _firstName;
         private string _author;
         private string _editorPath;
         private string _memo;
-
         NavigationContext _navigationContext;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        public EditWorkUserControlViewModel(IRegionManager regionManager, WorkspaceSelector workspaceSelector)
+        {
+            _workspaceSelector = workspaceSelector;
+            _regionManager = regionManager;
+            BackHome = new DelegateCommand(BackHomeExecute);
+            SaveSetting = new DelegateCommand(SaveSettingExecute);
+        }
+
+        // デリゲート
+        /// <summary>
+        /// ホーム画面へ戻る
+        /// </summary>
+        public DelegateCommand BackHome { get; }
+
+        /// <summary>
+        /// 新規作成
+        /// </summary>
+        public DelegateCommand SaveSetting { get; }
+
+        // プロパティ
         /// <summary>
         /// 作品名
         /// </summary>
@@ -47,27 +69,7 @@ namespace CedarBoard.ViewModels
         public string Memo { get { return _memo; } set { SetProperty(ref _memo, value); } }
 
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        public EditWorkUserControlViewModel(IRegionManager regionManager,WorkspaceSelector workspaceSelector)
-        {
-            _workspaceSelector = workspaceSelector;
-            _regionManager = regionManager;
-            BackHome = new DelegateCommand(BackHomeExecute);
-            SaveSetting = new DelegateCommand(SaveSettingExecute);
-        }
-
-        /// <summary>
-        /// ホーム画面へ戻る
-        /// </summary>
-        public DelegateCommand BackHome { get; }
-
-        /// <summary>
-        /// 新規作成
-        /// </summary>
-        public DelegateCommand SaveSetting { get; }
-
+        // メソッド
         /// <summary>
         /// インスタンスは使いまわさない
         /// </summary>

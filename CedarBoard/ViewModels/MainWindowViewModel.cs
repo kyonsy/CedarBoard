@@ -22,6 +22,16 @@ namespace CedarBoard.ViewModels
         /// </summary>
         private string _title = "CedarBoard";
 
+
+        /// <summary>
+        /// コンストラクタ。最初はホーム画面に遷移する
+        /// </summary>
+        public MainWindowViewModel(IRegionManager regionManager)
+        {
+            _regionManager = regionManager;
+            _regionManager.RegisterViewWithRegion("ContentRegion", typeof(HomeUserControl));
+        }
+
         /// <summary>
         /// タイトルのプロパティ
         /// </summary>
@@ -34,14 +44,6 @@ namespace CedarBoard.ViewModels
         private readonly IRegionManager _regionManager;
 
 
-        /// <summary>
-        /// コンストラクタ。最初はホーム画面に遷移する
-        /// </summary>
-        public MainWindowViewModel(IRegionManager regionManager)
-        {
-           _regionManager = regionManager;
-           _regionManager.RegisterViewWithRegion("ContentRegion", typeof(HomeUserControl));
-        }
         
     }
 }

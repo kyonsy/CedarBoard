@@ -12,6 +12,11 @@
                     prism:RegionManager.RegionName="CanvasRegion"
                     MouseLeftButtonDown="{Binding AddNodeCommand}"
                     MouseRightButtonDown="{Binding SelectNodeCommand}">
+                <ItemsControl ItemsSource="{Binding Nodes}">
+                    <ItemsPanelTemplate>
+                        <Canvas/>
+                    </ItemsPanelTemplate>
+                </ItemsControl>
             </Canvas>
         </Grid>
     </ScrollViewer>

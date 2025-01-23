@@ -4,6 +4,9 @@ using CedarBoard.Model;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Prism.Navigation.Regions;
+using CedarBoard.Views;
+using CedarBoard.Model.Poco;
+using System.Collections.Generic;
 
 namespace CedarBoard.ViewModels
 {
@@ -12,9 +15,32 @@ namespace CedarBoard.ViewModels
     /// </summary>
     public class ProjectUserControlViewModel : BindableBase,INavigationAware
     {
+        //フィールド
         private double _zoomLevel = 1.0;
         private Project _project;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        public ProjectUserControlViewModel()
+        {
+
+            AddNodeCommand = new DelegateCommand<object>(OnAddNode);
+            SelectNodeCommand = new DelegateCommand<object>(OnSelectNode);
+        }
+
+        // デリゲート
+        /// <summary>
+        /// ノードを追加するコマンド
+        /// </summary>
+        public DelegateCommand<object> AddNodeCommand { get; }
+
+        /// <summary>
+        /// ノードを選択するコマンド
+        /// </summary>
+        public DelegateCommand<object> SelectNodeCommand { get; }
+
+        // プロパティ
         /// <summary>
         /// ズームレベル
         /// </summary>
@@ -27,27 +53,10 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// ノードのリスト
         /// </summary>
-        public ObservableCollection<NodeUserControlViewModel> Nodes { get; set; } = new ObservableCollection<NodeUserControlViewModel>();
+        public ObservableCollection<NodeUserControl> Nodes { get; set; } = new ObservableCollection<NodeUserControl>();
 
-        /// <summary>
-        /// ノードを追加するコマンド
-        /// </summary>
-        public DelegateCommand<object> AddNodeCommand { get; }
 
-        /// <summary>
-        /// ノードを選択するコマンド
-        /// </summary>
-        public DelegateCommand<object> SelectNodeCommand { get; }
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        public ProjectUserControlViewModel()
-        {
-            AddNodeCommand = new DelegateCommand<object>(OnAddNode);
-            SelectNodeCommand = new DelegateCommand<object>(OnSelectNode);
-        }
-
+        // メソッド
         private void OnAddNode(object parameter)
         {
             
@@ -65,7 +74,21 @@ namespace CedarBoard.ViewModels
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _project = navigationContext.Parameters.GetValue<Project>("Project");
-
+            foreach(KeyValuePair<string, INode> node in _project.NodeDictionary)
+            {
+                NodeUserControlViewModel nodeUserControlViewModel = new NodeUserControlViewModel()
+                {
+                    Name = node.Key,
+                    Message = node.Value.Message,
+                    CanvasLeft = node.Value.Point.X,
+                    CanvasTop = node.Value.Point.Y,
+                    Children = node.Value.ChildNode
+                };  
+                Nodes.Add(new NodeUserControl()
+                {
+                    DataContext = nodeUserControlViewModel
+                });
+            }
         }
 
         /// <summary>

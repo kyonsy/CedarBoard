@@ -20,52 +20,30 @@ namespace CedarBoard.ViewModels
     /// </summary>
     public class WorkspaceUserControlViewModel : BindableBase,INavigationAware
     {
-        private IRegionManager _regionManager;
+        // フィールド
+        private IRegionManager _regionManager = null;
         private Workspace _workspace;
         private ObservableCollection<TreeItem> _workspaceItems;
-
         private ObservableCollection<TabViewModel> _tabs;
 
-        /// <summary>
-        /// タブのリスト
-        /// </summary>
-        public ObservableCollection<TabViewModel> Tabs
-        {
-            get => _tabs;
-            set => SetProperty(ref _tabs, value);
-        }
-
-        private TabViewModel _selectedTab;
 
         /// <summary>
-        /// 選択されたタブ
+        /// コンストラクタ
         /// </summary>
-        public TabViewModel SelectedTab
+        public WorkspaceUserControlViewModel(IRegionManager regionManager)
         {
-            get => _selectedTab;
-            set {
-                SetProperty(ref _selectedTab, value);
-                OnPropertyChanged();
-            }
+            _regionManager = regionManager;
+            BackNewEntry = new DelegateCommand(BackNewEntryExecute);
+            BackHome = new DelegateCommand(BackHomeExecute);
+            SaveWorkspace = new DelegateCommand(SaveWorkspaceExecute);
+            AddProject = new DelegateCommand(AddProjectExecute);
+            DeleteProject = new DelegateCommand(DeleteProjectExecute);
+            AddNode = new DelegateCommand(AddNodeExecute);
+            DeleteNode = new DelegateCommand(DeleteNodeExecute);
+            BackEditWork = new DelegateCommand(BackEditWorkExecute);
         }
 
-        /// <summary>
-        /// タブが変更されたときの処理
-        /// </summary>
-        private void OnPropertyChanged()
-        {
-            foreach (var region in _regionManager.Regions)
-            {
-                Debug.WriteLine($"Region Name:{region.Name}");
-            }
-            Project project = _workspace.WorkspacePoco.ProjectDictionary[SelectedTab.Header];
-            var p = new NavigationParameters{ { "Project",project} };
-
-            _regionManager.RequestNavigate("WorkspaceRegion", nameof(ProjectUserControl), p);
-            
-            
-        }
-
+        // デリゲート
         /// <summary>
         /// 新規作成画面へ移動
         /// </summary>
@@ -74,12 +52,12 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// ホーム画面へ戻る
         /// </summary>
-        public DelegateCommand BackHome {  get; }
+        public DelegateCommand BackHome { get; }
 
         /// <summary>
         /// ワークスペースを保存する
         /// </summary>
-        public DelegateCommand SaveWorkspace {  get; }
+        public DelegateCommand SaveWorkspace { get; }
 
         /// <summary>
         /// 新しいプロジェクトを作る
@@ -106,32 +84,52 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public DelegateCommand BackEditWork { get; }
 
+
+        //プロパティ
         /// <summary>
-        /// contentRegionがロードされた時の動作
+        /// タブのリスト
         /// </summary>
-        public DelegateCommand<object> ContentControlLoadedCommand {  get; }
+        public ObservableCollection<TabViewModel> Tabs
+        {
+            get => _tabs;
+            set => SetProperty(ref _tabs, value);
+        }
+
+        private TabViewModel _selectedTab;
+
+        /// <summary>
+        /// 選択されたタブ
+        /// </summary>
+        public TabViewModel SelectedTab
+        {
+            get => _selectedTab;
+            set {
+                SetProperty(ref _selectedTab, value);
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// データモデルにワークスペースを入れる
         /// </summary>
         public ObservableCollection<TreeItem> WorkspaceItems { get { return _workspaceItems; } set { SetProperty(ref _workspaceItems, value); } }
 
+
+        //メソッド
         /// <summary>
-        /// コンストラクタ
+        /// タブが変更されたときの処理
         /// </summary>
-        public WorkspaceUserControlViewModel(IRegionManager regionManager)
+        private void OnPropertyChanged()
         {
-            _regionManager = regionManager;
-            BackNewEntry = new DelegateCommand(BackNewEntryExecute);
-            BackHome = new DelegateCommand(BackHomeExecute);
-            SaveWorkspace = new DelegateCommand(SaveWorkspaceExecute);
-            AddProject = new DelegateCommand(AddProjectExecute);
-            DeleteProject = new DelegateCommand(DeleteProjectExecute);
-            AddNode = new DelegateCommand(AddNodeExecute);
-            DeleteNode = new DelegateCommand(DeleteNodeExecute);
-            BackEditWork = new DelegateCommand(BackEditWorkExecute);
-            //ContentControlLoadedCommand = new DelegateCommand<object>(OnContentControlLoaded);
+            foreach (var region in _regionManager.Regions)
+            {
+                Debug.WriteLine($"Region Name:{region.Name}");
+            }
+            Project project = _workspace.WorkspacePoco.ProjectDictionary[SelectedTab.Header];
+            var p = new NavigationParameters { { "Project", project } };
+            _regionManager.RequestNavigate("WorkspaceRegion", nameof(ProjectUserControl), p);
         }
+
 
         /// <summary>
         /// 新規作成
@@ -182,18 +180,6 @@ namespace CedarBoard.ViewModels
             _regionManager.RequestNavigate("ContentRegion", nameof(EditWorkUserControl));
         }
 
-
-
-        private void OnContentControlLoaded(object obj)
-        {
-            if (obj is ContentControl contentControl)
-            {
-                RegionManager.SetRegionName(contentControl, "WorkspaceRegion");
-            }
-        }
-
-
-
         /// <summary>
         /// 他の画面から他の画面に移動するときの操作
         /// </summary>
@@ -242,9 +228,5 @@ namespace CedarBoard.ViewModels
         {
             
         }
-
-
-
-
     }
 }

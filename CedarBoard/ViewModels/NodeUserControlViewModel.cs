@@ -66,7 +66,6 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public DelegateCommand EditNodeCommand { get; }
 
-
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -76,13 +75,10 @@ namespace CedarBoard.ViewModels
             EditNodeCommand = new DelegateCommand(EditNode);
         }
 
-
         /// <summary>
         /// 子ノードのリスト
         /// </summary>
         public List<string> Children { get; set; } = new List<string>();
-
-
 
         /// <summary>
         /// テキストエディタを開く

@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:local="clr-namespace:CedarBoard.Views"
              ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
-            ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-            Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+             ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+             Foreground="{DynamicResource TextFillColorPrimaryBrush}"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" Height="700" Width="1050">
     <Grid>
-        <TabControl ItemsSource="{Binding Tabs}" SelectedItem="{Binding SelectedTab}" Margin="0,27,0,635">
+        <TabControl ItemsSource="{Binding Tabs}" SelectedItem="{Binding SelectedTab}" Margin="0,27,0,10">
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Header}"/>
@@ -16,13 +17,11 @@
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
                 <DataTemplate>
-                   
+                    <local:ProjectUserControl DataContext="{Binding ProjectViewModel}"/>
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>
-        
-        <ContentControl prism:RegionManager.RegionName="WorkspaceRegion" Margin="10,27,205,640"/>
-        
+
         <Border BorderBrush="Black" BorderThickness="3" Margin="860,82,10,10">
             <TreeView AllowDrop="True"  ItemsSource="{Binding WorkspaceItems}" ScrollViewer.CanContentScroll="False" Margin="0,0,7,7">
                 <TreeView.ItemTemplate >

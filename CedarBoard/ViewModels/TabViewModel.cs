@@ -15,5 +15,10 @@ namespace CedarBoard.ViewModels
         /// ヘッダーエリア
         /// </summary>
         public string Header { get; set; }
+
+        /// <summary>
+        /// DataContextに入れるViewModel
+        /// </summary>
+        public ProjectUserControlViewModel ProjectViewModel {  get; set; }
     }
 }

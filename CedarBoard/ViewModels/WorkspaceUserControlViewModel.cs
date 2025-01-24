@@ -21,7 +21,7 @@ namespace CedarBoard.ViewModels
     public class WorkspaceUserControlViewModel : BindableBase,INavigationAware
     {
         // フィールド
-        private IRegionManager _regionManager = null;
+        private IRegionManager _regionManager;
         private Workspace _workspace;
         private ObservableCollection<TreeItem> _workspaceItems;
         private ObservableCollection<TabViewModel> _tabs;
@@ -103,33 +103,13 @@ namespace CedarBoard.ViewModels
         public TabViewModel SelectedTab
         {
             get => _selectedTab;
-            set {
-                SetProperty(ref _selectedTab, value);
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref _selectedTab, value);
         }
 
         /// <summary>
         /// データモデルにワークスペースを入れる
         /// </summary>
         public ObservableCollection<TreeItem> WorkspaceItems { get { return _workspaceItems; } set { SetProperty(ref _workspaceItems, value); } }
-
-
-        // メソッド
-        /// <summary>
-        /// タブが変更されたときの処理
-        /// </summary>
-        private void OnPropertyChanged()
-        {
-            foreach (var region in _regionManager.Regions)
-            {
-                Debug.WriteLine($"Region Name:{region.Name}");
-            }
-            Project project = _workspace.WorkspacePoco.ProjectDictionary[SelectedTab.Header];
-            var p = new NavigationParameters { { "Project", project } };
-            _regionManager.RequestNavigate("WorkspaceRegion", nameof(ProjectUserControl), p);
-        }
-
 
         /// <summary>
         /// 新規作成
@@ -187,27 +167,51 @@ namespace CedarBoard.ViewModels
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _workspace = navigationContext.Parameters.GetValue<Workspace>("Workspace");
+            MakeTreeItemList();
+            MakeTabsList();    
+        }
+
+        /// <summary>
+        /// アイテムツリーのリストを作る
+        /// </summary>
+        private void MakeTreeItemList()
+        {
             WorkspaceItems = new ObservableCollection<TreeItem>();
             TreeItem items = new(_workspace.WorkspacePoco.Setting.Name);
-            foreach (var project in _workspace.WorkspacePoco.ProjectDictionary)
+            foreach (var projectKetValuePair in _workspace.WorkspacePoco.ProjectDictionary)
             {
-                TreeItem ProjectTree = new(project.Key);
-                foreach (var node in project.Value.NodeDictionary)
+                TreeItem ProjectTree = new(projectKetValuePair.Key);
+                foreach (var node in projectKetValuePair.Value.NodeDictionary)
                 {
                     ProjectTree.Children.Add(new TreeItem(node.Key));
                 }
                 items.Children.Add(ProjectTree);
             }
             WorkspaceItems.Add(items);
-            // タブのリストを作成
+        }
+
+        /// <summary>
+        /// タブのリストを作る
+        /// </summary>
+        private void MakeTabsList()
+        {
             Tabs = new ObservableCollection<TabViewModel>();
-            foreach (var project in _workspace.WorkspacePoco.ProjectDictionary)
+            foreach (var projectKetValuePair in _workspace.WorkspacePoco.ProjectDictionary)
             {
-                Tabs.Add(new TabViewModel() { Header = project.Key});
+                Tabs.Add(CreateTabViewModel(projectKetValuePair));
             }
             SelectedTab = Tabs[0];
-            
+        }
 
+        /// <summary>
+        /// タブViewModelを作る
+        /// </summary>
+        private TabViewModel CreateTabViewModel(KeyValuePair<string,Project> projectKetValuePair)
+        {
+            TabViewModel tabViewModel = new TabViewModel();
+            tabViewModel.Header = projectKetValuePair.Key;
+            tabViewModel.ProjectViewModel = new(projectKetValuePair.Value);
+            return tabViewModel;
         }
 
         /// <summary>

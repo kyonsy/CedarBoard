@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using CedarBoard.ViewModels;
+using System.Windows.Controls;
 
 namespace CedarBoard.Views
 {

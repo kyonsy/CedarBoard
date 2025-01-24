@@ -8,16 +8,15 @@
                   PanningRatio="0.5" PanningDeceleration="0.01">
         <Grid>
             <Grid.LayoutTransform>
-                <ScaleTransform ScaleX="{Binding ZoomLevel}" ScaleY="{Binding ZoomLevel}"/>
+                <ScaleTransform x:Name="GridScaleTransform" ScaleX="{Binding ZoomLevel}"  ScaleY="{Binding ZoomLevel}"/>
             </Grid.LayoutTransform>
-           
             <ItemsControl ItemsSource="{Binding Nodes}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Background="Cornsilk" Height="10000" Width="10000">
+                        <Canvas Background="Cornsilk" Height="10000" Width="10000" >
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseLeftButtonDown">
-                                    <i:InvokeCommandAction Command="{Binding AddNodeCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding AddNodeCommand}" CommandParameter="{Binding }"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="MouseRightButtonDown">
                                     <i:InvokeCommandAction Command="{Binding SelectNodeCommand}"/>

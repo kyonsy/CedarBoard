@@ -17,6 +17,8 @@ namespace CedarBoard.Views
     {
         private const int WM_MOUSEHWHEEL = 0x020E;
         private const int WM_MOUSEWHEEL = 0x020A;
+        private const int WM_GESTURE = 0x119;
+        private const int MK_COMTROL = 0x0008;
         private HwndSource? _hwndSource;
 
         /// <summary>
@@ -51,28 +53,35 @@ namespace CedarBoard.Views
         {
             switch (msg)
             {
+                case MK_COMTROL:
+                    OnMouseControl(wParam);
+                    break;
+                case WM_GESTURE:
+                    OnGesture(wParam);
+                    break;
                 case WM_MOUSEHWHEEL:
-                    OnMouseHorizontalWheel(wParam, lParam); 
+                    OnMouseHorizontalWheel(wParam); 
                     break;
 
                 case WM_MOUSEWHEEL:
-                    OnMouseWheel(wParam, lParam);
-                    break;
+                    OnMouseWheel(wParam);
+                    break;           
             }
             return IntPtr.Zero;
         }
 
-        private void OnMouseHorizontalWheel(IntPtr wParam, IntPtr lParam)
+        private void OnMouseHorizontalWheel(IntPtr wParam)
         {
             int delta = unchecked((short)((long)wParam >> 16));
             if (delta is 0)
             {
                 return;
             }
+
             CanvasScroller.ScrollToHorizontalOffset(CanvasScroller.HorizontalOffset + delta);
         }
 
-        private void OnMouseWheel(IntPtr wParam, IntPtr lParam)
+        private void OnMouseWheel(IntPtr wParam)
         {
             int delta = unchecked((short)((long)wParam >> 16));
             if (delta is 0)
@@ -80,6 +89,30 @@ namespace CedarBoard.Views
                 return;
             }
             CanvasScroller.ScrollToVerticalOffset(CanvasScroller.VerticalOffset - delta);
+        }
+
+        private void OnMouseControl(IntPtr wParam)
+        {
+            int delta = unchecked((short)((long)wParam >> 16));
+            if (delta is 0)
+            {
+                return;
+            }
+            double zoomLevel = 1.0 + (delta / 100);
+            GridScaleTransform.ScaleX *= zoomLevel;
+            GridScaleTransform.ScaleY *= zoomLevel;
+        }
+
+        private void OnGesture(IntPtr wParam)
+        {
+            int delta = unchecked((short)((long)wParam >> 16));
+            if (delta is 0)
+            {
+                return;
+            }
+            double zoomLevel = 1.0 + (delta / 100);
+            GridScaleTransform.ScaleX *= zoomLevel;
+            GridScaleTransform.ScaleY *= zoomLevel;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CedarBoard.ViewModels;
 using Prism.Events;
 using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -9,13 +10,15 @@ using System.Windows.Interop;
 namespace CedarBoard.Views
 {
     /// <summary>
-    /// Interaction logic for ProjectUserControl
+    /// バインドできるプロパティの制限よりViewModeを使うのが困難
+    /// ScrollViewerの処理はコードビハインドに記述
     /// </summary>
     public partial class ProjectUserControl : UserControl
     {
-        private const int VM_MOUSEHWEEL = 0x020E;
+        private const int WM_MOUSEHWHEEL = 0x020E;
+        private const int WM_MOUSEWHEEL = 0x020A;
         private HwndSource? _hwndSource;
-        private ProjectUserControlViewModel _viewModel;
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -28,17 +31,16 @@ namespace CedarBoard.Views
 
         private void OnLoaded(object sender,RoutedEventArgs e)
         {
-            if (_hwndSource != null) {
+            if (_hwndSource == null) {
                 _hwndSource = PresentationSource.FromVisual(this) as HwndSource;
                 _hwndSource?.AddHook(WndProc);
             }
            
         }
 
-
-        private void OnUnLoaded(object sender, RoutedEventArgs e)
-        {
-            if (_hwndSource != null)
+        
+        private void OnUnLoaded(object sender, RoutedEventArgs e) { 
+            if(_hwndSource != null)
             {
                 _hwndSource.RemoveHook(WndProc);
                 _hwndSource = null;
@@ -47,19 +49,37 @@ namespace CedarBoard.Views
 
         private IntPtr WndProc(IntPtr hwnd,int msg, IntPtr wParam, IntPtr lParam,ref bool handled)
         {
-            if (msg == VM_MOUSEHWEEL)
+            switch (msg)
             {
-                int delta = unchecked((short)((long)wParam >> 16));
-                if (delta != 0)
-                {
-                    Dispatcher.Invoke(() =>
-                    {
-                        _viewModel.ScrollHorizontalCommand.Execute(delta);
-                    });
-                }
+                case WM_MOUSEHWHEEL:
+                    OnMouseHorizontalWheel(wParam, lParam); 
+                    break;
+
+                case WM_MOUSEWHEEL:
+                    OnMouseWheel(wParam, lParam);
+                    break;
             }
             return IntPtr.Zero;
         }
 
+        private void OnMouseHorizontalWheel(IntPtr wParam, IntPtr lParam)
+        {
+            int delta = unchecked((short)((long)wParam >> 16));
+            if (delta is 0)
+            {
+                return;
+            }
+            CanvasScroller.ScrollToHorizontalOffset(CanvasScroller.HorizontalOffset + delta);
+        }
+
+        private void OnMouseWheel(IntPtr wParam, IntPtr lParam)
+        {
+            int delta = unchecked((short)((long)wParam >> 16));
+            if (delta is 0)
+            {
+                return;
+            }
+            CanvasScroller.ScrollToVerticalOffset(CanvasScroller.VerticalOffset - delta);
+        }
     }
 }

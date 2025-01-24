@@ -47,8 +47,6 @@ namespace CedarBoard.ViewModels
             AddNodeCommand = new DelegateCommand<object>(OnAddNode);
             SelectNodeCommand = new DelegateCommand<object>(OnSelectNode);
             ZoomCommand = new DelegateCommand<object>(OnZoom);
-            ScrollVerticalCommand = new DelegateCommand<object>(OnScrollVertical);
-            ScrollHorizontalCommand = new DelegateCommand<int?>(OnScrollHorizontal);
         }
 
         // デリゲート
@@ -67,16 +65,7 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public DelegateCommand<object> ZoomCommand { get; }
 
-        /// <summary>
-        /// Canvasを縦にスクロールするコマンド
-        /// </summary>
-        public DelegateCommand<object> ScrollVerticalCommand { get; }
-
-        /// <summary>
-        /// Canvasを横にスクロールするコマンド
-        /// </summary>
-        public DelegateCommand<int?> ScrollHorizontalCommand { get; }
-
+    
         // プロパティ
         /// <summary>
         /// ズームレベル
@@ -119,24 +108,6 @@ namespace CedarBoard.ViewModels
         /// <param name="parameter"></param>
         private void OnZoom(object parameter)
         {
-            
-        }
-
-        /// <summary>
-        /// 縦方向のスクロール
-        /// </summary>
-        /// <param name="parameter"></param>
-        private void OnScrollVertical(object parameter)
-        {
-
-        }
-
-        private void OnScrollHorizontal(int? delta)
-        {
-            if (delta.HasValue)
-            {
-                HorizontalOffset = delta.Value;
-            }
             
         }
     }

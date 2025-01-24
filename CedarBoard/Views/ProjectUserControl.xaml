@@ -4,14 +4,8 @@
              xmlns:local="clr-namespace:CedarBoard.Views" 
              xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:prism="http://prismlibrary.com/">
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" PanningMode="Both" 
-                  PanningRatio="0.5" PanningDeceleration="0.001">
-        <i:Interaction.Triggers>
-            <i:EventTrigger>
-                
-            </i:EventTrigger>
-        </i:Interaction.Triggers>
-       
+    <ScrollViewer x:Name ="CanvasScroller" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" PanningMode="Both" 
+                  PanningRatio="0.5" PanningDeceleration="0.01">
         <Grid>
             <Grid.LayoutTransform>
                 <ScaleTransform ScaleX="{Binding ZoomLevel}" ScaleY="{Binding ZoomLevel}"/>

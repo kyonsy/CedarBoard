@@ -31,7 +31,7 @@
                 </TreeView.ItemTemplate>
             </TreeView>
         </Border>
-        
+
         <Menu Margin="0,0,0,678">
             <ui:MenuItem Header="ファイル">
                 <ui:MenuItem Header="新規作成" Command="{Binding BackNewEntry}"/>
@@ -50,6 +50,5 @@
                 <ui:MenuItem Header="ワークスペースの設定" Command="{Binding BackEditWork}"/>
             </ui:MenuItem>
         </Menu>
-       
     </Grid>
 </UserControl>

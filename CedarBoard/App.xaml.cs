@@ -74,11 +74,13 @@ namespace CedarBoard
                     UpdatedDate = "2024/10/24",
                     Message = "二つ目に作ったやつ"
                 }, "C:ワークスペースの名前\\hogehoge");
-                
+                sel.Save();
                 Workspace workspace = sel.GetWorkSpace("hoge");
                 workspace.Add("hoge1");
                 workspace.Add("hoge2");
                 workspace.Add("hoge3");
+                workspace.WorkspacePoco.ProjectDictionary["hoge1"]
+                  .Add("aaa", "origin", new Model.Poco.Point(500, 500));
                 workspace.Save();
                 return sel;
             });

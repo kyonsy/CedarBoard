@@ -14,7 +14,7 @@ namespace CedarBoard.Model.Poco
         public required Setting Setting { get; set; }
 
         /// <summary>
-        /// プロジェクトの名前のディクショナリ。keyはディレクトリの名前、valueはそのパス
+        /// プロジェクトの名前のディクショナリ。keyはディレクトリの名前、valueはそのオブジェクト
         /// </summary>
         [JsonInclude]
         public required Dictionary<string, Project> ProjectDictionary { get; set; } = [];

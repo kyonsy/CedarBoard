@@ -21,12 +21,12 @@ namespace CedarBoard.Model
         /// <summary>
         /// ファイル操作用オブジェクト
         /// </summary>
-        internal ITextFile TextFile { get;}
+        internal ITextFile TextFile { get; }
 
         /// <summary>
         /// ディレクトリ操作用オブジェクト
         /// </summary>
-        internal IDirectory Directory { get;}
+        internal IDirectory Directory { get; }
 
 
         /// <summary>

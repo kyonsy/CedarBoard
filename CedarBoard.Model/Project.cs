@@ -57,25 +57,25 @@ namespace CedarBoard.Model
         /// 新しいノードを追加する(2つ目以降)
         /// </summary>
         /// <param name="nodeName">追加するノード</param>
-        /// <param name="newNodeName">親ノードの番号</param>
+        /// <param name="parentNodeName">親ノードの名前</param>
         /// <param name="point">ノードの座標</param>
         /// <exception cref="ArgumentException">始めのノードの追加に使えなくする</exception>
-        public void Add(string nodeName,string newNodeName,Point point)
+        public void Add(string nodeName, string parentNodeName, Point point)
         {
             if (NodeDictionary.Count == 0) 
                 throw new ArgumentException("始めのノードを追加するときはAdd(int x,int y)を使ってください");
             INode node = new Node()
             {
                 ChildNode = [],
-                ParentNode = nodeName,
-                Path = @$"{Path}\{newNodeName}.txt",
+                ParentNode = parentNodeName,
+                Path = @$"{Path}\{nodeName}.txt",
                 Point = point,
                 Message = "",
             };
-            NodeDictionary.Add(newNodeName, node);
-            NodeDictionary[nodeName].ChildNode.Add(newNodeName);
-            TextFile.Copy(NodeDictionary[nodeName].Path, node.Path);
-            TextFile.SetReadOnly(NodeDictionary[nodeName].Path);
+            NodeDictionary.Add(nodeName, node);
+            NodeDictionary[parentNodeName].ChildNode.Add(nodeName);
+            TextFile.Copy(NodeDictionary[parentNodeName].Path, node.Path);
+            TextFile.SetReadOnly(NodeDictionary[parentNodeName].Path);
         }
 
         /// <summary>

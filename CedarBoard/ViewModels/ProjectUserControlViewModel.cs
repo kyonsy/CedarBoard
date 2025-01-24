@@ -7,6 +7,11 @@ using Prism.Navigation.Regions;
 using CedarBoard.Views;
 using CedarBoard.Model.Poco;
 using System.Collections.Generic;
+using System.Windows.Input;
+using System.Windows.Controls;
+using System.Diagnostics;
+using Prism.Events;
+
 
 namespace CedarBoard.ViewModels
 {
@@ -18,6 +23,7 @@ namespace CedarBoard.ViewModels
         //フィールド
         private double _zoomLevel = 1.0;
         private Project _project;
+        private double _horizontalOffset;
 
         /// <summary>
         /// コンストラクタ
@@ -40,6 +46,9 @@ namespace CedarBoard.ViewModels
             }
             AddNodeCommand = new DelegateCommand<object>(OnAddNode);
             SelectNodeCommand = new DelegateCommand<object>(OnSelectNode);
+            ZoomCommand = new DelegateCommand<object>(OnZoom);
+            ScrollVerticalCommand = new DelegateCommand<object>(OnScrollVertical);
+            ScrollHorizontalCommand = new DelegateCommand<int?>(OnScrollHorizontal);
         }
 
         // デリゲート
@@ -53,6 +62,21 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public DelegateCommand<object> SelectNodeCommand { get; }
 
+        /// <summary>
+        /// Canvasを拡大縮小するコマンド
+        /// </summary>
+        public DelegateCommand<object> ZoomCommand { get; }
+
+        /// <summary>
+        /// Canvasを縦にスクロールするコマンド
+        /// </summary>
+        public DelegateCommand<object> ScrollVerticalCommand { get; }
+
+        /// <summary>
+        /// Canvasを横にスクロールするコマンド
+        /// </summary>
+        public DelegateCommand<int?> ScrollHorizontalCommand { get; }
+
         // プロパティ
         /// <summary>
         /// ズームレベル
@@ -61,6 +85,15 @@ namespace CedarBoard.ViewModels
         {
             get => _zoomLevel;
             set => SetProperty(ref _zoomLevel, value);
+        }
+
+        /// <summary>
+        /// 水平方向の移動
+        /// </summary>
+        public double HorizontalOffset
+        {
+            get => _horizontalOffset;
+            set => SetProperty(ref _horizontalOffset, value);
         }
 
         /// <summary>
@@ -78,6 +111,33 @@ namespace CedarBoard.ViewModels
         private void OnSelectNode(object parameter)
         {
             // Select node logic
+        }
+
+        /// <summary>
+        /// ズーム
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void OnZoom(object parameter)
+        {
+            
+        }
+
+        /// <summary>
+        /// 縦方向のスクロール
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void OnScrollVertical(object parameter)
+        {
+
+        }
+
+        private void OnScrollHorizontal(int? delta)
+        {
+            if (delta.HasValue)
+            {
+                HorizontalOffset = delta.Value;
+            }
+            
         }
     }
 }

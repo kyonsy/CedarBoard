@@ -10,8 +10,9 @@
         mc:Ignorable="av" x:Class="CedarBoard.Views.MainWindow"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="700" Width="1050" 
-        WindowStartupLocation="CenterScreen">
-    <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion"/>
+        WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow"  SizeToContent="WidthAndHeight">
+    <Grid> 
+        <ContentControl prism:RegionManager.RegionName="ContentRegion" Margin="0" Padding="0" 
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>
 </Window>

@@ -79,6 +79,8 @@ namespace CedarBoard
                 workspace.Add("hoge1");
                 workspace.Add("hoge2");
                 workspace.Add("hoge3");
+                // Mockでは始めに作ったプロジェクトにノードを追加する際
+                // エラーが発生するが、Mockで無ければ発生しないので無視
                 workspace.WorkspacePoco.ProjectDictionary["hoge1"]
                   .Add("aaa", "origin", new Model.Poco.Point(500, 500));
                 workspace.Save();

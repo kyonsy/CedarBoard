@@ -4,33 +4,72 @@
              xmlns:local="clr-namespace:CedarBoard.Views" 
              xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:prism="http://prismlibrary.com/">
-    <ScrollViewer x:Name ="CanvasScroller" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" PanningMode="Both" 
-                  PanningRatio="0.5" PanningDeceleration="0.01">
-        <Grid>
-            <Grid.LayoutTransform>
-                <ScaleTransform x:Name="GridScaleTransform" ScaleX="{Binding ZoomLevel}"  ScaleY="{Binding ZoomLevel}"/>
-            </Grid.LayoutTransform>
-            <ItemsControl ItemsSource="{Binding Nodes}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Canvas Background="Cornsilk" Height="10000" Width="10000" >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonDown">
-                                    <i:InvokeCommandAction Command="{Binding AddNodeCommand}" CommandParameter="{Binding }"/>
-                                </i:EventTrigger>
-                                <i:EventTrigger EventName="MouseRightButtonDown">
-                                    <i:InvokeCommandAction Command="{Binding SelectNodeCommand}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Canvas>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:NodeUserControl DataContext="{Binding Context}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Grid>
-    </ScrollViewer>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer x:Name ="CanvasScroller" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" PanningMode="Both" 
+              PanningRatio="0.5" PanningDeceleration="0.01" Grid.Row="0" Grid.ColumnSpan="20">
+            <Grid>
+                <Grid.LayoutTransform>
+                    <ScaleTransform x:Name="GridScaleTransform" ScaleX="{Binding ZoomLevel}"  ScaleY="{Binding ZoomLevel}"/>
+                </Grid.LayoutTransform>
+                <Canvas Background="Cornsilk" Height="10000" Width="10000" x:Name="MyCanvas">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding MouseClickCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding MouseDoubleClickCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <i:InvokeCommandAction Command="{Binding MouseRightClickCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ItemsControl ItemsSource="{Binding Nodes}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:NodeUserControl DataContext="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Canvas>
+            </Grid>
+        </ScrollViewer>
+        <Button Content="拡大" Command="{Binding ZoomHighCommand}" Grid.Row="1" Grid.Column="12"/>
+        <Button Content="縮小" Command="{Binding ZoomLowCommand}" Grid.Row="1" Grid.Column="13"/>
+        <Slider TickPlacement="None" Orientation="Horizontal" Minimum="0" Maximum="100" Grid.Row="1" Grid.Column="14" Grid.ColumnSpan="5" Value="{Binding SlidLevel}"/>
+    </Grid>
+    
 </UserControl>

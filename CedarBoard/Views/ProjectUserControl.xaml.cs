@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
 
@@ -17,10 +18,7 @@ namespace CedarBoard.Views
     {
         private const int WM_MOUSEHWHEEL = 0x020E;
         private const int WM_MOUSEWHEEL = 0x020A;
-        private const int WM_GESTURE = 0x119;
-        private const int MK_COMTROL = 0x0008;
         private HwndSource? _hwndSource;
-
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -53,12 +51,6 @@ namespace CedarBoard.Views
         {
             switch (msg)
             {
-                case MK_COMTROL:
-                    OnMouseControl(wParam);
-                    break;
-                case WM_GESTURE:
-                    OnGesture(wParam);
-                    break;
                 case WM_MOUSEHWHEEL:
                     OnMouseHorizontalWheel(wParam); 
                     break;
@@ -89,30 +81,6 @@ namespace CedarBoard.Views
                 return;
             }
             CanvasScroller.ScrollToVerticalOffset(CanvasScroller.VerticalOffset - delta);
-        }
-
-        private void OnMouseControl(IntPtr wParam)
-        {
-            int delta = unchecked((short)((long)wParam >> 16));
-            if (delta is 0)
-            {
-                return;
-            }
-            double zoomLevel = 1.0 + (delta / 100);
-            GridScaleTransform.ScaleX *= zoomLevel;
-            GridScaleTransform.ScaleY *= zoomLevel;
-        }
-
-        private void OnGesture(IntPtr wParam)
-        {
-            int delta = unchecked((short)((long)wParam >> 16));
-            if (delta is 0)
-            {
-                return;
-            }
-            double zoomLevel = 1.0 + (delta / 100);
-            GridScaleTransform.ScaleX *= zoomLevel;
-            GridScaleTransform.ScaleY *= zoomLevel;
         }
     }
 }

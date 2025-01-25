@@ -22,8 +22,9 @@ namespace CedarBoard.ViewModels
     {
         //フィールド
         private double _zoomLevel = 1.0;
+        private int _slidLevel = 50;
         private Project _project;
-        private double _horizontalOffset;
+        private NodeUserControl _selectedNode;
 
         /// <summary>
         /// コンストラクタ
@@ -41,31 +42,41 @@ namespace CedarBoard.ViewModels
                     CanvasTop = nodeKeyValuePair.Value.Point.Y,
                     Children = nodeKeyValuePair.Value.ChildNode
                 };
-                NodeViewModel nodeViewModel = new NodeViewModel() { Context = nodeUserControlViewModel };
-                Nodes.Add(nodeViewModel);
+                Nodes.Add(nodeUserControlViewModel);
             }
-            AddNodeCommand = new DelegateCommand<object>(OnAddNode);
-            SelectNodeCommand = new DelegateCommand<object>(OnSelectNode);
-            ZoomCommand = new DelegateCommand<object>(OnZoom);
+            MouseDoubleClickCommand = new DelegateCommand<object>(OnMouseDoubleClick);
+            MouseClickCommand = new DelegateCommand<object>(OnMouseClick);
+            MouseRightClickCommand = new DelegateCommand<object>(OnMouseRightClick);
+            ZoomHighCommand = new DelegateCommand(OnZoomHigh);
+            ZoomLowCommand = new DelegateCommand(OnZoomLow);
         }
 
         // デリゲート
         /// <summary>
-        /// ノードを追加するコマンド
+        /// クリックしたときの
         /// </summary>
-        public DelegateCommand<object> AddNodeCommand { get; }
+        public DelegateCommand<object> MouseClickCommand { get; }
 
         /// <summary>
-        /// ノードを選択するコマンド
+        /// ダブルクリックしたときの動作
         /// </summary>
-        public DelegateCommand<object> SelectNodeCommand { get; }
+        public DelegateCommand<object> MouseDoubleClickCommand { get; }
+
+        /// <summary>
+        ///　右クリックしたときの動作
+        /// </summary>
+        public DelegateCommand<object> MouseRightClickCommand { get; }
 
         /// <summary>
         /// Canvasを拡大縮小するコマンド
         /// </summary>
-        public DelegateCommand<object> ZoomCommand { get; }
+        public DelegateCommand ZoomHighCommand { get; }
 
-    
+        /// <summary>
+        /// Canvasを拡大縮小するコマンド
+        /// </summary>
+        public DelegateCommand ZoomLowCommand { get; }
+
         // プロパティ
         /// <summary>
         /// ズームレベル
@@ -77,38 +88,63 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// 水平方向の移動
+        /// スライダーのレベル
         /// </summary>
-        public double HorizontalOffset
+        public int SlidLevel
         {
-            get => _horizontalOffset;
-            set => SetProperty(ref _horizontalOffset, value);
+            get => _slidLevel;
+            set {
+                SetProperty(ref _slidLevel, value);
+                // スライダーのレベルに合わせて拡大縮小を行う
+                ZoomLevel = 1.0 + (value - 50) / 100.0;
+            } 
         }
+
+        /// <summary>
+        /// 選択されているノード
+        /// </summary>
+        public NodeUserControl SelectedNode { get => _selectedNode; set => SetProperty(ref _selectedNode, value); }
 
         /// <summary>
         /// ノードのリスト
         /// </summary>
-        public ObservableCollection<NodeViewModel> Nodes { get; set; } = new ObservableCollection<NodeViewModel>();
+        public ObservableCollection<NodeUserControlViewModel> Nodes { get; set; } = new ObservableCollection<NodeUserControlViewModel>();
 
-
-        // メソッド
-        private void OnAddNode(object parameter)
+        private void OnMouseDoubleClick(object parameter)
         {
-            
+
         }
 
-        private void OnSelectNode(object parameter)
+        // メソッド
+        private void OnMouseClick(object parameter)
+        {
+            Debug.WriteLine(parameter);
+        }
+
+        private void OnMouseRightClick(object parameter)
         {
             // Select node logic
         }
 
         /// <summary>
-        /// ズーム
+        /// 拡大
         /// </summary>
-        /// <param name="parameter"></param>
-        private void OnZoom(object parameter)
+        private void OnZoomHigh()
         {
-            
+            if (_zoomLevel > 5) return;
+            ZoomLevel *= 1.1;
+        }
+
+        /// <summary>
+        /// 拡大
+        /// </summary>
+        private void OnZoomLow()
+        {
+            if(_zoomLevel < 0.093)
+            {
+                return;
+            }
+            ZoomLevel /= 1.1;
         }
     }
 }

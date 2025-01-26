@@ -28,7 +28,7 @@ namespace CedarBoard.Model
         /// ファイル操作オブジェクト
         /// </summary>
         [JsonIgnore]
-        internal ITextFile TextFile { get;}
+        internal ITextFile TextFile { get; set; }
 
         /// <summary>
         /// Jsonからデシリアライズするときに使われるデフォルトコンストラクタ

@@ -121,6 +121,10 @@ namespace CedarBoard.Model
         {
             WorkspacePoco sel = JsonSerializer.Deserialize<WorkspacePoco>(json, GetOptions()) ??
                 throw new FormatException("Json文字列として認識できません");
+            foreach(var keyValuePair in sel.ProjectDictionary)
+            {
+                keyValuePair.Value.TextFile = TextFile;
+            }
             return sel;
         }
     }

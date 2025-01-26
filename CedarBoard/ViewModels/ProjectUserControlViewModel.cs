@@ -14,7 +14,6 @@ using Prism.Events;
 using System;
 using Prism.Dialogs;
 
-
 namespace CedarBoard.ViewModels
 {
     /// <summary>
@@ -27,6 +26,7 @@ namespace CedarBoard.ViewModels
         private int _slidLevel = 50;
         private Project _project;
         IDialogService _dialogService;
+        private double nodeSize = 200.0;
 
         /// <summary>
         /// コンストラクタ
@@ -35,20 +35,7 @@ namespace CedarBoard.ViewModels
         {
             _dialogService = dialogService;
             _project = project;
-            foreach (KeyValuePair<string, INode> nodeKeyValuePair in _project.NodeDictionary)
-            {
-                NodeUserControlViewModel nodeUserControlViewModel = new NodeUserControlViewModel()
-                {
-                    Name = nodeKeyValuePair.Value.Name,
-                    Message = nodeKeyValuePair.Value.Message,
-                    CanvasLeft = nodeKeyValuePair.Value.Point.X,
-                    CanvasTop = nodeKeyValuePair.Value.Point.Y,
-                    Children = nodeKeyValuePair.Value.ChildNode,
-                    Date = nodeKeyValuePair.Value.Data,
-                };
-                Nodes.Add(nodeUserControlViewModel);
-            }
-         
+            ProjectToNodes();
             ZoomHighCommand = new DelegateCommand(OnZoomHigh);
             ZoomLowCommand = new DelegateCommand(OnZoomLow);
         }
@@ -64,11 +51,6 @@ namespace CedarBoard.ViewModels
         /// Canvasを拡大縮小するコマンド
         /// </summary>
         public DelegateCommand ZoomLowCommand { get; }
-
-        /// <summary>
-        /// 新しいノードを作る
-        /// </summary>
-        public DelegateCommand<object> CreateNewNode { get; }
 
         // プロパティ
         /// <summary>
@@ -124,20 +106,82 @@ namespace CedarBoard.ViewModels
         /// 新しいノードを作る
         /// </summary>
         /// <param name="viewModel"></param>
-        public void CreateNewNodeExecute(NodeUserControlViewModel viewModel)
+        public void CreateNewNode(NodeUserControlViewModel viewModel)
         {
             _dialogService.ShowDialog(nameof(NewNodeUserControl), null, (IDialogResult dialogResult) =>
-            {
+            {               
                 if (dialogResult.Result == ButtonResult.OK)
                 {
-                    string nodeName = dialogResult.Parameters.GetValue<string>("nodeName");
-                    string parentNodeName = viewModel.Name;
-                    Point point = new(viewModel.CanvasLeft,viewModel.CanvasTop);
-                    _project.Add(nodeName, parentNodeName,point);
-                    //ノードの座標を再構成
+                    try
+                    {
+                        string nodeName = dialogResult.Parameters.GetValue<string>("nodeName");
+                        string parentNodeName = viewModel.Name;
+                        InsertNewNode(nodeName, parentNodeName);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show("無効な名前です\nエラーメッセージ: " + ex.Message, "エラー", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        return;
+                    }
+                    
                 }
             });
         }
 
+        /// <summary>
+        /// 新しいノードを挿入する
+        /// </summary>
+        /// <param name="nodeName"></param>
+        /// <param name="parentNodeName"></param>
+        private void InsertNewNode(string nodeName,string parentNodeName)
+        {
+            Point point = _project.NodeDictionary[parentNodeName].Point;
+            if (_project.NodeDictionary[parentNodeName].ChildNode.Count == 0)
+            {               
+                _project.Add(nodeName, parentNodeName,new(point.X , point.Y + nodeSize * 1.5));
+            }
+            else
+            {
+                int childNum = _project.NodeDictionary[parentNodeName].ChildNode.Count;
+                INode maxNode = _project.NodeDictionary[parentNodeName].ChildNode
+                    .Select(nodeName => _project.NodeDictionary[nodeName])
+                    .OrderByDescending(node => node.Data)
+                    .First();
+
+                Point newPoint = new(maxNode.Point.X + 1.5 * nodeSize , point.Y + nodeSize * 1.5);
+                _project.Add(nodeName,parentNodeName,newPoint);
+                foreach (var keyValuePair in _project.NodeDictionary)
+                { 
+                    if(keyValuePair.Value is Node node && 
+                        keyValuePair.Value.Point.X >= newPoint.X && 
+                        node.ParentNode != parentNodeName)
+                    {
+                        keyValuePair.Value.Point.X += nodeSize * 1.5;
+                    }
+                }
+            }
+            ProjectToNodes();
+        }
+
+        /// <summary>
+        /// Projectの内容をNodesに繁栄させる
+        /// </summary>
+        private void ProjectToNodes()
+        {
+            Nodes.Clear();
+            foreach (KeyValuePair<string, INode> nodeKeyValuePair in _project.NodeDictionary)
+            {
+                NodeUserControlViewModel nodeUserControlViewModel = new NodeUserControlViewModel()
+                {
+                    Name = nodeKeyValuePair.Value.Name,
+                    Message = nodeKeyValuePair.Value.Message,
+                    CanvasLeft = nodeKeyValuePair.Value.Point.X,
+                    CanvasTop = nodeKeyValuePair.Value.Point.Y,
+                    Children = nodeKeyValuePair.Value.ChildNode,
+                    Date = nodeKeyValuePair.Value.Data,
+                };
+                Nodes.Add(nodeUserControlViewModel);
+            }
+        }
     }
 }

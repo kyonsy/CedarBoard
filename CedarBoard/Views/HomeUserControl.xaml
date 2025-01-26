@@ -17,12 +17,8 @@
      Content="新規作成" FontSize="20" Background="White" Command="{Binding NewEntry}" >
             <ui:Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
-      BorderBrush="Black"
-      BorderThickness="3"
-      CornerRadius="10">
-                        <ContentPresenter HorizontalAlignment="Center"
-                    VerticalAlignment="Center" />
+                    <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </ui:Button.Template>
@@ -47,10 +43,7 @@
      Content="選択した作品を削除" FontSize="20" Background="Red" Command="{Binding DeleteWork}">
             <ui:Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
-      BorderBrush="Black"
-      BorderThickness="3"
-      CornerRadius="10">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
                         <ContentPresenter HorizontalAlignment="Center"
                     VerticalAlignment="Center" />
                     </Border>

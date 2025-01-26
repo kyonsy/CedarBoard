@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CedarBoard.Views" 
              xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:prism="http://prismlibrary.com/">
+             xmlns:prism="http://prismlibrary.com/"
+             x:Name="ProjectControl">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
@@ -15,19 +16,19 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            
+
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            
+
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            
+
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -41,18 +42,12 @@
                     <ScaleTransform x:Name="GridScaleTransform" ScaleX="{Binding ZoomLevel}"  ScaleY="{Binding ZoomLevel}"/>
                 </Grid.LayoutTransform>
                 <Canvas Background="Cornsilk" Height="10000" Width="10000" x:Name="MyCanvas">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding MouseClickCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-                        </i:EventTrigger>
-                        <i:EventTrigger EventName="MouseDoubleClick">
-                            <i:InvokeCommandAction Command="{Binding MouseDoubleClickCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-                        </i:EventTrigger>
-                        <i:EventTrigger EventName="MouseRightButtonDown">
-                            <i:InvokeCommandAction Command="{Binding MouseRightClickCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
                     <ItemsControl ItemsSource="{Binding Nodes}">
+                        <!--<i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseRightButtonDown">
+                                <prism:InvokeCommandAction Command="{Binding CreateNewNode}" CommandParameter="{}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>-->
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <Canvas/>
@@ -60,7 +55,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <local:NodeUserControl DataContext="{Binding}"/>
+                                <local:NodeUserControl DataContext="{Binding}" PreviewMouseRightButtonDown="NodeUserControl_PreviewMouseRightButtonDown"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
@@ -71,5 +66,4 @@
         <Button Content="縮小" Command="{Binding ZoomLowCommand}" Grid.Row="1" Grid.Column="13"/>
         <Slider TickPlacement="None" Orientation="Horizontal" Minimum="0" Maximum="100" Grid.Row="1" Grid.Column="14" Grid.ColumnSpan="5" Value="{Binding SlidLevel}"/>
     </Grid>
-    
 </UserControl>

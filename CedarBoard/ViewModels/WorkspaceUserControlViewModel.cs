@@ -1,6 +1,7 @@
 ﻿using CedarBoard.Model;
 using CedarBoard.Views;
 using Prism.Commands;
+using Prism.Dialogs;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Navigation.Regions;
@@ -25,13 +26,15 @@ namespace CedarBoard.ViewModels
         private Workspace _workspace;
         private ObservableCollection<TreeItem> _workspaceItems;
         private ObservableCollection<TabViewModel> _tabs;
+        private IDialogService _dialogService;
 
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public WorkspaceUserControlViewModel(IRegionManager regionManager)
+        public WorkspaceUserControlViewModel(IRegionManager regionManager,IDialogService dialogService)
         {
+            _dialogService = dialogService;
             _regionManager = regionManager;
             BackNewEntry = new DelegateCommand(BackNewEntryExecute);
             BackHome = new DelegateCommand(BackHomeExecute);
@@ -210,7 +213,7 @@ namespace CedarBoard.ViewModels
         {
             TabViewModel tabViewModel = new TabViewModel();
             tabViewModel.Header = projectKetValuePair.Key;
-            tabViewModel.ProjectViewModel = new(projectKetValuePair.Value);
+            tabViewModel.ProjectViewModel = new(_dialogService,projectKetValuePair.Value);
             return tabViewModel;
         }
 

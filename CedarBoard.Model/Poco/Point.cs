@@ -11,19 +11,19 @@ namespace CedarBoard.Model.Poco
         /// ノードのX座標
         /// </summary>
         [JsonInclude]
-        public int X { get; set; }
+        public double X { get; set; }
 
         /// <summary>
         /// ノードのY座標
         /// </summary>
         [JsonInclude]
-        public int Y { get; set; }
+        public double Y { get; set; }
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="x">X座標</param>
         /// <param name="y">Y座標</param>
-        public Point(int x,int y) => (X,Y) = (x,y); 
+        public Point(double x,double y) => (X,Y) = (x,y); 
     }
 }

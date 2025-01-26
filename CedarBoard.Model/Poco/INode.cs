@@ -28,5 +28,15 @@ namespace CedarBoard.Model.Poco
         /// メッセージ
         /// </summary>
         public string Message { get; set; }
+
+        /// <summary>
+        /// 作成日時
+        /// </summary>
+        public DateTime Data { get; set; }
+
+        /// <summary>
+        /// ノードの名前
+        /// </summary>
+        public string Name {  get; set; }
     }
 }

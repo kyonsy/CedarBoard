@@ -4,6 +4,7 @@ using Prism.Unity;
 using System.Windows;
 using CedarBoard.Model;
 using CedarBoard.Model.Accessor;
+using CedarBoard.ViewModels;
 
 namespace CedarBoard
 {
@@ -33,6 +34,7 @@ namespace CedarBoard
             containerRegistry.RegisterForNavigation<HomeUserControl>();
             containerRegistry.RegisterForNavigation<WorkspaceUserControl>();
             containerRegistry.RegisterForNavigation<NodeUserControl>();
+            containerRegistry.RegisterDialog<NewNodeUserControl,NewNodeUserControlViewModel>();
             // テスト用にシングルトンにはモックを登録しておく
             containerRegistry.RegisterSingleton<WorkspaceSelector>(() =>
             {

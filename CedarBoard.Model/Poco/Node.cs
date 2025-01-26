@@ -38,5 +38,18 @@ namespace CedarBoard.Model.Poco
         /// </summary>
         [JsonInclude]
         public required string Message { get; set; }
+
+
+        /// <summary>
+        /// 作成日時
+        /// </summary>
+        [JsonInclude]
+        public required DateTime Data { get; set; }
+
+        /// <summary>
+        /// ノードの名前
+        /// </summary>
+        [JsonInclude]
+        public required string Name { get; set; }
     }
 }

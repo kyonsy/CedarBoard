@@ -50,7 +50,7 @@ namespace CedarBoard.Model
         {
             TextFile = textFile;
             Path = path;
-            Add(new(100, 100));
+            Add(new(100.0, 100.0));
         }
 
         /// <summary>
@@ -71,6 +71,8 @@ namespace CedarBoard.Model
                 Path = @$"{Path}\{nodeName}.txt",
                 Point = point,
                 Message = "",
+                Data = DateTime.Now,
+                Name = nodeName
             };
             NodeDictionary.Add(nodeName, node);
             NodeDictionary[parentNodeName].ChildNode.Add(nodeName);
@@ -93,6 +95,8 @@ namespace CedarBoard.Model
                 ChildNode = [],
                 Point = point,
                 Message = "最初のノード",
+                Data = DateTime.Now,
+                Name = "origin"
             };
             NodeDictionary.Add("origin", node);
             TextFile.Create(node.Path,""); 

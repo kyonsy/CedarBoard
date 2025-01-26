@@ -15,6 +15,11 @@ namespace CedarBoard.ViewModels
         private string _name;
 
         /// <summary>
+        /// 作成日時
+        /// </summary>
+        public DateTime Date { get; set; }
+
+        /// <summary>
         /// ノードの名前
         /// </summary>
         public string Name

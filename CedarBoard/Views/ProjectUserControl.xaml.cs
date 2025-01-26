@@ -82,5 +82,15 @@ namespace CedarBoard.Views
             }
             CanvasScroller.ScrollToVerticalOffset(CanvasScroller.VerticalOffset - delta);
         }
+
+        
+
+
+        private void NodeUserControl_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var viewModel = (ProjectUserControlViewModel)this.DataContext;
+            NodeUserControl nodeUserControl = sender as NodeUserControl;
+
+        }
     }
 }

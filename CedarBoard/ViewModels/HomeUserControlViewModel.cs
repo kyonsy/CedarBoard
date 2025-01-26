@@ -152,6 +152,7 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public void OpenWorkExecute()
         {
+            if (SelectedKeyValuePair is null) return;
             Workspace workspace = _workspaceSelector.GetWorkSpace(SelectedKeyValuePair.Value.Key);
             var p = new NavigationParameters
                 {

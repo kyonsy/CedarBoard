@@ -72,8 +72,8 @@ namespace CedarBoard.Model
         public void Add(string projectName)
         {
             string newPath = @$"{Path}\{projectName}";
-            WorkspacePoco.ProjectDictionary.Add(projectName, new(TextFile, newPath));
             Directory.Create(newPath);
+            WorkspacePoco.ProjectDictionary.Add(projectName, new(TextFile, newPath));
         }
 
         /// <summary>

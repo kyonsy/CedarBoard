@@ -28,7 +28,7 @@ namespace CedarBoard.Model
         /// ファイル操作オブジェクト
         /// </summary>
         [JsonIgnore]
-        internal ITextFile TextFile { get; set; }
+        internal ITextFile? TextFile { get; set; } = new TextFileMock();
 
         /// <summary>
         /// Jsonからデシリアライズするときに使われるデフォルトコンストラクタ
@@ -36,7 +36,6 @@ namespace CedarBoard.Model
         [JsonConstructor]
         public Project(string path,Dictionary<string,INode> nodeDictionary) {
             // テスト用
-            TextFile = new TextFileMock();
             Path = path;
             NodeDictionary = nodeDictionary;
         }
@@ -76,8 +75,8 @@ namespace CedarBoard.Model
             };
             NodeDictionary.Add(nodeName, node);
             NodeDictionary[parentNodeName].ChildNode.Add(nodeName);
-            TextFile.Copy(NodeDictionary[parentNodeName].Path, node.Path);
-            TextFile.SetReadOnly(NodeDictionary[parentNodeName].Path);
+            TextFile?.Copy(NodeDictionary[parentNodeName].Path, node.Path);
+            TextFile?.SetReadOnly(NodeDictionary[parentNodeName].Path);
         }
 
         /// <summary>
@@ -99,7 +98,8 @@ namespace CedarBoard.Model
                 Name = "origin"
             };
             NodeDictionary.Add("origin", node);
-            TextFile.Create(node.Path,""); 
+
+            TextFile?.Create(node.Path, ""); 
         }
 
         /// <summary>
@@ -114,9 +114,9 @@ namespace CedarBoard.Model
                 INode parentNode = NodeDictionary[node.ParentNode];
                 if (parentNode.ChildNode.Count == 0)
                 {
-                    TextFile.DeleteReadOnly(parentNode.Path);
+                    TextFile?.DeleteReadOnly(parentNode.Path);
                 }
-                TextFile.Delete(node.Path);
+                TextFile?.Delete(node.Path);
                 NodeDictionary.Remove(nodeName);
             }
             else
@@ -136,7 +136,7 @@ namespace CedarBoard.Model
             Node node = (Node)NodeDictionary[nodeName] with { Path = $@"{Path}/{newNodeName}.txt" };
             NodeDictionary.Remove(nodeName);
             NodeDictionary.Add(newNodeName, node);
-            TextFile.Rename(NodeDictionary[nodeName].Path, NodeDictionary[newNodeName].Path);  
+            TextFile?.Rename(NodeDictionary[nodeName].Path, NodeDictionary[newNodeName].Path);  
         }
 
         /// <summary>

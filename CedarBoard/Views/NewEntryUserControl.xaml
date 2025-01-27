@@ -84,7 +84,7 @@
 
             <Border BorderBrush="Black" BorderThickness="5" Grid.Row="2" Grid.Column="1">
                 <Viewbox>
-                    <TextBlock Text="{Binding Path}" FontSize="15" Background="White"/>
+                    <TextBlock Text="{Binding Path}" FontSize="15" Background="White" TextWrapping="Wrap"/>
                 </Viewbox>
             </Border>
 

@@ -88,7 +88,7 @@ namespace CedarBoard.Views
 
         private void NodeUserControl_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var viewModel = (ProjectUserControlViewModel)this.DataContext;
+            var viewModel = (ProjectUserControlViewModel)DataContext;
             NodeUserControl nodeUserControl = sender as NodeUserControl;
             if (nodeUserControl != null) {
                 viewModel.CreateNewNode(nodeUserControl.DataContext as NodeUserControlViewModel);
@@ -97,7 +97,12 @@ namespace CedarBoard.Views
 
         private void NodeUserControl_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            var viewModel = (ProjectUserControlViewModel)DataContext;
+            NodeUserControl nodeNodeUserControl = sender as NodeUserControl;
+            if (nodeNodeUserControl != null)
+            {
+                viewModel.EditNodeText(nodeNodeUserControl.DataContext as NodeUserControlViewModel);
+            }
         }
     }
 }

@@ -113,7 +113,7 @@ namespace CedarBoard.ViewModels
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("無効な設定を検地しました\nエラーメッセージ: " + ex.Message, "エラー", System.Windows.MessageBoxButton.OK,MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("無効な設定を検地しました. タイトルを決めてからパスを設定してください. \nエラーメッセージ: " + ex.Message, "エラー", System.Windows.MessageBoxButton.OK,MessageBoxImage.Error);
                 return;
             }
             _workspaceSelector.Save();

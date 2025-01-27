@@ -213,7 +213,7 @@ namespace CedarBoard.ViewModels
         {
             TabViewModel tabViewModel = new TabViewModel();
             tabViewModel.Header = projectKetValuePair.Key;
-            tabViewModel.ProjectViewModel = new(_dialogService,projectKetValuePair.Value);
+            tabViewModel.ProjectViewModel = new(_dialogService, projectKetValuePair.Value,projectKetValuePair.Key) { Workspace = _workspace};
             return tabViewModel;
         }
 

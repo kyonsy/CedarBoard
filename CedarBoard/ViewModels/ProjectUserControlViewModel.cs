@@ -29,12 +29,15 @@ namespace CedarBoard.ViewModels
         private Project _project;
         IDialogService _dialogService;
         private double _nodeSize = 200.0;
+        Workspace _workspace;
+        private string _projectName;
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public ProjectUserControlViewModel(IDialogService dialogService,Project project)
+        public ProjectUserControlViewModel(IDialogService dialogService,Project project,string projectName)
         {
+            _projectName = projectName;
             _dialogService = dialogService;
             _project = project;
             ProjectToNodes();
@@ -88,6 +91,11 @@ namespace CedarBoard.ViewModels
         public ObservableCollection<Line> Lines { get; set; } = new ObservableCollection<Line>();
 
         /// <summary>
+        /// 属しているワークスペース
+        /// </summary>
+        public required Workspace Workspace { get; set; }
+
+        /// <summary>
         /// 拡大
         /// </summary>
         private void OnZoomHigh()
@@ -106,6 +114,25 @@ namespace CedarBoard.ViewModels
                 return;
             }
             ZoomLevel /= 1.1;
+        }
+
+        /// <summary>
+        /// ノードに紐づけられたテキストファイルを編集する
+        /// </summary>
+        /// <param name="viewModel"></param>
+        public void EditNodeText(NodeUserControlViewModel viewModel)
+        {
+            try
+            {
+                Workspace.Open(_projectName, viewModel.Name);
+                
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("有効なエディタのパスが指定されていません\nエラーメッセージ: " + ex.Message, "エラー", 
+                    System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                return;
+            }
         }
 
         /// <summary>

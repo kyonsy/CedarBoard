@@ -14,7 +14,7 @@
                     <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OpenTextEditorCommand}"/>
                 </TextBlock.InputBindings>
             </TextBlock>
-            <TextBox Grid.Row="1" Text="{Binding Message, Mode=TwoWay}"/>
+            <TextBox Grid.Row="1" Text="{Binding Message, Mode=TwoWay}" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
         </Grid>
     </Border>
     <UserControl.InputBindings>

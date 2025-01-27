@@ -42,12 +42,7 @@
                     <ScaleTransform x:Name="GridScaleTransform" ScaleX="{Binding ZoomLevel}"  ScaleY="{Binding ZoomLevel}"/>
                 </Grid.LayoutTransform>
                 <Canvas Background="Cornsilk" Height="10000" Width="10000" x:Name="MyCanvas">
-                    <ItemsControl ItemsSource="{Binding Nodes}">
-                        <!--<i:Interaction.Triggers>
-                            <i:EventTrigger EventName="PreviewMouseRightButtonDown">
-                                <prism:InvokeCommandAction Command="{Binding CreateNewNode}" CommandParameter="{}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>-->
+                    <ItemsControl ItemsSource="{Binding Nodes}" Panel.ZIndex="2">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <Canvas/>
@@ -55,9 +50,16 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <local:NodeUserControl DataContext="{Binding}" PreviewMouseRightButtonDown="NodeUserControl_PreviewMouseRightButtonDown"/>
+                                <local:NodeUserControl DataContext="{Binding}" PreviewMouseRightButtonDown="NodeUserControl_PreviewMouseRightButtonDown" PreviewMouseDoubleClick="NodeUserControl_PreviewMouseDoubleClick"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ItemsControl ItemsSource="{Binding Lines}" Panel.ZIndex="1">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                     </ItemsControl>
                 </Canvas>
             </Grid>

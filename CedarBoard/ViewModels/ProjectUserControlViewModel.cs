@@ -13,6 +13,8 @@ using System.Diagnostics;
 using Prism.Events;
 using System;
 using Prism.Dialogs;
+using System.Windows.Shapes;
+using System.Windows.Media;
 
 namespace CedarBoard.ViewModels
 {
@@ -26,7 +28,7 @@ namespace CedarBoard.ViewModels
         private int _slidLevel = 50;
         private Project _project;
         IDialogService _dialogService;
-        private double nodeSize = 200.0;
+        private double _nodeSize = 200.0;
 
         /// <summary>
         /// コンストラクタ
@@ -80,6 +82,10 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public ObservableCollection<NodeUserControlViewModel> Nodes { get; set; } = new ObservableCollection<NodeUserControlViewModel>();
 
+        /// <summary>
+        /// 線のリスト
+        /// </summary>
+        public ObservableCollection<Line> Lines { get; set; } = new ObservableCollection<Line>();
 
         /// <summary>
         /// 拡大
@@ -138,7 +144,7 @@ namespace CedarBoard.ViewModels
             Point point = _project.NodeDictionary[parentNodeName].Point;
             if (_project.NodeDictionary[parentNodeName].ChildNode.Count == 0)
             {               
-                _project.Add(nodeName, parentNodeName,new(point.X , point.Y + nodeSize * 1.5));
+                _project.Add(nodeName, parentNodeName,new(point.X , point.Y + _nodeSize * 1.5));
             }
             else
             {
@@ -148,7 +154,7 @@ namespace CedarBoard.ViewModels
                     .OrderByDescending(node => node.Data)
                     .First();
 
-                Point newPoint = new(maxNode.Point.X + 1.5 * nodeSize , point.Y + nodeSize * 1.5);
+                Point newPoint = new(maxNode.Point.X + 1.5 * _nodeSize , point.Y + _nodeSize * 1.5);
                 _project.Add(nodeName,parentNodeName,newPoint);
                 foreach (var keyValuePair in _project.NodeDictionary)
                 { 
@@ -156,7 +162,7 @@ namespace CedarBoard.ViewModels
                         keyValuePair.Value.Point.X >= newPoint.X && 
                         node.ParentNode != parentNodeName)
                     {
-                        keyValuePair.Value.Point.X += nodeSize * 1.5;
+                        keyValuePair.Value.Point.X += _nodeSize * 1.5;
                     }
                 }
             }
@@ -181,6 +187,31 @@ namespace CedarBoard.ViewModels
                     Date = nodeKeyValuePair.Value.Data,
                 };
                 Nodes.Add(nodeUserControlViewModel);
+            }
+
+            Lines.Clear();
+            foreach(KeyValuePair<string, INode> nodeKeyValuePair in _project.NodeDictionary)
+            {
+                INode parentNode = nodeKeyValuePair.Value;
+                if (parentNode.ChildNode.Count == 0) { 
+                    continue;
+                }
+                List<INode> children = nodeKeyValuePair.Value.ChildNode
+                    .Select(n => _project.NodeDictionary[n])
+                    .ToList();
+                Point parentPoint = new(parentNode.Point.X + _nodeSize / 2, parentNode.Point.Y + _nodeSize / 2);
+                foreach (INode childNode in children)
+                {
+                    Lines.Add(new()
+                    {
+                        X1 = parentPoint.X,
+                        Y1 = parentPoint.Y,
+                        X2 = childNode.Point.X + _nodeSize / 2,
+                        Y2 = childNode.Point.Y + _nodeSize / 2,
+                        Stroke = Brushes.Black,
+                        StrokeThickness = 2
+                    });
+                }
             }
         }
     }

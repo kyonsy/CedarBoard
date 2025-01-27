@@ -94,5 +94,10 @@ namespace CedarBoard.Views
                 viewModel.CreateNewNode(nodeUserControl.DataContext as NodeUserControlViewModel);
             }
         }
+
+        private void NodeUserControl_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

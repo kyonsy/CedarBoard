@@ -13,6 +13,9 @@ namespace CedarBoard.ViewModels
     public class NodeUserControlViewModel : BindableBase
     {
         private string _name;
+        private string _message;
+        private double _canvasTop;
+
 
         /// <summary>
         /// 作成日時
@@ -28,7 +31,6 @@ namespace CedarBoard.ViewModels
             set => SetProperty(ref _name, value);
         }
 
-        private string _message;
 
         /// <summary>
         /// メッセージ
@@ -49,8 +51,6 @@ namespace CedarBoard.ViewModels
             get => _canvasLeft;
             set => SetProperty(ref _canvasLeft, value);
         }
-
-        private double _canvasTop;
 
         /// <summary>
         /// キャンバスの上(Y座標)

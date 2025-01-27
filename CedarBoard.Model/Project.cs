@@ -130,13 +130,32 @@ namespace CedarBoard.Model
         /// </summary>
         /// <param name="nodeName">変更前のノードの名前</param>
         /// <param name="newNodeName">変更後のノードの名前</param>
-        public void Rename(string nodeName,string newNodeName)
+        /// <param name="message">変更前のノードのメッセージ</param>
+        public void Rename(string nodeName,string newNodeName,string message)
         {
             if(nodeName =="origin") throw new Exception("原点ノードの名前は変更できません");
-            Node node = (Node)NodeDictionary[nodeName] with { Path = $@"{Path}/{newNodeName}.txt" };
+            Node node = (Node)NodeDictionary[nodeName] with { Path = $@"{Path}/{newNodeName}.txt", Name = newNodeName,Message = message};
+
+            // 親ノードの中のノードの名前を変える
+            INode parentNode = NodeDictionary[node.ParentNode];
+            int index = parentNode.ChildNode.IndexOf(nodeName);
+            List<string> children = parentNode.ChildNode;
+            children[index] = newNodeName;
+            if(parentNode is OriginNode originNode)
+            {
+                NodeDictionary[node.ParentNode] = originNode with { ChildNode = children };
+            }
+            else if(parentNode is Node normalNode)
+            {
+                NodeDictionary[node.ParentNode] = normalNode with { ChildNode = children };
+            }
+
+            foreach (var childName in node.ChildNode)
+            {
+                NodeDictionary[childName] = (Node)NodeDictionary[childName] with { ParentNode = newNodeName };
+            }
             NodeDictionary.Remove(nodeName);
             NodeDictionary.Add(newNodeName, node);
-            TextFile?.Rename(NodeDictionary[nodeName].Path, NodeDictionary[newNodeName].Path);  
         }
 
         /// <summary>

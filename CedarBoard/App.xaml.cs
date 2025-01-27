@@ -35,6 +35,7 @@ namespace CedarBoard
             containerRegistry.RegisterForNavigation<WorkspaceUserControl>();
             containerRegistry.RegisterForNavigation<NodeUserControl>();
             containerRegistry.RegisterDialog<NewNodeUserControl,NewNodeUserControlViewModel>();
+            containerRegistry.RegisterDialog<EditNodeUserControl, EditNodeUserControlViewModel>();
             // テスト用にシングルトンにはモックを登録しておく
             containerRegistry.RegisterSingleton<WorkspaceSelector>(() =>
             {

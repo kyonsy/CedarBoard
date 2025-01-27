@@ -41,8 +41,6 @@ namespace CedarBoard.ViewModels
             SaveWorkspace = new DelegateCommand(SaveWorkspaceExecute);
             AddProject = new DelegateCommand(AddProjectExecute);
             DeleteProject = new DelegateCommand(DeleteProjectExecute);
-            AddNode = new DelegateCommand(AddNodeExecute);
-            DeleteNode = new DelegateCommand(DeleteNodeExecute);
             BackEditWork = new DelegateCommand(BackEditWorkExecute);
         }
 
@@ -71,16 +69,6 @@ namespace CedarBoard.ViewModels
         /// プロジェクトを削除する
         /// </summary>
         public DelegateCommand DeleteProject { get; }
-
-        /// <summary>
-        /// ノードを追加する
-        /// </summary>
-        public DelegateCommand AddNode { get; }
-
-        /// <summary>
-        /// ノードを削除する
-        /// </summary>
-        public DelegateCommand DeleteNode { get; }
 
         /// <summary>
         /// ワークスペース編集画面へ戻る
@@ -146,15 +134,6 @@ namespace CedarBoard.ViewModels
         /// </summary>
         private void DeleteProjectExecute() { }
 
-        /// <summary>
-        /// ノードを追加
-        /// </summary>
-        private void AddNodeExecute() { }
-
-        /// <summary>
-        /// ノードを削除
-        /// </summary>
-        private void DeleteNodeExecute() { }
 
         /// <summary>
         /// ワークスペースの設定

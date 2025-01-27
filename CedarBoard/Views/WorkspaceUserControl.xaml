@@ -42,10 +42,6 @@
                 <ui:MenuItem Header="新規プロジェクト" Command="{Binding AddProject}"/>
                 <ui:MenuItem Header="プロジェクトを削除" Command="{Binding DeleteProject}"/>
             </ui:MenuItem>
-            <ui:MenuItem Header="ノード">
-                <ui:MenuItem Header="ノードを追加" Command="{Binding AddNode}"/>
-                <ui:MenuItem Header="ノードを削除" Command="{Binding AddNode}"/>
-            </ui:MenuItem>
             <ui:MenuItem Header="設定">
                 <ui:MenuItem Header="ワークスペースの設定" Command="{Binding BackEditWork}"/>
             </ui:MenuItem>

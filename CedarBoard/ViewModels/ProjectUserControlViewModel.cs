@@ -122,7 +122,30 @@ namespace CedarBoard.ViewModels
         /// <param name="viewModel"></param>
         public void EditNodeName(NodeUserControlViewModel viewModel)
         {
-            
+            _dialogService.ShowDialog(nameof(EditNodeUserControl), null, (IDialogResult dialogResult) =>
+            {
+                if (dialogResult.Result == ButtonResult.OK)
+                {
+                    try
+                    {
+                        string newNodeName = dialogResult.Parameters.GetValue<string>("nodeName");
+                        if (_project.NodeDictionary.ContainsKey(newNodeName)) {
+                            throw new Exception("重複した名前");
+                        }
+                        string message = viewModel.Message;
+                        string nodeName = viewModel.Name;
+                        _project.Rename(nodeName, newNodeName,message);
+
+                        ProjectToNodes();
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show("無効な名前です\nエラーメッセージ: " + ex.Message, "エラー", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        return;
+                    }
+
+                }
+            });
         }
 
         /// <summary>
@@ -136,22 +159,20 @@ namespace CedarBoard.ViewModels
                 System.Windows.MessageBoxResult result = System.Windows.MessageBox
                     .Show("子要素をもつノードは上書き保存できません。エディタによっては保存できるかもしれませんが、正常な動作は保証できません。\n子ノードを追加して編集することを推奨します。", "警告",
                     System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Warning);
-                if(result == System.Windows.MessageBoxResult.OK)
-                {
-                    try
-                    {
-                        Workspace.Open(_projectName, viewModel.Name);
-
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Windows.MessageBox.Show("有効なエディタのパスが指定されていません\nエラーメッセージ: " + ex.Message, "エラー",
-                            System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-                        return;
-                    }
-                }
+                if (result != System.Windows.MessageBoxResult.OK) return;    
             }
-           
+            try
+            {
+                Workspace.Open(_projectName, viewModel.Name);
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("有効なエディタのパスが指定されていません\nエラーメッセージ: " + ex.Message, "エラー",
+                    System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                return;
+            }
+
         }
 
         /// <summary>

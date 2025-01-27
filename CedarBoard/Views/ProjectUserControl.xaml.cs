@@ -25,65 +25,67 @@ namespace CedarBoard.Views
         public ProjectUserControl()
         {
             InitializeComponent();
-           // Loaded += OnLoaded;
-           // Unloaded += OnUnLoaded;
+            //Loaded += OnLoaded;
+            //Unloaded += OnUnLoaded;
         }
 
-        //private void OnLoaded(object sender,RoutedEventArgs e)
-        //{
-        //    if (_hwndSource == null) {
-        //        _hwndSource = PresentationSource.FromVisual(this) as HwndSource;
-        //        _hwndSource?.AddHook(WndProc);
-        //    }
-           
-        //}
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (_hwndSource == null)
+            {
+                _hwndSource = PresentationSource.FromVisual(this) as HwndSource;
+                _hwndSource?.AddHook(WndProc);
+            }
 
-        
-        //private void OnUnLoaded(object sender, RoutedEventArgs e) { 
-        //    if(_hwndSource != null)
-        //    {
-        //        _hwndSource.RemoveHook(WndProc);
-        //        _hwndSource = null;
-        //    }
-        //}
+        }
 
-        //private IntPtr WndProc(IntPtr hwnd,int msg, IntPtr wParam, IntPtr lParam,ref bool handled)
-        //{
-        //    switch (msg)
-        //    {
-        //        case WM_MOUSEHWHEEL:
-        //            OnMouseHorizontalWheel(wParam); 
-        //            break;
 
-        //        case WM_MOUSEWHEEL:
-        //            OnMouseWheel(wParam);
-        //            break;           
-        //    }
-        //    return IntPtr.Zero;
-        //}
+        private void OnUnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (_hwndSource != null)
+            {
+                _hwndSource.RemoveHook(WndProc);
+                _hwndSource = null;
+            }
+        }
 
-        //private void OnMouseHorizontalWheel(IntPtr wParam)
-        //{
-        //    int delta = unchecked((short)((long)wParam >> 16));
-        //    if (delta is 0)
-        //    {
-        //        return;
-        //    }
+        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            switch (msg)
+            {
+                case WM_MOUSEHWHEEL:
+                    OnMouseHorizontalWheel(wParam);
+                    break;
 
-        //    CanvasScroller.ScrollToHorizontalOffset(CanvasScroller.HorizontalOffset + delta);
-        //}
+                case WM_MOUSEWHEEL:
+                    OnMouseWheel(wParam);
+                    break;
+            }
+            return IntPtr.Zero;
+        }
 
-        //private void OnMouseWheel(IntPtr wParam)
-        //{
-        //    int delta = unchecked((short)((long)wParam >> 16));
-        //    if (delta is 0)
-        //    {
-        //        return;
-        //    }
-        //    CanvasScroller.ScrollToVerticalOffset(CanvasScroller.VerticalOffset - delta);
-        //}
+        private void OnMouseHorizontalWheel(IntPtr wParam)
+        {
+            int delta = unchecked((short)((long)wParam >> 16));
+            if (delta is 0)
+            {
+                return;
+            }
 
-        
+            CanvasScroller.ScrollToHorizontalOffset(CanvasScroller.HorizontalOffset + delta);
+        }
+
+        private void OnMouseWheel(IntPtr wParam)
+        {
+            int delta = unchecked((short)((long)wParam >> 16));
+            if (delta is 0)
+            {
+                return;
+            }
+            CanvasScroller.ScrollToVerticalOffset(CanvasScroller.VerticalOffset - delta);
+        }
+
+
 
 
         private void NodeUserControl_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
@@ -91,6 +93,11 @@ namespace CedarBoard.Views
             
         }
 
+        /// <summary>
+        /// ノードに紐づけられたテキストエディタを開く
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NodeUserControl_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var viewModel = (ProjectUserControlViewModel)DataContext;
@@ -101,6 +108,11 @@ namespace CedarBoard.Views
             }
         }
 
+        /// <summary>
+        /// 新しいノードを作る
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MenuItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var viewModel = (ProjectUserControlViewModel)DataContext; 
@@ -113,6 +125,11 @@ namespace CedarBoard.Views
             }
         }
 
+        /// <summary>
+        /// ノードの名前を変更する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MenuItem_PreviewMouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
             var viewModel = (ProjectUserControlViewModel)DataContext;

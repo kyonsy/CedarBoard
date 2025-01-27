@@ -50,9 +50,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <local:NodeUserControl DataContext="{Binding}" 
-                                                       
-                                                       PreviewMouseDoubleClick="NodeUserControl_PreviewMouseDoubleClick">
+                                <local:NodeUserControl DataContext="{Binding}" PreviewMouseDoubleClick="NodeUserControl_PreviewMouseDoubleClick">
                                     <local:NodeUserControl.ContextMenu>
                                         <ContextMenu>
                                             <MenuItem Header="新規ノード作成" PreviewMouseLeftButtonDown="MenuItem_PreviewMouseLeftButtonDown"/>

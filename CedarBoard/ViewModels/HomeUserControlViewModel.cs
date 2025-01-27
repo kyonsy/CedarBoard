@@ -152,13 +152,23 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public void OpenWorkExecute()
         {
-            if (SelectedKeyValuePair is null) return;
-            Workspace workspace = _workspaceSelector.GetWorkSpace(SelectedKeyValuePair.Value.Key);
-            var p = new NavigationParameters
+            try
+            {
+                if (SelectedKeyValuePair is null) return;
+                Workspace workspace = _workspaceSelector.GetWorkSpace(SelectedKeyValuePair.Value.Key);
+                var p = new NavigationParameters
                 {
                     {"Workspace",workspace }
                 };
-            _regionManager.RequestNavigate("ContentRegion",nameof(WorkspaceUserControl),p);
+                _regionManager.RequestNavigate("ContentRegion", nameof(WorkspaceUserControl), p);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxResult result = MessageBox.Show("無効なワークスペースです。ワークスペースの場所を変えた場合、「開く」からもう一度登録してください\nエラー："+ex.ToString()
+                    , "無効なワークスペースです", MessageBoxButton.OK, MessageBoxImage.Error);
+                
+            }
+          
         }
 
         /// <summary>

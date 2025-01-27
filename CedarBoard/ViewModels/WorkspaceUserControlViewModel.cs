@@ -242,7 +242,11 @@ namespace CedarBoard.ViewModels
         /// <param name="navigationContext">ナビゲーション元からのパラメータ</param>
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            
+            MessageBoxResult result = MessageBox.Show("ワークスペースを保存しますか？", "変更内容の保存", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            if (result == MessageBoxResult.OK)
+            {
+                _workspace.Save();
+            }
         }
     }
 }

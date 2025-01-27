@@ -21,8 +21,6 @@
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>
-
-
         <TreeView AllowDrop="True"  ItemsSource="{Binding WorkspaceItems}" ScrollViewer.CanContentScroll="False" Margin="890,22,0,-3">
             <TreeView.ItemTemplate >
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">

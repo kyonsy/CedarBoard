@@ -9,7 +9,7 @@
              Foreground="{DynamicResource TextFillColorPrimaryBrush}"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" Height="700" Width="1050">
     <Grid>
-        <TabControl ItemsSource="{Binding Tabs}" SelectedItem="{Binding SelectedTab}" Margin="0,22,165,0">
+        <TabControl ItemsSource="{Binding Tabs}" SelectedItem="{Binding SelectedTab}" Margin="0,22,165,0" TabStripPlacement="Top">
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Header}"/>

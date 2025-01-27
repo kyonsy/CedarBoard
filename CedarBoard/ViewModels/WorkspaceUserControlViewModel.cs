@@ -127,7 +127,33 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// 新規プロジェクト
         /// </summary>
-        private void AddProjectExecute() { }
+        private void AddProjectExecute() {
+            _dialogService.ShowDialog(nameof(NewProjectUserControl), null, (IDialogResult dialogResult) =>
+            {
+                if (dialogResult.Result == ButtonResult.OK)
+                {
+                    try
+                    {
+                        string newProjectName = dialogResult.Parameters.GetValue<string>("projectName");
+                        _workspace.Add(newProjectName);
+                        TabViewModel tabViewModel = new TabViewModel()
+                        {
+                            Header = newProjectName,
+                            ProjectViewModel = new(_dialogService, _workspace.WorkspacePoco.ProjectDictionary[newProjectName], newProjectName) { Workspace = _workspace},
+                        };
+                        Tabs.Add(tabViewModel);
+                        MakeTreeItemList();
+                        MakeTabsList();
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show("無効な名前です\nエラーメッセージ: " + ex.Message, "エラー", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        return;
+                    }
+
+                }
+            });
+        }
 
         /// <summary>
         /// プロジェクトを削除
@@ -139,7 +165,11 @@ namespace CedarBoard.ViewModels
         /// ワークスペースの設定
         /// </summary>
         private void BackEditWorkExecute() {
-            _regionManager.RequestNavigate("ContentRegion", nameof(EditWorkUserControl));
+            var p = new NavigationParameters
+            {
+                { "Setting", _workspace.WorkspacePoco.Setting }
+            };
+            _regionManager.RequestNavigate("ContentRegion", nameof(EditWorkUserControl),p);
         }
 
         /// <summary>

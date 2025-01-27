@@ -10,7 +10,7 @@ namespace CedarBoard.ViewModels
     /// <summary>
     /// 新しいプロジェクトを作るときのダイアログ
     /// </summary>
-    public class NewProjectUserControlViewModel : BindableBase
+    public class NewProjectUserControlViewModel : BindableBase,IDialogAware
     {
         /// <summary>
         /// コンストラクタ
@@ -30,7 +30,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// ノードの名前
         /// </summary>
-        public string NodeName { get { return _nodeName; } set { SetProperty(ref _nodeName, value); } }
+        public string ProjectName { get { return _nodeName; } set { SetProperty(ref _nodeName, value); } }
 
         /// <summary>
         /// タイトル
@@ -73,7 +73,7 @@ namespace CedarBoard.ViewModels
         {
             var p = new DialogParameters
             {
-                { "nodeName", NodeName },
+                { "projectName", ProjectName },
             };
             var result = new DialogResult(ButtonResult.OK) { Parameters = p };
             RequestClose.Invoke(result);

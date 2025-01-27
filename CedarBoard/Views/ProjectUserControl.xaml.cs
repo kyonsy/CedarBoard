@@ -88,11 +88,7 @@ namespace CedarBoard.Views
 
         private void NodeUserControl_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var viewModel = (ProjectUserControlViewModel)DataContext;
-            NodeUserControl nodeUserControl = sender as NodeUserControl;
-            if (nodeUserControl != null) {
-                viewModel.CreateNewNode(nodeUserControl.DataContext as NodeUserControlViewModel);
-            }
+            
         }
 
         private void NodeUserControl_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -102,6 +98,30 @@ namespace CedarBoard.Views
             if (nodeNodeUserControl != null)
             {
                 viewModel.EditNodeText(nodeNodeUserControl.DataContext as NodeUserControlViewModel);
+            }
+        }
+
+        private void MenuItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var viewModel = (ProjectUserControlViewModel)DataContext; 
+            var menuItem = sender as MenuItem;
+            var contextMenu = menuItem?.Parent as ContextMenu;
+            NodeUserControl nodeUserControl = contextMenu?.PlacementTarget as NodeUserControl;
+            if (nodeUserControl != null)
+            {
+                viewModel.CreateNewNode(nodeUserControl.DataContext as NodeUserControlViewModel);
+            }
+        }
+
+        private void MenuItem_PreviewMouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            var viewModel = (ProjectUserControlViewModel)DataContext;
+            var menuItem = sender as MenuItem;
+            var contextMenu = menuItem?.Parent as ContextMenu;
+            NodeUserControl nodeUserControl = contextMenu?.PlacementTarget as NodeUserControl;
+            if (nodeUserControl != null)
+            {
+                viewModel.EditNodeName(nodeUserControl.DataContext as NodeUserControlViewModel);
             }
         }
     }

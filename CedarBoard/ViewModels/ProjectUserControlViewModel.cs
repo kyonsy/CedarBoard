@@ -117,22 +117,41 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
+        /// ノードの名前を変える
+        /// </summary>
+        /// <param name="viewModel"></param>
+        public void EditNodeName(NodeUserControlViewModel viewModel)
+        {
+            
+        }
+
+        /// <summary>
         /// ノードに紐づけられたテキストファイルを編集する
         /// </summary>
         /// <param name="viewModel"></param>
         public void EditNodeText(NodeUserControlViewModel viewModel)
         {
-            try
+            if (viewModel.Children.Count > 0)
             {
-                Workspace.Open(_projectName, viewModel.Name);
-                
+                System.Windows.MessageBoxResult result = System.Windows.MessageBox
+                    .Show("子要素をもつノードは上書き保存できません。エディタによっては保存できるかもしれませんが、正常な動作は保証できません。\n子ノードを追加して編集することを推奨します。", "警告",
+                    System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Warning);
+                if(result == System.Windows.MessageBoxResult.OK)
+                {
+                    try
+                    {
+                        Workspace.Open(_projectName, viewModel.Name);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show("有効なエディタのパスが指定されていません\nエラーメッセージ: " + ex.Message, "エラー",
+                            System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        return;
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show("有効なエディタのパスが指定されていません\nエラーメッセージ: " + ex.Message, "エラー", 
-                    System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-                return;
-            }
+           
         }
 
         /// <summary>

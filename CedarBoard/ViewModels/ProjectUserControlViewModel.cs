@@ -29,7 +29,6 @@ namespace CedarBoard.ViewModels
         private Project _project;
         IDialogService _dialogService;
         private double _nodeSize = 200.0;
-        Workspace _workspace;
         private string _projectName;
 
         /// <summary>

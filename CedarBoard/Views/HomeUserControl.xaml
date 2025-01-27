@@ -24,7 +24,7 @@
             </ui:Button.Template>
         </ui:Button>
 
-        <ui:Button HorizontalAlignment="Left" Margin="715,306,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="300" Height="39"
+        <ui:Button HorizontalAlignment="Left" Margin="715,400,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="300" Height="39"
      Content="選択した作品を編集" FontSize="20" Background="White" Command="{Binding EditWork}">
             <ui:Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -39,7 +39,7 @@
             </ui:Button.Template>
         </ui:Button>
 
-        <ui:Button HorizontalAlignment="Left" Margin="715,385,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="300" Height="42"
+        <ui:Button HorizontalAlignment="Left" Margin="715,493,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="300" Height="42"
      Content="選択した作品を削除" FontSize="20" Background="Red" Command="{Binding DeleteWork}">
             <ui:Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -65,5 +65,15 @@
                 </GridView>
             </ListView.View>
         </ui:ListView>
+        <ui:Button HorizontalAlignment="Left" Margin="715,305,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="300" Height="43"
+            Content="ファイルを開く" FontSize="20" Background="White" Command="{Binding OpenFile}" >
+            <ui:Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </ui:Button.Template>
+        </ui:Button>
     </Grid>
 </UserControl>

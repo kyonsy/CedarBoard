@@ -8,8 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace CedarBoard.ViewModels
 {
@@ -36,6 +39,7 @@ namespace CedarBoard.ViewModels
             EditWork = new DelegateCommand(EditWorkExecute);
             DeleteWork = new DelegateCommand(DeleteWorkExecute);
             OpenWork = new DelegateCommand(OpenWorkExecute);
+            OpenFile = new DelegateCommand(OpenFileExecute);
         }
 
         //デリゲート
@@ -58,6 +62,12 @@ namespace CedarBoard.ViewModels
         /// 作品を開く
         /// </summary>
         public DelegateCommand OpenWork { get; }
+
+
+        /// <summary>
+        /// ファイルを開く
+        /// </summary>
+        public DelegateCommand OpenFile { get; }
 
         // プロパティ
         /// <summary>
@@ -137,8 +147,8 @@ namespace CedarBoard.ViewModels
         {
             if (SelectedKeyValuePair is not null)
             {
-                var result = MessageBox.Show("本当に削除してもよろしいでしょうか？", "警告", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-                if (result == MessageBoxResult.OK)
+                var result = System.Windows.MessageBox.Show("本当に削除してもよろしいでしょうか？", "警告", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                if (result == System.Windows.MessageBoxResult.OK)
                 {
                     _workspaceSelector.Remove(SelectedKeyValuePair.Value.Key);
                 }
@@ -164,8 +174,8 @@ namespace CedarBoard.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBoxResult result = MessageBox.Show("無効なワークスペースです。ワークスペースの場所を変えた場合、「開く」からもう一度登録してください\nエラー："+ex.ToString()
-                    , "無効なワークスペースです", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("無効なワークスペースです。ワークスペースの場所を変えた場合、「開く」からもう一度登録してください\nエラー："+ex.ToString()
+                    , "無効なワークスペース", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
                 
             }
           
@@ -197,6 +207,36 @@ namespace CedarBoard.ViewModels
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
         
+        }
+
+        private void OpenFileExecute()
+        {
+            try
+            {
+                string path = "";
+                using (var folderDialog = new FolderBrowserDialog())
+                {
+                    folderDialog.Description = "フォルダを選択してください";
+                    if (folderDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        path = folderDialog.SelectedPath;
+                    }
+                };
+                string worksaceName = Path.GetFileName(path);
+                _workspaceSelector.SelectorPoco.PathDictionary.Add(worksaceName, path);
+                _workspaceSelector.Save();
+                Workspace workspace = _workspaceSelector.GetWorkSpace(worksaceName);
+                var p = new NavigationParameters
+                {
+                    {"Workspace",workspace }
+                };
+                _regionManager.RequestNavigate("ContentRegion", nameof(WorkspaceUserControl), p);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("無効なワークスペースです。ワークスペースの場所を変えた場合、「開く」からもう一度登録してください\nエラー：" + ex.ToString()
+                    , "無効なワークスペース", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

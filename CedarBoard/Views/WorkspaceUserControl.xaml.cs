@@ -1,4 +1,5 @@
-﻿using Prism.Navigation.Regions;
+﻿using CedarBoard.ViewModels;
+using Prism.Navigation.Regions;
 using System.Windows.Controls;
 
 namespace CedarBoard.Views

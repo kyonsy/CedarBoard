@@ -42,6 +42,7 @@ namespace CedarBoard.ViewModels
             AddProject = new DelegateCommand(AddProjectExecute);
             DeleteProject = new DelegateCommand(DeleteProjectExecute);
             BackEditWork = new DelegateCommand(BackEditWorkExecute);
+            ChangeProjectName = new DelegateCommand(ChangeProjectNameExecute);
         }
 
         // デリゲート
@@ -75,6 +76,11 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public DelegateCommand BackEditWork { get; }
 
+        /// <summary>
+        /// プロジェクト名の変更
+        /// </summary>
+        public DelegateCommand ChangeProjectName { get; }
+
 
         //プロパティ
         /// <summary>
@@ -101,6 +107,40 @@ namespace CedarBoard.ViewModels
         /// データモデルにワークスペースを入れる
         /// </summary>
         public ObservableCollection<TreeItem> WorkspaceItems { get { return _workspaceItems; } set { SetProperty(ref _workspaceItems, value); } }
+
+        /// <summary>
+        /// プロジェクトの名前を変える
+        /// </summary>
+        private void ChangeProjectNameExecute()
+        {
+            _dialogService.ShowDialog(nameof(ChangeProjectNameUserControl), null, (IDialogResult dialogResult) =>
+            {
+                if (dialogResult.Result == ButtonResult.OK)
+                {
+                    try
+                    {
+                        string projectName = dialogResult.Parameters.GetValue<string>("projectName");
+                        string newProjectName = dialogResult.Parameters.GetValue<string>("newProjectName");
+                        _workspace.Rename(projectName, newProjectName);
+                        TabViewModel newTabViewModel = new TabViewModel()
+                        {
+                            Header = newProjectName,
+                            ProjectViewModel = new(_dialogService, _workspace.WorkspacePoco.ProjectDictionary[newProjectName], newProjectName) { Workspace = _workspace },
+                        };
+                        TabViewModel tabViewModel = Tabs.Where(tab => tab.Header == projectName).First();
+                        Tabs.Add(newTabViewModel);           
+                        Tabs.Remove(tabViewModel);
+                        MakeTreeItemList();
+                        MakeTabsList();
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show("無効な名前です\nエラーメッセージ: " + ex.Message, "エラー", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        return;
+                    }
+                }
+            });
+        }
 
         /// <summary>
         /// 新規作成

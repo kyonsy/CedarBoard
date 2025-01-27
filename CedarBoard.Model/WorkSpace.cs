@@ -63,7 +63,17 @@ namespace CedarBoard.Model
             WorkspacePoco = workspacePoco;
         }
 
-
+        /// <summary>
+        /// プロジェクト名を変更する
+        /// </summary>
+        /// <param name="projectName"></param>
+        /// <param name="newProjectName"></param>
+        public void Rename(string projectName, string newProjectName)
+        {
+            Project project = WorkspacePoco.ProjectDictionary[projectName];
+            WorkspacePoco.ProjectDictionary[newProjectName] = project;
+            WorkspacePoco.ProjectDictionary.Remove(projectName);
+        }
 
         /// <summary>
         /// 新しいプロジェクトを追加する

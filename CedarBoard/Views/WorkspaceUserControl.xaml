@@ -38,6 +38,7 @@
             </ui:MenuItem>
             <ui:MenuItem Header="プロジェクト">
                 <ui:MenuItem Header="新規プロジェクト" Command="{Binding AddProject}"/>
+                <ui:MenuItem Header="プロジェクト名の変更" Command="{Binding ChangeProjectName}"/>
                 <ui:MenuItem Header="プロジェクトを削除" Command="{Binding DeleteProject}"/>
             </ui:MenuItem>
             <ui:MenuItem Header="設定">

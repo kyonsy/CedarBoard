@@ -18,7 +18,7 @@ namespace CedarBoard.Model
         /// ノードのディクショナリ
         /// </summary>
         [JsonInclude]
-        public Dictionary<string,INode> NodeDictionary { get;} = [];
+        public Dictionary<string, INode> NodeDictionary { get; } = [];
 
 
         /// <summary>
@@ -37,7 +37,8 @@ namespace CedarBoard.Model
         /// Jsonからデシリアライズするときに使われるデフォルトコンストラクタ
         /// </summary>
         [JsonConstructor]
-        public Project(string path,Dictionary<string,INode> nodeDictionary) {
+        public Project(string path, Dictionary<string, INode> nodeDictionary)
+        {
             // テスト用
             Path = path;
             NodeDictionary = nodeDictionary;
@@ -64,7 +65,7 @@ namespace CedarBoard.Model
         /// <exception cref="ArgumentException">始めのノードの追加に使えなくする</exception>
         public void Add(string nodeName, string parentNodeName, Point point)
         {
-            if (NodeDictionary.Count == 0) 
+            if (NodeDictionary.Count == 0)
                 throw new ArgumentException("始めのノードを追加するときはAdd(int x,int y)を使ってください");
             INode node = new Node()
             {
@@ -88,11 +89,12 @@ namespace CedarBoard.Model
         /// <exception cref="ArgumentException">二つ目以降の追加に使えなくする</exception>
         private void Add(Point point)
         {
-            if(NodeDictionary.Count > 0) 
+            if (NodeDictionary.Count > 0)
                 throw new ArgumentException(
                     "二つ目以降のノードを追加するときはAdd(string nodeName,string newNodeName,int x,int y)を使ってください"
                     );
-            INode node = new OriginNode(){
+            INode node = new OriginNode()
+            {
                 Path = @$"{Path}\origin.txt",
                 ChildNode = [],
                 Point = point,
@@ -102,7 +104,7 @@ namespace CedarBoard.Model
             };
             NodeDictionary.Add("origin", node);
 
-            TextFile?.Create(node.Path, ""); 
+            TextFile?.Create(node.Path, "");
         }
 
         /// <summary>
@@ -110,7 +112,7 @@ namespace CedarBoard.Model
         /// </summary>
         /// <param name="nodeName">削除するノードの名前</param>
         /// <param name="parentName">親ノードの名前</param>
-        public void Remove(string nodeName,string parentName)
+        public void Remove(string nodeName, string parentName)
         {
             if (NodeDictionary[nodeName] is Node node)
             {
@@ -134,21 +136,21 @@ namespace CedarBoard.Model
         /// <param name="nodeName">変更前のノードの名前</param>
         /// <param name="newNodeName">変更後のノードの名前</param>
         /// <param name="message">変更前のノードのメッセージ</param>
-        public void Rename(string nodeName,string newNodeName,string message)
+        public void Rename(string nodeName, string newNodeName, string message)
         {
-            if(nodeName =="origin") throw new Exception("原点ノードの名前は変更できません");
-            Node node = (Node)NodeDictionary[nodeName] with { Path = $@"{Path}/{newNodeName}.txt", Name = newNodeName,Message = message};
+            if (nodeName == "origin") throw new Exception("原点ノードの名前は変更できません");
+            Node node = (Node)NodeDictionary[nodeName] with { Path = $@"{Path}/{newNodeName}.txt", Name = newNodeName, Message = message };
 
             // 親ノードの中のノードの名前を変える
             INode parentNode = NodeDictionary[node.ParentNode];
             int index = parentNode.ChildNode.IndexOf(nodeName);
             List<string> children = parentNode.ChildNode;
             children[index] = newNodeName;
-            if(parentNode is OriginNode originNode)
+            if (parentNode is OriginNode originNode)
             {
                 NodeDictionary[node.ParentNode] = originNode with { ChildNode = children };
             }
-            else if(parentNode is Node normalNode)
+            else if (parentNode is Node normalNode)
             {
                 NodeDictionary[node.ParentNode] = normalNode with { ChildNode = children };
             }

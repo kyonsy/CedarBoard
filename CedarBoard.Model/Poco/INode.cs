@@ -8,8 +8,8 @@ namespace CedarBoard.Model.Poco
     /// <summary>
     /// ノードのインターフェイス
     /// </summary>
-    [JsonDerivedType(typeof(Node),nameof(Node))]
-    [JsonDerivedType(typeof(OriginNode),nameof(OriginNode))]
+    [JsonDerivedType(typeof(Node), nameof(Node))]
+    [JsonDerivedType(typeof(OriginNode), nameof(OriginNode))]
     public interface INode
     {
         /// <summary>
@@ -40,7 +40,7 @@ namespace CedarBoard.Model.Poco
         /// <summary>
         /// ノードの名前
         /// </summary>
-        public string Name {  get; set; }
+        public string Name { get; set; }
     }
 }
 

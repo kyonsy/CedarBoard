@@ -42,7 +42,8 @@ namespace CedarBoard.Model.Accessor
         /// </summary>
         /// <param name="file">ファイルのパス</param>
         /// <param name="value">書き出す内容</param>
-        public void SetData(string file, string value) {
+        public void SetData(string file, string value)
+        {
             FileDictionary[file].Value = value;
         }
 
@@ -51,10 +52,10 @@ namespace CedarBoard.Model.Accessor
         /// </summary>
         /// <param name="file"></param>
         /// <param name="value"></param>
-        public void Create(string file,string value)
+        public void Create(string file, string value)
         {
             FileDictionary.Add(file, new(value));
-            
+
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace CedarBoard.Model.Accessor
         /// <param name="file">削除するファイル</param>
         public void Delete(string file)
         {
-            FileDictionary.Remove(file); 
+            FileDictionary.Remove(file);
         }
 
         /// <summary>

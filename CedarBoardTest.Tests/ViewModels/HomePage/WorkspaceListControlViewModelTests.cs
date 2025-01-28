@@ -1,16 +1,8 @@
 // Copyright (c) 2025 Kyoshiro Kaji
 // MIT License
 // 詳細は LICENSE ファイルを参照してください。
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CedarBoard.ViewModels.HomePage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CedarBoard.Model.Accessor;
 using CedarBoard.Model;
-using CedarBoard.Views;
+using CedarBoard.Model.Accessor;
 
 namespace CedarBoardTest.Tests.ViewModels.HomePage
 {
@@ -21,15 +13,17 @@ namespace CedarBoardTest.Tests.ViewModels.HomePage
         public void WorkspaceListControlViewModelTest()
         {
             WorkspaceListControl view = new();
-            WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock()) { 
-                SelectorPoco = new() { 
+            WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock())
+            {
+                SelectorPoco = new()
+                {
                     PathDictionary = new()
                     {
                         { "apple","200"},
                         {"orange","300"},
                         { "strbery","400"}
                     }
-                } 
+                }
             };
             HomePageViewModel parent = new() { WorkspaceSelector = sel };
             WorkspaceListControlViewModel viewModel = new(parent);

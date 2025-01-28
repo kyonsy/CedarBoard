@@ -10,20 +10,17 @@ using Prism.Navigation.Regions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace CedarBoard.ViewModels
 {
     /// <summary>
     /// ホーム画面
     /// </summary>
-	public class HomeUserControlViewModel : BindableBase,INavigationAware
-	{
+    public class HomeUserControlViewModel : BindableBase, INavigationAware
+    {
         //フィールド
         private string _title = "CedarBoard";
         WorkspaceSelector _workspaceSelector;
@@ -130,7 +127,7 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public void EditWorkExecute()
         {
-            if(SelectedKeyValuePair is not null)
+            if (SelectedKeyValuePair is not null)
             {
                 Workspace workspace = _workspaceSelector.GetWorkSpace(SelectedKeyValuePair.Value.Key);
                 var p = new NavigationParameters
@@ -139,7 +136,7 @@ namespace CedarBoard.ViewModels
                     { "Path", SelectedKeyValuePair.Value.ToString()},
                     {"Workspace",workspace }
                 };
-                _regionManager.RequestNavigate("ContentRegion", nameof(EditWorkUserControl),p);
+                _regionManager.RequestNavigate("ContentRegion", nameof(EditWorkUserControl), p);
             }
         }
 
@@ -157,7 +154,7 @@ namespace CedarBoard.ViewModels
                 }
                 // 画面をリロードする
                 _regionManager.RequestNavigate("ContentRegion", nameof(HomeUserControl));
-            }      
+            }
         }
 
         /// <summary>
@@ -177,10 +174,10 @@ namespace CedarBoard.ViewModels
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("無効なワークスペースです。ワークスペースの場所を変えた場合、「開く」からもう一度登録してください\nエラー："+ex.ToString()
-                    , "無効なワークスペース", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);              
+                System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("無効なワークスペースです。ワークスペースの場所を変えた場合、「開く」からもう一度登録してください\nエラー：" + ex.ToString()
+                    , "無効なワークスペース", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
             }
-          
+
         }
 
         /// <summary>
@@ -189,7 +186,7 @@ namespace CedarBoard.ViewModels
         /// <param name="navigationContext">ナビゲーション元からのパラメータ</param>
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            
+
         }
 
         /// <summary>
@@ -208,7 +205,7 @@ namespace CedarBoard.ViewModels
         /// <param name="navigationContext">ナビゲーション元からのパラメータ</param>
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-        
+
         }
 
         private void OpenFileExecute()

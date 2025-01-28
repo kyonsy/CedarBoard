@@ -1,8 +1,6 @@
 // Copyright (c) 2025 Kyoshiro Kaji
 // MIT License
 // 詳細は LICENSE ファイルを参照してください。
-using System.Collections.Generic;
-
 namespace CedarBoard.Model.Accessor
 {
     /// <summary>
@@ -24,7 +22,7 @@ namespace CedarBoard.Model.Accessor
         /// <summary>
         /// ディレクトリの集合を仮想的に再現
         /// </summary>
-        public Dictionary<string,Mock> DirectoryDictionary { get; set; } = [];
+        public Dictionary<string, Mock> DirectoryDictionary { get; set; } = [];
 
         /// <summary>
         /// ディレクトリの生成を仮想的に表現
@@ -32,7 +30,7 @@ namespace CedarBoard.Model.Accessor
         /// <param name="path">生成するディレクトリのパス</param>
         public void Create(string path)
         {
-            DirectoryDictionary.Add(path,new());
+            DirectoryDictionary.Add(path, new());
         }
 
         /// <summary>

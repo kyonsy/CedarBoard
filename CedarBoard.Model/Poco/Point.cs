@@ -27,7 +27,7 @@ namespace CedarBoard.Model.Poco
         /// </summary>
         /// <param name="x">Xç¿ïW</param>
         /// <param name="y">Yç¿ïW</param>
-        public Point(double x,double y) => (X,Y) = (x,y); 
+        public Point(double x, double y) => (X, Y) = (x, y);
     }
 }
 

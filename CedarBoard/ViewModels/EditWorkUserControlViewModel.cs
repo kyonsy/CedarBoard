@@ -7,17 +7,14 @@ using CedarBoard.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation.Regions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CedarBoard.ViewModels
 {
     /// <summary>
     /// 作品を編集する
     /// </summary>
-	public class EditWorkUserControlViewModel : BindableBase,INavigationAware
-	{
+	public class EditWorkUserControlViewModel : BindableBase, INavigationAware
+    {
         //フィールド
         private IRegionManager _regionManager;
         private WorkspaceSelector _workspaceSelector;
@@ -59,7 +56,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// 作者名
         /// </summary>
-        public string Author { get { return _author; } set { SetProperty(ref _author, value); } } 
+        public string Author { get { return _author; } set { SetProperty(ref _author, value); } }
 
         /// <summary>
         /// 使うエディタのパス
@@ -89,7 +86,7 @@ namespace CedarBoard.ViewModels
         /// <param name="navigationContext">ナビゲーション元からのパラメータ</param>
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            
+
         }
 
         /// <summary>

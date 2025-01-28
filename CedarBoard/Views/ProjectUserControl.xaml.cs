@@ -2,12 +2,9 @@
 // MIT License
 // 詳細は LICENSE ファイルを参照してください。
 using CedarBoard.ViewModels;
-using Prism.Events;
 using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
 
@@ -93,7 +90,7 @@ namespace CedarBoard.Views
 
         private void NodeUserControl_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            
+
         }
 
         /// <summary>
@@ -118,7 +115,7 @@ namespace CedarBoard.Views
         /// <param name="e"></param>
         private void MenuItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var viewModel = (ProjectUserControlViewModel)DataContext; 
+            var viewModel = (ProjectUserControlViewModel)DataContext;
             var menuItem = sender as MenuItem;
             var contextMenu = menuItem?.Parent as ContextMenu;
             NodeUserControl nodeUserControl = contextMenu?.PlacementTarget as NodeUserControl;

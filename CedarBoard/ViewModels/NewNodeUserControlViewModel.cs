@@ -4,19 +4,16 @@
 using Prism.Commands;
 using Prism.Dialogs;
 using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CedarBoard.ViewModels
 {
     /// <summary>
     /// 新しくノードを作るときに出てくるダイアログ
     /// </summary>
-	public class NewNodeUserControlViewModel : BindableBase,IDialogAware
-	{
+	public class NewNodeUserControlViewModel : BindableBase, IDialogAware
+    {
         private string _title = "ノードの新規作成";
-        private string _nodeName="";
+        private string _nodeName = "";
 
         /// <summary>
         /// コンストラクタ
@@ -44,7 +41,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// 閉じるときのリスナー
         /// </summary>
-        public DialogCloseListener RequestClose {  get; set; }
+        public DialogCloseListener RequestClose { get; set; }
 
 
         /// <summary>
@@ -61,7 +58,7 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public void OnDialogClosed()
         {
-            
+
         }
 
         /// <summary>
@@ -70,7 +67,7 @@ namespace CedarBoard.ViewModels
         /// <param name="parameters"></param>
         public void OnDialogOpened(IDialogParameters parameters)
         {
-            
+
         }
 
         private void OKButtonExecute()

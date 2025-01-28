@@ -4,16 +4,13 @@
 using Prism.Commands;
 using Prism.Dialogs;
 using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CedarBoard.ViewModels
 {
     /// <summary>
     /// ノードの名前を編集する画面
     /// </summary>
-    public class EditNodeUserControlViewModel : BindableBase,IDialogAware
+    public class EditNodeUserControlViewModel : BindableBase, IDialogAware
     {
         /// <summary>
         /// コンストラクタ

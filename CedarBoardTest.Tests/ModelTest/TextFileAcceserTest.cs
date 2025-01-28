@@ -2,11 +2,6 @@
 // MIT License
 // 詳細は LICENSE ファイルを参照してください。
 using CedarBoard.Model.Accessor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CedarBoardTest.Tests.ModelTest
 {
@@ -19,7 +14,7 @@ namespace CedarBoardTest.Tests.ModelTest
             TextFileAccessor accessor = new();
             File.WriteAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\readme.txt", "hello world!");
             string readme = accessor.GetData(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\readme.txt");
-            Assert.AreEqual("hello world!",readme);
+            Assert.AreEqual("hello world!", readme);
             File.Delete(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\readme.txt");
         }
 
@@ -29,7 +24,7 @@ namespace CedarBoardTest.Tests.ModelTest
             TextFileAccessor accessor = new();
             using (File.Create(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\writeme.txt")) { };
             accessor.SetData(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\writeme.txt", "kkkkkkk");
-            Assert.AreEqual("kkkkkkk",File.ReadAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\writeme.txt"));
+            Assert.AreEqual("kkkkkkk", File.ReadAllText(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\writeme.txt"));
             File.Delete(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\writeme.txt");
         }
 
@@ -38,14 +33,14 @@ namespace CedarBoardTest.Tests.ModelTest
         {
             TextFileAccessor accessor = new();
             accessor.Create(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\createme.txt", "kkkkkkk");
-            Assert.AreEqual(true,File.Exists(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\createme.txt"));
+            Assert.AreEqual(true, File.Exists(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\createme.txt"));
             File.Delete(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\createme.txt");
         }
 
         [TestMethod]
         public void ファイル名の変更ができる()
         {
-            TextFileAccessor accessor= new();
+            TextFileAccessor accessor = new();
             using (File.Create(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\change.txt")) { };
             accessor.Rename(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\change.txt", @"C:\ワークスペース\ガリレオコンテスト\work\TextFile\changed.txt");
             Assert.AreEqual(true, File.Exists(@"C:\ワークスペース\ガリレオコンテスト\work\TextFile\changed.txt"));

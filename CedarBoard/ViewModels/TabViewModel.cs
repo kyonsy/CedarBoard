@@ -1,12 +1,6 @@
 // Copyright (c) 2025 Kyoshiro Kaji
 // MIT License
 // 詳細は LICENSE ファイルを参照してください。
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace CedarBoard.ViewModels
 {
     /// <summary>
@@ -22,7 +16,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// DataContextに入れるViewModel
         /// </summary>
-        public ProjectUserControlViewModel ProjectViewModel {  get; set; }
+        public ProjectUserControlViewModel ProjectViewModel { get; set; }
     }
 }
 

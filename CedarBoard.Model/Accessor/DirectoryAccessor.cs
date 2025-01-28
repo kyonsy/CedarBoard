@@ -49,7 +49,8 @@ namespace CedarBoard.Model.Accessor
         /// </summary>
         /// <param name="dictionary">存在を確認するディレクトリのパス</param>
         /// <returns>あるのかどうかを返す</returns>
-        public bool Exists(string dictionary) { 
+        public bool Exists(string dictionary)
+        {
             return Directory.Exists(dictionary);
         }
     }

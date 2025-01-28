@@ -4,16 +4,13 @@
 using Prism.Commands;
 using Prism.Dialogs;
 using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CedarBoard.ViewModels
 {
     /// <summary>
     /// プロジェクト名を変えるダイアログ
     /// </summary>
-    public class ChangeProjectNameUserControlViewModel : BindableBase,IDialogAware
+    public class ChangeProjectNameUserControlViewModel : BindableBase, IDialogAware
     {
         /// <summary>
         /// コンストラクタ
@@ -22,7 +19,7 @@ namespace CedarBoard.ViewModels
         {
             OKButton = new DelegateCommand(OKButtonExecute);
         }
-        
+
         private string _title = "プロジェクト名の変更";
         private string _projectName = "";
         private string _newProjectName = "";

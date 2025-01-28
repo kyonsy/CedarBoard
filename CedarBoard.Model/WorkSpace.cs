@@ -13,13 +13,13 @@ namespace CedarBoard.Model
     /// <summary>
     /// ワークスペース
     /// </summary>
-  
+
     public sealed class Workspace : JsonFileBase
     {
         /// <summary>
         /// workspace.jsonに紐付けられたPOCO
         /// </summary>
-        public WorkspacePoco WorkspacePoco { get;}
+        public WorkspacePoco WorkspacePoco { get; }
 
         /// <summary>
         /// ファイル操作用オブジェクト
@@ -58,7 +58,7 @@ namespace CedarBoard.Model
         /// <param name="directory">テスト用と本番用で使い分ける。ディレクトリ操作のためのオブジェクト</param>
         /// <param name="path">ワークスペースのパス</param>
         /// <param name="workspacePoco">ワークスペースのPoco</param>
-        public Workspace(ITextFile textFile, IDirectory directory, string path,WorkspacePoco workspacePoco)
+        public Workspace(ITextFile textFile, IDirectory directory, string path, WorkspacePoco workspacePoco)
         {
             TextFile = textFile;
             Directory = directory;
@@ -104,7 +104,7 @@ namespace CedarBoard.Model
         /// </summary>
         /// <param name="projectName">プロジェクトの名前</param>
         /// <param name="nodeName">指定したノードの名前</param>
-        public void Open(string projectName,string nodeName)
+        public void Open(string projectName, string nodeName)
         {
             ProcessStartInfo psi = new()
             {
@@ -113,7 +113,7 @@ namespace CedarBoard.Model
                 CreateNoWindow = true,
                 UseShellExecute = false,
             };
-            using (Process.Start(psi)) { } ;
+            using (Process.Start(psi)) { };
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace CedarBoard.Model
         /// </summary>
         public override void Save()
         {
-            TextFile.SetData(@$"{Path}\workspace.json",Serialize(WorkspacePoco));
+            TextFile.SetData(@$"{Path}\workspace.json", Serialize(WorkspacePoco));
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace CedarBoard.Model
         {
             WorkspacePoco sel = JsonSerializer.Deserialize<WorkspacePoco>(json, GetOptions()) ??
                 throw new FormatException("Json文字列として認識できません");
-            foreach(var keyValuePair in sel.ProjectDictionary)
+            foreach (var keyValuePair in sel.ProjectDictionary)
             {
                 keyValuePair.Value.TextFile = TextFile;
             }

@@ -1,11 +1,6 @@
 // Copyright (c) 2025 Kyoshiro Kaji
 // MIT License
 // 詳細は LICENSE ファイルを参照してください。
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 
 namespace CedarBoard.Model
@@ -18,7 +13,7 @@ namespace CedarBoard.Model
         /// <summary>
         /// アイテムの名前
         /// </summary>
-        public string Name {  get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 子要素
@@ -28,7 +23,7 @@ namespace CedarBoard.Model
         /// <summary>
         /// アイテムが下に開いているか
         /// </summary>
-        public bool IsExpanded {  get; set; }
+        public bool IsExpanded { get; set; }
 
         /// <summary>
         /// コンストラクタ

@@ -1,20 +1,20 @@
 // Copyright (c) 2025 Kyoshiro Kaji
 // MIT License
 // 詳細は LICENSE ファイルを参照してください。
+using CedarBoard.Model;
+using CedarBoard.Model.Accessor;
+using CedarBoard.ViewModels;
 using CedarBoard.Views;
 using Prism.Ioc;
 using Prism.Unity;
 using System.Windows;
-using CedarBoard.Model;
-using CedarBoard.Model.Accessor;
-using CedarBoard.ViewModels;
 
 namespace CedarBoard
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App: PrismApplication
+    public partial class App : PrismApplication
     {
         /// <summary>
         /// 繧ｷ繧ｧ繝ｫ繧剃ｽ懊ｋ
@@ -37,7 +37,7 @@ namespace CedarBoard
             containerRegistry.RegisterForNavigation<HomeUserControl>();
             containerRegistry.RegisterForNavigation<WorkspaceUserControl>();
             containerRegistry.RegisterForNavigation<NodeUserControl>();
-            containerRegistry.RegisterDialog<NewNodeUserControl,NewNodeUserControlViewModel>();
+            containerRegistry.RegisterDialog<NewNodeUserControl, NewNodeUserControlViewModel>();
             containerRegistry.RegisterDialog<EditNodeUserControl, EditNodeUserControlViewModel>();
             containerRegistry.RegisterDialog<NewProjectUserControl, NewProjectUserControlViewModel>();
             containerRegistry.RegisterDialog<ChangeProjectNameUserControl, ChangeProjectNameUserControlViewModel>();

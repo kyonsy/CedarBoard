@@ -3,9 +3,6 @@
 // 詳細は LICENSE ファイルを参照してください。
 using CedarBoard.Model;
 using CedarBoard.Model.Accessor;
-using Moq;
-using System.Windows.Controls;
-using CedarBoard.Model.Poco;
 
 namespace CedarBoardTest.Tests.ModelTest
 {
@@ -26,7 +23,7 @@ namespace CedarBoardTest.Tests.ModelTest
         {
             Project p = new(new TextFileMock(), "C:");
             p.TextFile.SetData(@"C:\origin.txt", "Thanks!");
-            p.Add("origin", "newNode",new(15,15));
+            p.Add("origin", "newNode", new(15, 15));
             Assert.AreEqual("Thanks!", p.TextFile.GetData(@"C:\newNode.txt"));
         }
 

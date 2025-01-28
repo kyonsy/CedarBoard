@@ -24,7 +24,7 @@ namespace CedarBoardTest.Tests.ModelTest
                 CreatedDate = "2024/10/24",
                 UpdatedDate = "2024/10/24",
                 Message = "始めに作ったやつ"
-            },"C:");
+            }, "C:");
             Assert.AreEqual(true, sel.Directory.Exists("C:"));
         }
 
@@ -51,8 +51,10 @@ namespace CedarBoardTest.Tests.ModelTest
         [TestMethod]
         public void 指定されたワークスペースを返すことが出来る()
         {
-            WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock()){ 
-                SelectorPoco = new() { PathDictionary = [] } };
+            WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock())
+            {
+                SelectorPoco = new() { PathDictionary = [] }
+            };
             sel.Add(new()
             {
                 Author = "kyonsy",

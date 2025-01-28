@@ -1,12 +1,12 @@
 // Copyright (c) 2025 Kyoshiro Kaji
 // MIT License
 // 詳細は LICENSE ファイルを参照してください。
-using System.Runtime.CompilerServices;
 using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-[assembly:InternalsVisibleTo("CedarBoardTest.Tests")]
+[assembly: InternalsVisibleTo("CedarBoardTest.Tests")]
 namespace CedarBoard.Model
 {
     /// <summary>
@@ -46,7 +46,7 @@ namespace CedarBoard.Model
         {
             TextFile = textFile;
             Directory = directory;
-            SelectorPoco = GetSelectorPoco();   
+            SelectorPoco = GetSelectorPoco();
         }
 
         /// <summary>
@@ -55,11 +55,11 @@ namespace CedarBoard.Model
         /// <param name="setting">新しいワークスペースの設定</param>
         /// <param name="path">ワークスペースのパス</param>
         /// <returns>新しいワークスペース</returns>
-        public void Add(Setting setting,string path)
+        public void Add(Setting setting, string path)
         {
             Directory.Create(path);
-            WorkspacePoco wPoco = new() { Setting = setting,ProjectDictionary = [] };
-            TextFile.Create(@$"{path}\workspace.json",Serialize(wPoco));
+            WorkspacePoco wPoco = new() { Setting = setting, ProjectDictionary = [] };
+            TextFile.Create(@$"{path}\workspace.json", Serialize(wPoco));
             SelectorPoco.PathDictionary.Add(setting.Name, path);
             Workspace workspace = GetWorkSpace(setting.Name);
             workspace.Add("MainProject");
@@ -81,14 +81,14 @@ namespace CedarBoard.Model
         /// </summary>
         /// <param name="workspaceName">今の名前</param>
         /// <param name="newWorkspaceName">新しい名前</param>
-        public void Rename(string workspaceName,string newWorkspaceName)
+        public void Rename(string workspaceName, string newWorkspaceName)
         {
             Workspace workspace = GetWorkSpace(workspaceName);
             workspace.WorkspacePoco.Setting.Name = newWorkspaceName;
             workspace.Save();
-            SelectorPoco.PathDictionary.Add(newWorkspaceName,SelectorPoco.PathDictionary[workspaceName]);
+            SelectorPoco.PathDictionary.Add(newWorkspaceName, SelectorPoco.PathDictionary[workspaceName]);
             SelectorPoco.PathDictionary.Remove(workspaceName);
-            
+
         }
 
 
@@ -118,7 +118,8 @@ namespace CedarBoard.Model
         /// <param name="json">Json文字列</param>
         /// <returns>デシリアライズされたPoco</returns>
         /// <exception cref="FormatException"></exception>
-        protected override SelectorPoco Deserialize(string json) {
+        protected override SelectorPoco Deserialize(string json)
+        {
             SelectorPoco sel = JsonSerializer.Deserialize<SelectorPoco>(json, GetOptions()) ??
                 throw new FormatException("Json文字列として認識できません");
             return sel;
@@ -128,7 +129,8 @@ namespace CedarBoard.Model
         /// デシリアライズを行いSelectorPocoを返す
         /// </summary>
         /// <returns>デシリアライズされたPoco</returns>
-        private SelectorPoco GetSelectorPoco() {
+        private SelectorPoco GetSelectorPoco()
+        {
             if (TextFile.Exists(SettingPath))
             {
                 return Deserialize(TextFile.GetData(SettingPath));
@@ -140,6 +142,6 @@ namespace CedarBoard.Model
                 return poco;
             }
         }
-}
+    }
 }
 

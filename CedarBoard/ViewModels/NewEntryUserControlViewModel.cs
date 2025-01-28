@@ -16,7 +16,7 @@ namespace CedarBoard.ViewModels
     /// <summary>
     /// 新規作成画面
     /// </summary>
-    public class NewEntryUserControlViewModel : BindableBase,IDisposable
+    public class NewEntryUserControlViewModel : BindableBase, IDisposable
     {
         // フィールド
         private IRegionManager _regionManager;
@@ -95,10 +95,11 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// 新しいワークスペースを作成する
         /// </summary>
-        private void NewEntryExecute() {
+        private void NewEntryExecute()
+        {
             try
             {
-                if(Path == "パスを選択してください")
+                if (Path == "パスを選択してください")
                 {
                     throw new Exception("パスが設定されていません");
                 }
@@ -117,7 +118,7 @@ namespace CedarBoard.ViewModels
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("無効な設定を検地しました. タイトルを決めてからパスを設定してください. \nエラーメッセージ: " + ex.Message, "エラー", System.Windows.MessageBoxButton.OK,MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("無効な設定を検地しました. タイトルを決めてからパスを設定してください. \nエラーメッセージ: " + ex.Message, "エラー", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             _workspaceSelector.Save();
@@ -125,7 +126,7 @@ namespace CedarBoard.ViewModels
             {
                 {"Workspace",_workspaceSelector.GetWorkSpace(Name) }
             };
-            _regionManager.RequestNavigate("ContentRegion", nameof(WorkspaceUserControl),p);
+            _regionManager.RequestNavigate("ContentRegion", nameof(WorkspaceUserControl), p);
         }
 
         /// <summary>
@@ -134,11 +135,12 @@ namespace CedarBoard.ViewModels
         private void ReferPathExecute()
         {
             string path = "";
-            using (var folderDialog = new FolderBrowserDialog()) {
+            using (var folderDialog = new FolderBrowserDialog())
+            {
                 folderDialog.Description = "フォルダを選択してください";
-                if(folderDialog.ShowDialog() == DialogResult.OK)
+                if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    path = folderDialog.SelectedPath + "\\" +Name;
+                    path = folderDialog.SelectedPath + "\\" + Name;
                 }
             };
             Path = path;
@@ -150,7 +152,7 @@ namespace CedarBoard.ViewModels
         /// </summary>
         public void Dispose()
         {
-            
+
         }
     }
 }

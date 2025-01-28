@@ -1,23 +1,18 @@
 // Copyright (c) 2025 Kyoshiro Kaji
 // MIT License
 // 詳細は LICENSE ファイルを参照してください。
-using Prism.Mvvm;
-using Prism.Commands;
 using CedarBoard.Model;
+using CedarBoard.Model.Poco;
+using CedarBoard.Views;
+using Prism.Commands;
+using Prism.Dialogs;
+using Prism.Mvvm;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Prism.Navigation.Regions;
-using CedarBoard.Views;
-using CedarBoard.Model.Poco;
-using System.Collections.Generic;
-using System.Windows.Input;
-using System.Windows.Controls;
-using System.Diagnostics;
-using Prism.Events;
-using System;
-using Prism.Dialogs;
-using System.Windows.Shapes;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace CedarBoard.ViewModels
 {
@@ -37,7 +32,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public ProjectUserControlViewModel(IDialogService dialogService,Project project,string projectName)
+        public ProjectUserControlViewModel(IDialogService dialogService, Project project, string projectName)
         {
             _projectName = projectName;
             _dialogService = dialogService;
@@ -48,7 +43,7 @@ namespace CedarBoard.ViewModels
         }
 
         // デリゲート
-       
+
         /// <summary>
         /// Canvasを拡大縮小するコマンド
         /// </summary>
@@ -75,11 +70,12 @@ namespace CedarBoard.ViewModels
         public int SlidLevel
         {
             get => _slidLevel;
-            set {
+            set
+            {
                 SetProperty(ref _slidLevel, value);
                 // スライダーのレベルに合わせて拡大縮小を行う
                 ZoomLevel = 1.0 + (value - 50) / 100.0;
-            } 
+            }
         }
 
         /// <summary>
@@ -111,7 +107,7 @@ namespace CedarBoard.ViewModels
         /// </summary>
         private void OnZoomLow()
         {
-            if(_zoomLevel < 0.093)
+            if (_zoomLevel < 0.093)
             {
                 return;
             }
@@ -131,12 +127,13 @@ namespace CedarBoard.ViewModels
                     try
                     {
                         string newNodeName = dialogResult.Parameters.GetValue<string>("nodeName");
-                        if (_project.NodeDictionary.ContainsKey(newNodeName)) {
+                        if (_project.NodeDictionary.ContainsKey(newNodeName))
+                        {
                             throw new Exception("重複した名前");
                         }
                         string message = viewModel.Message;
                         string nodeName = viewModel.Name;
-                        _project.Rename(nodeName, newNodeName,message);
+                        _project.Rename(nodeName, newNodeName, message);
 
                         ProjectToNodes();
                     }
@@ -161,7 +158,7 @@ namespace CedarBoard.ViewModels
                 System.Windows.MessageBoxResult result = System.Windows.MessageBox
                     .Show("子要素をもつノードは上書き保存できません。エディタによっては保存できるかもしれませんが、正常な動作は保証できません。\n子ノードを追加して編集することを推奨します。", "警告",
                     System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Warning);
-                if (result != System.Windows.MessageBoxResult.OK) return;    
+                if (result != System.Windows.MessageBoxResult.OK) return;
             }
             try
             {
@@ -184,7 +181,7 @@ namespace CedarBoard.ViewModels
         public void CreateNewNode(NodeUserControlViewModel viewModel)
         {
             _dialogService.ShowDialog(nameof(NewNodeUserControl), null, (IDialogResult dialogResult) =>
-            {               
+            {
                 if (dialogResult.Result == ButtonResult.OK)
                 {
                     try
@@ -198,7 +195,7 @@ namespace CedarBoard.ViewModels
                         System.Windows.MessageBox.Show("無効な名前です\nエラーメッセージ: " + ex.Message, "エラー", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                         return;
                     }
-                    
+
                 }
             });
         }
@@ -208,12 +205,12 @@ namespace CedarBoard.ViewModels
         /// </summary>
         /// <param name="nodeName"></param>
         /// <param name="parentNodeName"></param>
-        private void InsertNewNode(string nodeName,string parentNodeName)
+        private void InsertNewNode(string nodeName, string parentNodeName)
         {
             Point point = _project.NodeDictionary[parentNodeName].Point;
             if (_project.NodeDictionary[parentNodeName].ChildNode.Count == 0)
-            {               
-                _project.Add(nodeName, parentNodeName,new(point.X , point.Y + _nodeSize * 1.5));
+            {
+                _project.Add(nodeName, parentNodeName, new(point.X, point.Y + _nodeSize * 1.5));
             }
             else
             {
@@ -223,12 +220,12 @@ namespace CedarBoard.ViewModels
                     .OrderByDescending(node => node.Data)
                     .First();
 
-                Point newPoint = new(maxNode.Point.X + 1.5 * _nodeSize , point.Y + _nodeSize * 1.5);
-                _project.Add(nodeName,parentNodeName,newPoint);
+                Point newPoint = new(maxNode.Point.X + 1.5 * _nodeSize, point.Y + _nodeSize * 1.5);
+                _project.Add(nodeName, parentNodeName, newPoint);
                 foreach (var keyValuePair in _project.NodeDictionary)
-                { 
-                    if(keyValuePair.Value is Node node && 
-                        keyValuePair.Value.Point.X >= newPoint.X && 
+                {
+                    if (keyValuePair.Value is Node node &&
+                        keyValuePair.Value.Point.X >= newPoint.X &&
                         node.ParentNode != parentNodeName)
                     {
                         keyValuePair.Value.Point.X += _nodeSize * 1.5;
@@ -259,10 +256,11 @@ namespace CedarBoard.ViewModels
             }
 
             Lines.Clear();
-            foreach(KeyValuePair<string, INode> nodeKeyValuePair in _project.NodeDictionary)
+            foreach (KeyValuePair<string, INode> nodeKeyValuePair in _project.NodeDictionary)
             {
                 INode parentNode = nodeKeyValuePair.Value;
-                if (parentNode.ChildNode.Count == 0) { 
+                if (parentNode.ChildNode.Count == 0)
+                {
                     continue;
                 }
                 List<INode> children = nodeKeyValuePair.Value.ChildNode

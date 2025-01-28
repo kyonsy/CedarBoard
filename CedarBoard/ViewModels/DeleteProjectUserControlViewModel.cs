@@ -4,17 +4,14 @@
 using Prism.Commands;
 using Prism.Dialogs;
 using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CedarBoard.ViewModels
 {
     /// <summary>
     /// プロジェクトを削除する際のダイアログ
     /// </summary>
-	public class DeleteProjectUserControlViewModel : BindableBase,IDialogAware
-	{
+	public class DeleteProjectUserControlViewModel : BindableBase, IDialogAware
+    {
         /// <summary>
         /// コンストラクタ
         /// </summary>

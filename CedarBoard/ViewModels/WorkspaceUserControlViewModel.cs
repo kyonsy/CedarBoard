@@ -13,18 +13,15 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace CedarBoard.ViewModels
 {
     /// <summary>
     /// ワークスペースの画面
     /// </summary>
-    public class WorkspaceUserControlViewModel : BindableBase, INavigationAware,System.ComponentModel.INotifyPropertyChanged, IDisposable
+    public class WorkspaceUserControlViewModel : BindableBase, INavigationAware, System.ComponentModel.INotifyPropertyChanged, IDisposable
     {
         // フィールド
         private IRegionManager _regionManager;
@@ -38,7 +35,7 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public WorkspaceUserControlViewModel(IRegionManager regionManager,IDialogService dialogService, IEventAggregator eventAggregator)
+        public WorkspaceUserControlViewModel(IRegionManager regionManager, IDialogService dialogService, IEventAggregator eventAggregator)
         {
             _dialogService = dialogService;
             _regionManager = regionManager;
@@ -137,7 +134,7 @@ namespace CedarBoard.ViewModels
                             ProjectViewModel = new(_dialogService, _workspace.WorkspacePoco.ProjectDictionary[newProjectName], newProjectName) { Workspace = _workspace },
                         };
                         TabViewModel tabViewModel = Tabs.Where(tab => tab.Header == projectName).First();
-                        Tabs.Add(newTabViewModel);           
+                        Tabs.Add(newTabViewModel);
                         Tabs.Remove(tabViewModel);
                         MakeTreeItemList();
                         MakeTabsList();
@@ -178,7 +175,8 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// 新規プロジェクト
         /// </summary>
-        private void AddProjectExecute() {
+        private void AddProjectExecute()
+        {
             _dialogService.ShowDialog(nameof(NewProjectUserControl), null, (IDialogResult dialogResult) =>
             {
                 if (dialogResult.Result == ButtonResult.OK)
@@ -190,7 +188,7 @@ namespace CedarBoard.ViewModels
                         TabViewModel tabViewModel = new TabViewModel()
                         {
                             Header = newProjectName,
-                            ProjectViewModel = new(_dialogService, _workspace.WorkspacePoco.ProjectDictionary[newProjectName], newProjectName) { Workspace = _workspace},
+                            ProjectViewModel = new(_dialogService, _workspace.WorkspacePoco.ProjectDictionary[newProjectName], newProjectName) { Workspace = _workspace },
                         };
                         Tabs.Add(tabViewModel);
                         MakeTreeItemList();
@@ -210,24 +208,25 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// プロジェクトを削除
         /// </summary>
-        private void DeleteProjectExecute() {
+        private void DeleteProjectExecute()
+        {
             _dialogService.ShowDialog(nameof(DeleteProjectUserControl), null, (IDialogResult dialogResult) =>
             {
                 if (dialogResult.Result == ButtonResult.OK)
                 {
                     try
                     {
-                        System.Windows.MessageBoxResult result =  System.Windows.MessageBox.Show("削除したプロジェクトの復元はできませんが本当に削除してもよろしいでしょうか？", 
+                        System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("削除したプロジェクトの復元はできませんが本当に削除してもよろしいでしょうか？",
                             "警告", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Warning);
-                        if(result != System.Windows.MessageBoxResult.OK)
+                        if (result != System.Windows.MessageBoxResult.OK)
                         {
                             return;
                         }
                         string projectName = dialogResult.Parameters.GetValue<string>("projectName");
-                        if(projectName == "MainProject")
+                        if (projectName == "MainProject")
                         {
                             throw new Exception("MainProjectは削除できません");
-                        }                  
+                        }
                         TabViewModel tabViewModel = new TabViewModel()
                         {
                             Header = projectName,
@@ -237,7 +236,7 @@ namespace CedarBoard.ViewModels
                         _workspace.Remove(projectName);
                         MakeTreeItemList();
                         MakeTabsList();
-                        _workspace.Save();  
+                        _workspace.Save();
                     }
                     catch (Exception ex)
                     {
@@ -253,12 +252,13 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// ワークスペースの設定
         /// </summary>
-        private void BackEditWorkExecute() {
+        private void BackEditWorkExecute()
+        {
             var p = new NavigationParameters
             {
                 { "Setting", _workspace.WorkspacePoco.Setting }
             };
-            _regionManager.RequestNavigate("ContentRegion", nameof(EditWorkUserControl),p);
+            _regionManager.RequestNavigate("ContentRegion", nameof(EditWorkUserControl), p);
         }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace CedarBoard.ViewModels
         {
             _workspace = navigationContext.Parameters.GetValue<Workspace>("Workspace");
             MakeTreeItemList();
-            MakeTabsList();    
+            MakeTabsList();
         }
 
         /// <summary>
@@ -307,11 +307,11 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// タブViewModelを作る
         /// </summary>
-        private TabViewModel CreateTabViewModel(KeyValuePair<string,Project> projectKetValuePair)
+        private TabViewModel CreateTabViewModel(KeyValuePair<string, Project> projectKetValuePair)
         {
             TabViewModel tabViewModel = new TabViewModel();
             tabViewModel.Header = projectKetValuePair.Key;
-            tabViewModel.ProjectViewModel = new(_dialogService, projectKetValuePair.Value,projectKetValuePair.Key) { Workspace = _workspace};
+            tabViewModel.ProjectViewModel = new(_dialogService, projectKetValuePair.Value, projectKetValuePair.Key) { Workspace = _workspace };
             return tabViewModel;
         }
 

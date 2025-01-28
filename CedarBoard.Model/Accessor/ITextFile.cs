@@ -27,7 +27,7 @@ namespace CedarBoard.Model.Accessor
         /// </summary>
         /// <param name="file">ファイルのパス</param>
         /// <param name="value">生成するファイルの内容</param>
-        public void Create(string file,string value);
+        public void Create(string file, string value);
 
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace CedarBoard.Model.Accessor
         /// </summary>
         /// <param name="file">コピーするファイル</param>
         /// <param name="newFile">コピー先のファイル</param>
-        public void Copy(string file,string newFile);
+        public void Copy(string file, string newFile);
 
         /// <summary>
         /// 指定したファイルに読み取り専用属性を追加する

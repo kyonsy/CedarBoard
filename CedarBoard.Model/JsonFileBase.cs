@@ -1,9 +1,9 @@
 // Copyright (c) 2025 Kyoshiro Kaji
 // MIT License
 // 詳細は LICENSE ファイルを参照してください。
-using System.Text.Unicode;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Unicode;
 namespace CedarBoard.Model
 {
     /// <summary>

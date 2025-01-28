@@ -1,16 +1,9 @@
 // Copyright (c) 2025 Kyoshiro Kaji
 // MIT License
 // 詳細は LICENSE ファイルを参照してください。
-using CedarBoard.Model;
-using Prism.Mvvm;
-using Prism;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Prism.Commands;
-using Prism.Navigation.Regions;
 using CedarBoard.Views;
-using System.Windows.Media.Animation;
-using System.Threading;
+using Prism.Mvvm;
+using Prism.Navigation.Regions;
 
 namespace CedarBoard.ViewModels
 {

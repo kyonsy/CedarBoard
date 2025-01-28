@@ -16,7 +16,7 @@ namespace CedarBoardTest.Tests.ModelTest
             Assert.AreEqual("Success!", mock.GetData(@"C:\a.txt"));
         }
 
-       
+
         [TestMethod]
         public void ファイルの書き出しができる()
         {

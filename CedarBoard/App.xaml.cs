@@ -38,11 +38,12 @@ namespace CedarBoard
             containerRegistry.RegisterDialog<EditNodeUserControl, EditNodeUserControlViewModel>();
             containerRegistry.RegisterDialog<NewProjectUserControl, NewProjectUserControlViewModel>();
             containerRegistry.RegisterDialog<ChangeProjectNameUserControl, ChangeProjectNameUserControlViewModel>();
+            containerRegistry.RegisterDialog<DeleteProjectUserControl, DeleteProjectUserControlViewModel>();
             // テスト用にシングルトンにはモックを登録しておく
             containerRegistry.RegisterSingleton<WorkspaceSelector>(() =>
             {
 
-                WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock()) { SelectorPoco = new() { PathDictionary = [] } };
+                WorkspaceSelector sel = new(new TextFileAccessor(), new DirectoryAccessor()) { SelectorPoco = new() { PathDictionary = [] } };
                 return sel;
             });
         }

@@ -8,21 +8,20 @@ using System.Linq;
 namespace CedarBoard.ViewModels
 {
     /// <summary>
-    /// プロジェクト名を変えるダイアログ
+    /// プロジェクトを削除する際のダイアログ
     /// </summary>
-    public class ChangeProjectNameUserControlViewModel : BindableBase,IDialogAware
-    {
+	public class DeleteProjectUserControlViewModel : BindableBase,IDialogAware
+	{
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public ChangeProjectNameUserControlViewModel()
+        public DeleteProjectUserControlViewModel()
         {
             OKButton = new DelegateCommand(OKButtonExecute);
         }
-        
-        private string _title = "プロジェクト名の変更";
-        private string _projectName = "";
-        private string _newProjectName = "";
+
+        private string _title = "プロジェクトの削除";
+        private string _nodeName = "";
 
         /// <summary>
         /// ノードの新規作成を完了させる(正確にはデータの入力を完了させる)
@@ -30,14 +29,9 @@ namespace CedarBoard.ViewModels
         public DelegateCommand OKButton { get; }
 
         /// <summary>
-        ///　プロジェクトの名前
+        /// ノードの名前
         /// </summary>
-        public string ProjectName { get { return _projectName; } set { SetProperty(ref _projectName, value); } }
-
-        /// <summary>
-        /// 新しいプロジェクトの名前
-        /// </summary>
-        public string NewProjectName { get { return _newProjectName; } set { SetProperty(ref _newProjectName, value); } }
+        public string ProjectName { get { return _nodeName; } set { SetProperty(ref _nodeName, value); } }
 
         /// <summary>
         /// タイトル
@@ -81,7 +75,6 @@ namespace CedarBoard.ViewModels
             var p = new DialogParameters
             {
                 { "projectName", ProjectName },
-                {"newProjectName",NewProjectName }
             };
             var result = new DialogResult(ButtonResult.OK) { Parameters = p };
             RequestClose.Invoke(result);

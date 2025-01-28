@@ -9,7 +9,7 @@ namespace CedarBoard.ViewModels
     /// <summary>
     /// タブのビューモデル
     /// </summary>
-    public class TabViewModel
+    public record TabViewModel
     {
         /// <summary>
         /// ヘッダーエリア

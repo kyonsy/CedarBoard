@@ -222,6 +222,10 @@ namespace CedarBoard.ViewModels
                         path = folderDialog.SelectedPath;
                     }
                 };
+                if (FileExistsInDirectory(path, "workspace.json"))
+                {
+                    throw new Exception("workspace.json is not");
+                }
                 string worksaceName = Path.GetFileName(path);
                 _workspaceSelector.SelectorPoco.PathDictionary.Add(worksaceName, path);
                 _workspaceSelector.Save();
@@ -237,6 +241,14 @@ namespace CedarBoard.ViewModels
                 System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("無効なワークスペースです。ワークスペースの場所を変えた場合、「開く」からもう一度登録してください\nエラー：" + ex.ToString()
                     , "無効なワークスペース", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        private bool FileExistsInDirectory(string directoryPath, string fileName)
+        {
+            // パスを結合して完全なファイルパスを生成
+            string fullPath = Path.Combine(directoryPath, fileName);
+
+            // ファイルの存在確認
+            return File.Exists(fullPath);
         }
     }
 }

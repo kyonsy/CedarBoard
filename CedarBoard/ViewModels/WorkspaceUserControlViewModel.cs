@@ -132,6 +132,7 @@ namespace CedarBoard.ViewModels
                         Tabs.Remove(tabViewModel);
                         MakeTreeItemList();
                         MakeTabsList();
+                        _workspace.Save();
                     }
                     catch (Exception ex)
                     {
@@ -162,6 +163,7 @@ namespace CedarBoard.ViewModels
         /// </summary>
         private void SaveWorkspaceExecute()
         {
+            _workspace.Save();
         }
 
         /// <summary>
@@ -184,6 +186,7 @@ namespace CedarBoard.ViewModels
                         Tabs.Add(tabViewModel);
                         MakeTreeItemList();
                         MakeTabsList();
+                        _workspace.Save();
                     }
                     catch (Exception ex)
                     {
@@ -198,7 +201,44 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// プロジェクトを削除
         /// </summary>
-        private void DeleteProjectExecute() { }
+        private void DeleteProjectExecute() {
+            _dialogService.ShowDialog(nameof(DeleteProjectUserControl), null, (IDialogResult dialogResult) =>
+            {
+                if (dialogResult.Result == ButtonResult.OK)
+                {
+                    try
+                    {
+                        System.Windows.MessageBoxResult result =  System.Windows.MessageBox.Show("削除したプロジェクトの復元はできませんが本当に削除してもよろしいでしょうか？", 
+                            "警告", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Warning);
+                        if(result != System.Windows.MessageBoxResult.OK)
+                        {
+                            return;
+                        }
+                        string projectName = dialogResult.Parameters.GetValue<string>("projectName");
+                        if(projectName == "MainProject")
+                        {
+                            throw new Exception("MainProjectは削除できません");
+                        }                  
+                        TabViewModel tabViewModel = new TabViewModel()
+                        {
+                            Header = projectName,
+                            ProjectViewModel = new(_dialogService, _workspace.WorkspacePoco.ProjectDictionary[projectName], projectName) { Workspace = _workspace },
+                        };
+                        Tabs.Remove(tabViewModel);
+                        _workspace.Remove(projectName);
+                        MakeTreeItemList();
+                        MakeTabsList();
+                        _workspace.Save();  
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show("無効な名前です\nエラーメッセージ: " + ex.Message, "エラー", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        return;
+                    }
+
+                }
+            });
+        }
 
 
         /// <summary>

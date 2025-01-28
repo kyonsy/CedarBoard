@@ -1,4 +1,10 @@
-ï»¿using System.Windows;
+// Copyright (c) 2024 YourName
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.ViewModels;
+using Prism.Events;
+using System.ComponentModel;
+using System.Windows;
 
 namespace CedarBoard.Views
 {
@@ -7,12 +13,21 @@ namespace CedarBoard.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly IEventAggregator _eventAggregator;
+
         /// <summary>
-        /// ã‚³ãƒ¼ãƒ‰ãƒ“ãƒã‚¤ãƒ³ãƒ‰
+        /// ƒR[ƒhƒrƒnƒCƒ“ƒh
         /// </summary>
-        public MainWindow()
+        public MainWindow(IEventAggregator eventAggregator)
         {
+            _eventAggregator = eventAggregator;
             InitializeComponent();
+            Closing += MainWindow_Closing;
+        }
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            _eventAggregator.GetEvent<WindowClosingEvent>().Publish(e);
         }
     }
 }
+

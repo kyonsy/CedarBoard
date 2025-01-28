@@ -1,13 +1,18 @@
-ï»¿using CedarBoard.Model;
+// Copyright (c) 2024 YourName
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.Model;
 using CedarBoard.Views;
 using Prism.Commands;
 using Prism.Dialogs;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Navigation.Regions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -17,22 +22,23 @@ using System.Windows.Controls;
 namespace CedarBoard.ViewModels
 {
     /// <summary>
-    /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®ç”»é¢
+    /// ƒ[ƒNƒXƒy[ƒX‚Ì‰æ–Ê
     /// </summary>
-    public class WorkspaceUserControlViewModel : BindableBase,INavigationAware
+    public class WorkspaceUserControlViewModel : BindableBase, INavigationAware,System.ComponentModel.INotifyPropertyChanged, IDisposable
     {
-        // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+        // ƒtƒB[ƒ‹ƒh
         private IRegionManager _regionManager;
         private Workspace _workspace;
         private ObservableCollection<TreeItem> _workspaceItems;
         private ObservableCollection<TabViewModel> _tabs;
         private IDialogService _dialogService;
+        private readonly SubscriptionToken _closingToken;
 
 
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
-        public WorkspaceUserControlViewModel(IRegionManager regionManager,IDialogService dialogService)
+        public WorkspaceUserControlViewModel(IRegionManager regionManager,IDialogService dialogService, IEventAggregator eventAggregator)
         {
             _dialogService = dialogService;
             _regionManager = regionManager;
@@ -43,48 +49,51 @@ namespace CedarBoard.ViewModels
             DeleteProject = new DelegateCommand(DeleteProjectExecute);
             BackEditWork = new DelegateCommand(BackEditWorkExecute);
             ChangeProjectName = new DelegateCommand(ChangeProjectNameExecute);
+            _closingToken = eventAggregator
+            .GetEvent<WindowClosingEvent>()
+            .Subscribe(OnWindowClosing);
         }
 
-        // ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ
+        // ƒfƒŠƒQ[ƒg
         /// <summary>
-        /// æ–°è¦ä½œæˆç”»é¢ã¸ç§»å‹•
+        /// V‹Kì¬‰æ–Ê‚ÖˆÚ“®
         /// </summary>
         public DelegateCommand BackNewEntry { get; }
 
         /// <summary>
-        /// ãƒ›ãƒ¼ãƒ ç”»é¢ã¸æˆ»ã‚‹
+        /// ƒz[ƒ€‰æ–Ê‚Ö–ß‚é
         /// </summary>
         public DelegateCommand BackHome { get; }
 
         /// <summary>
-        /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚’ä¿å­˜ã™ã‚‹
+        /// ƒ[ƒNƒXƒy[ƒX‚ğ•Û‘¶‚·‚é
         /// </summary>
         public DelegateCommand SaveWorkspace { get; }
 
         /// <summary>
-        /// æ–°ã—ã„ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œã‚‹
+        /// V‚µ‚¢ƒvƒƒWƒFƒNƒg‚ğì‚é
         /// </summary>
         public DelegateCommand AddProject { get; }
 
         /// <summary>
-        /// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã™ã‚‹
+        /// ƒvƒƒWƒFƒNƒg‚ğíœ‚·‚é
         /// </summary>
         public DelegateCommand DeleteProject { get; }
 
         /// <summary>
-        /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ç·¨é›†ç”»é¢ã¸æˆ»ã‚‹
+        /// ƒ[ƒNƒXƒy[ƒX•ÒW‰æ–Ê‚Ö–ß‚é
         /// </summary>
         public DelegateCommand BackEditWork { get; }
 
         /// <summary>
-        /// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆåã®å¤‰æ›´
+        /// ƒvƒƒWƒFƒNƒg–¼‚Ì•ÏX
         /// </summary>
         public DelegateCommand ChangeProjectName { get; }
 
 
-        //ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+        //ƒvƒƒpƒeƒB
         /// <summary>
-        /// ã‚¿ãƒ–ã®ãƒªã‚¹ãƒˆ
+        /// ƒ^ƒu‚ÌƒŠƒXƒg
         /// </summary>
         public ObservableCollection<TabViewModel> Tabs
         {
@@ -95,7 +104,7 @@ namespace CedarBoard.ViewModels
         private TabViewModel _selectedTab;
 
         /// <summary>
-        /// é¸æŠã•ã‚ŒãŸã‚¿ãƒ–
+        /// ‘I‘ğ‚³‚ê‚½ƒ^ƒu
         /// </summary>
         public TabViewModel SelectedTab
         {
@@ -104,12 +113,12 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ãƒ‡ãƒ¼ã‚¿ãƒ¢ãƒ‡ãƒ«ã«ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚’å…¥ã‚Œã‚‹
+        /// ƒf[ƒ^ƒ‚ƒfƒ‹‚Éƒ[ƒNƒXƒy[ƒX‚ğ“ü‚ê‚é
         /// </summary>
         public ObservableCollection<TreeItem> WorkspaceItems { get { return _workspaceItems; } set { SetProperty(ref _workspaceItems, value); } }
 
         /// <summary>
-        /// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®åå‰ã‚’å¤‰ãˆã‚‹
+        /// ƒvƒƒWƒFƒNƒg‚Ì–¼‘O‚ğ•Ï‚¦‚é
         /// </summary>
         private void ChangeProjectNameExecute()
         {
@@ -136,7 +145,7 @@ namespace CedarBoard.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        System.Windows.MessageBox.Show("ç„¡åŠ¹ãªåå‰ã§ã™\nã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸: " + ex.Message, "ã‚¨ãƒ©ãƒ¼", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        System.Windows.MessageBox.Show("–³Œø‚È–¼‘O‚Å‚·\nƒGƒ‰[ƒƒbƒZ[ƒW: " + ex.Message, "ƒGƒ‰[", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                         return;
                     }
                 }
@@ -144,7 +153,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// æ–°è¦ä½œæˆ
+        /// V‹Kì¬
         /// </summary>
         private void BackNewEntryExecute()
         {
@@ -152,14 +161,14 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// é–‹ã
+        /// ŠJ‚­
         /// </summary>
         private void BackHomeExecute()
         {
             _regionManager.RequestNavigate("ContentRegion", nameof(HomeUserControl));
         }
         /// <summary>
-        /// ä¿å­˜
+        /// •Û‘¶
         /// </summary>
         private void SaveWorkspaceExecute()
         {
@@ -167,7 +176,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// æ–°è¦ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆ
+        /// V‹KƒvƒƒWƒFƒNƒg
         /// </summary>
         private void AddProjectExecute() {
             _dialogService.ShowDialog(nameof(NewProjectUserControl), null, (IDialogResult dialogResult) =>
@@ -190,7 +199,7 @@ namespace CedarBoard.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        System.Windows.MessageBox.Show("ç„¡åŠ¹ãªåå‰ã§ã™\nã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸: " + ex.Message, "ã‚¨ãƒ©ãƒ¼", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        System.Windows.MessageBox.Show("–³Œø‚È–¼‘O‚Å‚·\nƒGƒ‰[ƒƒbƒZ[ƒW: " + ex.Message, "ƒGƒ‰[", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                         return;
                     }
 
@@ -199,7 +208,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤
+        /// ƒvƒƒWƒFƒNƒg‚ğíœ
         /// </summary>
         private void DeleteProjectExecute() {
             _dialogService.ShowDialog(nameof(DeleteProjectUserControl), null, (IDialogResult dialogResult) =>
@@ -208,8 +217,8 @@ namespace CedarBoard.ViewModels
                 {
                     try
                     {
-                        System.Windows.MessageBoxResult result =  System.Windows.MessageBox.Show("å‰Šé™¤ã—ãŸãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®å¾©å…ƒã¯ã§ãã¾ã›ã‚“ãŒæœ¬å½“ã«å‰Šé™¤ã—ã¦ã‚‚ã‚ˆã‚ã—ã„ã§ã—ã‚‡ã†ã‹ï¼Ÿ", 
-                            "è­¦å‘Š", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Warning);
+                        System.Windows.MessageBoxResult result =  System.Windows.MessageBox.Show("íœ‚µ‚½ƒvƒƒWƒFƒNƒg‚Ì•œŒ³‚Í‚Å‚«‚Ü‚¹‚ñ‚ª–{“–‚Éíœ‚µ‚Ä‚à‚æ‚ë‚µ‚¢‚Å‚µ‚å‚¤‚©H", 
+                            "Œx", System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Warning);
                         if(result != System.Windows.MessageBoxResult.OK)
                         {
                             return;
@@ -217,7 +226,7 @@ namespace CedarBoard.ViewModels
                         string projectName = dialogResult.Parameters.GetValue<string>("projectName");
                         if(projectName == "MainProject")
                         {
-                            throw new Exception("MainProjectã¯å‰Šé™¤ã§ãã¾ã›ã‚“");
+                            throw new Exception("MainProject‚Ííœ‚Å‚«‚Ü‚¹‚ñ");
                         }                  
                         TabViewModel tabViewModel = new TabViewModel()
                         {
@@ -232,7 +241,7 @@ namespace CedarBoard.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        System.Windows.MessageBox.Show("ç„¡åŠ¹ãªåå‰ã§ã™\nã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸: " + ex.Message, "ã‚¨ãƒ©ãƒ¼", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        System.Windows.MessageBox.Show("–³Œø‚È–¼‘O‚Å‚·\nƒGƒ‰[ƒƒbƒZ[ƒW: " + ex.Message, "ƒGƒ‰[", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                         return;
                     }
 
@@ -242,7 +251,7 @@ namespace CedarBoard.ViewModels
 
 
         /// <summary>
-        /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®è¨­å®š
+        /// ƒ[ƒNƒXƒy[ƒX‚Ìİ’è
         /// </summary>
         private void BackEditWorkExecute() {
             var p = new NavigationParameters
@@ -253,9 +262,9 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ä»–ã®ç”»é¢ã‹ã‚‰ä»–ã®ç”»é¢ã«ç§»å‹•ã™ã‚‹ã¨ãã®æ“ä½œ
+        /// ‘¼‚Ì‰æ–Ê‚©‚ç‘¼‚Ì‰æ–Ê‚ÉˆÚ“®‚·‚é‚Æ‚«‚Ì‘€ì
         /// </summary>
-        /// <param name="navigationContext">ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³å…ƒã‹ã‚‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
+        /// <param name="navigationContext">ƒiƒrƒQ[ƒVƒ‡ƒ“Œ³‚©‚ç‚Ìƒpƒ‰ƒ[ƒ^</param>
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _workspace = navigationContext.Parameters.GetValue<Workspace>("Workspace");
@@ -264,7 +273,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ã‚¢ã‚¤ãƒ†ãƒ ãƒ„ãƒªãƒ¼ã®ãƒªã‚¹ãƒˆã‚’ä½œã‚‹
+        /// ƒAƒCƒeƒ€ƒcƒŠ[‚ÌƒŠƒXƒg‚ğì‚é
         /// </summary>
         private void MakeTreeItemList()
         {
@@ -283,7 +292,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ã‚¿ãƒ–ã®ãƒªã‚¹ãƒˆã‚’ä½œã‚‹
+        /// ƒ^ƒu‚ÌƒŠƒXƒg‚ğì‚é
         /// </summary>
         private void MakeTabsList()
         {
@@ -296,7 +305,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ã‚¿ãƒ–ViewModelã‚’ä½œã‚‹
+        /// ƒ^ƒuViewModel‚ğì‚é
         /// </summary>
         private TabViewModel CreateTabViewModel(KeyValuePair<string,Project> projectKetValuePair)
         {
@@ -307,26 +316,45 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// é·ç§»ã™ã‚‹éš›ã¯ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½¿ã„ã¾ã‚ã•ãªã„
+        /// ‘JˆÚ‚·‚éÛ‚ÍƒCƒ“ƒXƒ^ƒ“ƒX‚ğg‚¢‚Ü‚í‚³‚È‚¢
         /// </summary>
-        /// <param name="navigationContext">ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³å…ƒã‹ã‚‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
-        /// <returns>ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½¿ã„ã¾ã‚ã™ã‹ã©ã†ã‹</returns>
+        /// <param name="navigationContext">ƒiƒrƒQ[ƒVƒ‡ƒ“Œ³‚©‚ç‚Ìƒpƒ‰ƒ[ƒ^</param>
+        /// <returns>ƒCƒ“ƒXƒ^ƒ“ƒX‚ğg‚¢‚Ü‚í‚·‚©‚Ç‚¤‚©</returns>
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return false;
         }
 
         /// <summary>
-        /// ã“ã®ç”»é¢ã‹ã‚‰ä»–ã®ç”»é¢ã«ç§»å‹•ã™ã‚‹ã¨ãã®æ“ä½œ
+        /// ‚±‚Ì‰æ–Ê‚©‚ç‘¼‚Ì‰æ–Ê‚ÉˆÚ“®‚·‚é‚Æ‚«‚Ì‘€ì
         /// </summary>
-        /// <param name="navigationContext">ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³å…ƒã‹ã‚‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
+        /// <param name="navigationContext">ƒiƒrƒQ[ƒVƒ‡ƒ“Œ³‚©‚ç‚Ìƒpƒ‰ƒ[ƒ^</param>
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            MessageBoxResult result = MessageBox.Show("ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚’ä¿å­˜ã—ã¾ã™ã‹ï¼Ÿ", "å¤‰æ›´å†…å®¹ã®ä¿å­˜", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            MessageBoxResult result = MessageBox.Show("ƒ[ƒNƒXƒy[ƒX‚ğ•Û‘¶‚µ‚Ü‚·‚©H", "•ÏX“à—e‚Ì•Û‘¶", MessageBoxButton.OKCancel, MessageBoxImage.Information);
             if (result == MessageBoxResult.OK)
             {
                 _workspace.Save();
             }
         }
+
+
+        private void OnWindowClosing(CancelEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("ƒ[ƒNƒXƒy[ƒX‚ğ•Û‘¶‚µ‚Ü‚·‚©H", "•ÏX“à—e‚Ì•Û‘¶", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            if (result == MessageBoxResult.OK)
+            {
+                _workspace.Save();
+            }
+        }
+
+        /// <summary>
+        /// ƒIƒuƒWƒFƒNƒg‚ª”pŠü‚³‚ê‚é‚Æ‚«‚Ìˆ—
+        /// </summary>
+        public void Dispose()
+        {
+            _closingToken?.Dispose();
+        }
     }
 }
+

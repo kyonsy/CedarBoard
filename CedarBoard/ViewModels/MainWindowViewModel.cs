@@ -1,3 +1,6 @@
+// Copyright (c) 2024 YourName
+// MIT License
+// 詳細は LICENSE ファイルを参照してください。
 using CedarBoard.Model;
 using Prism.Mvvm;
 using Prism;
@@ -20,7 +23,7 @@ namespace CedarBoard.ViewModels
         private readonly IRegionManager _regionManager;
 
         /// <summary>
-        /// 繧ｳ繝ｳ繧ｹ繝医Λ繧ｯ繧ｿ縲よ怙蛻昴�ｯ繝帙�ｼ繝逕ｻ髱｢縺ｫ驕ｷ遘ｻ縺吶ｋ
+        /// 繧ｳ繝ｳ繧ｹ繝医Λ繧ｯ繧ｿ縲よ怙蛻昴・繝帙・繝逕ｻ髱｢縺ｫ驕ｷ遘ｻ縺吶ｋ
         /// </summary>
         public MainWindowViewModel(IRegionManager regionManager)
         {
@@ -38,3 +41,4 @@ namespace CedarBoard.ViewModels
 
     }
 }
+

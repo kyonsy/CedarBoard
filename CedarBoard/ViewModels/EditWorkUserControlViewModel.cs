@@ -13,7 +13,7 @@ namespace CedarBoard.ViewModels
     /// <summary>
     /// 作品を編集する
     /// </summary>
-	public class EditWorkUserControlViewModel : BindableBase, INavigationAware
+    public class EditWorkUserControlViewModel : BindableBase, INavigationAware
     {
         //フィールド
         private IRegionManager _regionManager;

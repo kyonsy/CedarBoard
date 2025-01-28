@@ -10,7 +10,7 @@ namespace CedarBoard.ViewModels
     /// <summary>
     /// 新しくノードを作るときに出てくるダイアログ
     /// </summary>
-	public class NewNodeUserControlViewModel : BindableBase, IDialogAware
+    public class NewNodeUserControlViewModel : BindableBase, IDialogAware
     {
         private string _title = "ノードの新規作成";
         private string _nodeName = "";

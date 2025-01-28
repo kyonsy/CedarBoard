@@ -98,6 +98,10 @@ namespace CedarBoard.ViewModels
         private void NewEntryExecute() {
             try
             {
+                if(Path == "パスを選択してください")
+                {
+                    throw new Exception("パスが設定されていません");
+                }
                 _workspaceSelector.Add(new()
                 {
                     Name = Name,

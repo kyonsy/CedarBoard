@@ -222,7 +222,7 @@ namespace CedarBoard.ViewModels
                         path = folderDialog.SelectedPath;
                     }
                 };
-                if (FileExistsInDirectory(path, "workspace.json"))
+                if (!FileExistsInDirectory(path, "workspace.json"))
                 {
                     throw new Exception("workspace.json is not");
                 }

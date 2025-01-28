@@ -1,6 +1,3 @@
-// Copyright (c) 2024 YourName
-// MIT License
-// 詳細は LICENSE ファイルを参照してください。
 using Prism.Events;
 using System;
 using System.Collections.Generic;

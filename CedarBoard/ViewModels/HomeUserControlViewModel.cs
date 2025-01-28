@@ -178,8 +178,7 @@ namespace CedarBoard.ViewModels
             catch (Exception ex)
             {
                 System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("無効なワークスペースです。ワークスペースの場所を変えた場合、「開く」からもう一度登録してください\nエラー："+ex.ToString()
-                    , "無効なワークスペース", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
-                
+                    , "無効なワークスペース", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);              
             }
           
         }
@@ -223,6 +222,10 @@ namespace CedarBoard.ViewModels
                     if (folderDialog.ShowDialog() == DialogResult.OK)
                     {
                         path = folderDialog.SelectedPath;
+                    }
+                    else
+                    {
+                        return;
                     }
                 };
                 if (!FileExistsInDirectory(path, "workspace.json"))

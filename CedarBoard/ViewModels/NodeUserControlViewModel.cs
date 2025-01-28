@@ -1,4 +1,7 @@
-ï»¿using Prism.Commands;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -8,7 +11,7 @@ using System.Linq;
 namespace CedarBoard.ViewModels
 {
     /// <summary>
-    /// ãƒãƒ¼ãƒ‰ã®ãƒ“ãƒ¥ãƒ¼ãƒ¢ãƒ‡ãƒ«
+    /// ƒm[ƒh‚Ìƒrƒ…[ƒ‚ƒfƒ‹
     /// </summary>
     public class NodeUserControlViewModel : BindableBase
     {
@@ -18,12 +21,12 @@ namespace CedarBoard.ViewModels
 
 
         /// <summary>
-        /// ä½œæˆæ—¥æ™‚
+        /// ì¬“ú
         /// </summary>
         public DateTime Date { get; set; }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®åå‰
+        /// ƒm[ƒh‚Ì–¼‘O
         /// </summary>
         public string Name
         {
@@ -33,7 +36,7 @@ namespace CedarBoard.ViewModels
 
 
         /// <summary>
-        /// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+        /// ƒƒbƒZ[ƒW
         /// </summary>
         public string Message
         {
@@ -44,7 +47,7 @@ namespace CedarBoard.ViewModels
         private double _canvasLeft;
 
         /// <summary>
-        /// ã‚­ãƒ£ãƒ³ãƒã‚¹ã®å·¦(Xåº§æ¨™)
+        /// ƒLƒƒƒ“ƒoƒX‚Ì¶(XÀ•W)
         /// </summary>
         public double CanvasLeft
         {
@@ -53,7 +56,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ã‚­ãƒ£ãƒ³ãƒã‚¹ã®ä¸Š(Yåº§æ¨™)
+        /// ƒLƒƒƒ“ƒoƒX‚Ìã(YÀ•W)
         /// </summary>
         public double CanvasTop
         {
@@ -62,17 +65,17 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒ‡ã‚£ã‚¿ã‚’é–‹ãã‚³ãƒãƒ³ãƒ‰
+        /// ƒeƒLƒXƒgƒGƒfƒBƒ^‚ğŠJ‚­ƒRƒ}ƒ“ƒh
         /// </summary>
         public DelegateCommand OpenTextEditorCommand { get; }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã‚’ç·¨é›†ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰
+        /// ƒm[ƒh‚ğ•ÒW‚·‚éƒRƒ}ƒ“ƒh
         /// </summary>
         public DelegateCommand EditNodeCommand { get; }
 
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
         public NodeUserControlViewModel()
         {
@@ -81,12 +84,12 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// å­ãƒãƒ¼ãƒ‰ã®ãƒªã‚¹ãƒˆ
+        /// qƒm[ƒh‚ÌƒŠƒXƒg
         /// </summary>
         public List<string> Children { get; set; } = new List<string>();
 
         /// <summary>
-        /// ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒ‡ã‚£ã‚¿ã‚’é–‹ã
+        /// ƒeƒLƒXƒgƒGƒfƒBƒ^‚ğŠJ‚­
         /// </summary>
         public void OpenTextEditor()
         {
@@ -94,7 +97,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã‚’å‰Šé™¤ã™ã‚‹
+        /// ƒm[ƒh‚ğíœ‚·‚é
         /// </summary>
         public void EditNode()
         {
@@ -102,3 +105,4 @@ namespace CedarBoard.ViewModels
         }
     }
 }
+

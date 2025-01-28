@@ -1,71 +1,74 @@
-ï»¿namespace CedarBoard.Model.Accessor
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+namespace CedarBoard.Model.Accessor
 {
     /// <summary>
-    /// æœ¬ç•ªã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã§ä½¿ã†ã€ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ã‚¢ã‚¯ã‚»ã‚µ
+    /// –{”Ô‚ÌƒvƒƒOƒ‰ƒ€‚ÅŽg‚¤Aƒtƒ@ƒCƒ‹‚Ö‚ÌƒAƒNƒZƒT
     /// </summary>
     public class TextFileAccessor : ITextFile
     {
         /// <summary>
-        /// ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿å–ã‚Š
+        /// ƒtƒ@ƒCƒ‹‚Ì“Ç‚ÝŽæ‚è
         /// </summary>
-        /// <param name="file">ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹</param>
-        /// <returns>èª­ã¿å–ã£ãŸå†…å®¹</returns>
+        /// <param name="file">ƒtƒ@ƒCƒ‹‚ÌƒpƒX</param>
+        /// <returns>“Ç‚ÝŽæ‚Á‚½“à—e</returns>
         public string GetData(string file)
         {
             return File.ReadAllText(file);
         }
 
         /// <summary>
-        /// ãƒ•ã‚¡ã‚¤ãƒ«ã®æ›¸ãå‡ºã—
+        /// ƒtƒ@ƒCƒ‹‚Ì‘‚«o‚µ
         /// </summary>
-        /// <param name="file">ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹</param>
-        /// <param name="value">æ›¸ãå‡ºã™å†…å®¹</param>
+        /// <param name="file">ƒtƒ@ƒCƒ‹‚ÌƒpƒX</param>
+        /// <param name="value">‘‚«o‚·“à—e</param>
         public void SetData(string file, string value)
         {
-            if (!File.Exists(file)) throw new IOException("ã“ã®ãƒ¡ã‚¾ãƒƒãƒˆã§ã¯æ–°ã—ã„åå‰ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç”Ÿæˆã™ã‚‹ã“ã¨ã¯å‡ºæ¥ã¾ã›ã‚“");
+            if (!File.Exists(file)) throw new IOException("‚±‚Ìƒƒ]ƒbƒg‚Å‚ÍV‚µ‚¢–¼‘O‚Ìƒtƒ@ƒCƒ‹‚ð¶¬‚·‚é‚±‚Æ‚Ío—ˆ‚Ü‚¹‚ñ");
             File.WriteAllText(file, value);
         }
 
         /// <summary>
-        /// ãƒ•ã‚¡ã‚¤ãƒ«ã®ç”Ÿæˆ
+        /// ƒtƒ@ƒCƒ‹‚Ì¶¬
         /// </summary>
-        /// <param name="file">ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹</param>
-        /// <param name="value">ç”Ÿæˆã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹</param>
+        /// <param name="file">ƒtƒ@ƒCƒ‹‚ÌƒpƒX</param>
+        /// <param name="value">¶¬‚·‚éƒtƒ@ƒCƒ‹‚Ì“à—e</param>
         public void Create(string file, string value)
         {
-            if (File.Exists(file)) throw new IOException("ã“ã®ãƒ¡ã‚¾ãƒƒãƒˆã§ã¯æ—¢å­˜ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸Šæ›¸ãã™ã‚‹ã“ã¨ã¯å‡ºæ¥ã¾ã›ã‚“");
+            if (File.Exists(file)) throw new IOException("‚±‚Ìƒƒ]ƒbƒg‚Å‚ÍŠù‘¶‚Ìƒtƒ@ƒCƒ‹‚ðã‘‚«‚·‚é‚±‚Æ‚Ío—ˆ‚Ü‚¹‚ñ");
             File.WriteAllText(file, value);
         }
 
         /// <summary>
-        /// ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰(path)ã‚’å¤‰ãˆã‚‹
+        /// ƒtƒ@ƒCƒ‹‚Ì–¼‘O(path)‚ð•Ï‚¦‚é
         /// </summary>
-        /// <param name="file">ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹</param>
-        /// <param name="newFile">æ–°ã—ã„åå‰(path)</param>
+        /// <param name="file">ƒtƒ@ƒCƒ‹‚ÌƒpƒX</param>
+        /// <param name="newFile">V‚µ‚¢–¼‘O(path)</param>
         public void Rename(string file, string newFile) {
             File.Move(file, newFile);
         }
 
         /// <summary>
-        /// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
+        /// ƒtƒ@ƒCƒ‹‚ðíœ‚·‚é
         /// </summary>
-        /// <param name="file">å‰Šé™¤ã—ãŸã„ãƒ•ã‚¡ã‚¤ãƒ«</param>
+        /// <param name="file">íœ‚µ‚½‚¢ƒtƒ@ƒCƒ‹</param>
         public void Delete(string file) { 
             File.Delete(file);
         }
 
         /// <summary>
-        /// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
+        /// ƒtƒ@ƒCƒ‹‚ðƒRƒs[‚·‚é
         /// </summary>
-        /// <param name="file">ã‚³ãƒ”ãƒ¼ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«</param>
-        /// <param name="newFile">ã‚³ãƒ”ãƒ¼å…ˆã®ãƒ•ã‚¡ã‚¤ãƒ«</param>
+        /// <param name="file">ƒRƒs[‚·‚éƒtƒ@ƒCƒ‹</param>
+        /// <param name="newFile">ƒRƒs[æ‚Ìƒtƒ@ƒCƒ‹</param>
         public void Copy(string file, string newFile)
         {
             File.Copy(file, newFile);
         }
 
         /// <summary>
-        /// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã«èª­ã¿å–ã‚Šå°‚ç”¨å±žæ€§ã‚’è¿½åŠ ã™ã‚‹
+        /// Žw’è‚µ‚½ƒtƒ@ƒCƒ‹‚É“Ç‚ÝŽæ‚èê—p‘®«‚ð’Ç‰Á‚·‚é
         /// </summary>
         /// <param name="file"></param>
         public void SetReadOnly(string file) { 
@@ -74,7 +77,7 @@
         }
 
         /// <summary>
-        /// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿å–ã‚Šå°‚ç”¨å±žæ€§ã‚’å‰Šé™¤ã™ã‚‹
+        /// Žw’è‚µ‚½ƒtƒ@ƒCƒ‹‚Ì“Ç‚ÝŽæ‚èê—p‘®«‚ðíœ‚·‚é
         /// </summary>
         /// <param name="file"></param>
         public void DeleteReadOnly(string file) {
@@ -83,7 +86,7 @@
         }
 
         /// <summary>
-        /// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
+        /// Žw’è‚µ‚½ƒtƒ@ƒCƒ‹‚ª‘¶Ý‚µ‚Ä‚¢‚é‚©’²‚×‚é
         /// </summary>
         /// <param name="file"></param>
         public bool Exists(string file)
@@ -92,3 +95,4 @@
         }
     }
 }
+

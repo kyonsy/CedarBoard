@@ -1,29 +1,33 @@
-ï»¿using System.Text.Json.Serialization;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using System.Text.Json.Serialization;
 
 namespace CedarBoard.Model.Poco
 {
     /// <summary>
-    /// ãƒãƒ¼ãƒ‰ã®åº§æ¨™
+    /// ƒm[ƒh‚ÌÀ•W
     /// </summary>
     public record Point
     {
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®Xåº§æ¨™
+        /// ƒm[ƒh‚ÌXÀ•W
         /// </summary>
         [JsonInclude]
         public double X { get; set; }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®Yåº§æ¨™
+        /// ƒm[ƒh‚ÌYÀ•W
         /// </summary>
         [JsonInclude]
         public double Y { get; set; }
 
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
-        /// <param name="x">Xåº§æ¨™</param>
-        /// <param name="y">Yåº§æ¨™</param>
+        /// <param name="x">XÀ•W</param>
+        /// <param name="y">YÀ•W</param>
         public Point(double x,double y) => (X,Y) = (x,y); 
     }
 }
+

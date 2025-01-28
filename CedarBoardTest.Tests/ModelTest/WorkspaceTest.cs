@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.Model;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.Model;
 using CedarBoard.Model.Accessor;
 
 namespace CedarBoardTest.Tests.ModelTest
@@ -20,19 +23,19 @@ namespace CedarBoardTest.Tests.ModelTest
                     Name = "hogehoge",
                     CreatedDate = "2024/10/24",
                     UpdatedDate = "2024/10/24",
-                    Message = "å§‹ã‚ã«ä½œã£ãŸã‚„ã¤"
+                    Message = "n‚ß‚Éì‚Á‚½‚â‚Â"
                 }
             });
 
         [TestMethod]
-        public void æ–°ã—ã„ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œã‚Œã‚‹()
+        public void V‚µ‚¢ƒvƒƒWƒFƒNƒg‚ğì‚ê‚é()
         {
             w.Add("first");
             Assert.IsTrue(w.WorkspacePoco.ProjectDictionary.ContainsKey("first"));
         }
 
         [TestMethod]
-        public void æŒ‡å®šã•ã‚ŒãŸãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã§ãã‚‹()
+        public void w’è‚³‚ê‚½ƒvƒƒWƒFƒNƒg‚ğíœ‚Å‚«‚é()
         {
             w.Add("first");
             w.Remove("first");
@@ -40,7 +43,7 @@ namespace CedarBoardTest.Tests.ModelTest
         }
 
         [TestMethod]
-        public void ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹è‡ªèº«ã®æƒ…å ±ã‚’ä¿å­˜ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹()
+        public void ƒ[ƒNƒXƒy[ƒX©g‚Ìî•ñ‚ğ•Û‘¶‚·‚é‚±‚Æ‚ªo—ˆ‚é()
         {
 
             w.Add("first");
@@ -48,11 +51,11 @@ namespace CedarBoardTest.Tests.ModelTest
             w.TextFile.Create(@"C:\workspace.json", "");
             w.Save();
             string s = w.TextFile.GetData(@"C:\workspace.json");
-            Assert.IsNotNull(s);//æ­£å¸¸å‹•ä½œç¢ºèª
+            Assert.IsNotNull(s);//³í“®ìŠm”F
         }
 
         [TestMethod]
-        public void æŒ‡å®šã•ã‚ŒãŸãƒãƒ¼ãƒ‰ã‚’é–‹ãã“ã¨ãŒå‡ºæ¥ã‚‹()
+        public void w’è‚³‚ê‚½ƒm[ƒh‚ğŠJ‚­‚±‚Æ‚ªo—ˆ‚é()
         {
             w.Add("first");
             w.WorkspacePoco.ProjectDictionary["first"].Add("origin", "second", new(20, 20));
@@ -62,3 +65,4 @@ namespace CedarBoardTest.Tests.ModelTest
         }
     }
 }
+

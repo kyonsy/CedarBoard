@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.Model;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.Model;
 using CedarBoard.Views;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -17,17 +20,17 @@ using System.Xml.Linq;
 namespace CedarBoard.ViewModels
 {
     /// <summary>
-    /// ãƒ›ãƒ¼ãƒ ç”»é¢
+    /// ƒz[ƒ€‰æ–Ê
     /// </summary>
 	public class HomeUserControlViewModel : BindableBase,INavigationAware
 	{
-        //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+        //ƒtƒB[ƒ‹ƒh
         private string _title = "CedarBoard";
         WorkspaceSelector _workspaceSelector;
         private IRegionManager _regionManager;
 
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚æœ€åˆã¯ãƒ›ãƒ¼ãƒ ç”»é¢ã«é·ç§»ã™ã‚‹
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^BÅ‰‚Íƒz[ƒ€‰æ–Ê‚É‘JˆÚ‚·‚é
         /// </summary>
         public HomeUserControlViewModel(WorkspaceSelector workspaceSelector, IRegionManager regionManager)
         {
@@ -42,36 +45,36 @@ namespace CedarBoard.ViewModels
             OpenFile = new DelegateCommand(OpenFileExecute);
         }
 
-        //ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ
+        //ƒfƒŠƒQ[ƒg
         /// <summary>
-        /// æ–°è¦ä½œæˆç”»é¢ã¸ã®é·ç§»
+        /// V‹Kì¬‰æ–Ê‚Ö‚Ì‘JˆÚ
         /// </summary>
         public DelegateCommand NewEntry { get; }
 
         /// <summary>
-        /// ä½œå“ã‚’ç·¨é›†ã™ã‚‹
+        /// ì•i‚ğ•ÒW‚·‚é
         /// </summary>
         public DelegateCommand EditWork { get; }
 
         /// <summary>
-        /// ä½œå“ã‚’å‰Šé™¤ã™ã‚‹
+        /// ì•i‚ğíœ‚·‚é
         /// </summary>
         public DelegateCommand DeleteWork { get; }
 
         /// <summary>
-        /// ä½œå“ã‚’é–‹ã
+        /// ì•i‚ğŠJ‚­
         /// </summary>
         public DelegateCommand OpenWork { get; }
 
 
         /// <summary>
-        /// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
+        /// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
         /// </summary>
         public DelegateCommand OpenFile { get; }
 
-        // ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+        // ƒvƒƒpƒeƒB
         /// <summary>
-        /// ã‚¿ã‚¤ãƒˆãƒ«ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+        /// ƒ^ƒCƒgƒ‹‚ÌƒvƒƒpƒeƒB
         /// </summary>
         public string Title
         {
@@ -80,12 +83,12 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// è¡¨ç¤ºã•ã‚Œã‚‹ãƒªã‚¹ãƒˆ
+        /// •\¦‚³‚ê‚éƒŠƒXƒg
         /// </summary>
         public ObservableCollection<KeyValuePair<string, string>> _dictionaryItems;
 
         /// <summary>
-        /// è¡¨ç¤ºã•ã‚Œã‚‹ãƒªã‚¹ãƒˆã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+        /// •\¦‚³‚ê‚éƒŠƒXƒg‚ÌƒvƒƒpƒeƒB
         /// </summary>
         public ObservableCollection<KeyValuePair<string, string>> DictionaryItems
         {
@@ -94,28 +97,28 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒé¸æŠã—ã¦ã„ã‚‹ä½œå“
+        /// ƒ†[ƒU[‚ª‘I‘ğ‚µ‚Ä‚¢‚éì•i
         /// </summary>
         private KeyValuePair<string, string>? _selectedKeyValuePair;
 
         /// <summary>
-        /// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒé¸æŠã—ã¦ã„ã‚‹ä½œå“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+        /// ƒ†[ƒU[‚ª‘I‘ğ‚µ‚Ä‚¢‚éì•i‚ÌƒvƒƒpƒeƒB
         /// </summary>
         public KeyValuePair<string, string>? SelectedKeyValuePair { get { return _selectedKeyValuePair; } set { SetProperty(ref _selectedKeyValuePair, value); } }
 
         /// <summary>
-        /// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ã—ãŸä½œå“
+        /// ƒ†[ƒU[‚ªƒ_ƒuƒ‹ƒNƒŠƒbƒN‚µ‚½ì•i
         /// </summary>
         private KeyValuePair<string, string> _clickedKeyValuePair;
 
         /// <summary>
-        /// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ã—ãŸä½œå“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+        /// ƒ†[ƒU[‚ªƒ_ƒuƒ‹ƒNƒŠƒbƒN‚µ‚½ì•i‚ÌƒvƒƒpƒeƒB
         /// </summary>
         public KeyValuePair<string, string> ClickedKeyValuePair { get { return _clickedKeyValuePair; } set { SetProperty(ref _clickedKeyValuePair, value); } }
 
-        // ãƒ¡ã‚½ãƒƒãƒ‰
+        // ƒƒ\ƒbƒh
         /// <summary>
-        /// æ–°è¦ä½œæˆç”»é¢ã¸ã®é·ç§»ã‚’è¡Œã†
+        /// V‹Kì¬‰æ–Ê‚Ö‚Ì‘JˆÚ‚ğs‚¤
         /// </summary>
         public void NewEntryExecute()
         {
@@ -123,7 +126,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ä½œå“ã‚’ç·¨é›†ã™ã‚‹
+        /// ì•i‚ğ•ÒW‚·‚é
         /// </summary>
         public void EditWorkExecute()
         {
@@ -141,24 +144,24 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ä½œå“ã‚’å‰Šé™¤ã™ã‚‹
+        /// ì•i‚ğíœ‚·‚é
         /// </summary>
         public void DeleteWorkExecute()
         {
             if (SelectedKeyValuePair is not null)
             {
-                var result = System.Windows.MessageBox.Show("æœ¬å½“ã«å‰Šé™¤ã—ã¦ã‚‚ã‚ˆã‚ã—ã„ã§ã—ã‚‡ã†ã‹ï¼Ÿ", "è­¦å‘Š", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                var result = System.Windows.MessageBox.Show("–{“–‚Éíœ‚µ‚Ä‚à‚æ‚ë‚µ‚¢‚Å‚µ‚å‚¤‚©H", "Œx", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                 if (result == System.Windows.MessageBoxResult.OK)
                 {
                     _workspaceSelector.Remove(SelectedKeyValuePair.Value.Key);
                 }
-                // ç”»é¢ã‚’ãƒªãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+                // ‰æ–Ê‚ğƒŠƒ[ƒh‚·‚é
                 _regionManager.RequestNavigate("ContentRegion", nameof(HomeUserControl));
             }      
         }
 
         /// <summary>
-        /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚’é–‹ã
+        /// ƒ[ƒNƒXƒy[ƒX‚ğŠJ‚­
         /// </summary>
         public void OpenWorkExecute()
         {
@@ -174,26 +177,26 @@ namespace CedarBoard.ViewModels
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("ç„¡åŠ¹ãªãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã§ã™ã€‚ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®å ´æ‰€ã‚’å¤‰ãˆãŸå ´åˆã€ã€Œé–‹ãã€ã‹ã‚‰ã‚‚ã†ä¸€åº¦ç™»éŒ²ã—ã¦ãã ã•ã„\nã‚¨ãƒ©ãƒ¼ï¼š"+ex.ToString()
-                    , "ç„¡åŠ¹ãªãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("–³Œø‚Èƒ[ƒNƒXƒy[ƒX‚Å‚·Bƒ[ƒNƒXƒy[ƒX‚ÌêŠ‚ğ•Ï‚¦‚½ê‡AuŠJ‚­v‚©‚ç‚à‚¤ˆê“x“o˜^‚µ‚Ä‚­‚¾‚³‚¢\nƒGƒ‰[F"+ex.ToString()
+                    , "–³Œø‚Èƒ[ƒNƒXƒy[ƒX", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
                 
             }
           
         }
 
         /// <summary>
-        /// ä»–ã®ç”»é¢ã‹ã‚‰é·ç§»ã—ã¦ããŸã¨ã
+        /// ‘¼‚Ì‰æ–Ê‚©‚ç‘JˆÚ‚µ‚Ä‚«‚½‚Æ‚«
         /// </summary>
-        /// <param name="navigationContext">ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³å…ƒã‹ã‚‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
+        /// <param name="navigationContext">ƒiƒrƒQ[ƒVƒ‡ƒ“Œ³‚©‚ç‚Ìƒpƒ‰ƒ[ƒ^</param>
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             
         }
 
         /// <summary>
-        /// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä¿æŒã—ãªã„
+        /// ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•Û‚µ‚È‚¢
         /// </summary>
-        /// <param name="navigationContext">ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³å…ƒã‹ã‚‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
+        /// <param name="navigationContext">ƒiƒrƒQ[ƒVƒ‡ƒ“Œ³‚©‚ç‚Ìƒpƒ‰ƒ[ƒ^</param>
         /// <returns></returns>
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
@@ -201,9 +204,9 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ã“ã®ç”»é¢ã‹ã‚‰ä»–ã®ç”»é¢ã¸é·ç§»ã™ã‚‹ã¨ã
+        /// ‚±‚Ì‰æ–Ê‚©‚ç‘¼‚Ì‰æ–Ê‚Ö‘JˆÚ‚·‚é‚Æ‚«
         /// </summary>
-        /// <param name="navigationContext">ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³å…ƒã‹ã‚‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
+        /// <param name="navigationContext">ƒiƒrƒQ[ƒVƒ‡ƒ“Œ³‚©‚ç‚Ìƒpƒ‰ƒ[ƒ^</param>
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
         
@@ -216,7 +219,7 @@ namespace CedarBoard.ViewModels
                 string path = "";
                 using (var folderDialog = new FolderBrowserDialog())
                 {
-                    folderDialog.Description = "ãƒ•ã‚©ãƒ«ãƒ€ã‚’é¸æŠã—ã¦ãã ã•ã„";
+                    folderDialog.Description = "ƒtƒHƒ‹ƒ_‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢";
                     if (folderDialog.ShowDialog() == DialogResult.OK)
                     {
                         path = folderDialog.SelectedPath;
@@ -238,17 +241,18 @@ namespace CedarBoard.ViewModels
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("ç„¡åŠ¹ãªãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã§ã™ã€‚ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®å ´æ‰€ã‚’å¤‰ãˆãŸå ´åˆã€ã€Œé–‹ãã€ã‹ã‚‰ã‚‚ã†ä¸€åº¦ç™»éŒ²ã—ã¦ãã ã•ã„\nã‚¨ãƒ©ãƒ¼ï¼š" + ex.ToString()
-                    , "ç„¡åŠ¹ãªãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBoxResult result = System.Windows.MessageBox.Show("–³Œø‚Èƒ[ƒNƒXƒy[ƒX‚Å‚·Bƒ[ƒNƒXƒy[ƒX‚ÌêŠ‚ğ•Ï‚¦‚½ê‡AuŠJ‚­v‚©‚ç‚à‚¤ˆê“x“o˜^‚µ‚Ä‚­‚¾‚³‚¢\nƒGƒ‰[F" + ex.ToString()
+                    , "–³Œø‚Èƒ[ƒNƒXƒy[ƒX", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private bool FileExistsInDirectory(string directoryPath, string fileName)
         {
-            // ãƒ‘ã‚¹ã‚’çµåˆã—ã¦å®Œå…¨ãªãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ç”Ÿæˆ
+            // ƒpƒX‚ğŒ‹‡‚µ‚ÄŠ®‘S‚Èƒtƒ@ƒCƒ‹ƒpƒX‚ğ¶¬
             string fullPath = Path.Combine(directoryPath, fileName);
 
-            // ãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ç¢ºèª
+            // ƒtƒ@ƒCƒ‹‚Ì‘¶İŠm”F
             return File.Exists(fullPath);
         }
     }
 }
+

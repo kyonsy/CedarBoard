@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// 詳細は LICENSE ファイルを参照してください。
 using CedarBoard.Model;
 using CedarBoard.Views;
 using Prism.Commands;
@@ -354,4 +357,5 @@ namespace CedarBoard.ViewModels
         }
     }
 }
+
 

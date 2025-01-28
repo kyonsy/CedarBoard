@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.Model.Accessor;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.Model.Accessor;
 
 namespace CedarBoardTest.Tests.ModelTest
 {
@@ -6,15 +9,15 @@ namespace CedarBoardTest.Tests.ModelTest
     public class DirectoryMockTest
     {
         [TestMethod]
-        public void ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ä½œæˆãŒã§ãã‚‹()
+        public void ƒfƒBƒŒƒNƒgƒŠ‚Ìì¬‚ª‚Å‚«‚é()
         {
             DirectoryMock mock = new();
-            mock.Create(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\delete");
-            Assert.AreEqual(false, mock.DirectoryDictionary[@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\delete"].Compressed);
+            mock.Create(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\delete");
+            Assert.AreEqual(false, mock.DirectoryDictionary[@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\delete"].Compressed);
         }
 
         [TestMethod]
-        public void ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å‰Šé™¤ãŒã§ãã‚‹()
+        public void ƒfƒBƒŒƒNƒgƒŠ‚Ìíœ‚ª‚Å‚«‚é()
         {
             DirectoryMock mock = new();
             mock.DirectoryDictionary.Add(@"C:\delete", new());
@@ -28,3 +31,4 @@ namespace CedarBoardTest.Tests.ModelTest
         }
     }
 }
+

@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.Model.Accessor;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -8,38 +11,38 @@ using System.Text.Json;
 namespace CedarBoard.Model
 {
     /// <summary>
-    /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹
+    /// ƒ[ƒNƒXƒy[ƒX
     /// </summary>
   
     public sealed class Workspace : JsonFileBase
     {
         /// <summary>
-        /// workspace.jsonã«ç´ä»˜ã‘ã‚‰ã‚ŒãŸPOCO
+        /// workspace.json‚É•R•t‚¯‚ç‚ê‚½POCO
         /// </summary>
         public WorkspacePoco WorkspacePoco { get;}
 
         /// <summary>
-        /// ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+        /// ƒtƒ@ƒCƒ‹‘€ì—pƒIƒuƒWƒFƒNƒg
         /// </summary>
         internal ITextFile TextFile { get; }
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ“ä½œç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+        /// ƒfƒBƒŒƒNƒgƒŠ‘€ì—pƒIƒuƒWƒFƒNƒg
         /// </summary>
         internal IDirectory Directory { get; }
 
 
         /// <summary>
-        /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®ãƒ‘ã‚¹
+        /// ƒ[ƒNƒXƒy[ƒX‚ÌƒpƒX
         /// </summary>
         private string Path { get; }
 
         /// <summary>
-        /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒ[ƒNƒXƒy[ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
-        /// <param name="textFile">ãƒ†ã‚¹ãƒˆç”¨ã¨æœ¬ç•ªç”¨ã§ä½¿ã„åˆ†ã‘ã‚‹ã€‚ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œã®ãŸã‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
-        /// <param name="directory">ãƒ†ã‚¹ãƒˆç”¨ã¨æœ¬ç•ªç”¨ã§ä½¿ã„åˆ†ã‘ã‚‹ã€‚ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ“ä½œã®ãŸã‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
-        /// <param name="path">ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®ãƒ‘ã‚¹</param>
+        /// <param name="textFile">ƒeƒXƒg—p‚Æ–{”Ô—p‚Åg‚¢•ª‚¯‚éBƒtƒ@ƒCƒ‹‘€ì‚Ì‚½‚ß‚ÌƒIƒuƒWƒFƒNƒg</param>
+        /// <param name="directory">ƒeƒXƒg—p‚Æ–{”Ô—p‚Åg‚¢•ª‚¯‚éBƒfƒBƒŒƒNƒgƒŠ‘€ì‚Ì‚½‚ß‚ÌƒIƒuƒWƒFƒNƒg</param>
+        /// <param name="path">ƒ[ƒNƒXƒy[ƒX‚ÌƒpƒX</param>
         public Workspace(ITextFile textFile, IDirectory directory, string path)
         {
             TextFile = textFile;
@@ -49,12 +52,12 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚ãƒ‡ãƒãƒƒã‚°ç”¨
+        /// ƒ[ƒNƒXƒy[ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^BƒfƒoƒbƒO—p
         /// </summary>
-        /// <param name="textFile">ãƒ†ã‚¹ãƒˆç”¨ã¨æœ¬ç•ªç”¨ã§ä½¿ã„åˆ†ã‘ã‚‹ã€‚ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œã®ãŸã‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
-        /// <param name="directory">ãƒ†ã‚¹ãƒˆç”¨ã¨æœ¬ç•ªç”¨ã§ä½¿ã„åˆ†ã‘ã‚‹ã€‚ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ“ä½œã®ãŸã‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
-        /// <param name="path">ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®ãƒ‘ã‚¹</param>
-        /// <param name="workspacePoco">ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®Poco</param>
+        /// <param name="textFile">ƒeƒXƒg—p‚Æ–{”Ô—p‚Åg‚¢•ª‚¯‚éBƒtƒ@ƒCƒ‹‘€ì‚Ì‚½‚ß‚ÌƒIƒuƒWƒFƒNƒg</param>
+        /// <param name="directory">ƒeƒXƒg—p‚Æ–{”Ô—p‚Åg‚¢•ª‚¯‚éBƒfƒBƒŒƒNƒgƒŠ‘€ì‚Ì‚½‚ß‚ÌƒIƒuƒWƒFƒNƒg</param>
+        /// <param name="path">ƒ[ƒNƒXƒy[ƒX‚ÌƒpƒX</param>
+        /// <param name="workspacePoco">ƒ[ƒNƒXƒy[ƒX‚ÌPoco</param>
         public Workspace(ITextFile textFile, IDirectory directory, string path,WorkspacePoco workspacePoco)
         {
             TextFile = textFile;
@@ -64,7 +67,7 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆåã‚’å¤‰æ›´ã™ã‚‹
+        /// ƒvƒƒWƒFƒNƒg–¼‚ğ•ÏX‚·‚é
         /// </summary>
         /// <param name="projectName"></param>
         /// <param name="newProjectName"></param>
@@ -76,9 +79,9 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// æ–°ã—ã„ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿½åŠ ã™ã‚‹
+        /// V‚µ‚¢ƒvƒƒWƒFƒNƒg‚ğ’Ç‰Á‚·‚é
         /// </summary>
-        /// <param name="projectName">ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®åå‰</param>
+        /// <param name="projectName">ƒvƒƒWƒFƒNƒg‚Ì–¼‘O</param>
         public void Add(string projectName)
         {
             string newPath = @$"{Path}\{projectName}";
@@ -87,9 +90,9 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// æŒ‡å®šã•ã‚ŒãŸãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã™ã‚‹
+        /// w’è‚³‚ê‚½ƒvƒƒWƒFƒNƒg‚ğíœ‚·‚é
         /// </summary>
-        /// <param name="projectName">å‰Šé™¤ã—ãŸã„ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®åå‰</param>
+        /// <param name="projectName">íœ‚µ‚½‚¢ƒvƒƒWƒFƒNƒg‚Ì–¼‘O</param>
         public void Remove(string projectName)
         {
             Directory.Delete(@$"{Path}\{projectName}");
@@ -97,10 +100,10 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// æŒ‡å®šã—ãŸãƒãƒ¼ãƒ‰(ã«ç´å›³ã‘ã‚‰ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆ)ã‚’é–‹ã
+        /// w’è‚µ‚½ƒm[ƒh(‚É•R}‚¯‚ç‚ê‚½ƒeƒLƒXƒg)‚ğŠJ‚­
         /// </summary>
-        /// <param name="projectName">ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®åå‰</param>
-        /// <param name="nodeName">æŒ‡å®šã—ãŸãƒãƒ¼ãƒ‰ã®åå‰</param>
+        /// <param name="projectName">ƒvƒƒWƒFƒNƒg‚Ì–¼‘O</param>
+        /// <param name="nodeName">w’è‚µ‚½ƒm[ƒh‚Ì–¼‘O</param>
         public void Open(string projectName,string nodeName)
         {
             ProcessStartInfo psi = new()
@@ -114,7 +117,7 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®çŠ¶æ…‹ã‚’ä¿å­˜ã™ã‚‹
+        /// ƒ[ƒNƒXƒy[ƒX‚Ìó‘Ô‚ğ•Û‘¶‚·‚é
         /// </summary>
         public override void Save()
         {
@@ -122,15 +125,15 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã™ã‚‹
+        /// ƒ[ƒNƒXƒy[ƒX‚Ìƒf[ƒ^‚ğƒfƒVƒŠƒAƒ‰ƒCƒY‚·‚é
         /// </summary>
         /// <param name="json"></param>
-        /// <returns>Worlspaceã®Poco</returns>
-        /// <exception cref="FormatException">Jsonæ–‡å­—åˆ—ã‚’èªè­˜ã§ããªã„</exception>
+        /// <returns>Worlspace‚ÌPoco</returns>
+        /// <exception cref="FormatException">Json•¶š—ñ‚ğ”F¯‚Å‚«‚È‚¢</exception>
         protected override WorkspacePoco Deserialize(string json)
         {
             WorkspacePoco sel = JsonSerializer.Deserialize<WorkspacePoco>(json, GetOptions()) ??
-                throw new FormatException("Jsonæ–‡å­—åˆ—ã¨ã—ã¦èªè­˜ã§ãã¾ã›ã‚“");
+                throw new FormatException("Json•¶š—ñ‚Æ‚µ‚Ä”F¯‚Å‚«‚Ü‚¹‚ñ");
             foreach(var keyValuePair in sel.ProjectDictionary)
             {
                 keyValuePair.Value.TextFile = TextFile;
@@ -139,3 +142,4 @@ namespace CedarBoard.Model
         }
     }
 }
+

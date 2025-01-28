@@ -1,4 +1,7 @@
-ï»¿using Microsoft.VisualStudio.TestTools.UnitTesting;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CedarBoard.ViewModels.HomePage;
 using System;
 using System.Collections.Generic;

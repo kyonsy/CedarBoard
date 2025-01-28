@@ -1,4 +1,7 @@
-ï»¿using System;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,18 +10,19 @@ using System.Threading.Tasks;
 namespace CedarBoard.ViewModels
 {
     /// <summary>
-    /// ã‚¿ãƒ–ã®ãƒ“ãƒ¥ãƒ¼ãƒ¢ãƒ‡ãƒ«
+    /// ƒ^ƒu‚Ìƒrƒ…[ƒ‚ƒfƒ‹
     /// </summary>
     public record TabViewModel
     {
         /// <summary>
-        /// ãƒ˜ãƒƒãƒ€ãƒ¼ã‚¨ãƒªã‚¢
+        /// ƒwƒbƒ_[ƒGƒŠƒA
         /// </summary>
         public string Header { get; set; }
 
         /// <summary>
-        /// DataContextã«å…¥ã‚Œã‚‹ViewModel
+        /// DataContext‚É“ü‚ê‚éViewModel
         /// </summary>
         public ProjectUserControlViewModel ProjectViewModel {  get; set; }
     }
 }
+

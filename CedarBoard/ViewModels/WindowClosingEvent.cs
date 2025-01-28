@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// 詳細は LICENSE ファイルを参照してください。
 using Prism.Events;
 using System;
 using System.Collections.Generic;
@@ -15,4 +18,5 @@ namespace CedarBoard.ViewModels
     {
     }
 }
+
 

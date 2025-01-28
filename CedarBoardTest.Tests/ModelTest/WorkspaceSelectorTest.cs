@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.Model;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.Model;
 using CedarBoard.Model.Accessor;
 
 namespace CedarBoardTest.Tests.ModelTest
@@ -7,7 +10,7 @@ namespace CedarBoardTest.Tests.ModelTest
     public class WorkspaceSelectorTest
     {
         [TestMethod]
-        public void æ–°ã—ã„ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚’è¿½åŠ ã§ãã‚‹()
+        public void V‚µ‚¢ƒ[ƒNƒXƒy[ƒX‚ğ’Ç‰Á‚Å‚«‚é()
         {
             WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock()) { SelectorPoco = new() { PathDictionary = [] } };
             sel.Add(new()
@@ -20,13 +23,13 @@ namespace CedarBoardTest.Tests.ModelTest
                 Name = "hogehoge",
                 CreatedDate = "2024/10/24",
                 UpdatedDate = "2024/10/24",
-                Message = "å§‹ã‚ã«ä½œã£ãŸã‚„ã¤"
+                Message = "n‚ß‚Éì‚Á‚½‚â‚Â"
             },"C:");
             Assert.AreEqual(true, sel.Directory.Exists("C:"));
         }
 
         [TestMethod]
-        public void æŒ‡å®šã•ã‚ŒãŸãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚’å‰Šé™¤ã§ãã‚‹()
+        public void w’è‚³‚ê‚½ƒ[ƒNƒXƒy[ƒX‚ğíœ‚Å‚«‚é()
         {
             WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock()) { SelectorPoco = new() { PathDictionary = [] } };
             sel.Add(new()
@@ -39,14 +42,14 @@ namespace CedarBoardTest.Tests.ModelTest
                 Name = "hogehoge",
                 CreatedDate = "2024/10/24",
                 UpdatedDate = "2024/10/24",
-                Message = "å§‹ã‚ã«ä½œã£ãŸã‚„ã¤"
+                Message = "n‚ß‚Éì‚Á‚½‚â‚Â"
             }, "C:");
             sel.Remove("hogehoge");
             Assert.AreEqual(false, sel.Directory.Exists("C:"));
         }
 
         [TestMethod]
-        public void æŒ‡å®šã•ã‚ŒãŸãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚’è¿”ã™ã“ã¨ãŒå‡ºæ¥ã‚‹()
+        public void w’è‚³‚ê‚½ƒ[ƒNƒXƒy[ƒX‚ğ•Ô‚·‚±‚Æ‚ªo—ˆ‚é()
         {
             WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock()){ 
                 SelectorPoco = new() { PathDictionary = [] } };
@@ -60,14 +63,14 @@ namespace CedarBoardTest.Tests.ModelTest
                 Name = "hogehoge",
                 CreatedDate = "2024/10/24",
                 UpdatedDate = "2024/10/24",
-                Message = "å§‹ã‚ã«ä½œã£ãŸã‚„ã¤"
+                Message = "n‚ß‚Éì‚Á‚½‚â‚Â"
             }, "C:");
             Workspace w = sel.GetWorkSpace("hogehoge");
             Assert.IsNotNull(w);
         }
 
         [TestMethod]
-        public void ã‚»ãƒ¬ã‚¯ã‚¿è‡ªèº«ã®æƒ…å ±ã‚’ä¿å­˜ã§ãã‚‹()
+        public void ƒZƒŒƒNƒ^©g‚Ìî•ñ‚ğ•Û‘¶‚Å‚«‚é()
         {
             WorkspaceSelector sel = new(new TextFileMock(), new DirectoryMock()) { SelectorPoco = new() { PathDictionary = [] } };
             sel.Add(new()
@@ -80,9 +83,10 @@ namespace CedarBoardTest.Tests.ModelTest
                 Name = "hogehoge",
                 CreatedDate = "2024/10/24",
                 UpdatedDate = "2024/10/24",
-                Message = "å§‹ã‚ã«ä½œã£ãŸã‚„ã¤"
+                Message = "n‚ß‚Éì‚Á‚½‚â‚Â"
             }, "C:");
             sel.Save();
         }
     }
 }
+

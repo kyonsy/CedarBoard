@@ -1,13 +1,17 @@
-ï»¿namespace CedarBoard.Model.Poco
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+namespace CedarBoard.Model.Poco
 {
     /// <summary>
-    /// ã‚»ãƒ¬ã‚¯ã‚¿ã®æƒ…å ±ã‚’æŒã£ã¦ã„ã‚‹POCI
+    /// ƒZƒŒƒNƒ^‚Ìî•ñ‚ğ‚Á‚Ä‚¢‚éPOCI
     /// </summary>
     public record SelectorPoco
     {
         /// <summary>
-        /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®åå‰ã‚’ã‚­ãƒ¼ã«ã€ãã®ãƒ‘ã‚¹ã‚’ä¿æŒã™ã‚‹
+        /// ƒ[ƒNƒXƒy[ƒX‚Ì–¼‘O‚ğƒL[‚ÉA‚»‚ÌƒpƒX‚ğ•Û‚·‚é
         /// </summary>
         public required Dictionary<string, string> PathDictionary { get; set; } = [];
     }
 }
+

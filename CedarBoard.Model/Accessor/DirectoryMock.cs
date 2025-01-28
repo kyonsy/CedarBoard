@@ -1,48 +1,51 @@
-ï»¿using System.Collections.Generic;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using System.Collections.Generic;
 
 namespace CedarBoard.Model.Accessor
 {
     /// <summary>
-    /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’è¡¨ç¾ã™ã‚‹Mock
+    /// ƒfƒBƒŒƒNƒgƒŠ‚ğ•\Œ»‚·‚éMock
     /// </summary>
     public class DirectoryMock : IDirectory
     {
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å†…éƒ¨æ§‹é€ 
+        /// ƒfƒBƒŒƒNƒgƒŠ‚Ì“à•”\‘¢
         /// </summary>
         public class Mock()
         {
             /// <summary>
-            /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒåœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹ç¤ºã™
+            /// ƒfƒBƒŒƒNƒgƒŠ‚ªˆ³k‚³‚ê‚Ä‚¢‚é‚©¦‚·
             /// </summary>
             public bool Compressed { get; set; } = false;
         }
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®é›†åˆã‚’ä»®æƒ³çš„ã«å†ç¾
+        /// ƒfƒBƒŒƒNƒgƒŠ‚ÌW‡‚ğ‰¼‘z“I‚ÉÄŒ»
         /// </summary>
         public Dictionary<string,Mock> DirectoryDictionary { get; set; } = [];
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ç”Ÿæˆã‚’ä»®æƒ³çš„ã«è¡¨ç¾
+        /// ƒfƒBƒŒƒNƒgƒŠ‚Ì¶¬‚ğ‰¼‘z“I‚É•\Œ»
         /// </summary>
-        /// <param name="path">ç”Ÿæˆã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ‘ã‚¹</param>
+        /// <param name="path">¶¬‚·‚éƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX</param>
         public void Create(string path)
         {
             DirectoryDictionary.Add(path,new());
         }
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å‰Šé™¤ã‚’ä»®æƒ³çš„ã«è¡¨ç¾
+        /// ƒfƒBƒŒƒNƒgƒŠ‚Ìíœ‚ğ‰¼‘z“I‚É•\Œ»
         /// </summary>
-        /// <param name="path">å‰Šé™¤ã—ãŸã„ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ‘ã‚¹</param>
+        /// <param name="path">íœ‚µ‚½‚¢ƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX</param>
         public void Delete(string path)
         {
             DirectoryDictionary.Remove(path);
         }
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®åœ§ç¸®ã‚’è¡¨ç¾
+        /// ƒfƒBƒŒƒNƒgƒŠ‚Ìˆ³k‚ğ•\Œ»
         /// </summary>
         /// <param name="path"></param>
         public void Compress(string path)
@@ -51,7 +54,7 @@ namespace CedarBoard.Model.Accessor
         }
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®è§£å‡ã‚’è¡¨ç¾
+        /// ƒfƒBƒŒƒNƒgƒŠ‚Ì‰ğ“€‚ğ•\Œ»
         /// </summary>
         /// <param name="path"></param>
         public void Unfreeze(string path)
@@ -60,7 +63,7 @@ namespace CedarBoard.Model.Accessor
         }
 
         /// <summary>
-        /// ã‚ã‚‹ãƒ‡ã‚£ã‚¯ã‚·ãƒ§ãƒŠãƒªãŒã‚ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹
+        /// ‚ ‚éƒfƒBƒNƒVƒ‡ƒiƒŠ‚ª‚ ‚é‚©‚Ç‚¤‚©’²‚×‚é
         /// </summary>
         /// <param name="direcory"></param>
         /// <returns></returns>
@@ -71,3 +74,4 @@ namespace CedarBoard.Model.Accessor
         }
     }
 }
+

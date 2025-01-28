@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.Model;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.Model;
 using CedarBoard.Model.Poco;
 using CedarBoard.Views;
 using Prism.Commands;
@@ -11,11 +14,11 @@ using System.Linq;
 namespace CedarBoard.ViewModels
 {
     /// <summary>
-    /// ä½œå“ã‚’ç·¨é›†ã™ã‚‹
+    /// ì•i‚ğ•ÒW‚·‚é
     /// </summary>
 	public class EditWorkUserControlViewModel : BindableBase,INavigationAware
 	{
-        //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+        //ƒtƒB[ƒ‹ƒh
         private IRegionManager _regionManager;
         private WorkspaceSelector _workspaceSelector;
         private string _name;
@@ -26,7 +29,7 @@ namespace CedarBoard.ViewModels
         NavigationContext _navigationContext;
 
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
         public EditWorkUserControlViewModel(IRegionManager regionManager, WorkspaceSelector workspaceSelector)
         {
@@ -36,44 +39,44 @@ namespace CedarBoard.ViewModels
             SaveSetting = new DelegateCommand(SaveSettingExecute);
         }
 
-        // ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ
+        // ƒfƒŠƒQ[ƒg
         /// <summary>
-        /// ãƒ›ãƒ¼ãƒ ç”»é¢ã¸æˆ»ã‚‹
+        /// ƒz[ƒ€‰æ–Ê‚Ö–ß‚é
         /// </summary>
         public DelegateCommand BackHome { get; }
 
         /// <summary>
-        /// æ–°è¦ä½œæˆ
+        /// V‹Kì¬
         /// </summary>
         public DelegateCommand SaveSetting { get; }
 
-        // ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+        // ƒvƒƒpƒeƒB
         /// <summary>
-        /// ä½œå“å
+        /// ì•i–¼
         /// </summary>
         public string Name { get { return _name; } set { SetProperty(ref _name, value); } }
 
         /// <summary>
-        /// ä½œè€…å
+        /// ìÒ–¼
         /// </summary>
         public string Author { get { return _author; } set { SetProperty(ref _author, value); } } 
 
         /// <summary>
-        /// ä½¿ã†ã‚¨ãƒ‡ã‚£ã‚¿ã®ãƒ‘ã‚¹
+        /// g‚¤ƒGƒfƒBƒ^‚ÌƒpƒX
         /// </summary>
         public string EditorPath { get { return _editorPath; } set { SetProperty(ref _editorPath, value); } }
 
         /// <summary>
-        /// ãƒ¡ãƒ¢
+        /// ƒƒ‚
         /// </summary>
         public string Memo { get { return _memo; } set { SetProperty(ref _memo, value); } }
 
 
-        // ãƒ¡ã‚½ãƒƒãƒ‰
+        // ƒƒ\ƒbƒh
         /// <summary>
-        /// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¯ä½¿ã„ã¾ã‚ã•ãªã„
+        /// ƒCƒ“ƒXƒ^ƒ“ƒX‚Íg‚¢‚Ü‚í‚³‚È‚¢
         /// </summary>
-        /// <param name="navigationContext">ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³å…ƒã‹ã‚‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
+        /// <param name="navigationContext">ƒiƒrƒQ[ƒVƒ‡ƒ“Œ³‚©‚ç‚Ìƒpƒ‰ƒ[ƒ^</param>
         /// <returns></returns>
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
@@ -81,18 +84,18 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ã“ã®ç”»é¢ã‹ã‚‰ãƒŠãƒ“ã‚²ãƒ¼ãƒˆã—ãŸæ™‚ã®å‹•ä½œ
+        /// ‚±‚Ì‰æ–Ê‚©‚çƒiƒrƒQ[ƒg‚µ‚½‚Ì“®ì
         /// </summary>
-        /// <param name="navigationContext">ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³å…ƒã‹ã‚‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
+        /// <param name="navigationContext">ƒiƒrƒQ[ƒVƒ‡ƒ“Œ³‚©‚ç‚Ìƒpƒ‰ƒ[ƒ^</param>
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
             
         }
 
         /// <summary>
-        /// ä»–ã®ç”»é¢ã‹ã‚‰ã“ã®ç”»é¢ã«ãƒŠãƒ“ã‚²ãƒ¼ãƒˆã—ãŸæ™‚ã®å‹•ä½œ
+        /// ‘¼‚Ì‰æ–Ê‚©‚ç‚±‚Ì‰æ–Ê‚ÉƒiƒrƒQ[ƒg‚µ‚½‚Ì“®ì
         /// </summary>
-        /// <param name="navigationContext">ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³å…ƒã‹ã‚‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿</param>
+        /// <param name="navigationContext">ƒiƒrƒQ[ƒVƒ‡ƒ“Œ³‚©‚ç‚Ìƒpƒ‰ƒ[ƒ^</param>
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _navigationContext = navigationContext;
@@ -105,7 +108,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ãƒ›ãƒ¼ãƒ ç”»é¢ã¸æˆ»ã‚‹
+        /// ƒz[ƒ€‰æ–Ê‚Ö–ß‚é
         /// </summary>
         private void BackHomeExecute()
         {
@@ -113,7 +116,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®è¨­å®šã‚’ä¿å­˜ã™ã‚‹
+        /// ƒ[ƒNƒXƒy[ƒX‚Ìİ’è‚ğ•Û‘¶‚·‚é
         /// </summary>
         private void SaveSettingExecute()
         {
@@ -130,3 +133,4 @@ namespace CedarBoard.ViewModels
         }
     }
 }
+

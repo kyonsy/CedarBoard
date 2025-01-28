@@ -1,38 +1,42 @@
-ï»¿namespace CedarBoard.Model.Accessor
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+namespace CedarBoard.Model.Accessor
 {
     /// <summary>
-    /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’è¡¨ç¾ã™ã‚‹ãŸã‚ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+    /// ƒfƒBƒŒƒNƒgƒŠ‚ğ•\Œ»‚·‚é‚½‚ß‚ÌƒCƒ“ƒ^[ƒtƒFƒCƒX
     /// </summary>
     public interface IDirectory
     { 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å‰Šé™¤ã™ã‚‹
+        /// ƒfƒBƒŒƒNƒgƒŠ‚ğíœ‚·‚é
         /// </summary>
         public void Delete(string path);
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ä½œæˆã™ã‚‹
+        /// ƒfƒBƒŒƒNƒgƒŠ‚ğì¬‚·‚é
         /// </summary>
         /// <param name="path"></param>
         public void Create(string path);
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’åœ§ç¸®ã™ã‚‹
+        /// ƒfƒBƒŒƒNƒgƒŠ‚ğˆ³k‚·‚é
         /// </summary>
         /// <param name="path"></param>
         public void Compress(string path);
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’è§£å‡ã™ã‚‹
+        /// ƒfƒBƒŒƒNƒgƒŠ‚ğ‰ğ“€‚·‚é
         /// </summary>
         /// <param name="path"></param>
         public void Unfreeze(string path);
 
         /// <summary>
-        /// ã‚ã‚‹ãƒ‘ã‚¹ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒã‚ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹
+        /// ‚ ‚éƒpƒX‚ÌƒfƒBƒŒƒNƒgƒŠ‚ª‚ ‚é‚©‚Ç‚¤‚©’²‚×‚é
         /// </summary>
         /// <param name="directory"></param>
         /// <returns></returns>
         public bool Exists(string directory);
     }
 }
+

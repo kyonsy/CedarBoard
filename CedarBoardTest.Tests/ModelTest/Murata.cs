@@ -1,4 +1,7 @@
-ï»¿/*using System;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+/*using System;
 using CedarBoard.Model;
 using CedarBoard.Model.Accessor;
 using Moq;
@@ -11,7 +14,7 @@ namespace CedarBoardTest.Tests.ModelTest
 		ProjectTest a = new ProjectTest();
 		public Class1()
 		{
-			a.å§‹ã‚ã®ãƒãƒ¼ãƒ‰ãŒè¿½åŠ ã§ãã‚‹();
+			a.n‚ß‚Ìƒm[ƒh‚ª’Ç‰Á‚Å‚«‚é();
 		}
 	}
 }*/

@@ -1,4 +1,7 @@
-ï»¿using System.Runtime.CompilerServices;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using System.Runtime.CompilerServices;
 using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
 using System.Text.Json;
@@ -7,38 +10,38 @@ using System.Text.Json.Serialization;
 namespace CedarBoard.Model
 {
     /// <summary>
-    /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚’é¸ã¶ãŸã‚ã®ã‚‚ã®ã€‚ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®èµ·å‹•ã¨åŒæ™‚ã«ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã•ã‚Œã‚‹
+    /// ƒ[ƒNƒXƒy[ƒX‚ğ‘I‚Ô‚½‚ß‚Ì‚à‚ÌBƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì‹N“®‚Æ“¯‚ÉƒCƒ“ƒXƒ^ƒ“ƒX‰»‚³‚ê‚é
     /// </summary>
     public sealed class WorkspaceSelector : JsonFileBase
     {
         /// <summary>
-        /// setting.jsonã«ç´ä»˜ã‘ã‚‰ã‚ŒãŸPOCO
+        /// setting.json‚É•R•t‚¯‚ç‚ê‚½POCO
         /// </summary>
         [JsonInclude]
         public SelectorPoco SelectorPoco { get; set; }
 
         /// <summary>
-        /// ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+        /// ƒtƒ@ƒCƒ‹‘€ì—pƒIƒuƒWƒFƒNƒg
         /// </summary>
         [JsonIgnore]
         internal ITextFile TextFile { get; }
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ“ä½œç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+        /// ƒfƒBƒŒƒNƒgƒŠ‘€ì—pƒIƒuƒWƒFƒNƒg
         /// </summary>
         [JsonIgnore]
         internal IDirectory Directory { get; }
 
         /// <summary>
-        /// setting.jsonãŒã‚ã‚‹ãƒ‘ã‚¹
+        /// setting.json‚ª‚ ‚éƒpƒX
         /// </summary>
         private string SettingPath { get; } = @$"{AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\')}\setting.json";
 
         /// <summary>
-        /// ã‚»ãƒ¬ã‚¯ã‚¿ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒZƒŒƒNƒ^‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
-        /// <param name="textFile">ãƒ†ã‚¹ãƒˆç”¨ã¨æœ¬ç•ªç”¨ã§ä½¿ã„åˆ†ã‘ã‚‹ã€‚ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œç”¨ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
-        /// <param name="directory">ãƒ†ã‚¹ãƒˆç”¨ã¨æœ¬ç•ªç”¨ã§ä½¿ã„åˆ†ã‘ã‚‹ã€‚ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ“ä½œã®ãŸã‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
+        /// <param name="textFile">ƒeƒXƒg—p‚Æ–{”Ô—p‚Åg‚¢•ª‚¯‚éBƒtƒ@ƒCƒ‹‘€ì—p‚ÌƒIƒuƒWƒFƒNƒg</param>
+        /// <param name="directory">ƒeƒXƒg—p‚Æ–{”Ô—p‚Åg‚¢•ª‚¯‚éBƒfƒBƒŒƒNƒgƒŠ‘€ì‚Ì‚½‚ß‚ÌƒIƒuƒWƒFƒNƒg</param>
         public WorkspaceSelector(ITextFile textFile, IDirectory directory)
         {
             TextFile = textFile;
@@ -47,11 +50,11 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// æ–°ã—ã„ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚’è¿½åŠ ã™ã‚‹ã€‚ã“ã“ã§WorkspaceãŒã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã•ã‚Œã‚‹ã‚ã‘ã§ã¯ãªã„ç‚¹ã«æ³¨æ„
+        /// V‚µ‚¢ƒ[ƒNƒXƒy[ƒX‚ğ’Ç‰Á‚·‚éB‚±‚±‚ÅWorkspace‚ªƒCƒ“ƒXƒ^ƒ“ƒX‰»‚³‚ê‚é‚í‚¯‚Å‚Í‚È‚¢“_‚É’ˆÓ
         /// </summary>
-        /// <param name="setting">æ–°ã—ã„ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®è¨­å®š</param>
-        /// <param name="path">ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®ãƒ‘ã‚¹</param>
-        /// <returns>æ–°ã—ã„ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹</returns>
+        /// <param name="setting">V‚µ‚¢ƒ[ƒNƒXƒy[ƒX‚Ìİ’è</param>
+        /// <param name="path">ƒ[ƒNƒXƒy[ƒX‚ÌƒpƒX</param>
+        /// <returns>V‚µ‚¢ƒ[ƒNƒXƒy[ƒX</returns>
         public void Add(Setting setting,string path)
         {
             Directory.Create(path);
@@ -64,9 +67,9 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// æŒ‡å®šã•ã‚ŒãŸãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚’å‰Šé™¤ã™ã‚‹
+        /// w’è‚³‚ê‚½ƒ[ƒNƒXƒy[ƒX‚ğíœ‚·‚é
         /// </summary>
-        /// <param name="workspace">å‰Šé™¤ã—ãŸã„ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®åå‰</param>
+        /// <param name="workspace">íœ‚µ‚½‚¢ƒ[ƒNƒXƒy[ƒX‚Ì–¼‘O</param>
         public void Remove(string workspace)
         {
             Directory.Delete(SelectorPoco.PathDictionary[workspace]);
@@ -74,10 +77,10 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// æŒ‡å®šã—ãŸãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®åå‰ã‚’å¤‰ãˆã‚‹
+        /// w’è‚µ‚½ƒ[ƒNƒXƒy[ƒX‚Ì–¼‘O‚ğ•Ï‚¦‚é
         /// </summary>
-        /// <param name="workspaceName">ä»Šã®åå‰</param>
-        /// <param name="newWorkspaceName">æ–°ã—ã„åå‰</param>
+        /// <param name="workspaceName">¡‚Ì–¼‘O</param>
+        /// <param name="newWorkspaceName">V‚µ‚¢–¼‘O</param>
         public void Rename(string workspaceName,string newWorkspaceName)
         {
             Workspace workspace = GetWorkSpace(workspaceName);
@@ -90,10 +93,10 @@ namespace CedarBoard.Model
 
 
         /// <summary>
-        /// æŒ‡å®šã•ã‚ŒãŸåå‰ã®ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚’è¿”ã™
+        /// w’è‚³‚ê‚½–¼‘O‚Ìƒ[ƒNƒXƒy[ƒX‚ğ•Ô‚·
         /// </summary>
-        /// <param name="workspace">æ¬²ã—ã„ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®åå‰</param>
-        /// <returns>æŒ‡å®šã—ãŸãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹</returns>
+        /// <param name="workspace">—~‚µ‚¢ƒ[ƒNƒXƒy[ƒX‚Ì–¼‘O</param>
+        /// <returns>w’è‚µ‚½ƒ[ƒNƒXƒy[ƒX</returns>
         public Workspace GetWorkSpace(string workspace)
         {
             string path = SelectorPoco.PathDictionary[workspace];
@@ -101,30 +104,30 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// ã‚»ãƒ¬ã‚¯ã‚¿ã®æƒ…å ±ã‚’ä¿å­˜ã™ã‚‹
+        /// ƒZƒŒƒNƒ^‚Ìî•ñ‚ğ•Û‘¶‚·‚é
         /// </summary>
         public override void Save()
         {
-            // string s = Serialize(this); // ãƒ‡ãƒãƒƒã‚¯ç”¨ã«ä½œã£ãŸå¤‰æ•°
+            // string s = Serialize(this); // ƒfƒoƒbƒN—p‚Éì‚Á‚½•Ï”
             TextFile.SetData(SettingPath, Serialize(SelectorPoco));
         }
 
         /// <summary>
-        /// ã‚»ãƒ¬ã‚¯ã‚¿ã‚’ä½œã£ã¦è¿”ã™
+        /// ƒZƒŒƒNƒ^‚ğì‚Á‚Ä•Ô‚·
         /// </summary>
-        /// <param name="json">Jsonæ–‡å­—åˆ—</param>
-        /// <returns>ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã•ã‚ŒãŸPoco</returns>
+        /// <param name="json">Json•¶š—ñ</param>
+        /// <returns>ƒfƒVƒŠƒAƒ‰ƒCƒY‚³‚ê‚½Poco</returns>
         /// <exception cref="FormatException"></exception>
         protected override SelectorPoco Deserialize(string json) {
             SelectorPoco sel = JsonSerializer.Deserialize<SelectorPoco>(json, GetOptions()) ??
-                throw new FormatException("Jsonæ–‡å­—åˆ—ã¨ã—ã¦èªè­˜ã§ãã¾ã›ã‚“");
+                throw new FormatException("Json•¶š—ñ‚Æ‚µ‚Ä”F¯‚Å‚«‚Ü‚¹‚ñ");
             return sel;
         }
 
         /// <summary>
-        /// ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã‚’è¡Œã„SelectorPocoã‚’è¿”ã™
+        /// ƒfƒVƒŠƒAƒ‰ƒCƒY‚ğs‚¢SelectorPoco‚ğ•Ô‚·
         /// </summary>
-        /// <returns>ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã•ã‚ŒãŸPoco</returns>
+        /// <returns>ƒfƒVƒŠƒAƒ‰ƒCƒY‚³‚ê‚½Poco</returns>
         private SelectorPoco GetSelectorPoco() {
             if (TextFile.Exists(SettingPath))
             {
@@ -139,3 +142,4 @@ namespace CedarBoard.Model
         }
 }
 }
+

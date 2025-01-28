@@ -1,4 +1,7 @@
-ï»¿using Prism.Commands;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using Prism.Commands;
 using Prism.Dialogs;
 using Prism.Mvvm;
 using System;
@@ -8,15 +11,15 @@ using System.Linq;
 namespace CedarBoard.ViewModels
 {
     /// <summary>
-    /// æ–°ã—ããƒãƒ¼ãƒ‰ã‚’ä½œã‚‹ã¨ãã«å‡ºã¦ãã‚‹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
+    /// V‚µ‚­ƒm[ƒh‚ğì‚é‚Æ‚«‚Éo‚Ä‚­‚éƒ_ƒCƒAƒƒO
     /// </summary>
 	public class NewNodeUserControlViewModel : BindableBase,IDialogAware
 	{
-        private string _title = "ãƒãƒ¼ãƒ‰ã®æ–°è¦ä½œæˆ";
+        private string _title = "ƒm[ƒh‚ÌV‹Kì¬";
         private string _nodeName="";
 
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
         public NewNodeUserControlViewModel()
         {
@@ -24,28 +27,28 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®æ–°è¦ä½œæˆã‚’å®Œäº†ã•ã›ã‚‹(æ­£ç¢ºã«ã¯ãƒ‡ãƒ¼ã‚¿ã®å…¥åŠ›ã‚’å®Œäº†ã•ã›ã‚‹)
+        /// ƒm[ƒh‚ÌV‹Kì¬‚ğŠ®—¹‚³‚¹‚é(³Šm‚É‚Íƒf[ƒ^‚Ì“ü—Í‚ğŠ®—¹‚³‚¹‚é)
         /// </summary>
         public DelegateCommand OKButton { get; }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®åå‰
+        /// ƒm[ƒh‚Ì–¼‘O
         /// </summary>
         public string NodeName { get { return _nodeName; } set { SetProperty(ref _nodeName, value); } }
 
         /// <summary>
-        /// ã‚¿ã‚¤ãƒˆãƒ«
+        /// ƒ^ƒCƒgƒ‹
         /// </summary>
         public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
 
         /// <summary>
-        /// é–‰ã˜ã‚‹ã¨ãã®ãƒªã‚¹ãƒŠãƒ¼
+        /// •Â‚¶‚é‚Æ‚«‚ÌƒŠƒXƒi[
         /// </summary>
         public DialogCloseListener RequestClose {  get; set; }
 
 
         /// <summary>
-        /// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‰ã˜ã‚Œã‚‹ã‹ã©ã†ã‹
+        /// ƒ_ƒCƒAƒƒO‚ğ•Â‚¶‚ê‚é‚©‚Ç‚¤‚©
         /// </summary>
         /// <returns></returns>
         public bool CanCloseDialog()
@@ -54,7 +57,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒé–‰ã˜ã‚‹ã¨ã
+        /// ƒ_ƒCƒAƒƒO‚ª•Â‚¶‚é‚Æ‚«
         /// </summary>
         public void OnDialogClosed()
         {
@@ -62,7 +65,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒé–‹ãã¨ã
+        /// ƒ_ƒCƒAƒƒO‚ªŠJ‚­‚Æ‚«
         /// </summary>
         /// <param name="parameters"></param>
         public void OnDialogOpened(IDialogParameters parameters)
@@ -81,3 +84,4 @@ namespace CedarBoard.ViewModels
         }
     }
 }
+

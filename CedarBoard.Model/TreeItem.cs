@@ -1,4 +1,7 @@
-ï»¿using System;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,29 +11,29 @@ using System.Collections.ObjectModel;
 namespace CedarBoard.Model
 {
     /// <summary>
-    /// éšå±¤æ§‹é€ ã‚’ãƒ¢ãƒ‡ãƒ«
+    /// ŠK‘w\‘¢‚ğƒ‚ƒfƒ‹
     /// </summary>
     public class TreeItem
     {
         /// <summary>
-        /// ã‚¢ã‚¤ãƒ†ãƒ ã®åå‰
+        /// ƒAƒCƒeƒ€‚Ì–¼‘O
         /// </summary>
         public string Name {  get; set; }
 
         /// <summary>
-        /// å­è¦ç´ 
+        /// q—v‘f
         /// </summary>
         public ObservableCollection<TreeItem> Children { get; set; }
 
         /// <summary>
-        /// ã‚¢ã‚¤ãƒ†ãƒ ãŒä¸‹ã«é–‹ã„ã¦ã„ã‚‹ã‹
+        /// ƒAƒCƒeƒ€‚ª‰º‚ÉŠJ‚¢‚Ä‚¢‚é‚©
         /// </summary>
         public bool IsExpanded {  get; set; }
 
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
-        /// <param name="name">ãƒ„ãƒªãƒ¼ã®æ ¹ã®ã‚¢ã‚¤ãƒ†ãƒ </param>
+        /// <param name="name">ƒcƒŠ[‚Ìª‚ÌƒAƒCƒeƒ€</param>
         public TreeItem(string name)
         {
             Name = name;
@@ -38,3 +41,4 @@ namespace CedarBoard.Model
         }
     }
 }
+

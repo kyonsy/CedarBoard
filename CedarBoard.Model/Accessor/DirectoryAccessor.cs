@@ -1,53 +1,57 @@
-ï»¿namespace CedarBoard.Model.Accessor
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+namespace CedarBoard.Model.Accessor
 {
     /// <summary>
-    /// å®Ÿéš›ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ä½¿ã†ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ã‚¢ã‚¯ã‚»ã‚µ
+    /// ÀÛ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Åg‚¤ƒfƒBƒŒƒNƒgƒŠ‚ÌƒAƒNƒZƒT
     /// </summary>
     public class DirectoryAccessor : IDirectory
     {
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ä½œæˆ
+        /// ƒfƒBƒŒƒNƒgƒŠ‚ğì¬
         /// </summary>
-        /// <param name="path">ä½œã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ‘ã‚¹</param>
+        /// <param name="path">ì‚éƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX</param>
         public void Create(string path)
         {
             Directory.CreateDirectory(path);
         }
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å‰Šé™¤
+        /// ƒfƒBƒŒƒNƒgƒŠ‚Ìíœ
         /// </summary>
-        /// <param name="path">å‰Šé™¤ã—ãŸã„ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ‘ã‚¹</param>
+        /// <param name="path">íœ‚µ‚½‚¢ƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX</param>
         public void Delete(string path)
         {
             Directory.Delete(path, true);
         }
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®åœ§ç¸®
+        /// ƒfƒBƒŒƒNƒgƒŠ‚Ìˆ³k
         /// </summary>
-        /// <param name="path">åœ§ç¸®ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ‘ã‚¹</param>
+        /// <param name="path">ˆ³k‚·‚éƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX</param>
         public void Compress(string path)
         {
-            throw new NotImplementedException("ä»Šåº¦ã¾ãŸä½œã‚‹ã‚");
+            throw new NotImplementedException("¡“x‚Ü‚½ì‚é‚í");
         }
 
         /// <summary>
-        /// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®è§£å‡
+        /// ƒfƒBƒŒƒNƒgƒŠ‚Ì‰ğ“€
         /// </summary>
-        /// <param name="path">è§£ç­”ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ‘ã‚¹</param>
+        /// <param name="path">‰ğ“š‚·‚éƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX</param>
         public void Unfreeze(string path)
         {
-            throw new NotImplementedException("ä»Šåº¦ã¾ãŸä½œã‚‹ã‚");
+            throw new NotImplementedException("¡“x‚Ü‚½ì‚é‚í");
         }
 
         /// <summary>
-        ///  ã‚ã‚‹ãƒ‡ã‚£ã‚¯ã‚·ãƒ§ãƒŠãƒªãŒæ—¢ã«å­˜åœ¨ã—ã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹
+        ///  ‚ ‚éƒfƒBƒNƒVƒ‡ƒiƒŠ‚ªŠù‚É‘¶İ‚µ‚Ä‚¢‚é‚©Šm”F‚·‚é
         /// </summary>
-        /// <param name="dictionary">å­˜åœ¨ã‚’ç¢ºèªã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ‘ã‚¹</param>
-        /// <returns>ã‚ã‚‹ã®ã‹ã©ã†ã‹ã‚’è¿”ã™</returns>
+        /// <param name="dictionary">‘¶İ‚ğŠm”F‚·‚éƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX</param>
+        /// <returns>‚ ‚é‚Ì‚©‚Ç‚¤‚©‚ğ•Ô‚·</returns>
         public bool Exists(string dictionary) { 
             return Directory.Exists(dictionary);
         }
     }
 }
+

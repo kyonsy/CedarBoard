@@ -1,22 +1,26 @@
-ï»¿using System.Text.Json.Serialization;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using System.Text.Json.Serialization;
 
 namespace CedarBoard.Model.Poco
 {
     /// <summary>
-    /// workspace.jsonã‹ã‚‰ã®æ–‡å­—åˆ—ã‚’ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã™ã‚‹ãŸã‚ã®POCO
+    /// workspace.json‚©‚ç‚Ì•¶š—ñ‚ğƒfƒVƒŠƒAƒ‰ƒCƒY‚·‚é‚½‚ß‚ÌPOCO
     /// </summary>
     public record WorkspacePoco
     {
         ///<summary>
-        /// è¨­å®š
+        /// İ’è
         ///</summary>
         [JsonInclude]
         public required Setting Setting { get; set; }
 
         /// <summary>
-        /// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®åå‰ã®ãƒ‡ã‚£ã‚¯ã‚·ãƒ§ãƒŠãƒªã€‚keyã¯ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®åå‰ã€valueã¯ãã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+        /// ƒvƒƒWƒFƒNƒg‚Ì–¼‘O‚ÌƒfƒBƒNƒVƒ‡ƒiƒŠBkey‚ÍƒfƒBƒŒƒNƒgƒŠ‚Ì–¼‘OAvalue‚Í‚»‚ÌƒIƒuƒWƒFƒNƒg
         /// </summary>
         [JsonInclude]
         public required Dictionary<string, Project> ProjectDictionary { get; set; } = [];
     }
 }
+

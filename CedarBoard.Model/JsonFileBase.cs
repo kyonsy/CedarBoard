@@ -1,18 +1,21 @@
-ï»¿using System.Text.Unicode;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using System.Text.Unicode;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 namespace CedarBoard.Model
 {
     /// <summary>
-    /// Jsonæ–‡å­—åˆ—ã¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç›¸äº’å¤‰æ›ã‚’è¡Œã†æŠ½è±¡ã‚¯ãƒ©ã‚¹
+    /// Json•¶š—ñ‚ÆƒIƒuƒWƒFƒNƒg‚Ì‘ŠŒİ•ÏŠ·‚ğs‚¤’ŠÛƒNƒ‰ƒX
     /// </summary>
     public abstract class JsonFileBase
     {
         /// <summary>
-        /// å…¥åŠ›ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’Jsonæ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹
+        /// “ü—Í‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ğJson•¶š—ñ‚É•ÏŠ·‚·‚é
         /// </summary>
-        /// <param name="poco">Jsonæ–‡å­—åˆ—ã«ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
-        /// <returns>Jsonæ–‡å­—åˆ—</returns>
+        /// <param name="poco">Json•¶š—ñ‚É‚µ‚½‚¢ƒIƒuƒWƒFƒNƒg</param>
+        /// <returns>Json•¶š—ñ</returns>
         public static string Serialize(object poco)
         {
             var json = JsonSerializer.Serialize(poco, GetOptions());
@@ -20,22 +23,22 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// å…¥ã‚ŒãŸJsonæ–‡å­—åˆ—ã‚’Objectã«å¤‰æ›ã™ã‚‹
+        /// “ü‚ê‚½Json•¶š—ñ‚ğObject‚É•ÏŠ·‚·‚é
         /// </summary>
-        /// <param name="json">ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰ãˆãŸã„Jsonæ–‡å­—åˆ—</param>
-        /// <returns>ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</returns>
+        /// <param name="json">ƒIƒuƒWƒFƒNƒg‚É•Ï‚¦‚½‚¢Json•¶š—ñ</param>
+        /// <returns>ƒIƒuƒWƒFƒNƒg</returns>
         protected abstract object Deserialize(string json);
 
         /// <summary>
-        /// è‡ªèº«ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®šã•ã‚ŒãŸJsonãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã—ã¦æ›¸ãè¾¼ã‚€
+        /// ©g‚ÌƒIƒuƒWƒFƒNƒg‚ğw’è‚³‚ê‚½Jsonƒtƒ@ƒCƒ‹‚ÉƒVƒŠƒAƒ‰ƒCƒY‚µ‚Ä‘‚«‚Ş
         /// </summary>
         public abstract void Save();
 
 
         /// <summary>
-        /// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¨­å®šã™ã‚‹ã€‚å†…éƒ¨ãƒ¡ã‚¾ãƒƒãƒˆ
+        /// ƒIƒvƒVƒ‡ƒ“‚ğİ’è‚·‚éB“à•”ƒƒ]ƒbƒg
         /// </summary>
-        /// <returns>ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¨­å®š</returns>
+        /// <returns>ƒIƒvƒVƒ‡ƒ“İ’è</returns>
         public static JsonSerializerOptions GetOptions()
         {
             var options = new JsonSerializerOptions
@@ -50,3 +53,4 @@ namespace CedarBoard.Model
         }
     }
 }
+

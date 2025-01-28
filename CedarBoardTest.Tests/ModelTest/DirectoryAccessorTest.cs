@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.Model.Accessor;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.Model.Accessor;
 
 namespace CedarBoardTest.Tests.ModelTest
 {
@@ -6,28 +9,29 @@ namespace CedarBoardTest.Tests.ModelTest
     public class DirectoryAccessorTest
     {
         [TestMethod]
-        public void ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å‰Šé™¤ãŒã§ãã‚‹()
+        public void ƒfƒBƒŒƒNƒgƒŠ‚Ìíœ‚ª‚Å‚«‚é()
         {
-            Directory.CreateDirectory(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\delete");
+            Directory.CreateDirectory(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\delete");
             DirectoryAccessor accessor = new();
-            accessor.Delete(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\delete");
-            Assert.AreEqual(false, Directory.Exists(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\delete"));
+            accessor.Delete(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\delete");
+            Assert.AreEqual(false, Directory.Exists(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\delete"));
         }
 
         //[TestMethod]
-        //public void ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å‰Šé™¤ãŒã§ãã‚‹_æ¨™æº–é–¢æ•°()
+        //public void ƒfƒBƒŒƒNƒgƒŠ‚Ìíœ‚ª‚Å‚«‚é_•W€ŠÖ”()
         //{
-        //    Directory.CreateDirectory(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\a6");
-        //    Directory.Delete(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\delete",true);
-        //    Assert.AreEqual(false, Directory.Exists(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\a5"));
+        //    Directory.CreateDirectory(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\a6");
+        //    Directory.Delete(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\delete",true);
+        //    Assert.AreEqual(false, Directory.Exists(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\a5"));
         //}
 
         [TestMethod]
-        public void ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ä½œæˆãŒã§ãã‚‹()
+        public void ƒfƒBƒŒƒNƒgƒŠ‚Ìì¬‚ª‚Å‚«‚é()
         {
             DirectoryAccessor accessor = new();
-            accessor.Create(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\create");
-            Assert.AreEqual(true, Directory.Exists(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\create"));
+            accessor.Create(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\create");
+            Assert.AreEqual(true, Directory.Exists(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\create"));
         }
     }
 }
+

@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.Model.Accessor;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.Model.Accessor;
 
 namespace CedarBoardTest.Tests.ModelTest
 {
@@ -6,7 +9,7 @@ namespace CedarBoardTest.Tests.ModelTest
     public class TextFileMockTest
     {
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ãŒã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚ª‚Å‚«‚é()
         {
             TextFileMock mock = new();
             mock.FileDictionary.Add(@"C:\a.txt", new("Success!"));
@@ -15,7 +18,7 @@ namespace CedarBoardTest.Tests.ModelTest
 
        
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã®æ›¸ãå‡ºã—ãŒã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹‚Ì‘‚«o‚µ‚ª‚Å‚«‚é()
         {
             TextFileMock mock = new();
             mock.FileDictionary.Add(@"C:\a.txt", new("Success!"));
@@ -24,7 +27,7 @@ namespace CedarBoardTest.Tests.ModelTest
         }
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã®æ›¸ãå‡ºã—ãŒã§ãã‚‹_ã‚¨ãƒ©ãƒ¼()
+        public void ƒtƒ@ƒCƒ‹‚Ì‘‚«o‚µ‚ª‚Å‚«‚é_ƒGƒ‰[()
         {
             TextFileMock mock = new();
             var exception = Assert.ThrowsException<KeyNotFoundException>(() =>
@@ -36,7 +39,7 @@ namespace CedarBoardTest.Tests.ModelTest
 
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã®ç”ŸæˆãŒã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹‚Ì¶¬‚ª‚Å‚«‚é()
         {
             TextFileMock mock = new();
             mock.Create(@"C:\a.txt", "Success!");
@@ -44,7 +47,7 @@ namespace CedarBoardTest.Tests.ModelTest
         }
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã®ç”ŸæˆãŒã§ãã‚‹_ã‚¨ãƒ©ãƒ¼()
+        public void ƒtƒ@ƒCƒ‹‚Ì¶¬‚ª‚Å‚«‚é_ƒGƒ‰[()
         {
             TextFileMock mock = new();
             mock.Create(@"C:\a.txt", "Success!");
@@ -57,7 +60,7 @@ namespace CedarBoardTest.Tests.ModelTest
 
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«åã®å¤‰æ›´ãŒã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹–¼‚Ì•ÏX‚ª‚Å‚«‚é()
         {
             TextFileMock mock = new();
             mock.Create(@"C:\a.txt", "Success!");
@@ -66,7 +69,7 @@ namespace CedarBoardTest.Tests.ModelTest
         }
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«åã®å¤‰æ›´ãŒã§ãã‚‹_å‰ã®ãŒæ¶ˆã•ã‚Œã¦ã„ã‚‹ã‹()
+        public void ƒtƒ@ƒCƒ‹–¼‚Ì•ÏX‚ª‚Å‚«‚é_‘O‚Ì‚ªÁ‚³‚ê‚Ä‚¢‚é‚©()
         {
             TextFileMock mock = new();
             mock.Create(@"C:\a.txt", "Failure!");
@@ -79,7 +82,7 @@ namespace CedarBoardTest.Tests.ModelTest
         }
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã®å‰Šé™¤ãŒã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹‚Ìíœ‚ª‚Å‚«‚é()
         {
             TextFileMock mock = new();
             mock.FileDictionary.Add(@"C:", new("Success!"));
@@ -88,7 +91,7 @@ namespace CedarBoardTest.Tests.ModelTest
         }
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ”ãƒ¼ãŒã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹‚ÌƒRƒs[‚ª‚Å‚«‚é()
         {
             TextFileMock mock = new();
             mock.FileDictionary.Add(@"C:\a.txt", new("Success!"));
@@ -97,7 +100,7 @@ namespace CedarBoardTest.Tests.ModelTest
         }
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿å–ã‚Šå°‚ç”¨ã«ã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹‚ğ“Ç‚İæ‚èê—p‚É‚Å‚«‚é()
         {
             TextFileMock mock = new();
             mock.FileDictionary.Add(@"C:\a.txt", new("Success!"));
@@ -106,7 +109,7 @@ namespace CedarBoardTest.Tests.ModelTest
         }
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿å–ã‚Šå°‚ç”¨å±æ€§ã‚’å‰Šé™¤ã™ã‚‹()
+        public void ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İæ‚èê—p‘®«‚ğíœ‚·‚é()
         {
             TextFileMock mock = new();
             mock.FileDictionary.Add(@"C:\a.txt", new("Success!"));
@@ -116,3 +119,4 @@ namespace CedarBoardTest.Tests.ModelTest
         }
     }
 }
+

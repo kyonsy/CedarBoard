@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.Model.Accessor;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.Model.Accessor;
 using CedarBoard.Model.Poco;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
@@ -7,44 +10,44 @@ using System.Text.Json.Serialization;
 namespace CedarBoard.Model
 {
     /// <summary>
-    /// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã¨ãã‚Œã«å¯¾ã™ã‚‹æ“ä½œ
+    /// ƒvƒƒWƒFƒNƒg‚Ìƒf[ƒ^‚Æ‚»‚ê‚É‘Î‚·‚é‘€ì
     /// </summary>
     public sealed class Project
     {
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®ãƒ‡ã‚£ã‚¯ã‚·ãƒ§ãƒŠãƒª
+        /// ƒm[ƒh‚ÌƒfƒBƒNƒVƒ‡ƒiƒŠ
         /// </summary>
         [JsonInclude]
         public Dictionary<string,INode> NodeDictionary { get;} = [];
 
 
         /// <summary>
-        /// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ‘ã‚¹
+        /// ƒvƒƒWƒFƒNƒg‚ÌƒpƒX
         /// </summary>
         [JsonInclude]
         internal string Path { get; }
 
         /// <summary>
-        /// ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+        /// ƒtƒ@ƒCƒ‹‘€ìƒIƒuƒWƒFƒNƒg
         /// </summary>
         [JsonIgnore]
         internal ITextFile? TextFile { get; set; } = new TextFileMock();
 
         /// <summary>
-        /// Jsonã‹ã‚‰ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã™ã‚‹ã¨ãã«ä½¿ã‚ã‚Œã‚‹ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// Json‚©‚çƒfƒVƒŠƒAƒ‰ƒCƒY‚·‚é‚Æ‚«‚Ég‚í‚ê‚éƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
         [JsonConstructor]
         public Project(string path,Dictionary<string,INode> nodeDictionary) {
-            // ãƒ†ã‚¹ãƒˆç”¨
+            // ƒeƒXƒg—p
             Path = path;
             NodeDictionary = nodeDictionary;
         }
 
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
-        /// <param name="textFile">ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹</param>
-        /// <param name="path">ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ‘ã‚¹</param>
+        /// <param name="textFile">ƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒ^ƒtƒF[ƒX</param>
+        /// <param name="path">ƒvƒƒWƒFƒNƒg‚ÌƒpƒX</param>
         public Project(ITextFile textFile, string path)
         {
             TextFile = textFile;
@@ -53,16 +56,16 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// æ–°ã—ã„ãƒãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹(2ã¤ç›®ä»¥é™)
+        /// V‚µ‚¢ƒm[ƒh‚ğ’Ç‰Á‚·‚é(2‚Â–ÚˆÈ~)
         /// </summary>
-        /// <param name="nodeName">è¿½åŠ ã™ã‚‹ãƒãƒ¼ãƒ‰</param>
-        /// <param name="parentNodeName">è¦ªãƒãƒ¼ãƒ‰ã®åå‰</param>
-        /// <param name="point">ãƒãƒ¼ãƒ‰ã®åº§æ¨™</param>
-        /// <exception cref="ArgumentException">å§‹ã‚ã®ãƒãƒ¼ãƒ‰ã®è¿½åŠ ã«ä½¿ãˆãªãã™ã‚‹</exception>
+        /// <param name="nodeName">’Ç‰Á‚·‚éƒm[ƒh</param>
+        /// <param name="parentNodeName">eƒm[ƒh‚Ì–¼‘O</param>
+        /// <param name="point">ƒm[ƒh‚ÌÀ•W</param>
+        /// <exception cref="ArgumentException">n‚ß‚Ìƒm[ƒh‚Ì’Ç‰Á‚Ég‚¦‚È‚­‚·‚é</exception>
         public void Add(string nodeName, string parentNodeName, Point point)
         {
             if (NodeDictionary.Count == 0) 
-                throw new ArgumentException("å§‹ã‚ã®ãƒãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã¨ãã¯Add(int x,int y)ã‚’ä½¿ã£ã¦ãã ã•ã„");
+                throw new ArgumentException("n‚ß‚Ìƒm[ƒh‚ğ’Ç‰Á‚·‚é‚Æ‚«‚ÍAdd(int x,int y)‚ğg‚Á‚Ä‚­‚¾‚³‚¢");
             INode node = new Node()
             {
                 ChildNode = [],
@@ -80,20 +83,20 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// ä¸€ç•ªæœ€åˆã®ãƒãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹
+        /// ˆê”ÔÅ‰‚Ìƒm[ƒh‚ğ’Ç‰Á‚·‚é
         /// </summary>
-        /// <exception cref="ArgumentException">äºŒã¤ç›®ä»¥é™ã®è¿½åŠ ã«ä½¿ãˆãªãã™ã‚‹</exception>
+        /// <exception cref="ArgumentException">“ñ‚Â–ÚˆÈ~‚Ì’Ç‰Á‚Ég‚¦‚È‚­‚·‚é</exception>
         private void Add(Point point)
         {
             if(NodeDictionary.Count > 0) 
                 throw new ArgumentException(
-                    "äºŒã¤ç›®ä»¥é™ã®ãƒãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã¨ãã¯Add(string nodeName,string newNodeName,int x,int y)ã‚’ä½¿ã£ã¦ãã ã•ã„"
+                    "“ñ‚Â–ÚˆÈ~‚Ìƒm[ƒh‚ğ’Ç‰Á‚·‚é‚Æ‚«‚ÍAdd(string nodeName,string newNodeName,int x,int y)‚ğg‚Á‚Ä‚­‚¾‚³‚¢"
                     );
             INode node = new OriginNode(){
                 Path = @$"{Path}\origin.txt",
                 ChildNode = [],
                 Point = point,
-                Message = "æœ€åˆã®ãƒãƒ¼ãƒ‰",
+                Message = "Å‰‚Ìƒm[ƒh",
                 Data = DateTime.Now,
                 Name = "origin"
             };
@@ -103,10 +106,10 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// æŒ‡å®šã•ã‚ŒãŸãƒãƒ¼ãƒ‰ã‚’å‰Šé™¤ã™ã‚‹
+        /// w’è‚³‚ê‚½ƒm[ƒh‚ğíœ‚·‚é
         /// </summary>
-        /// <param name="nodeName">å‰Šé™¤ã™ã‚‹ãƒãƒ¼ãƒ‰ã®åå‰</param>
-        /// <param name="parentName">è¦ªãƒãƒ¼ãƒ‰ã®åå‰</param>
+        /// <param name="nodeName">íœ‚·‚éƒm[ƒh‚Ì–¼‘O</param>
+        /// <param name="parentName">eƒm[ƒh‚Ì–¼‘O</param>
         public void Remove(string nodeName,string parentName)
         {
             if (NodeDictionary[nodeName] is Node node)
@@ -121,22 +124,22 @@ namespace CedarBoard.Model
             }
             else
             {
-                throw new Exception("åŸç‚¹ãƒãƒ¼ãƒ‰ã¯å‰Šé™¤ã§ãã¾ã›ã‚“");
+                throw new Exception("Œ´“_ƒm[ƒh‚Ííœ‚Å‚«‚Ü‚¹‚ñ");
             }
         }
 
         /// <summary>
-        /// æŒ‡å®šã•ã‚ŒãŸãƒãƒ¼ãƒ‰ã®åå‰ã‚’å¤‰æ›´ã™ã‚‹
+        /// w’è‚³‚ê‚½ƒm[ƒh‚Ì–¼‘O‚ğ•ÏX‚·‚é
         /// </summary>
-        /// <param name="nodeName">å¤‰æ›´å‰ã®ãƒãƒ¼ãƒ‰ã®åå‰</param>
-        /// <param name="newNodeName">å¤‰æ›´å¾Œã®ãƒãƒ¼ãƒ‰ã®åå‰</param>
-        /// <param name="message">å¤‰æ›´å‰ã®ãƒãƒ¼ãƒ‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</param>
+        /// <param name="nodeName">•ÏX‘O‚Ìƒm[ƒh‚Ì–¼‘O</param>
+        /// <param name="newNodeName">•ÏXŒã‚Ìƒm[ƒh‚Ì–¼‘O</param>
+        /// <param name="message">•ÏX‘O‚Ìƒm[ƒh‚ÌƒƒbƒZ[ƒW</param>
         public void Rename(string nodeName,string newNodeName,string message)
         {
-            if(nodeName =="origin") throw new Exception("åŸç‚¹ãƒãƒ¼ãƒ‰ã®åå‰ã¯å¤‰æ›´ã§ãã¾ã›ã‚“");
+            if(nodeName =="origin") throw new Exception("Œ´“_ƒm[ƒh‚Ì–¼‘O‚Í•ÏX‚Å‚«‚Ü‚¹‚ñ");
             Node node = (Node)NodeDictionary[nodeName] with { Path = $@"{Path}/{newNodeName}.txt", Name = newNodeName,Message = message};
 
-            // è¦ªãƒãƒ¼ãƒ‰ã®ä¸­ã®ãƒãƒ¼ãƒ‰ã®åå‰ã‚’å¤‰ãˆã‚‹
+            // eƒm[ƒh‚Ì’†‚Ìƒm[ƒh‚Ì–¼‘O‚ğ•Ï‚¦‚é
             INode parentNode = NodeDictionary[node.ParentNode];
             int index = parentNode.ChildNode.IndexOf(nodeName);
             List<string> children = parentNode.ChildNode;
@@ -159,13 +162,14 @@ namespace CedarBoard.Model
         }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®åå‰ã‹ã‚‰ãã“ã«ç´ã¥ã‘ã‚‰ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
+        /// ƒm[ƒh‚Ì–¼‘O‚©‚ç‚»‚±‚É•R‚Ã‚¯‚ç‚ê‚½ƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğæ“¾‚·‚é
         /// </summary>
-        /// <param name="nodeName">ãƒãƒ¼ãƒ‰ã®åå‰</param>
-        /// <returns>ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹</returns>
+        /// <param name="nodeName">ƒm[ƒh‚Ì–¼‘O</param>
+        /// <returns>ƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚ÌƒpƒX</returns>
         public string GetNodePath(string nodeName)
         {
             return NodeDictionary[nodeName].Path;
         }
     }
 }
+

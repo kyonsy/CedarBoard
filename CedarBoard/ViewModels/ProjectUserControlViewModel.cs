@@ -1,4 +1,7 @@
-ï»¿using Prism.Mvvm;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using Prism.Mvvm;
 using Prism.Commands;
 using CedarBoard.Model;
 using System.Collections.ObjectModel;
@@ -19,11 +22,11 @@ using System.Windows.Media;
 namespace CedarBoard.ViewModels
 {
     /// <summary>
-    ///ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ“ãƒ¥ãƒ¼ãƒ¢ãƒ‡ãƒ«
+    ///ƒvƒƒWƒFƒNƒg‚Ìƒrƒ…[ƒ‚ƒfƒ‹
     /// </summary>
     public class ProjectUserControlViewModel : BindableBase
     {
-        //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+        //ƒtƒB[ƒ‹ƒh
         private double _zoomLevel = 1.0;
         private int _slidLevel = 50;
         private Project _project;
@@ -32,7 +35,7 @@ namespace CedarBoard.ViewModels
         private string _projectName;
 
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
         public ProjectUserControlViewModel(IDialogService dialogService,Project project,string projectName)
         {
@@ -44,21 +47,21 @@ namespace CedarBoard.ViewModels
             ZoomLowCommand = new DelegateCommand(OnZoomLow);
         }
 
-        // ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ
+        // ƒfƒŠƒQ[ƒg
        
         /// <summary>
-        /// Canvasã‚’æ‹¡å¤§ç¸®å°ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰
+        /// Canvas‚ğŠg‘åk¬‚·‚éƒRƒ}ƒ“ƒh
         /// </summary>
         public DelegateCommand ZoomHighCommand { get; }
 
         /// <summary>
-        /// Canvasã‚’æ‹¡å¤§ç¸®å°ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰
+        /// Canvas‚ğŠg‘åk¬‚·‚éƒRƒ}ƒ“ƒh
         /// </summary>
         public DelegateCommand ZoomLowCommand { get; }
 
-        // ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+        // ƒvƒƒpƒeƒB
         /// <summary>
-        /// ã‚ºãƒ¼ãƒ ãƒ¬ãƒ™ãƒ«
+        /// ƒY[ƒ€ƒŒƒxƒ‹
         /// </summary>
         public double ZoomLevel
         {
@@ -67,35 +70,35 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®ãƒ¬ãƒ™ãƒ«
+        /// ƒXƒ‰ƒCƒ_[‚ÌƒŒƒxƒ‹
         /// </summary>
         public int SlidLevel
         {
             get => _slidLevel;
             set {
                 SetProperty(ref _slidLevel, value);
-                // ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®ãƒ¬ãƒ™ãƒ«ã«åˆã‚ã›ã¦æ‹¡å¤§ç¸®å°ã‚’è¡Œã†
+                // ƒXƒ‰ƒCƒ_[‚ÌƒŒƒxƒ‹‚É‡‚í‚¹‚ÄŠg‘åk¬‚ğs‚¤
                 ZoomLevel = 1.0 + (value - 50) / 100.0;
             } 
         }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®ãƒªã‚¹ãƒˆ
+        /// ƒm[ƒh‚ÌƒŠƒXƒg
         /// </summary>
         public ObservableCollection<NodeUserControlViewModel> Nodes { get; set; } = new ObservableCollection<NodeUserControlViewModel>();
 
         /// <summary>
-        /// ç·šã®ãƒªã‚¹ãƒˆ
+        /// ü‚ÌƒŠƒXƒg
         /// </summary>
         public ObservableCollection<Line> Lines { get; set; } = new ObservableCollection<Line>();
 
         /// <summary>
-        /// å±ã—ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹
+        /// ‘®‚µ‚Ä‚¢‚éƒ[ƒNƒXƒy[ƒX
         /// </summary>
         public required Workspace Workspace { get; set; }
 
         /// <summary>
-        /// æ‹¡å¤§
+        /// Šg‘å
         /// </summary>
         private void OnZoomHigh()
         {
@@ -104,7 +107,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ç¸®å°
+        /// k¬
         /// </summary>
         private void OnZoomLow()
         {
@@ -116,7 +119,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®åå‰ã‚’å¤‰ãˆã‚‹
+        /// ƒm[ƒh‚Ì–¼‘O‚ğ•Ï‚¦‚é
         /// </summary>
         /// <param name="viewModel"></param>
         public void EditNodeName(NodeUserControlViewModel viewModel)
@@ -129,7 +132,7 @@ namespace CedarBoard.ViewModels
                     {
                         string newNodeName = dialogResult.Parameters.GetValue<string>("nodeName");
                         if (_project.NodeDictionary.ContainsKey(newNodeName)) {
-                            throw new Exception("é‡è¤‡ã—ãŸåå‰");
+                            throw new Exception("d•¡‚µ‚½–¼‘O");
                         }
                         string message = viewModel.Message;
                         string nodeName = viewModel.Name;
@@ -139,7 +142,7 @@ namespace CedarBoard.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        System.Windows.MessageBox.Show("ç„¡åŠ¹ãªåå‰ã§ã™\nã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸: " + ex.Message, "ã‚¨ãƒ©ãƒ¼", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        System.Windows.MessageBox.Show("–³Œø‚È–¼‘O‚Å‚·\nƒGƒ‰[ƒƒbƒZ[ƒW: " + ex.Message, "ƒGƒ‰[", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                         return;
                     }
 
@@ -148,7 +151,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã«ç´ã¥ã‘ã‚‰ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç·¨é›†ã™ã‚‹
+        /// ƒm[ƒh‚É•R‚Ã‚¯‚ç‚ê‚½ƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚ğ•ÒW‚·‚é
         /// </summary>
         /// <param name="viewModel"></param>
         public void EditNodeText(NodeUserControlViewModel viewModel)
@@ -156,7 +159,7 @@ namespace CedarBoard.ViewModels
             if (viewModel.Children.Count > 0)
             {
                 System.Windows.MessageBoxResult result = System.Windows.MessageBox
-                    .Show("å­è¦ç´ ã‚’ã‚‚ã¤ãƒãƒ¼ãƒ‰ã¯ä¸Šæ›¸ãä¿å­˜ã§ãã¾ã›ã‚“ã€‚ã‚¨ãƒ‡ã‚£ã‚¿ã«ã‚ˆã£ã¦ã¯ä¿å­˜ã§ãã‚‹ã‹ã‚‚ã—ã‚Œã¾ã›ã‚“ãŒã€æ­£å¸¸ãªå‹•ä½œã¯ä¿è¨¼ã§ãã¾ã›ã‚“ã€‚\nå­ãƒãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ç·¨é›†ã™ã‚‹ã“ã¨ã‚’æ¨å¥¨ã—ã¾ã™ã€‚", "è­¦å‘Š",
+                    .Show("q—v‘f‚ğ‚à‚Âƒm[ƒh‚Íã‘‚«•Û‘¶‚Å‚«‚Ü‚¹‚ñBƒGƒfƒBƒ^‚É‚æ‚Á‚Ä‚Í•Û‘¶‚Å‚«‚é‚©‚à‚µ‚ê‚Ü‚¹‚ñ‚ªA³í‚È“®ì‚Í•ÛØ‚Å‚«‚Ü‚¹‚ñB\nqƒm[ƒh‚ğ’Ç‰Á‚µ‚Ä•ÒW‚·‚é‚±‚Æ‚ğ„§‚µ‚Ü‚·B", "Œx",
                     System.Windows.MessageBoxButton.OKCancel, System.Windows.MessageBoxImage.Warning);
                 if (result != System.Windows.MessageBoxResult.OK) return;    
             }
@@ -167,7 +170,7 @@ namespace CedarBoard.ViewModels
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("æœ‰åŠ¹ãªã‚¨ãƒ‡ã‚£ã‚¿ã®ãƒ‘ã‚¹ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“\nã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸: " + ex.Message, "ã‚¨ãƒ©ãƒ¼",
+                System.Windows.MessageBox.Show("—LŒø‚ÈƒGƒfƒBƒ^‚ÌƒpƒX‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ\nƒGƒ‰[ƒƒbƒZ[ƒW: " + ex.Message, "ƒGƒ‰[",
                     System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 return;
             }
@@ -175,7 +178,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// æ–°ã—ã„ãƒãƒ¼ãƒ‰ã‚’ä½œã‚‹
+        /// V‚µ‚¢ƒm[ƒh‚ğì‚é
         /// </summary>
         /// <param name="viewModel"></param>
         public void CreateNewNode(NodeUserControlViewModel viewModel)
@@ -192,7 +195,7 @@ namespace CedarBoard.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        System.Windows.MessageBox.Show("ç„¡åŠ¹ãªåå‰ã§ã™\nã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸: " + ex.Message, "ã‚¨ãƒ©ãƒ¼", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        System.Windows.MessageBox.Show("–³Œø‚È–¼‘O‚Å‚·\nƒGƒ‰[ƒƒbƒZ[ƒW: " + ex.Message, "ƒGƒ‰[", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                         return;
                     }
                     
@@ -201,7 +204,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// æ–°ã—ã„ãƒãƒ¼ãƒ‰ã‚’æŒ¿å…¥ã™ã‚‹
+        /// V‚µ‚¢ƒm[ƒh‚ğ‘}“ü‚·‚é
         /// </summary>
         /// <param name="nodeName"></param>
         /// <param name="parentNodeName"></param>
@@ -236,7 +239,7 @@ namespace CedarBoard.ViewModels
         }
 
         /// <summary>
-        /// Projectã®å†…å®¹ã‚’Nodesã«ç¹æ „ã•ã›ã‚‹
+        /// Project‚Ì“à—e‚ğNodes‚É”É‰h‚³‚¹‚é
         /// </summary>
         private void ProjectToNodes()
         {
@@ -282,3 +285,4 @@ namespace CedarBoard.ViewModels
         }
     }
 }
+

@@ -1,55 +1,59 @@
-ï»¿using System.Text.Json.Serialization;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using System.Text.Json.Serialization;
 
 namespace CedarBoard.Model.Poco
 {
     /// <summary>
-    /// å­ãƒãƒ¼ãƒ‰
+    /// qƒm[ƒh
     /// </summary>
     public sealed record Node : INode
     {
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®ãƒ‘ã‚¹
+        /// ƒm[ƒh‚ÌƒpƒX
         /// </summary>
         [JsonInclude]
         public required string Path { get; set; }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®åº§æ¨™
+        /// ƒm[ƒh‚ÌÀ•W
         /// </summary>
         [JsonInclude]
         public required Point Point { get; set; }
 
         /// <summary>
-        /// è¦ªãƒãƒ¼ãƒ‰ã®åå‰
+        /// eƒm[ƒh‚Ì–¼‘O
         /// </summary>
         [JsonInclude]
         public required string ParentNode { get; set; }
 
 
         /// <summary>
-        /// å­ãƒãƒ¼ãƒ‰ã®åå‰
+        /// qƒm[ƒh‚Ì–¼‘O
         /// </summary>
         [JsonInclude]
         public required List<string> ChildNode { get; set; }
 
 
         /// <summary>
-        /// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+        /// ƒƒbƒZ[ƒW
         /// </summary>
         [JsonInclude]
         public required string Message { get; set; }
 
 
         /// <summary>
-        /// ä½œæˆæ—¥æ™‚
+        /// ì¬“ú
         /// </summary>
         [JsonInclude]
         public required DateTime Data { get; set; }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®åå‰
+        /// ƒm[ƒh‚Ì–¼‘O
         /// </summary>
         [JsonInclude]
         public required string Name { get; set; }
     }
 }
+

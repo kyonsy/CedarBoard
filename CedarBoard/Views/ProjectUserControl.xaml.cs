@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.ViewModels;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.ViewModels;
 using Prism.Events;
 using System;
 using System.Diagnostics;
@@ -11,8 +14,8 @@ using System.Windows.Interop;
 namespace CedarBoard.Views
 {
     /// <summary>
-    /// ãƒã‚¤ãƒ³ãƒ‰ã§ãã‚‹ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®åˆ¶é™ã‚ˆã‚ŠViewModeã‚’ä½¿ã†ã®ãŒå›°é›£
-    /// ScrollViewerã®å‡¦ç†ã¯ã‚³ãƒ¼ãƒ‰ãƒ“ãƒã‚¤ãƒ³ãƒ‰ã«è¨˜è¿°
+    /// ƒoƒCƒ“ƒh‚Å‚«‚éƒvƒƒpƒeƒB‚Ì§ŒÀ‚æ‚èViewMode‚ğg‚¤‚Ì‚ª¢“ï
+    /// ScrollViewer‚Ìˆ—‚ÍƒR[ƒhƒrƒnƒCƒ“ƒh‚É‹Lq
     /// </summary>
     public partial class ProjectUserControl : UserControl
     {
@@ -20,7 +23,7 @@ namespace CedarBoard.Views
         private const int WM_MOUSEWHEEL = 0x020A;
         private HwndSource? _hwndSource;
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
         public ProjectUserControl()
         {
@@ -94,7 +97,7 @@ namespace CedarBoard.Views
         }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã«ç´ã¥ã‘ã‚‰ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒ‡ã‚£ã‚¿ã‚’é–‹ã
+        /// ƒm[ƒh‚É•R‚Ã‚¯‚ç‚ê‚½ƒeƒLƒXƒgƒGƒfƒBƒ^‚ğŠJ‚­
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -109,7 +112,7 @@ namespace CedarBoard.Views
         }
 
         /// <summary>
-        /// æ–°ã—ã„ãƒãƒ¼ãƒ‰ã‚’ä½œã‚‹
+        /// V‚µ‚¢ƒm[ƒh‚ğì‚é
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -126,7 +129,7 @@ namespace CedarBoard.Views
         }
 
         /// <summary>
-        /// ãƒãƒ¼ãƒ‰ã®åå‰ã‚’å¤‰æ›´ã™ã‚‹
+        /// ƒm[ƒh‚Ì–¼‘O‚ğ•ÏX‚·‚é
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -143,3 +146,4 @@ namespace CedarBoard.Views
         }
     }
 }
+

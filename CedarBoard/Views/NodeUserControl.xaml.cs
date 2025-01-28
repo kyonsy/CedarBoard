@@ -1,4 +1,7 @@
-ï»¿using System.Collections.Generic;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -11,7 +14,7 @@ namespace CedarBoard.Views
     public partial class NodeUserControl : UserControl
     {
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
         public NodeUserControl()
         {
@@ -19,3 +22,4 @@ namespace CedarBoard.Views
         }
     }
 }
+

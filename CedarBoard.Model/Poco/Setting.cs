@@ -1,65 +1,69 @@
-ï»¿using System.Text.Json.Serialization;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using System.Text.Json.Serialization;
 
 namespace CedarBoard.Model.Poco
 {
     /// <summary>
-    /// è¨­å®šã®æƒ…å ±ã‚’æŒã£ã¦ã„ã‚‹POCO
+    /// İ’è‚Ìî•ñ‚ğ‚Á‚Ä‚¢‚éPOCO
     /// </summary>
     public record Setting
     {
         /// <summary>
-        /// ä½¿ã†ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+        /// g‚¤ƒtƒH[ƒ}ƒbƒg
         /// </summary>
         [JsonInclude]
         public required string Format { get; set; }
 
         /// <summary>
-        /// ä½¿ã†ã‚¨ãƒ‡ã‚£ã‚¿ãƒ¼
+        /// g‚¤ƒGƒfƒBƒ^[
         /// </summary>
         [JsonInclude]
         public required string Editor { get; set; }
 
         /// <summary>
-        /// ä½¿ã†ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
+        /// g‚¤ƒGƒ“ƒR[ƒh
         /// </summary>
         [JsonInclude]
         public required string Encode { get; set; }
 
         /// <summary>
-        /// ä½¿ç”¨ã™ã‚‹è¨€èª
+        /// g—p‚·‚éŒ¾Œê
         /// </summary>
         [JsonInclude]
         public required string Language { get; set; }
 
         /// <summary>
-        /// ä½œè€…
+        /// ìÒ
         /// </summary>
         [JsonInclude]
         public required string Author { get; set; }
 
         /// <summary>
-        /// ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã®åå‰
+        /// ƒ[ƒNƒXƒy[ƒX‚Ì–¼‘O
         /// </summary>
         [JsonInclude]
         public required string Name { get; set; }
 
         /// <summary>
-        /// ä½œæˆæ—¥æ™‚
+        /// ì¬“ú
         /// </summary>
         [JsonInclude]
         public required string CreatedDate { get; set; }
 
         /// <summary>
-        /// æ›´æ–°æ—¥æ™‚
+        /// XV“ú
         /// </summary>
         [JsonInclude]
         public required string UpdatedDate { get; set; }
 
         /// <summary>
-        /// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+        /// ƒƒbƒZ[ƒW
         /// </summary>
         [JsonInclude]
         public required string Message { get; set; }
 
     }
 }
+

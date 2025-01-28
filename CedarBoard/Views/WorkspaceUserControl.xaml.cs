@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.ViewModels;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.ViewModels;
 using Prism.Navigation.Regions;
 using System.Windows.Controls;
 
@@ -10,7 +13,7 @@ namespace CedarBoard.Views
     public partial class WorkspaceUserControl : UserControl
     {
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
         public WorkspaceUserControl()
         {
@@ -18,3 +21,4 @@ namespace CedarBoard.Views
         }
     }
 }
+

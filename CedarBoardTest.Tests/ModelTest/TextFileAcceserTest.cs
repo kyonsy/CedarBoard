@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.Model.Accessor;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.Model.Accessor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,73 +14,74 @@ namespace CedarBoardTest.Tests.ModelTest
     public class TextFileAcceserTest
     {
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ãŒã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚ª‚Å‚«‚é()
         {
             TextFileAccessor accessor = new();
-            File.WriteAllText(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\readme.txt", "hello world!");
-            string readme = accessor.GetData(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\readme.txt");
+            File.WriteAllText(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\readme.txt", "hello world!");
+            string readme = accessor.GetData(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\readme.txt");
             Assert.AreEqual("hello world!",readme);
-            File.Delete(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\readme.txt");
+            File.Delete(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\readme.txt");
         }
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã®æ›¸ãå‡ºã—ãŒã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹‚Ì‘‚«o‚µ‚ª‚Å‚«‚é()
         {
             TextFileAccessor accessor = new();
-            using (File.Create(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\writeme.txt")) { };
-            accessor.SetData(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\writeme.txt", "kkkkkkk");
-            Assert.AreEqual("kkkkkkk",File.ReadAllText(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\writeme.txt"));
-            File.Delete(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\writeme.txt");
+            using (File.Create(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\writeme.txt")) { };
+            accessor.SetData(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\writeme.txt", "kkkkkkk");
+            Assert.AreEqual("kkkkkkk",File.ReadAllText(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\writeme.txt"));
+            File.Delete(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\writeme.txt");
         }
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã®ç”ŸæˆãŒã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹‚Ì¶¬‚ª‚Å‚«‚é()
         {
             TextFileAccessor accessor = new();
-            accessor.Create(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\createme.txt", "kkkkkkk");
-            Assert.AreEqual(true,File.Exists(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\createme.txt"));
-            File.Delete(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\createme.txt");
+            accessor.Create(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\createme.txt", "kkkkkkk");
+            Assert.AreEqual(true,File.Exists(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\createme.txt"));
+            File.Delete(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\createme.txt");
         }
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«åã®å¤‰æ›´ãŒã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹–¼‚Ì•ÏX‚ª‚Å‚«‚é()
         {
             TextFileAccessor accessor= new();
-            using (File.Create(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\change.txt")) { };
-            accessor.Rename(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\change.txt", @"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\changed.txt");
-            Assert.AreEqual(true, File.Exists(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\changed.txt"));
-            Assert.AreEqual(false, File.Exists(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\change.txt"));
-            File.Delete(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\changed.txt");
+            using (File.Create(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\change.txt")) { };
+            accessor.Rename(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\change.txt", @"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\changed.txt");
+            Assert.AreEqual(true, File.Exists(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\changed.txt"));
+            Assert.AreEqual(false, File.Exists(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\change.txt"));
+            File.Delete(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\changed.txt");
         }
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã®å‰Šé™¤ãŒã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹‚Ìíœ‚ª‚Å‚«‚é()
         {
             TextFileAccessor accessor = new();
-            using (File.Create(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\delete.txt")) { };
-            accessor.Delete(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\delete.txt");
-            Assert.AreEqual(false, File.Exists(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\delete.txt"));
+            using (File.Create(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\delete.txt")) { };
+            accessor.Delete(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\delete.txt");
+            Assert.AreEqual(false, File.Exists(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\delete.txt"));
         }
 
         [TestMethod]
-        public void ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ”ãƒ¼ãŒã§ãã‚‹()
+        public void ƒtƒ@ƒCƒ‹‚ÌƒRƒs[‚ª‚Å‚«‚é()
         {
             TextFileAccessor accessor = new();
 
-            File.WriteAllText(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\copy.txt", "thank you");
-            accessor.Copy(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\copy.txt", @"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\copied.txt");
-            Assert.AreEqual("thank you", File.ReadAllText(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\copied.txt"));
-            File.Delete(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\copy.txt");
-            File.Delete(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\copied.txt");
+            File.WriteAllText(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\copy.txt", "thank you");
+            accessor.Copy(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\copy.txt", @"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\copied.txt");
+            Assert.AreEqual("thank you", File.ReadAllText(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\copied.txt"));
+            File.Delete(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\copy.txt");
+            File.Delete(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\copied.txt");
         }
 
         [TestMethod]
-        public void æœ€åˆã«ç”Ÿæˆã•ã‚Œã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã¯ç©ºæ–‡å­—ã§ã§ãã¦ã„ã‚‹ã®ã‹()
+        public void Å‰‚É¶¬‚³‚ê‚éƒtƒ@ƒCƒ‹‚Í‹ó•¶š‚Å‚Å‚«‚Ä‚¢‚é‚Ì‚©()
         {
-            using (File.Create(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\kara.txt")) { };
-            string aa = File.ReadAllText(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\kara.txt");
-            Assert.AreEqual(aa, File.ReadAllText(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\kara.txt"));
-            File.Delete(@"C:\ãƒ¯ãƒ¼ã‚¯ã‚¹ãƒšãƒ¼ã‚¹\ã‚¬ãƒªãƒ¬ã‚ªã‚³ãƒ³ãƒ†ã‚¹ãƒˆ\work\TextFile\kara.txt");
+            using (File.Create(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\kara.txt")) { };
+            string aa = File.ReadAllText(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\kara.txt");
+            Assert.AreEqual(aa, File.ReadAllText(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\kara.txt"));
+            File.Delete(@"C:\ƒ[ƒNƒXƒy[ƒX\ƒKƒŠƒŒƒIƒRƒ“ƒeƒXƒg\work\TextFile\kara.txt");
         }
     }
 }
+

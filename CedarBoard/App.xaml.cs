@@ -1,3 +1,6 @@
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// 詳細は LICENSE ファイルを参照してください。
 using CedarBoard.Views;
 using Prism.Ioc;
 using Prism.Unity;
@@ -39,7 +42,7 @@ namespace CedarBoard
             containerRegistry.RegisterDialog<NewProjectUserControl, NewProjectUserControlViewModel>();
             containerRegistry.RegisterDialog<ChangeProjectNameUserControl, ChangeProjectNameUserControlViewModel>();
             containerRegistry.RegisterDialog<DeleteProjectUserControl, DeleteProjectUserControlViewModel>();
-            // 繝�繧ｹ繝育畑縺ｫ繧ｷ繝ｳ繧ｰ繝ｫ繝医Φ縺ｫ縺ｯ繝｢繝�繧ｯ繧堤匳骭ｲ縺励※縺翫￥
+            // 繝・せ繝育畑縺ｫ繧ｷ繝ｳ繧ｰ繝ｫ繝医Φ縺ｫ縺ｯ繝｢繝・け繧堤匳骭ｲ縺励※縺翫￥
             containerRegistry.RegisterSingleton<WorkspaceSelector>(() =>
             {
 
@@ -49,3 +52,4 @@ namespace CedarBoard
         }
     }
 }
+

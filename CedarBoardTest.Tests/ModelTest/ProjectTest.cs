@@ -1,4 +1,7 @@
-ï»¿using CedarBoard.Model;
+// Copyright (c) 2025 Kyoshiro Kaji
+// MIT License
+// Ú×‚Í LICENSE ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+using CedarBoard.Model;
 using CedarBoard.Model.Accessor;
 using Moq;
 using System.Windows.Controls;
@@ -11,7 +14,7 @@ namespace CedarBoardTest.Tests.ModelTest
     {
 
         [TestMethod]
-        public void å§‹ã‚ã®ãƒãƒ¼ãƒ‰ãŒè¿½åŠ ã§ãã‚‹()
+        public void n‚ß‚Ìƒm[ƒh‚ª’Ç‰Á‚Å‚«‚é()
         {
             Project p = new(new TextFileMock(), "C:");
             Assert.AreEqual("", p.TextFile.GetData(@"C:\origin.txt"));
@@ -19,7 +22,7 @@ namespace CedarBoardTest.Tests.ModelTest
 
 
         [TestMethod]
-        public void äºŒã¤ç›®ä»¥é™ã®æ–°ã—ã„ãƒãƒ¼ãƒ‰è¿½åŠ ã§ãã‚‹()
+        public void “ñ‚Â–ÚˆÈ~‚ÌV‚µ‚¢ƒm[ƒh’Ç‰Á‚Å‚«‚é()
         {
             Project p = new(new TextFileMock(), "C:");
             p.TextFile.SetData(@"C:\origin.txt", "Thanks!");
@@ -28,7 +31,7 @@ namespace CedarBoardTest.Tests.ModelTest
         }
 
         [TestMethod]
-        public void æŒ‡å®šã•ã‚ŒãŸãƒãƒ¼ãƒ‰ã‚’å‰Šé™¤ã§ãã‚‹()
+        public void w’è‚³‚ê‚½ƒm[ƒh‚ğíœ‚Å‚«‚é()
         {
             Project p = new(new TextFileMock(), "C:");
             p.TextFile.SetData(@"C:\origin.txt", "Thanks!");
@@ -42,7 +45,7 @@ namespace CedarBoardTest.Tests.ModelTest
         }
 
         [TestMethod]
-        public void æŒ‡å®šã—ãŸãƒãƒ¼ãƒ‰ã®åå‰ã‚’å¤‰æ›´ã§ãã‚‹()
+        public void w’è‚µ‚½ƒm[ƒh‚Ì–¼‘O‚ğ•ÏX‚Å‚«‚é()
         {
             Project p = new(new TextFileMock(), "C:");
             p.TextFile.SetData(@"C:\origin.txt", "Thanks!");
@@ -50,10 +53,11 @@ namespace CedarBoardTest.Tests.ModelTest
         }
 
         [TestMethod]
-        public void æŒ‡å®šã—ãŸãƒãƒ¼ãƒ‰ã®ãƒ‘ã‚¹ã‚’è¿”ã›ã‚‹()
+        public void w’è‚µ‚½ƒm[ƒh‚ÌƒpƒX‚ğ•Ô‚¹‚é()
         {
             Project p = new(new TextFileMock(), "C:");
             Assert.AreEqual(@"C:\origin.txt", p.GetNodePath("origin"));
         }
     }
 }
+

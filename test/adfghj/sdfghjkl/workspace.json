@@ -1,0 +1,32 @@
+{
+  "setting": {
+    "format": "default",
+    "editor": "notepad",
+    "encode": "UTF-8",
+    "language": "ja",
+    "author": "あなた",
+    "name": "sdfghjkl",
+    "createdDate": "2025/03/03 19:48:06",
+    "updatedDate": "2025/03/03 19:48:06",
+    "message": "ここに作品のメモを書こう！"
+  },
+  "projectDictionary": {
+    "MainProject": {
+      "nodeDictionary": {
+        "origin": {
+          "$type": "OriginNode",
+          "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\adfghj\\sdfghjkl\\MainProject\\origin.txt",
+          "point": {
+            "x": 100,
+            "y": 100
+          },
+          "childNode": [],
+          "message": "最初のノード",
+          "data": "2025-03-03T19:48:06.1453554+09:00",
+          "name": "origin"
+        }
+      },
+      "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\adfghj\\sdfghjkl\\MainProject"
+    }
+  }
+}

@@ -8,8 +8,10 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Navigation.Regions;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CedarBoard.ViewModels
 {
@@ -60,7 +62,14 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// 作品名
         /// </summary>
-        public string Name { get { return _name; } set { SetProperty(ref _name, value); } }
+        public string Name { 
+            get { return _name; } 
+            set { 
+                SetProperty(ref _name, value);
+                string path = System.IO.Path.GetDirectoryName(Path);
+                Path = path + "\\" + Name;
+            } 
+        }
 
         /// <summary>
         /// 作者名
@@ -70,17 +79,26 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// パス
         /// </summary>
-        public string Path { get { return _path; } set { SetProperty(ref _path, value); } }
+        public string Path { 
+            get { return _path; } 
+            set { SetProperty(ref _path, value); } 
+        }
 
         /// <summary>
         /// 使うエディタのパス
         /// </summary>
-        public string Editor { get { return _editor; } set { SetProperty(ref _editor, value); } }
+        public string Editor { 
+            get { return _editor; } 
+            set { SetProperty(ref _editor, value); } 
+        }
 
         /// <summary>
         /// メッセージ
         /// </summary>
-        public string Message { get { return _message; } set { SetProperty(ref _message, value); } }
+        public string Message { 
+            get { return _message; } 
+            set { SetProperty(ref _message, value); } 
+        }
 
 
         // メソッド

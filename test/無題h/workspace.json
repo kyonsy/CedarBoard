@@ -1,0 +1,32 @@
+{
+  "setting": {
+    "format": "default",
+    "editor": "notepad",
+    "encode": "UTF-8",
+    "language": "ja",
+    "author": "あなた",
+    "name": "無題h",
+    "createdDate": "2025/03/03 19:51:50",
+    "updatedDate": "2025/03/03 19:51:50",
+    "message": "ここに作品のメモを書こう！"
+  },
+  "projectDictionary": {
+    "MainProject": {
+      "nodeDictionary": {
+        "origin": {
+          "$type": "OriginNode",
+          "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\無題h\\MainProject\\origin.txt",
+          "point": {
+            "x": 100,
+            "y": 100
+          },
+          "childNode": [],
+          "message": "最初のノード",
+          "data": "2025-03-03T19:51:50.7567434+09:00",
+          "name": "origin"
+        }
+      },
+      "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\無題h\\MainProject"
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "setting": {
+    "format": "default",
+    "editor": "notepad",
+    "encode": "UTF-8",
+    "language": "ja",
+    "author": "あなた",
+    "name": "無題hk",
+    "createdDate": "2025/03/03 20:03:11",
+    "updatedDate": "2025/03/03 20:03:11",
+    "message": "ここに作品のメモを書こう！"
+  },
+  "projectDictionary": {
+    "MainProject": {
+      "nodeDictionary": {
+        "origin": {
+          "$type": "OriginNode",
+          "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\無題hk\\MainProject\\origin.txt",
+          "point": {
+            "x": 100,
+            "y": 100
+          },
+          "childNode": [
+            "bb",
+            ""
+          ],
+          "message": "最初のノード",
+          "data": "2025-03-03T20:03:11.521954+09:00",
+          "name": "origin"
+        },
+        "bb": {
+          "$type": "Node",
+          "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\無題hk\\MainProject\\bb.txt",
+          "point": {
+            "x": 100,
+            "y": 400
+          },
+          "parentNode": "origin",
+          "childNode": [
+            "mnmn"
+          ],
+          "message": "",
+          "data": "2025-03-03T20:03:21.3967559+09:00",
+          "name": "bb"
+        },
+        "": {
+          "$type": "Node",
+          "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\無題hk\\MainProject/.txt",
+          "point": {
+            "x": 400,
+            "y": 400
+          },
+          "parentNode": "origin",
+          "childNode": [],
+          "message": "vgvgvgv",
+          "data": "2025-03-03T20:03:30.749578+09:00",
+          "name": ""
+        },
+        "mnmn": {
+          "$type": "Node",
+          "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\無題hk\\MainProject\\mnmn.txt",
+          "point": {
+            "x": 100,
+            "y": 700
+          },
+          "parentNode": "bb",
+          "childNode": [
+            "bnnbn"
+          ],
+          "message": "",
+          "data": "2025-03-03T20:03:41.8117664+09:00",
+          "name": "mnmn"
+        },
+        "bnnbn": {
+          "$type": "Node",
+          "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\無題hk\\MainProject\\bnnbn.txt",
+          "point": {
+            "x": 100,
+            "y": 1000
+          },
+          "parentNode": "mnmn",
+          "childNode": [],
+          "message": "",
+          "data": "2025-03-03T20:03:59.1238726+09:00",
+          "name": "bnnbn"
+        }
+      },
+      "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\無題hk\\MainProject"
+    },
+    "fghjkl": {
+      "nodeDictionary": {
+        "origin": {
+          "$type": "OriginNode",
+          "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\無題hk\\fghjkl\\origin.txt",
+          "point": {
+            "x": 100,
+            "y": 100
+          },
+          "childNode": [
+            "qaa"
+          ],
+          "message": "最初のノード",
+          "data": "2025-03-03T20:05:05.6670913+09:00",
+          "name": "origin"
+        },
+        "qaa": {
+          "$type": "Node",
+          "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\無題hk\\fghjkl\\qaa.txt",
+          "point": {
+            "x": 100,
+            "y": 400
+          },
+          "parentNode": "origin",
+          "childNode": [],
+          "message": "",
+          "data": "2025-03-03T20:05:18.8282193+09:00",
+          "name": "qaa"
+        }
+      },
+      "path": "C:\\ワークスペース\\プログラミング\\CedarBoard\\test\\無題hk\\fghjkl"
+    }
+  }
+}

@@ -6,8 +6,6 @@
     <Nullable>annotations</Nullable>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
 	  <UseWindowsForms>true</UseWindowsForms>
-	  <Platforms>AnyCPU;ARM32;x86;x64</Platforms>
-	  <ApplicationIcon>Assets\CedarBoard128.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Assets\CedarBoard128.ico" />

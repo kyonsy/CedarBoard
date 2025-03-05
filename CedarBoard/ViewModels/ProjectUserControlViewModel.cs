@@ -233,7 +233,7 @@ namespace CedarBoard.ViewModels
                     }
                 }
             }
-            ProjectToNodes();
+           ProjectToNodes();
         }
 
         /// <summary>

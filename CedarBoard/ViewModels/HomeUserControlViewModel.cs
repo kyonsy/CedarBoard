@@ -33,6 +33,7 @@ namespace CedarBoard.ViewModels
         {
             _regionManager = regionManager;
             _workspaceSelector = workspaceSelector;
+            _workspaceSelector.Save();
             DictionaryItems = new ObservableCollection<KeyValuePair<string, string>>(
                 workspaceSelector.SelectorPoco.PathDictionary);
             NewEntry = new DelegateCommand(NewEntryExecute);
@@ -229,7 +230,12 @@ namespace CedarBoard.ViewModels
                 {
                     throw new Exception("workspace.json is not");
                 }
+                
                 string worksaceName = Path.GetFileName(path);
+                if (_workspaceSelector.SelectorPoco.PathDictionary.ContainsKey(worksaceName))
+                {
+                    throw new Exception("同じ名前のワークスペースは作成できません");
+                }
                 _workspaceSelector.SelectorPoco.PathDictionary.Add(worksaceName, path);
                 _workspaceSelector.Save();
                 Workspace workspace = _workspaceSelector.GetWorkSpace(worksaceName);

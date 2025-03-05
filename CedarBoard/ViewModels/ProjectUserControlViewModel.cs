@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -240,13 +241,30 @@ namespace CedarBoard.ViewModels
         /// </summary>
         private void ProjectToNodes()
         {
+            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+            foreach (NodeUserControlViewModel node in Nodes)
+            {
+                keyValuePairs.Add(node.Name, node.Message);
+            }
+
             Nodes.Clear();
+
             foreach (KeyValuePair<string, INode> nodeKeyValuePair in _project.NodeDictionary)
             {
+                string message = "";
+                if (keyValuePairs.ContainsKey(nodeKeyValuePair.Key))
+                {
+                    message = keyValuePairs[nodeKeyValuePair.Key];
+                }
+                else
+                {
+                    message = nodeKeyValuePair.Value.Message;
+                }
+
                 NodeUserControlViewModel nodeUserControlViewModel = new NodeUserControlViewModel()
                 {
                     Name = nodeKeyValuePair.Value.Name,
-                    Message = nodeKeyValuePair.Value.Message,
+                    Message = message,
                     CanvasLeft = nodeKeyValuePair.Value.Point.X,
                     CanvasTop = nodeKeyValuePair.Value.Point.Y,
                     Children = nodeKeyValuePair.Value.ChildNode,
@@ -254,6 +272,8 @@ namespace CedarBoard.ViewModels
                 };
                 Nodes.Add(nodeUserControlViewModel);
             }
+
+
 
             Lines.Clear();
             foreach (KeyValuePair<string, INode> nodeKeyValuePair in _project.NodeDictionary)

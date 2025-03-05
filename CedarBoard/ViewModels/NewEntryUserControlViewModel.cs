@@ -60,7 +60,15 @@ namespace CedarBoard.ViewModels
         /// <summary>
         /// ì•i–¼
         /// </summary>
-        public string Name { get { return _name; } set { SetProperty(ref _name, value); } }
+        public string Name {
+            get { return _name; }
+            set
+            {
+                SetProperty(ref _name, value);
+                string path = System.IO.Path.GetDirectoryName(Path);
+                Path = path + "\\" + Name;
+            }
+        }
 
         /// <summary>
         /// ìÒ–¼

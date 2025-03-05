@@ -256,7 +256,8 @@ namespace CedarBoard.ViewModels
         {
             var p = new NavigationParameters
             {
-                { "Setting", _workspace.WorkspacePoco.Setting }
+                { "Setting", _workspace.WorkspacePoco.Setting },
+                {"Workspace",_workspace }
             };
             _regionManager.RequestNavigate("ContentRegion", nameof(EditWorkUserControl), p);
         }

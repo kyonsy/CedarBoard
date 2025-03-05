@@ -26,7 +26,7 @@ namespace CedarBoard
         }
 
         /// <summary>
-        /// 遷移するコントロールを登録する
+        /// �����ݒ�
         /// </summary>
         /// <param name="containerRegistry"></param>
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -42,11 +42,10 @@ namespace CedarBoard
             containerRegistry.RegisterDialog<NewProjectUserControl, NewProjectUserControlViewModel>();
             containerRegistry.RegisterDialog<ChangeProjectNameUserControl, ChangeProjectNameUserControlViewModel>();
             containerRegistry.RegisterDialog<DeleteProjectUserControl, DeleteProjectUserControlViewModel>();
-            // チE��ト用にシングルトンにはモチE��を登録しておく
             containerRegistry.RegisterSingleton<WorkspaceSelector>(() =>
             {
 
-                WorkspaceSelector sel = new(new TextFileAccessor(), new DirectoryAccessor()) { SelectorPoco = new() { PathDictionary = [] } };
+                WorkspaceSelector sel = new(new TextFileAccessor(), new DirectoryAccessor());
                 return sel;
             });
         }

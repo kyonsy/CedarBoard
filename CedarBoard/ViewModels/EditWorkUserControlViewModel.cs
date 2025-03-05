@@ -125,7 +125,11 @@ namespace CedarBoard.ViewModels
                 Message = Memo
             };
             workspace.Save();
-            _workspaceSelector.Rename(_firstName, Name);
+            if(_firstName != Name)
+            {
+                _workspaceSelector.Rename(_firstName, Name);
+            }
+            
             BackHomeExecute();
         }
     }

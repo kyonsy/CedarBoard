@@ -23,7 +23,10 @@ namespace CedarBoard.Model.Accessor
         /// <param name="path">削除したいディレクトリのパス</param>
         public void Delete(string path)
         {
-            Directory.Delete(path, true);
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path, true);
+            }           
         }
 
         /// <summary>

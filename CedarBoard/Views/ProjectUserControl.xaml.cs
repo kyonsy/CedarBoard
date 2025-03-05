@@ -25,8 +25,8 @@ namespace CedarBoard.Views
         public ProjectUserControl()
         {
             InitializeComponent();
-            //Loaded += OnLoaded;
-            //Unloaded += OnUnLoaded;
+            Loaded += OnLoaded;
+            Unloaded += OnUnLoaded;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)

@@ -81,6 +81,7 @@ namespace CedarBoard.Model
             NodeDictionary[parentNodeName].ChildNode.Add(nodeName);
             TextFile?.Copy(NodeDictionary[parentNodeName].Path, node.Path);
             TextFile?.SetReadOnly(NodeDictionary[parentNodeName].Path);
+            TextFile?.DeleteReadOnly(node.Path);
         }
 
         /// <summary>
